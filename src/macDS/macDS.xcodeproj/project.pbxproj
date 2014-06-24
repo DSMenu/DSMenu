@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E5280B821959F5BD006A9FB5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5280B811959F5BD006A9FB5 /* Cocoa.framework */; };
+		E5280B8C1959F5BD006A9FB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5280B8A1959F5BD006A9FB5 /* InfoPlist.strings */; };
+		E5280B8E1959F5BD006A9FB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280B8D1959F5BD006A9FB5 /* main.m */; };
+		E5280B921959F5BD006A9FB5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E5280B901959F5BD006A9FB5 /* Credits.rtf */; };
+		E5280B951959F5BD006A9FB5 /* MDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */; };
+		E5280B981959F5BD006A9FB5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5280B961959F5BD006A9FB5 /* MainMenu.xib */; };
+		E5280B9A1959F5BD006A9FB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5280B991959F5BD006A9FB5 /* Images.xcassets */; };
+		E5280BA11959F5BD006A9FB5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5280BA01959F5BD006A9FB5 /* XCTest.framework */; };
+		E5280BA21959F5BD006A9FB5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5280B811959F5BD006A9FB5 /* Cocoa.framework */; };
+		E5280BAA1959F5BD006A9FB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5280BA81959F5BD006A9FB5 /* InfoPlist.strings */; };
+		E5280BAC1959F5BD006A9FB5 /* macDSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BAB1959F5BD006A9FB5 /* macDSTests.m */; };
+		E5280BB91959F6DB006A9FB5 /* status_bar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E5280BB71959F6DB006A9FB5 /* status_bar_icon.png */; };
+		E5280BBA1959F6DB006A9FB5 /* status_bar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5280BB81959F6DB006A9FB5 /* status_bar_icon@2x.png */; };
+		E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BBD1959F733006A9FB5 /* MDDSSManager.m */; };
+		E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E5280BA31959F5BD006A9FB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5280B761959F5BD006A9FB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5280B7D1959F5BD006A9FB5;
+			remoteInfo = macDS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E5280B7E1959F5BD006A9FB5 /* macDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5280B811959F5BD006A9FB5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E5280B841959F5BD006A9FB5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E5280B851959F5BD006A9FB5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E5280B861959F5BD006A9FB5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E5280B891959F5BD006A9FB5 /* macDS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "macDS-Info.plist"; sourceTree = "<group>"; };
+		E5280B8B1959F5BD006A9FB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E5280B8D1959F5BD006A9FB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E5280B8F1959F5BD006A9FB5 /* macDS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "macDS-Prefix.pch"; sourceTree = "<group>"; };
+		E5280B911959F5BD006A9FB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E5280B931959F5BD006A9FB5 /* MDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDAppDelegate.h; sourceTree = "<group>"; };
+		E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDAppDelegate.m; sourceTree = "<group>"; };
+		E5280B971959F5BD006A9FB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E5280B991959F5BD006A9FB5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E5280B9F1959F5BD006A9FB5 /* macDSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macDSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5280BA01959F5BD006A9FB5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		E5280BA71959F5BD006A9FB5 /* macDSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "macDSTests-Info.plist"; sourceTree = "<group>"; };
+		E5280BA91959F5BD006A9FB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E5280BAB1959F5BD006A9FB5 /* macDSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = macDSTests.m; sourceTree = "<group>"; };
+		E5280BB71959F6DB006A9FB5 /* status_bar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_bar_icon.png; sourceTree = "<group>"; };
+		E5280BB81959F6DB006A9FB5 /* status_bar_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_bar_icon@2x.png"; sourceTree = "<group>"; };
+		E5280BBC1959F733006A9FB5 /* MDDSSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSManager.h; sourceTree = "<group>"; };
+		E5280BBD1959F733006A9FB5 /* MDDSSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSManager.m; sourceTree = "<group>"; };
+		E5280BBF1959FD6A006A9FB5 /* MDDSSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSURLConnection.h; sourceTree = "<group>"; };
+		E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSURLConnection.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E5280B7B1959F5BD006A9FB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5280B821959F5BD006A9FB5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5280B9C1959F5BD006A9FB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5280BA21959F5BD006A9FB5 /* Cocoa.framework in Frameworks */,
+				E5280BA11959F5BD006A9FB5 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E5280B751959F5BD006A9FB5 = {
+			isa = PBXGroup;
+			children = (
+				E5280B871959F5BD006A9FB5 /* macDS */,
+				E5280BA51959F5BD006A9FB5 /* macDSTests */,
+				E5280B801959F5BD006A9FB5 /* Frameworks */,
+				E5280B7F1959F5BD006A9FB5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E5280B7F1959F5BD006A9FB5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5280B7E1959F5BD006A9FB5 /* macDS.app */,
+				E5280B9F1959F5BD006A9FB5 /* macDSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E5280B801959F5BD006A9FB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E5280B811959F5BD006A9FB5 /* Cocoa.framework */,
+				E5280BA01959F5BD006A9FB5 /* XCTest.framework */,
+				E5280B831959F5BD006A9FB5 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5280B831959F5BD006A9FB5 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E5280B841959F5BD006A9FB5 /* AppKit.framework */,
+				E5280B851959F5BD006A9FB5 /* CoreData.framework */,
+				E5280B861959F5BD006A9FB5 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E5280B871959F5BD006A9FB5 /* macDS */ = {
+			isa = PBXGroup;
+			children = (
+				E5280BBB1959F724006A9FB5 /* MDDSSManager */,
+				E5280BB61959F6DB006A9FB5 /* GFX */,
+				E5280B931959F5BD006A9FB5 /* MDAppDelegate.h */,
+				E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */,
+				E5280B961959F5BD006A9FB5 /* MainMenu.xib */,
+				E5280B991959F5BD006A9FB5 /* Images.xcassets */,
+				E5280B881959F5BD006A9FB5 /* Supporting Files */,
+			);
+			path = macDS;
+			sourceTree = "<group>";
+		};
+		E5280B881959F5BD006A9FB5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5280B891959F5BD006A9FB5 /* macDS-Info.plist */,
+				E5280B8A1959F5BD006A9FB5 /* InfoPlist.strings */,
+				E5280B8D1959F5BD006A9FB5 /* main.m */,
+				E5280B8F1959F5BD006A9FB5 /* macDS-Prefix.pch */,
+				E5280B901959F5BD006A9FB5 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5280BA51959F5BD006A9FB5 /* macDSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E5280BAB1959F5BD006A9FB5 /* macDSTests.m */,
+				E5280BA61959F5BD006A9FB5 /* Supporting Files */,
+			);
+			path = macDSTests;
+			sourceTree = "<group>";
+		};
+		E5280BA61959F5BD006A9FB5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5280BA71959F5BD006A9FB5 /* macDSTests-Info.plist */,
+				E5280BA81959F5BD006A9FB5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5280BB61959F6DB006A9FB5 /* GFX */ = {
+			isa = PBXGroup;
+			children = (
+				E5280BB71959F6DB006A9FB5 /* status_bar_icon.png */,
+				E5280BB81959F6DB006A9FB5 /* status_bar_icon@2x.png */,
+			);
+			path = GFX;
+			sourceTree = "<group>";
+		};
+		E5280BBB1959F724006A9FB5 /* MDDSSManager */ = {
+			isa = PBXGroup;
+			children = (
+				E5280BBC1959F733006A9FB5 /* MDDSSManager.h */,
+				E5280BBD1959F733006A9FB5 /* MDDSSManager.m */,
+				E5280BBF1959FD6A006A9FB5 /* MDDSSURLConnection.h */,
+				E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */,
+			);
+			path = MDDSSManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E5280B7D1959F5BD006A9FB5 /* macDS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5280BAF1959F5BD006A9FB5 /* Build configuration list for PBXNativeTarget "macDS" */;
+			buildPhases = (
+				E5280B7A1959F5BD006A9FB5 /* Sources */,
+				E5280B7B1959F5BD006A9FB5 /* Frameworks */,
+				E5280B7C1959F5BD006A9FB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = macDS;
+			productName = macDS;
+			productReference = E5280B7E1959F5BD006A9FB5 /* macDS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5280B9E1959F5BD006A9FB5 /* macDSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5280BB21959F5BD006A9FB5 /* Build configuration list for PBXNativeTarget "macDSTests" */;
+			buildPhases = (
+				E5280B9B1959F5BD006A9FB5 /* Sources */,
+				E5280B9C1959F5BD006A9FB5 /* Frameworks */,
+				E5280B9D1959F5BD006A9FB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5280BA41959F5BD006A9FB5 /* PBXTargetDependency */,
+			);
+			name = macDSTests;
+			productName = macDSTests;
+			productReference = E5280B9F1959F5BD006A9FB5 /* macDSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5280B761959F5BD006A9FB5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MD;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = include7;
+				TargetAttributes = {
+					E5280B9E1959F5BD006A9FB5 = {
+						TestTargetID = E5280B7D1959F5BD006A9FB5;
+					};
+				};
+			};
+			buildConfigurationList = E5280B791959F5BD006A9FB5 /* Build configuration list for PBXProject "macDS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E5280B751959F5BD006A9FB5;
+			productRefGroup = E5280B7F1959F5BD006A9FB5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E5280B7D1959F5BD006A9FB5 /* macDS */,
+				E5280B9E1959F5BD006A9FB5 /* macDSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E5280B7C1959F5BD006A9FB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5280BB91959F6DB006A9FB5 /* status_bar_icon.png in Resources */,
+				E5280B8C1959F5BD006A9FB5 /* InfoPlist.strings in Resources */,
+				E5280B9A1959F5BD006A9FB5 /* Images.xcassets in Resources */,
+				E5280B921959F5BD006A9FB5 /* Credits.rtf in Resources */,
+				E5280B981959F5BD006A9FB5 /* MainMenu.xib in Resources */,
+				E5280BBA1959F6DB006A9FB5 /* status_bar_icon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5280B9D1959F5BD006A9FB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5280BAA1959F5BD006A9FB5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E5280B7A1959F5BD006A9FB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5280B8E1959F5BD006A9FB5 /* main.m in Sources */,
+				E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */,
+				E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */,
+				E5280B951959F5BD006A9FB5 /* MDAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5280B9B1959F5BD006A9FB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5280BAC1959F5BD006A9FB5 /* macDSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5280BA41959F5BD006A9FB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5280B7D1959F5BD006A9FB5 /* macDS */;
+			targetProxy = E5280BA31959F5BD006A9FB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E5280B8A1959F5BD006A9FB5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5280B8B1959F5BD006A9FB5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E5280B901959F5BD006A9FB5 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5280B911959F5BD006A9FB5 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		E5280B961959F5BD006A9FB5 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5280B971959F5BD006A9FB5 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		E5280BA81959F5BD006A9FB5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5280BA91959F5BD006A9FB5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E5280BAD1959F5BD006A9FB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E5280BAE1959F5BD006A9FB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E5280BB01959F5BD006A9FB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "macDS/macDS-Prefix.pch";
+				INFOPLIST_FILE = "macDS/macDS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E5280BB11959F5BD006A9FB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "macDS/macDS-Prefix.pch";
+				INFOPLIST_FILE = "macDS/macDS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E5280BB31959F5BD006A9FB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/macDS.app/Contents/MacOS/macDS";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "macDS/macDS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "macDSTests/macDSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		E5280BB41959F5BD006A9FB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/macDS.app/Contents/MacOS/macDS";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "macDS/macDS-Prefix.pch";
+				INFOPLIST_FILE = "macDSTests/macDSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E5280B791959F5BD006A9FB5 /* Build configuration list for PBXProject "macDS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5280BAD1959F5BD006A9FB5 /* Debug */,
+				E5280BAE1959F5BD006A9FB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5280BAF1959F5BD006A9FB5 /* Build configuration list for PBXNativeTarget "macDS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5280BB01959F5BD006A9FB5 /* Debug */,
+				E5280BB11959F5BD006A9FB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E5280BB21959F5BD006A9FB5 /* Build configuration list for PBXNativeTarget "macDSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5280BB31959F5BD006A9FB5 /* Debug */,
+				E5280BB41959F5BD006A9FB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E5280B761959F5BD006A9FB5 /* Project object */;
+}
