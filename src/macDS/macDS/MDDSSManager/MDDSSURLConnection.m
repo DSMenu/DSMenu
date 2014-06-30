@@ -15,17 +15,17 @@
 
 @implementation MDDSSURLConnection
 
-+(instancetype)jsonConnectionWithPath:(NSString *)path params:(NSDictionary *)params completionHandler:(void (^)(NSDictionary*, NSError*))handler
++(instancetype)jsonConnectionToHostWithPort:(NSString *)hostAndPort path:(NSString *)path params:(NSDictionary *)params completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
     MDDSSURLConnection *connection = [[MDDSSURLConnection alloc] init];
     connection.handler = handler;
-    [connection callJSON:path params:params];
+    [connection callJSON:path params:params hostAndPort:hostAndPort];
     return connection;
 }
 
 
 
-- (void)callJSON:(NSString *)path params:(NSDictionary *)params
+- (void)callJSON:(NSString *)path params:(NSDictionary *)params hostAndPort:(NSString *)hostAndPort
 {
     NSMutableString *pathString = [path mutableCopy];
     if(params.allKeys.count > 0) { [pathString appendFormat:@"?"]; }
@@ -35,10 +35,13 @@
         [pathString appendFormat:@"%@=%@&", key, [params objectForKey:key]];
     }
     
-    NSString *baseURL = @"https://10.0.1.19:8080/"; //TODO
+    NSString *baseURL = [NSString stringWithFormat:@"https://%@/", hostAndPort];
+    
     NSString *fullURLAsString = [baseURL stringByAppendingString:pathString];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:fullURLAsString]];
+    
+    NSLog(@"Request: %@", request);
     
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
@@ -63,6 +66,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSString *jsonResponse = [[NSString alloc] initWithData:self.connectionData encoding:NSUTF8StringEncoding];
+    NSLog(@"Response: %@", jsonResponse);
     
     NSError *e = nil;
     NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self.connectionData options:NSJSONReadingMutableContainers error:&e];

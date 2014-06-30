@@ -22,6 +22,8 @@
 		E5280BBA1959F6DB006A9FB5 /* status_bar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5280BB81959F6DB006A9FB5 /* status_bar_icon@2x.png */; };
 		E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BBD1959F733006A9FB5 /* MDDSSManager.m */; };
 		E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */; };
+		E5DE64321961A15600938FE2 /* MDZoneMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DE64311961A15600938FE2 /* MDZoneMenuItem.m */; };
+		E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DE64351961B11F00938FE2 /* MDDeviceMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		E5280BBD1959F733006A9FB5 /* MDDSSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSManager.m; sourceTree = "<group>"; };
 		E5280BBF1959FD6A006A9FB5 /* MDDSSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSURLConnection.h; sourceTree = "<group>"; };
 		E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSURLConnection.m; sourceTree = "<group>"; };
+		E5DE64301961A15600938FE2 /* MDZoneMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDZoneMenuItem.h; sourceTree = "<group>"; };
+		E5DE64311961A15600938FE2 /* MDZoneMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDZoneMenuItem.m; sourceTree = "<group>"; };
+		E5DE64341961B11F00938FE2 /* MDDeviceMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDeviceMenuItem.h; sourceTree = "<group>"; };
+		E5DE64351961B11F00938FE2 /* MDDeviceMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDeviceMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 		E5280B871959F5BD006A9FB5 /* macDS */ = {
 			isa = PBXGroup;
 			children = (
+				E5DE642F1961A15600938FE2 /* Menu */,
 				E5280BBB1959F724006A9FB5 /* MDDSSManager */,
 				E5280BB61959F6DB006A9FB5 /* GFX */,
 				E5280B931959F5BD006A9FB5 /* MDAppDelegate.h */,
@@ -184,6 +191,17 @@
 				E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */,
 			);
 			path = MDDSSManager;
+			sourceTree = "<group>";
+		};
+		E5DE642F1961A15600938FE2 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				E5DE64301961A15600938FE2 /* MDZoneMenuItem.h */,
+				E5DE64311961A15600938FE2 /* MDZoneMenuItem.m */,
+				E5DE64341961B11F00938FE2 /* MDDeviceMenuItem.h */,
+				E5DE64351961B11F00938FE2 /* MDDeviceMenuItem.m */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,7 +305,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DE64321961A15600938FE2 /* MDZoneMenuItem.m in Sources */,
 				E5280B8E1959F5BD006A9FB5 /* main.m in Sources */,
+				E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */,
 				E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */,
 				E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */,
 				E5280B951959F5BD006A9FB5 /* MDAppDelegate.m in Sources */,
@@ -503,6 +523,7 @@
 				E5280BB11959F5BD006A9FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E5280BB21959F5BD006A9FB5 /* Build configuration list for PBXNativeTarget "macDSTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +532,7 @@
 				E5280BB41959F5BD006A9FB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
