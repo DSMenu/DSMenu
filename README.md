@@ -27,7 +27,6 @@ Download
 
 Binary releases can be downloaded here:
 
-* http://www.macwallet.org
 * https://github.com/jonasschnelli/macDS/releases
 
 
@@ -40,5 +39,5 @@ Requirements
 License
 -------
 
-MacWallet is released under the terms of the MIT license. See `LICENSE` for more
+macDS is released under the terms of the MIT license. See `LICENSE` for more
 information or see http://opensource.org/licenses/MIT.
