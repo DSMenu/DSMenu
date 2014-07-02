@@ -55,6 +55,8 @@
     self.tokenField.stringValue = ([MDDSSManager defaultManager].applicationToken) ? [MDDSSManager defaultManager].applicationToken : @"";
 }
 
+#pragma mark - mDNS / Bonjour Stack
+
 - (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing
 {
     
@@ -65,7 +67,7 @@
     [self.mDNSServices addObject:aNetService];
     [self.tableView reloadData];
     
-    NSLog(@"%@ %@", [aNetService.name stringByAppendingString:@".local"], [MDDSSManager defaultManager].host);
+    DDLogVerbose(@"%@ %@", [aNetService.name stringByAppendingString:@".local"], [MDDSSManager defaultManager].host);
     
     if([[aNetService.name stringByAppendingString:@".local"] isEqualToString:[MDDSSManager defaultManager].host])
     {

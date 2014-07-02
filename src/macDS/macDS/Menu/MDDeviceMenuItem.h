@@ -9,6 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "MDSceneMenuItem.h"
 
+/**
+ * MDZoneMenuItemClickType.
+ *  Class for Device Menu Item
+ */
 @interface MDDeviceMenuItem : MDSceneMenuItem
-@property (strong) NSString *dsid;
+@property (strong) NSString *dsid; /**< the related dsid for this device */
 @end

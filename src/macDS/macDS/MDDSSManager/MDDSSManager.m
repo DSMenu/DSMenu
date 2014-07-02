@@ -119,7 +119,7 @@ static MDDSSManager *defaultManager;
             {
                 //ERROR TODO
                 DDLogWarn(@"ERROR, can't login");
-                NSError *error = [NSError errorWithDomain:@"" code:101 userInfo:nil]; // TODO
+                NSError *error = [NSError errorWithDomain:@"" code:MD_ERROR_AUTH_ERROR userInfo:nil]; // TODO
                 handler(nil, error);
                 return;
             }

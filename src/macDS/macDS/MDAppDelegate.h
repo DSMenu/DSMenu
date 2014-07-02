@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 typedef enum MDAppState {
-    MDAppStateBootstrapping,
+    MDAppStateBootstrapping, /**< enum state for booting the app */
     MDAppStateLoadingStructure,
     MDAppStateAuthError,
     MDAppStateWaitingForAccess,

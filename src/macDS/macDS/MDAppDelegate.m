@@ -61,6 +61,8 @@
     [MDDSSManager defaultManager].appName = @"macDS";
     if([MDDSSManager defaultManager].host == nil || [MDDSSManager defaultManager].host.length == 0)
     {
+        // open preferences when no dSS is configured
+        
         [self showPreferences:self];
         
         NSAlert *alert = [[NSAlert alloc] init];
@@ -70,7 +72,6 @@
         [alert runModal];
         
     }
-    //[MDDSSManager defaultManager].host = @"dss.local";
     [self refreshMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMenu) name:kMD_NOTIFICATION_HOST_DID_CHANGE object:nil];
@@ -86,6 +87,7 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
             
+            // open safari when user need's to give access to registered token
             [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: [@"https://" stringByAppendingString:[MDDSSManager defaultManager].host]]];
             
             NSAlert *alert = [[NSAlert alloc] init];
@@ -94,8 +96,8 @@
             [alert setAlertStyle:NSWarningAlertStyle];
             [alert runModal];
             
+            // perform a faster refresh in case user gave access to token
             self.appState = MDAppStateWaitingForAccess;
-            
             self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerKick:) userInfo:nil repeats:YES];
         }];
     }
@@ -105,19 +107,14 @@
     }
 }
 
-- (void)timerKick:(id)sender
-{
-    [self refreshMenu];
-}
-
 - (void)refreshStructure
 {
+    // create autoreleasepool for async menu update in case use presses mouse down (on statusmenuitem) while updating in background
     
     @autoreleasepool {
-    
         [[MDDSSManager defaultManager] getVersion:^(NSDictionary *json, NSError *error){
             self.currentError = error;
-            if(error && error.code == 101)
+            if(error && error.code == MD_ERROR_AUTH_ERROR)
             {
                 self.appState = MDAppStateAuthError;
                 return;
@@ -126,7 +123,7 @@
                 [[MDDSSManager defaultManager] getStructure:^(NSDictionary *json, NSError *error){
                     self.currentError = error;
                     
-                    if(error && error.code == 101)
+                    if(error && error.code == MD_ERROR_AUTH_ERROR)
                     {
                         self.appState = MDAppStateAuthError;
                         [self performSelectorOnMainThread:@selector(refreshStructureMainThread:) withObject:nil waitUntilDone:YES];
@@ -145,20 +142,19 @@
         }];
         
         
-        
         CFRunLoopRun();
-            
     }
 }
 
 
 - (void)refreshStructureMainThread:(NSDictionary *)json
 {
+    // empty menu
     [self.statusMenu removeAllItems];
     
     if([MDDSSManager defaultManager].dSSVersionString)
     {
-        
+        // create a nice two line string of the dSS Version Feedback
         NSString *versionString = [MDDSSManager defaultManager].dSSVersionString;
         NSArray *parts = [versionString componentsSeparatedByString:@" "];
         NSMutableString *niceString = [[NSMutableString alloc] initWithCapacity:1000];
@@ -184,7 +180,7 @@
     
     if(json) {
         
-        
+        //sort zones
         NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
         zones = [zones sortedArrayUsingComparator:^(id obj1, id obj2) {
             if(![obj1 objectForKey:@"name"] || [[obj1 objectForKey:@"name"] length] <= 0)
@@ -198,6 +194,7 @@
             return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
         }];
         
+        // build zone menus
         for(NSDictionary *zoneDict in zones)
         {
             if([[zoneDict objectForKey:@"id"] intValue] == 0)
@@ -238,6 +235,7 @@
     [self.statusMenu addItem:quitItem];
 }
 
+#pragma mark - Menu Item callbacks
 
 - (void)zoneMenuItemClicked:(id)sender
 {
@@ -285,5 +283,12 @@
     [self.preferencesWindowController.window orderFrontRegardless];
     
 }
+
+#pragma mark - NSTimer callbacks
+- (void)timerKick:(id)sender
+{
+    [self refreshMenu];
+}
+
 
 @end

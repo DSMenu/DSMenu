@@ -16,6 +16,9 @@
 {
     DDLogDebug(@"%@", zoneDict);
     
+    
+    // check if light/shadow is required
+    // TODO: more flexible "hasGroup" logic, .. don't address groups as variables directly
     BOOL hasLight = NO;
     BOOL hasShadow = NO;
     
@@ -48,6 +51,7 @@
     
     item.submenu = [[NSMenu alloc] init];
 
+    // TODO: for the moment, only scene 0, 5, 17, 18, 19 are available
     if(hasLight)
     {
         ///// light (group 1)
@@ -95,6 +99,7 @@
     devicesItem.title = NSLocalizedString(@"menuDevices", @"Devices in Menu");
     devicesItem.submenu = [[NSMenu alloc] init];
     
+    // sort the devices A-Z
     NSArray *devices = [zoneDict objectForKey:@"devices"];
     devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
         return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
@@ -108,9 +113,7 @@
         oneDeviceItem.tag = 5;
         oneDeviceItem.dsid = [device objectForKey:@"id"];
         oneDeviceItem.action = @selector(deviceMenuItemClicked:);
-        
         oneDeviceItem.image = [MDDSHelper iconForDevice:device];
-        
         [devicesItem.submenu addItem:oneDeviceItem];
         
         oneDeviceItem.submenu = [[NSMenu alloc] init];
@@ -131,12 +134,6 @@
         offItem.action = @selector(deviceMenuItemClicked:);
         [oneDeviceItem.submenu addItem:offItem];
         [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
-        
-        
-        BOOL deviceHasLight     = YES;
-        BOOL deviceHasShadow    = YES;
-        
-    
         
         if([MDDSHelper deviceHasLight:device])
         {
@@ -192,20 +189,17 @@
 
 - (void)sceneMenuItemClicked:(id)sender
 {
-    self.clickedSubmenu = (NSMenuItem *)sender;
+    self.clickedSubmenu = (MDSceneMenuItem *)sender;
     self.clickType = MDZoneMenuItemClickTypeScene;
     [self.target performSelector:self.action withObject:self]; //<TODO: refactor
 }
 
 - (void)deviceMenuItemClicked:(id)sender
 {
-    self.clickedSubmenu = (NSMenuItem *)sender;
+    self.clickedSubmenu = (MDSceneMenuItem *)sender;
     self.clickType = MDZoneMenuItemClickTypeDevice;
     [self.target performSelector:self.action withObject:self]; //<TODO: refactor
 }
-
-
-
 
 
 

@@ -87,6 +87,7 @@
 		E5280BBD1959F733006A9FB5 /* MDDSSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSManager.m; sourceTree = "<group>"; };
 		E5280BBF1959FD6A006A9FB5 /* MDDSSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSURLConnection.h; sourceTree = "<group>"; };
 		E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSURLConnection.m; sourceTree = "<group>"; };
+		E538225619645E320036E33F /* ErrorCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorCodes.h; sourceTree = "<group>"; };
 		E5524E461962A5680031D1B6 /* MDSceneMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSceneMenuItem.h; sourceTree = "<group>"; };
 		E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSceneMenuItem.m; sourceTree = "<group>"; };
 		E5524E4C1962A70B0031D1B6 /* CLIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIColor.h; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 				E5280B901959F5BD006A9FB5 /* Credits.rtf */,
 				E5DE64401961E9CC00938FE2 /* Localizable.strings */,
 				E5A05F8E1964183E00399064 /* Notifications.h */,
+				E538225619645E320036E33F /* ErrorCodes.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

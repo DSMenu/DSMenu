@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ * MDZoneMenuItemClickType.
+ *  Class for Scene Menu Item
+ */
 @interface MDSceneMenuItem : NSMenuItem
-@property (assign) NSInteger group;
+@property (assign) NSInteger group; /**< group Number (ex. 1 = yellow) which will be used for further actions */
 @end

@@ -74,7 +74,6 @@
     
     
     self.handler(jsonArray, e);
-    
 }
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
