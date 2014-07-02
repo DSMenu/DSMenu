@@ -10,15 +10,16 @@
 #import "MDDSSURLConnection.h"
 
 #define kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY @"MDDSSManagerApplicationToken"
+#define kMDDSSMANAGER_HOST_UD_KEY @"MDDSSManagerHost"
+#define kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY @"MDDSSUseIPAddress"
+
 #define kMDDSSMANAGER_APPLICATION_TOKEN_MIN_LENGTH 3
 
 static MDDSSManager *defaultManager;
 
 @interface MDDSSManager ()
-@property NSString *applicationToken;
 @property NSString *currentSessionToken;
 @property (readonly) NSString *hostWithPort;
-
 @end
 
 @implementation MDDSSManager
@@ -40,14 +41,41 @@ static MDDSSManager *defaultManager;
         self.applicationToken = [defaults objectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
         self.currentSessionToken = @""; // use a empty string as not-logged-in indicator
         self.port = @"8080";
-        self.host = @"192.168.0.1";
+        self.host = @"";
+        self.dSSVersionString = nil;
+        
+        NSString *possibleHost = [[NSUserDefaults standardUserDefaults] objectForKey:kMDDSSMANAGER_HOST_UD_KEY];
+        if(possibleHost && [possibleHost isKindOfClass:[NSString class]])
+        {
+            self.host = possibleHost;
+        }
     }
     return self;
+}
+
+- (void)setUseIPAddress:(BOOL)useIPAddress
+{
+    [[NSUserDefaults standardUserDefaults] setBool:useIPAddress forKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)useIPAddress
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
 }
 
 - (NSString *)hostWithPort
 {
     return [self.host stringByAppendingFormat:@":%@", self.port];
+}
+
+- (void)setAndPersistHost:(NSString *)host
+{
+    self.host = host;
+    [[NSUserDefaults standardUserDefaults] setObject:self.host forKey:kMDDSSMANAGER_HOST_UD_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_HOST_DID_CHANGE object:self.host];
 }
 
 - (BOOL)hasApplicationToken
@@ -77,8 +105,12 @@ static MDDSSManager *defaultManager;
 - (void)jsonCall:(NSString *)path params:(NSDictionary *)params completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
     [MDDSSURLConnection jsonConnectionToHostWithPort:self.hostWithPort path:path params:params completionHandler:^(NSDictionary *json, NSError *error){
-        
-        NSLog(@"json: %@", [json objectForKey:@"ok"]);
+        if(error != nil)
+        {
+            handler(nil, error);
+            return;
+        }
+        DDLogDebug(@"json: %@", [json objectForKey:@"ok"]);
         if([[json objectForKey:@"ok"] intValue] == 0)
         {
             
@@ -86,19 +118,21 @@ static MDDSSManager *defaultManager;
             if([[json objectForKey:@"message"] isEqualToString:@"Application-Authentication failed"])
             {
                 //ERROR TODO
-                NSLog(@"ERROR, can't login");
-                NSError *error = [NSError errorWithDomain:@"" code:1 userInfo:nil]; // TODO
+                DDLogWarn(@"ERROR, can't login");
+                NSError *error = [NSError errorWithDomain:@"" code:101 userInfo:nil]; // TODO
                 handler(nil, error);
+                return;
             }
             
             //error, try to login
             [self loginApplication:self.applicationToken callBlock:^(NSDictionary *json, NSError *error){
-                    
-                [MDDSSURLConnection jsonConnectionToHostWithPort:self.hostWithPort path:path params:params completionHandler:^(NSDictionary *json, NSError *error){
-                    // try again
-                    handler(json, error);
-                }];
                 
+                if(error)
+                {
+                    handler(nil, error);
+                    return;
+                }
+                [self jsonCall:path params:params completionHandler:handler];
             }];
         }
         else
@@ -106,6 +140,17 @@ static MDDSSManager *defaultManager;
             // valid result
             handler(json, error);
         }
+    }];
+}
+
+- (void)getVersion:(void (^)(NSDictionary*, NSError*))callback
+{
+    [self jsonCall:@"/json/system/version" params:nil completionHandler:^(NSDictionary *json, NSError *error){
+        if([json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"version"])
+        {
+            self.dSSVersionString = [[json objectForKey:@"result"] objectForKey:@"version"];
+        }
+       callback(json, error);
     }];
 }
 
@@ -131,23 +176,17 @@ static MDDSSManager *defaultManager;
         if([json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"token"])
         {
             self.currentSessionToken = [[json objectForKey:@"result"] objectForKey:@"token"];
-            handler(json, error);
         }
+        
+        handler(json, error);
         
     }];
 }
 
 - (void)getStructure:(void (^)(NSDictionary*, NSError*))callback
 {
-
     [self jsonCall:@"/json/apartment/getStructure" params:[NSDictionary dictionaryWithObject:self.currentSessionToken forKey:@"token"] completionHandler:^(NSDictionary *json, NSError *error){
-        
-
         callback(json, error);
-  
-        //[self setValueOfDSID:@"303505d7f8000040000217f4" value:@"255"];
-//        [self zoneGetName:@"4"];
-//        [self zoneId:@"4" callScene:@"5" groupID:@"2"];
     }];
 }
 
@@ -157,7 +196,7 @@ static MDDSSManager *defaultManager;
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"value": value };
     [self jsonCall:@"/json/device/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
-        NSLog(@"%@", json);
+        DDLogDebug(@"%@", json);
         
         [self setValueOfDSID:@"303505d7f8000040000217f4" value:@"0"];
 
@@ -167,7 +206,7 @@ static MDDSSManager *defaultManager;
 - (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback
 {
     
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId, @"force":@"true",@"groupNumber":@"1",@"groupID":@"1", @"sceneNumber":sceneNumber  };
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId,@"groupID":groupID, @"sceneNumber":sceneNumber  };
     [self jsonCall:@"/json/zone/callScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
         callback(json, error);
     }];
@@ -188,12 +227,22 @@ static MDDSSManager *defaultManager;
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId};
     [self jsonCall:@"/json/zone/getName" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
-        NSLog(@"%@", json);
+        DDLogDebug(@"%@", json);
         
         
     }];
 }
 
-
+- (void)resetToDefaults
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMDDSSMANAGER_HOST_UD_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    self.applicationToken = @"";
+    self.currentSessionToken = @"";
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_HOST_DID_CHANGE object:self.host];
+}
 
 @end

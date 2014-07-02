@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MDSceneMenuItem.h"
 
-@interface MDDeviceMenuItem : NSMenuItem
+@interface MDDeviceMenuItem : MDSceneMenuItem
 @property (strong) NSString *dsid;
 @end

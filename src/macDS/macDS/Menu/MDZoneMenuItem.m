@@ -8,37 +8,99 @@
 
 #import "MDZoneMenuItem.h"
 #import "MDDeviceMenuItem.h"
+#import "MDSceneMenuItem.h"
 
 @implementation MDZoneMenuItem
 
 + (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict
 {
-    NSLog(@"%@", zoneDict);
+    DDLogDebug(@"%@", zoneDict);
+    
+    BOOL hasLight = NO;
+    BOOL hasShadow = NO;
+    
+    for(NSDictionary *groupDict in [zoneDict objectForKey:@"groups"])
+    {
+        if([[groupDict objectForKey:@"color"] intValue] == 1)
+        {
+            if([[groupDict objectForKey:@"devices"] count] > 0)
+            {
+                hasLight = YES;
+            }
+        }
+        else if([[groupDict objectForKey:@"color"] intValue] == 2)
+        {
+            if([[groupDict objectForKey:@"devices"] count] > 0)
+            {
+                hasShadow = YES;
+            }
+        }
+    }
     
     MDZoneMenuItem *item = [[MDZoneMenuItem alloc] init];
     item.title = [zoneDict objectForKey:@"name"];
     item.zoneId = [zoneDict objectForKey:@"id"];
     
+    if(item.title.length <= 0)
+    {
+        item.title = [NSLocalizedString(@"unnamedRoom", @"Menu String for unnamed room") stringByAppendingFormat:@" %@", item.zoneId];
+    }
+    
     item.submenu = [[NSMenu alloc] init];
-    [item.submenu setAutoenablesItems:YES];
-    
-    NSMenuItem *scene4 = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"sceneItem0", @"Zone Submenu Scene 0 Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
-    scene4.target = item;
-    scene4.tag = 0;
-    [item.submenu addItem:scene4];
-    
-    NSMenuItem *scene5 = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"sceneItem5", @"Zone Submenu Scene 5 Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
-    scene5.target = item;
-    scene5.tag = 5;
-    [item.submenu addItem:scene5];
-    
-    [item.submenu addItem:[NSMenuItem separatorItem]];
 
+    if(hasLight)
+    {
+        ///// light (group 1)
+        for(int i=0;i<=19;i++)
+        {
+            if((i > 0 && i < 5) || (i > 5 && i < 17))
+            {
+                continue;
+            }
+            MDSceneMenuItem *lightScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(([@"lightSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+            lightScene.target = item;
+            lightScene.tag = i;
+            lightScene.group = 1;
+            lightScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_1"];
+            [item.submenu addItem:lightScene];
+        }
+        
+        [item.submenu addItem:[NSMenuItem separatorItem]];
+        ////////////////////////
+    }
+    
+    
+    if(hasShadow)
+    {
+        for(int i=0;i<=19;i++)
+        {
+            if((i > 0 && i < 5) || (i > 5 && i < 17))
+            {
+                continue;
+            }
+            MDSceneMenuItem *shadowScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(([@"shadowSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+            shadowScene.target = item;
+            shadowScene.tag = i;
+            shadowScene.group = 2;
+            shadowScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_2"];
+            [item.submenu addItem:shadowScene];
+        }
+        
+        [item.submenu addItem:[NSMenuItem separatorItem]];
+        ////////////////////////
+    }
+    
+    
     NSMenuItem *devicesItem = [[NSMenuItem alloc] init];
     devicesItem.title = NSLocalizedString(@"menuDevices", @"Devices in Menu");
     devicesItem.submenu = [[NSMenu alloc] init];
     
-    for(NSDictionary *device in [zoneDict objectForKey:@"devices"])
+    NSArray *devices = [zoneDict objectForKey:@"devices"];
+    devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
+        return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
+    }];
+    
+    for(NSDictionary *device in devices)
     {
         MDDeviceMenuItem *oneDeviceItem = [[MDDeviceMenuItem alloc] init];
         oneDeviceItem.title = [device objectForKey:@"name"];
@@ -46,6 +108,9 @@
         oneDeviceItem.tag = 5;
         oneDeviceItem.dsid = [device objectForKey:@"id"];
         oneDeviceItem.action = @selector(deviceMenuItemClicked:);
+        
+        oneDeviceItem.image = [MDDSHelper iconForDevice:device];
+        
         [devicesItem.submenu addItem:oneDeviceItem];
         
         oneDeviceItem.submenu = [[NSMenu alloc] init];
@@ -65,6 +130,58 @@
         offItem.dsid = [device objectForKey:@"id"];
         offItem.action = @selector(deviceMenuItemClicked:);
         [oneDeviceItem.submenu addItem:offItem];
+        [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
+        
+        
+        BOOL deviceHasLight     = YES;
+        BOOL deviceHasShadow    = YES;
+        
+    
+        
+        if([MDDSHelper deviceHasLight:device])
+        {
+            ///// DEVICE light (group 1)
+            for(int i=0;i<=19;i++)
+            {
+                if((i > 0 && i < 5) || (i > 5 && i < 17))
+                {
+                    continue;
+                }
+                MDDeviceMenuItem *lightScene = [[MDDeviceMenuItem alloc] initWithTitle:NSLocalizedString(([@"lightSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(deviceMenuItemClicked:) keyEquivalent:@""];
+                lightScene.target = item;
+                lightScene.tag = i;
+                lightScene.dsid = [device objectForKey:@"id"];
+                lightScene.group = 1;
+                lightScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_1"];
+                [oneDeviceItem.submenu addItem:lightScene];
+            }
+            
+            [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
+            ////////////////////////
+        }
+        
+        
+        if([MDDSHelper deviceHasShadow:device])
+        {
+            ///// DEVICE shadow (group 2)
+            for(int i=0;i<=19;i++)
+            {
+                if((i > 0 && i < 5) || (i > 5 && i < 17))
+                {
+                    continue;
+                }
+                MDDeviceMenuItem *shadowScene = [[MDDeviceMenuItem alloc] initWithTitle:NSLocalizedString(([@"shadowSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(deviceMenuItemClicked:) keyEquivalent:@""];
+                shadowScene.target = item;
+                shadowScene.tag = i;
+                shadowScene.dsid = [device objectForKey:@"id"];
+                shadowScene.group = 2;
+                shadowScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_2"];
+                [oneDeviceItem.submenu addItem:shadowScene];
+            }
+            
+            [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
+            ////////////////////////
+        }
         
     }
     [item.submenu addItem:devicesItem];
@@ -86,6 +203,8 @@
     self.clickType = MDZoneMenuItemClickTypeDevice;
     [self.target performSelector:self.action withObject:self]; //<TODO: refactor
 }
+
+
 
 
 

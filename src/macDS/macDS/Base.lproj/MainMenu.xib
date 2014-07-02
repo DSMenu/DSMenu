@@ -668,13 +668,7 @@
         </menu>
         <menu id="Kia-md-iI6">
             <items>
-                <menuItem title="Item 1" id="7KY-qU-EVP">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 2" id="8Ok-V7-KwZ">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 3" id="Cca-l8-okZ">
+                <menuItem title="loading..." id="Cca-l8-okZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>

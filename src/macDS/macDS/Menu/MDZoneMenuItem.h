@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MDSceneMenuItem.h"
 
 typedef enum MDZoneMenuItemClickType {
     MDZoneMenuItemClickTypeScene,
@@ -15,7 +16,7 @@ typedef enum MDZoneMenuItemClickType {
 
 @interface MDZoneMenuItem : NSMenuItem <NSMenuDelegate>
 @property (strong) NSString *zoneId;
-@property (strong) NSMenuItem *clickedSubmenu;
+@property (strong) MDSceneMenuItem *clickedSubmenu;
 @property (assign) MDZoneMenuItemClickType clickType;
 
 + (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict;

@@ -8,6 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum MDAppState {
+    MDAppStateBootstrapping,
+    MDAppStateLoadingStructure,
+    MDAppStateAuthError,
+    MDAppStateWaitingForAccess,
+    MDAppStateIdel
+}MDAppState;
+
 @interface MDAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (assign) IBOutlet NSWindow *window;

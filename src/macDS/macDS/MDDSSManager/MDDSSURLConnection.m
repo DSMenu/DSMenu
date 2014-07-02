@@ -10,6 +10,8 @@
 
 @interface MDDSSURLConnection ()
 @property NSMutableData *connectionData;
+
+@property (strong) NSURLConnection *connection;
 @property (nonatomic, copy) void (^handler)(NSDictionary*, NSError*);
 @end
 
@@ -22,7 +24,6 @@
     [connection callJSON:path params:params hostAndPort:hostAndPort];
     return connection;
 }
-
 
 
 - (void)callJSON:(NSString *)path params:(NSDictionary *)params hostAndPort:(NSString *)hostAndPort
@@ -41,9 +42,9 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:fullURLAsString]];
     
-    NSLog(@"Request: %@", request);
+    DDLogVerbose(@"Request: %@", request);
     
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 #pragma mark - NSURLConnection Stack
@@ -60,13 +61,13 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    
+    self.handler(nil, error);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSString *jsonResponse = [[NSString alloc] initWithData:self.connectionData encoding:NSUTF8StringEncoding];
-    NSLog(@"Response: %@", jsonResponse);
+    DDLogVerbose(@"Response: %@", jsonResponse);
     
     NSError *e = nil;
     NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self.connectionData options:NSJSONReadingMutableContainers error:&e];

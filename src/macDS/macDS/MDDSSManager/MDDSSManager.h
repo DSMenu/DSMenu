@@ -14,11 +14,19 @@
 @property NSString *host;
 @property NSString *port;
 @property (readonly) BOOL hasApplicationToken;
+@property NSString *applicationToken;
+@property NSString *dSSVersionString;
+@property BOOL useIPAddress;
 
 + (MDDSSManager *)defaultManager;
+- (void)setAndPersistHost:(NSString *)host;
+
+- (void)getVersion:(void (^)(NSDictionary*, NSError*))callback;
 - (void)getStructure:(void (^)(NSDictionary*, NSError*))callback;
 - (void)requestApplicationToken:(void (^)(NSDictionary*, NSError*))callback;
 - (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
+
+- (void)resetToDefaults;
 
 @end

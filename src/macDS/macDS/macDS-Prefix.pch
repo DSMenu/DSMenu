@@ -6,4 +6,10 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import "MDDSHelper.h"
+    #import "DDLog.h"
+
+    #import "Notifications.h"
+
+    static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #endif
