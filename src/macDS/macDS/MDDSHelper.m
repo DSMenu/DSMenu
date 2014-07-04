@@ -52,4 +52,31 @@
     return NO;
 }
 
++ (NSString *)customSceneNameForScene:(int)scene fromJSON:(NSArray *)json
+{
+    for(NSDictionary *customSceneName in json)
+    {
+        if([[customSceneName objectForKey:@"scene"] intValue] == scene)
+        {
+            return [customSceneName objectForKey:@"name"];
+        }
+    }
+    return @"";
+}
+
++ (BOOL)hasGroup:(int)groupNr inZone:(NSDictionary *)zoneDict
+{
+    for(NSDictionary *groupDict in [zoneDict objectForKey:@"groups"])
+    {
+        if([[groupDict objectForKey:@"color"] intValue] == groupNr)
+        {
+            if([[groupDict objectForKey:@"devices"] count] > 0)
+            {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
 @end

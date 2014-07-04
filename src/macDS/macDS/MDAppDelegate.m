@@ -129,7 +129,7 @@
                 return;
             }
             else {
-                [[MDDSSManager defaultManager] getStructure:^(NSDictionary *json, NSError *error){
+                [[MDDSSManager defaultManager] getStructureWithCustomSceneNames:^(NSDictionary *json, NSError *error){
                     self.currentError = error;
                     
                     if(error && error.code == MD_ERROR_AUTH_ERROR)

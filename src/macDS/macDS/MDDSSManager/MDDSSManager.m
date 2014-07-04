@@ -20,6 +20,7 @@ static MDDSSManager *defaultManager;
 @interface MDDSSManager ()
 @property NSString *currentSessionToken;
 @property (readonly) NSString *hostWithPort;
+@property NSDictionary *customSzeneNamesJSONCache;
 @end
 
 @implementation MDDSSManager
@@ -196,20 +197,8 @@ static MDDSSManager *defaultManager;
         
         NSDictionary *params = @{ @"token": self.currentSessionToken, @"query": @"/apartment/zones/*(ZoneID,scenes)/groups/*(group)/scenes/*(scene,name)"};
         [self jsonCall:@"/json/property/query" params:params completionHandler:^(NSDictionary *jsonSceneNames, NSError *error){
-            NSMutableDictionary *jsonNew = [json mutableCopy];
-            NSArray *zonesStructure = [[[jsonNew objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
-            NSArray *zonesQuery = [[jsonNew objectForKey:@"result"] objectForKey:@"zones"];
-            for(NSDictionary *zoneStructure in zonesStructure)
-            {
-                for(NSDictionary *zoneQuery in zonesQuery)
-                {
-                    if([[zoneQuery objectForKey:@"ZoneID"] isEqualToString:[zoneStructure objectForKey:@"id"]])
-                    {
-                        // zone found
-                        NSLog(@"%@", zoneQuery);
-                    }
-                }
-            }
+            self.customSzeneNamesJSONCache = jsonSceneNames;
+            callback(json, error);
         }];
     }];
 }
@@ -221,8 +210,7 @@ static MDDSSManager *defaultManager;
     [self jsonCall:@"/json/device/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
         DDLogDebug(@"%@", json);
-        
-        [self setValueOfDSID:@"303505d7f8000040000217f4" value:@"0"];
+
 
     }];
 }
@@ -267,6 +255,61 @@ static MDDSSManager *defaultManager;
     self.currentSessionToken = @"";
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_HOST_DID_CHANGE object:self.host];
+}
+
+- (BOOL)hasCustomSceneNamesForGroup:(int)searchGroup inZone:(int)forZoneId
+{
+    if(!self.customSzeneNamesJSONCache)
+    {
+        return NO;
+    }
+    
+    for(NSDictionary *zone in [[self.customSzeneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
+    {
+        if([[zone objectForKey:@"ZoneID"] intValue] == forZoneId)
+        {
+            for(NSDictionary *group in [zone objectForKey:@"groups"])
+            {
+                if([[group objectForKey:@"group"] intValue] == searchGroup)
+                {
+                    if([[group objectForKey:@"scenes"] count] > 0) {
+                        return YES;
+                    }
+                }
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (NSArray *)customSceneNamesForGroup:(int)forGroup inZone:(int)forZoneId
+{
+    //TODO, load scene names in case of empty cache
+    if(!self.customSzeneNamesJSONCache)
+    {
+        return nil;
+    }
+    
+    for(NSDictionary *zone in [[self.customSzeneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
+    {
+        if([[zone objectForKey:@"ZoneID"] intValue] == forZoneId)
+        {
+            for(NSDictionary *group in [zone objectForKey:@"groups"])
+            {
+                if([[group objectForKey:@"group"] intValue] == forGroup)
+                {
+                    if([[group objectForKey:@"scenes"] count] <= 0)
+                    {
+                        return nil;
+                    }
+                    return [group objectForKey:@"scenes"];
+                }
+            }
+        }
+    }
+    
+    return nil;
 }
 
 @end

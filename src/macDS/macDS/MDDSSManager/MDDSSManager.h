@@ -45,6 +45,11 @@
 - (void)getStructure:(void (^)(NSDictionary*, NSError*))callback;
 
 /**
+ * get the appartment structure including user defined scene names
+ */
+- (void)getStructureWithCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback;
+
+/**
  * request a application token
  */
 - (void)requestApplicationToken:(void (^)(NSDictionary*, NSError*))callback;
@@ -58,6 +63,11 @@
  * call a scene on a device
  */
 - (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
+
+/**
+ * get custom scene names for a zone/group
+ */
+- (NSArray *)customSceneNamesForGroup:(int)forGroup inZone:(int)forZoneId;
 
 /**
  * reset host/token/etc. to default (will persist!)

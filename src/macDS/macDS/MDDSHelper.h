@@ -12,4 +12,6 @@
 + (NSImage *)iconForDevice:(NSDictionary *)deviceDictonary;
 + (BOOL)deviceHasLight:(NSDictionary *)deviceDictonary;
 + (BOOL)deviceHasShadow:(NSDictionary *)deviceDictonary;
++ (NSString *)customSceneNameForScene:(int)scene fromJSON:(NSArray *)json;
++ (BOOL)hasGroup:(int)groupNr inZone:(NSDictionary *)zoneDict;
 @end

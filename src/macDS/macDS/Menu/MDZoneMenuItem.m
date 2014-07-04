@@ -9,36 +9,13 @@
 #import "MDZoneMenuItem.h"
 #import "MDDeviceMenuItem.h"
 #import "MDSceneMenuItem.h"
+#import "MDDSSManager.h"
 
 @implementation MDZoneMenuItem
 
 + (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict
 {
     DDLogDebug(@"%@", zoneDict);
-    
-    
-    // check if light/shadow is required
-    // TODO: more flexible "hasGroup" logic, .. don't address groups as variables directly
-    BOOL hasLight = NO;
-    BOOL hasShadow = NO;
-    
-    for(NSDictionary *groupDict in [zoneDict objectForKey:@"groups"])
-    {
-        if([[groupDict objectForKey:@"color"] intValue] == 1)
-        {
-            if([[groupDict objectForKey:@"devices"] count] > 0)
-            {
-                hasLight = YES;
-            }
-        }
-        else if([[groupDict objectForKey:@"color"] intValue] == 2)
-        {
-            if([[groupDict objectForKey:@"devices"] count] > 0)
-            {
-                hasShadow = YES;
-            }
-        }
-    }
     
     MDZoneMenuItem *item = [[MDZoneMenuItem alloc] init];
     item.title = [zoneDict objectForKey:@"name"];
@@ -52,8 +29,13 @@
     item.submenu = [[NSMenu alloc] init];
 
     // TODO: for the moment, only scene 0, 5, 17, 18, 19 are available
-    if(hasLight)
+    if([MDDSHelper hasGroup:1 inZone:zoneDict])
     {
+        NSArray *customSceneNames = [[MDDSSManager defaultManager] customSceneNamesForGroup:1 inZone:[[zoneDict objectForKey:@"id"] intValue]];
+        if(customSceneNames)
+        {
+            NSLog(@"%@", customSceneNames);
+        }
         ///// light (group 1)
         for(int i=0;i<=19;i++)
         {
@@ -61,7 +43,15 @@
             {
                 continue;
             }
-            MDSceneMenuItem *lightScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(([@"lightSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+
+            NSString *customName = [MDDSHelper customSceneNameForScene:i fromJSON:customSceneNames];
+            NSString *sceneTitle = NSLocalizedString(([@"lightSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item");
+            if(customName.length > 0)
+            {
+                NSLog(@"%@", zoneDict);
+                sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
+            }
+            MDSceneMenuItem *lightScene = [[MDSceneMenuItem alloc] initWithTitle:sceneTitle action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
             lightScene.target = item;
             lightScene.tag = i;
             lightScene.group = 1;
@@ -74,7 +64,7 @@
     }
     
     
-    if(hasShadow)
+    if([MDDSHelper hasGroup:2 inZone:zoneDict])
     {
         for(int i=0;i<=19;i++)
         {
