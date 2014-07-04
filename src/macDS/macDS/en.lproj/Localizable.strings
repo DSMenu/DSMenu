@@ -1,0 +1,49 @@
+/*
+ Localizable.strings
+ macDS
+ 
+ Created by Jonas Schnelli on 30.06.14.
+ Copyright (c) 2014 include7. All rights reserved.
+ */
+
+yesButton = "Ja";
+noButton = "Nein";
+okButton = "Okay";
+
+lightSceneItem0 = "Licht - Aus";
+lightSceneItem5 = "Licht - Stimmung 1";
+lightSceneItem17 = "Licht - Stimmung 2";
+lightSceneItem18 = "Licht - Stimmung 3";
+lightSceneItem19 = "Licht - Stimmung 4";
+
+shadowSceneItem0 = "Schatten - Zu";
+shadowSceneItem5 = "Schatten - Auf";
+shadowSceneItem17 = "Schatten - Stimmung 2";
+shadowSceneItem18 = "Schatten - Stimmung 3";
+shadowSceneItem19 = "Schatten - Stimmung 4";
+
+
+unnamedRoom = "Raum";
+
+menuDevices = "Geräte";
+turnOn = "Ein";
+turnOff = "Aus";
+
+loading = "Aktualisiere Liste...";
+preferences = "Einstellungen...";
+
+MainPreferences = "Verbindung zum dSS";
+preferenceMainTopTitle = "dSS Wählen oder Adresse eingeben";
+preferenceMainAddressLabel = "IP Adresse";
+preferenceMainTokenLabel = "Applikations Token";
+preferenceResetConfigButton = "Konfiguration zurücksetzen";
+preferenceResetConfigAlert = "Dieser Schritt kann nicht rückgängig gemacht werden. Sind sie sicher?";
+errorConnecting = "Verbindung fehlgeschlagen";
+
+applicationTokenRequested = "Applikations wurde bei ihrem dSS registriert. Bitte erlauben Sie der Applikation den Zugriff (System/Zugriffsberechtigung)";
+pleaseConfigureDSS = "Bitte wählen Sie ihren lokal verfügbaren dSS";
+quit = "Beenden";
+refresh = "Räume neu laden...";
+
+launchAtStartupLabel = "macDS bei Systemstart starten";
+launchAtStartupQuestion = "Möchten Sie macDS bei Systemstart automatisch starten?";

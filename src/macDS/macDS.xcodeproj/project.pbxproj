@@ -122,7 +122,8 @@
 		E5524E7F1962ABC50031D1B6 /* MDMainPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMainPreferencesViewController.h; sourceTree = "<group>"; };
 		E5524E801962ABC50031D1B6 /* MDMainPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMainPreferencesViewController.m; sourceTree = "<group>"; };
 		E5524E811962ABC50031D1B6 /* MDMainPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMainPreferencesViewController.xib; sourceTree = "<group>"; };
-		E5A05F8E1964183E00399064 /* Notifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		E5A05F8E1964183E00399064 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		E5AEBBB01966EBC1001B4F8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5DE64301961A15600938FE2 /* MDZoneMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDZoneMenuItem.h; sourceTree = "<group>"; };
 		E5DE64311961A15600938FE2 /* MDZoneMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDZoneMenuItem.m; sourceTree = "<group>"; };
 		E5DE64341961B11F00938FE2 /* MDDeviceMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDeviceMenuItem.h; sourceTree = "<group>"; };
@@ -603,6 +604,7 @@
 			children = (
 				E5DE64411961E9CC00938FE2 /* Base */,
 				E5DE64461961EA0100938FE2 /* de */,
+				E5AEBBB01966EBC1001B4F8A /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
