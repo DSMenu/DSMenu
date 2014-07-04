@@ -190,6 +190,30 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+- (void)getStructureWithCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback
+{
+    [self jsonCall:@"/json/apartment/getStructure" params:[NSDictionary dictionaryWithObject:self.currentSessionToken forKey:@"token"] completionHandler:^(NSDictionary *json, NSError *error){
+        
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"query": @"/apartment/zones/*(ZoneID,scenes)/groups/*(group)/scenes/*(scene,name)"};
+        [self jsonCall:@"/json/property/query" params:params completionHandler:^(NSDictionary *jsonSceneNames, NSError *error){
+            NSMutableDictionary *jsonNew = [json mutableCopy];
+            NSArray *zonesStructure = [[[jsonNew objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+            NSArray *zonesQuery = [[jsonNew objectForKey:@"result"] objectForKey:@"zones"];
+            for(NSDictionary *zoneStructure in zonesStructure)
+            {
+                for(NSDictionary *zoneQuery in zonesQuery)
+                {
+                    if([[zoneQuery objectForKey:@"ZoneID"] isEqualToString:[zoneStructure objectForKey:@"id"]])
+                    {
+                        // zone found
+                        NSLog(@"%@", zoneQuery);
+                    }
+                }
+            }
+        }];
+    }];
+}
+
 - (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value
 {
     

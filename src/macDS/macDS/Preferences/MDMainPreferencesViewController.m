@@ -35,6 +35,8 @@
 }
 
 - (void)awakeFromNib {
+    
+    /* i18n */
     [self.titleTextField setStringValue:NSLocalizedString(@"preferenceMainTopTitle", @"Preference Main Title")];
     [self.serverAddressLabel setStringValue:NSLocalizedString(@"preferenceMainAddressLabel", @"Preference Address Label")];
     [self.tokenLabel setStringValue:NSLocalizedString(@"preferenceMainTokenLabel", @"Preference Address Label")];
@@ -146,14 +148,14 @@
     return NSStringFromClass(self.class);
 }
 -(NSImage*)toolbarItemImage{
-    return [NSImage imageNamed:@"preferences_main"];
+    return [NSImage imageNamed:@"preferences_connection"];
 }
 -(NSString*)toolbarItemLabel{
     return NSLocalizedString(@"MainPreferences", @"MainPreferences Label");
 }
 
 -(NSView*)initialKeyView{
-    return self.emailTextField;
+    return self.tableView;
 }
 
 @end

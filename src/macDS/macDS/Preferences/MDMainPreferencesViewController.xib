@@ -33,7 +33,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41">
-                    <rect key="frame" x="19" y="105" width="476" height="22"/>
+                    <rect key="frame" x="19" y="105" width="240" height="22"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="42">
                         <font key="font" metaFont="system"/>
@@ -107,17 +107,17 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Reset Configuration" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iwS-cQ-TxF">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="controlContent"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="reset:" target="-2" id="4Sr-5b-nht"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQw-TK-fNH">
-                    <rect key="frame" x="19" y="55" width="476" height="22"/>
+                    <rect key="frame" x="19" y="61" width="476" height="16"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="gRO-Q9-27p">
-                        <font key="font" metaFont="system"/>
+                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="gRO-Q9-27p">
+                        <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -137,14 +137,14 @@
             </subviews>
             <constraints>
                 <constraint firstItem="04g-gB-iGE" firstAttribute="leading" secondItem="41" secondAttribute="leading" id="3xd-q2-RK9"/>
-                <constraint firstItem="41" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="GZV-Cx-YU2"/>
+                <constraint firstItem="41" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" constant="-118.5" id="GZV-Cx-YU2"/>
                 <constraint firstItem="31" firstAttribute="leading" secondItem="kPe-i3-04u" secondAttribute="leading" id="HXH-z5-Q8p"/>
                 <constraint firstItem="31" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="Kf7-dr-L57"/>
-                <constraint firstAttribute="trailing" secondItem="41" secondAttribute="trailing" constant="20" symbolic="YES" id="KnH-sO-eCE"/>
+                <constraint firstAttribute="trailing" secondItem="41" secondAttribute="trailing" constant="256" id="KnH-sO-eCE"/>
                 <constraint firstItem="41" firstAttribute="top" secondItem="43" secondAttribute="bottom" constant="3" id="N3L-PK-vHi"/>
                 <constraint firstItem="bQw-TK-fNH" firstAttribute="top" secondItem="SsX-q5-H4R" secondAttribute="bottom" constant="3" id="N9n-Xi-cwk"/>
                 <constraint firstItem="kPe-i3-04u" firstAttribute="top" secondItem="31" secondAttribute="bottom" constant="8" symbolic="YES" id="S1q-Eg-ZDi"/>
-                <constraint firstItem="41" firstAttribute="centerX" secondItem="31" secondAttribute="centerX" id="Wrx-nE-Iwt"/>
+                <constraint firstItem="41" firstAttribute="centerX" secondItem="31" secondAttribute="centerX" constant="-118.5" id="Wrx-nE-Iwt"/>
                 <constraint firstAttribute="bottom" secondItem="04g-gB-iGE" secondAttribute="bottom" constant="19" id="Ylt-Sj-5fy"/>
                 <constraint firstItem="43" firstAttribute="top" secondItem="kPe-i3-04u" secondAttribute="bottom" constant="8" id="Z6P-fk-Xv7"/>
                 <constraint firstAttribute="trailing" secondItem="kPe-i3-04u" secondAttribute="trailing" constant="256" id="ZTd-xA-vxW"/>

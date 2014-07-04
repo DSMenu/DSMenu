@@ -95,6 +95,19 @@
     }
     
     
+    // Deep Off
+
+    MDSceneMenuItem *deepOffScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(@"deeopOffSceneItem", @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+    deepOffScene.target = item;
+    deepOffScene.tag = 68;
+    deepOffScene.group = 1;
+    deepOffScene.image = [NSImage imageNamed:@"group_2"];
+    [item.submenu addItem:deepOffScene];
+    
+    [item.submenu addItem:[NSMenuItem separatorItem]];
+    
+    
+    // Devices Menu
     NSMenuItem *devicesItem = [[NSMenuItem alloc] init];
     devicesItem.title = NSLocalizedString(@"menuDevices", @"Devices in Menu");
     devicesItem.submenu = [[NSMenu alloc] init];

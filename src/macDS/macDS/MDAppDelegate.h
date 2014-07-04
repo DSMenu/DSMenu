@@ -19,5 +19,6 @@ typedef enum MDAppState {
 @interface MDAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) BOOL launchAtStartup;
 
 @end

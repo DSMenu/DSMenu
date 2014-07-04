@@ -11,7 +11,6 @@
 
 @interface MDMainPreferencesViewController : NSViewController  <RHPreferencesViewControllerProtocol, NSNetServiceBrowserDelegate, NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate> {
 }
-@property (assign) IBOutlet NSTextField *emailTextField;
 @property IBOutlet NSTableView *tableView;
 @property IBOutlet NSTextField *addressTextField;
 @property IBOutlet NSTextField *titleTextField;

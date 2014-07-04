@@ -14,8 +14,13 @@
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
 
+#include "LaunchAtLoginController.h"
+
 #import "MDMainPreferencesViewController.h"
+#import "MDDetailPreferencesViewController.h"
 #import "RHPreferencesWindowController.h"
+
+#define kMACDE_PREV_VERSIONS_STARTED_UD_KEY @"MacDsPrevStartupVersions"
 
 @interface MDAppDelegate ()
 @property (strong) NSStatusItem * statusItem;
@@ -53,11 +58,15 @@
     self.statusMenu.delegate = self;
     [self.statusItem setTitle:@""];
     [self.statusItem setHighlightMode:YES];
-    
     [self.statusItem setImage:[NSImage imageNamed:@"status_bar_icon"]];
     
-    self.currentError = nil;
     
+    // if first start, check if user likes that the app will run after login
+    [self checkRunAtStartup];
+    
+    
+    // init dSS Layer
+    self.currentError = nil;
     [MDDSSManager defaultManager].appName = @"macDS";
     if([MDDSSManager defaultManager].host == nil || [MDDSSManager defaultManager].host.length == 0)
     {
@@ -270,10 +279,11 @@
     //if we have not created the window controller yet, create it now
     if (!self.preferencesWindowController){
         MDMainPreferencesViewController *mainPreferences = [[MDMainPreferencesViewController alloc] init];
-       
+       MDDetailPreferencesViewController *detailsPreferences = [[MDDetailPreferencesViewController alloc] init];
         
         NSArray *controllers = [NSArray arrayWithObjects:
                                 mainPreferences,
+                                detailsPreferences,
                                 nil];
         
         self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Preferences", @"Preferences Window Title")];
@@ -290,5 +300,60 @@
     [self refreshMenu];
 }
 
+#pragma mark - Migration / Version / first Start
+
+- (void)checkRunAtStartup
+{
+    // Get current version ("Bundle Version") from the default Info.plist file
+    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:kMACDE_PREV_VERSIONS_STARTED_UD_KEY];
+    if (prevStartupVersions == nil)
+    {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"yesButton", @"Yes Button")];
+        [alert addButtonWithTitle:NSLocalizedString(@"noButton", @"No Button")];
+        [alert setMessageText:NSLocalizedString(@"launchAtStartupQuestion", @"launch at startup question")];
+        [alert setInformativeText:@""];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        NSInteger alertResult = [alert runModal];
+        if(alertResult == NSAlertFirstButtonReturn) {
+            self.launchAtStartup = YES;
+        }
+        else {
+            self.launchAtStartup = NO;
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:kMACDE_PREV_VERSIONS_STARTED_UD_KEY];
+    }
+    else
+    {
+        if (![prevStartupVersions containsObject:currentVersion])
+        {
+            // add the current version to the startup version array
+            NSMutableArray *updatedPrevStartVersions = [NSMutableArray arrayWithArray:prevStartupVersions];
+            [updatedPrevStartVersions addObject:currentVersion];
+            [[NSUserDefaults standardUserDefaults] setObject:updatedPrevStartVersions forKey:kMACDE_PREV_VERSIONS_STARTED_UD_KEY];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - auto launch controlling stack
+
+- (BOOL)launchAtStartup
+{
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+    BOOL state = [launchController launchAtLogin];
+    launchController = nil;
+    return state;
+}
+
+- (void)setLaunchAtStartup:(BOOL)aState
+{
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+    [launchController setLaunchAtLogin:aState];
+    launchController = nil;
+}
 
 @end

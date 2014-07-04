@@ -49,6 +49,14 @@
 		E5DE645F1961FC6800938FE2 /* group_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645B1961FC6800938FE2 /* group_1@2x.png */; };
 		E5DE64601961FC6800938FE2 /* group_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645C1961FC6800938FE2 /* group_2.png */; };
 		E5DE64611961FC6800938FE2 /* group_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645D1961FC6800938FE2 /* group_2@2x.png */; };
+		E5E8CA331965361300A2997D /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E8CA311965361300A2997D /* LaunchAtLoginController.m */; };
+		E5E8CA341965361300A2997D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA321965361300A2997D /* README.md */; };
+		E5E8CA38196538E500A2997D /* MDDetailPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E8CA36196538E500A2997D /* MDDetailPreferencesViewController.m */; };
+		E5E8CA39196538E500A2997D /* MDDetailPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA37196538E500A2997D /* MDDetailPreferencesViewController.xib */; };
+		E5E8CA3D19653B2900A2997D /* preferences_connection.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA3B19653B2900A2997D /* preferences_connection.png */; };
+		E5E8CA3E19653B2900A2997D /* preferences_connection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA3C19653B2900A2997D /* preferences_connection@2x.png */; };
+		E5E8CA4119653BA200A2997D /* preferences_details.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA3F19653BA200A2997D /* preferences_details.png */; };
+		E5E8CA4219653BA200A2997D /* preferences_details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA4019653BA200A2997D /* preferences_details@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +143,16 @@
 		E5DE645B1961FC6800938FE2 /* group_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_1@2x.png"; sourceTree = "<group>"; };
 		E5DE645C1961FC6800938FE2 /* group_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_2.png; sourceTree = "<group>"; };
 		E5DE645D1961FC6800938FE2 /* group_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_2@2x.png"; sourceTree = "<group>"; };
+		E5E8CA301965361300A2997D /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		E5E8CA311965361300A2997D /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		E5E8CA321965361300A2997D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		E5E8CA35196538E500A2997D /* MDDetailPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDetailPreferencesViewController.h; sourceTree = "<group>"; };
+		E5E8CA36196538E500A2997D /* MDDetailPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDetailPreferencesViewController.m; sourceTree = "<group>"; };
+		E5E8CA37196538E500A2997D /* MDDetailPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDDetailPreferencesViewController.xib; sourceTree = "<group>"; };
+		E5E8CA3B19653B2900A2997D /* preferences_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences_connection.png; sourceTree = "<group>"; };
+		E5E8CA3C19653B2900A2997D /* preferences_connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferences_connection@2x.png"; sourceTree = "<group>"; };
+		E5E8CA3F19653BA200A2997D /* preferences_details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences_details.png; sourceTree = "<group>"; };
+		E5E8CA4019653BA200A2997D /* preferences_details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferences_details@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,9 +223,9 @@
 				E5524E7E1962ABA40031D1B6 /* Preferences */,
 				E5DE642F1961A15600938FE2 /* Menu */,
 				E5280BBB1959F724006A9FB5 /* MDDSSManager */,
-				E5280BB61959F6DB006A9FB5 /* GFX */,
 				E5280B931959F5BD006A9FB5 /* MDAppDelegate.h */,
 				E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */,
+				E5280BB61959F6DB006A9FB5 /* GFX */,
 				E5280B961959F5BD006A9FB5 /* MainMenu.xib */,
 				E5280B991959F5BD006A9FB5 /* Images.xcassets */,
 				E5280B881959F5BD006A9FB5 /* Supporting Files */,
@@ -252,6 +270,7 @@
 		E5280BB61959F6DB006A9FB5 /* GFX */ = {
 			isa = PBXGroup;
 			children = (
+				E5E8CA3A19653B2900A2997D /* preferences */,
 				E5DE645A1961FC6800938FE2 /* group_1.png */,
 				E5DE645B1961FC6800938FE2 /* group_1@2x.png */,
 				E5DE645C1961FC6800938FE2 /* group_2.png */,
@@ -282,6 +301,7 @@
 		E5524E491962A7030031D1B6 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E5E8CA2F1965361300A2997D /* LaunchAtLoginController */,
 				E5524E6E1962AADA0031D1B6 /* RHPreferences */,
 				E5524E4A1962A70B0031D1B6 /* Lumberjack */,
 			);
@@ -339,6 +359,9 @@
 				E5524E7F1962ABC50031D1B6 /* MDMainPreferencesViewController.h */,
 				E5524E801962ABC50031D1B6 /* MDMainPreferencesViewController.m */,
 				E5524E811962ABC50031D1B6 /* MDMainPreferencesViewController.xib */,
+				E5E8CA35196538E500A2997D /* MDDetailPreferencesViewController.h */,
+				E5E8CA36196538E500A2997D /* MDDetailPreferencesViewController.m */,
+				E5E8CA37196538E500A2997D /* MDDetailPreferencesViewController.xib */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -354,6 +377,28 @@
 				E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		E5E8CA2F1965361300A2997D /* LaunchAtLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				E5E8CA301965361300A2997D /* LaunchAtLoginController.h */,
+				E5E8CA311965361300A2997D /* LaunchAtLoginController.m */,
+				E5E8CA321965361300A2997D /* README.md */,
+			);
+			name = LaunchAtLoginController;
+			path = ../../vendor/LaunchAtLoginController;
+			sourceTree = "<group>";
+		};
+		E5E8CA3A19653B2900A2997D /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				E5E8CA3F19653BA200A2997D /* preferences_details.png */,
+				E5E8CA4019653BA200A2997D /* preferences_details@2x.png */,
+				E5E8CA3B19653B2900A2997D /* preferences_connection.png */,
+				E5E8CA3C19653B2900A2997D /* preferences_connection@2x.png */,
+			);
+			path = preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,12 +479,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E8CA3D19653B2900A2997D /* preferences_connection.png in Resources */,
 				E5DE64611961FC6800938FE2 /* group_2@2x.png in Resources */,
 				E5280BB91959F6DB006A9FB5 /* status_bar_icon.png in Resources */,
+				E5E8CA341965361300A2997D /* README.md in Resources */,
 				E5DE64591961FB8600938FE2 /* group_2_8@2x.png in Resources */,
 				E5DE64491961F46000938FE2 /* off_menu_icon.png in Resources */,
 				E5DE645F1961FC6800938FE2 /* group_1@2x.png in Resources */,
 				E5280B8C1959F5BD006A9FB5 /* InfoPlist.strings in Resources */,
+				E5E8CA39196538E500A2997D /* MDDetailPreferencesViewController.xib in Resources */,
+				E5E8CA4219653BA200A2997D /* preferences_details@2x.png in Resources */,
 				E5524E831962ABC50031D1B6 /* MDMainPreferencesViewController.xib in Resources */,
 				E5DE64571961FB8600938FE2 /* group_1_8@2x.png in Resources */,
 				E5524E7C1962AADA0031D1B6 /* RHPreferencesWindow.xib in Resources */,
@@ -448,9 +497,11 @@
 				E5DE644A1961F46000938FE2 /* off_menu_icon@2x.png in Resources */,
 				E5280B921959F5BD006A9FB5 /* Credits.rtf in Resources */,
 				E5DE64421961E9CC00938FE2 /* Localizable.strings in Resources */,
+				E5E8CA4119653BA200A2997D /* preferences_details.png in Resources */,
 				E5280B981959F5BD006A9FB5 /* MainMenu.xib in Resources */,
 				E5DE64601961FC6800938FE2 /* group_2.png in Resources */,
 				E5DE64561961FB8600938FE2 /* group_1_8.png in Resources */,
+				E5E8CA3E19653B2900A2997D /* preferences_connection@2x.png in Resources */,
 				E5280BBA1959F6DB006A9FB5 /* status_bar_icon@2x.png in Resources */,
 				E5DE645E1961FC6800938FE2 /* group_1.png in Resources */,
 			);
@@ -478,6 +529,7 @@
 				E5DE64321961A15600938FE2 /* MDZoneMenuItem.m in Sources */,
 				E5280B8E1959F5BD006A9FB5 /* main.m in Sources */,
 				E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */,
+				E5E8CA331965361300A2997D /* LaunchAtLoginController.m in Sources */,
 				E5524E691962A70B0031D1B6 /* DDTTYLogger.m in Sources */,
 				E5524E7D1962AADA0031D1B6 /* RHPreferencesWindowController.m in Sources */,
 				E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */,
@@ -485,6 +537,7 @@
 				E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */,
 				E5DE64511961F9A500938FE2 /* MDDSHelper.m in Sources */,
 				E5524E661962A70B0031D1B6 /* DDASLLogger.m in Sources */,
+				E5E8CA38196538E500A2997D /* MDDetailPreferencesViewController.m in Sources */,
 				E5524E821962ABC50031D1B6 /* MDMainPreferencesViewController.m in Sources */,
 				E5280B951959F5BD006A9FB5 /* MDAppDelegate.m in Sources */,
 				E5524E481962A5680031D1B6 /* MDSceneMenuItem.m in Sources */,

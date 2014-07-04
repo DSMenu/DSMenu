@@ -6,6 +6,10 @@
   Copyright (c) 2014 include7. All rights reserved.
 */
 
+yesButton = "Ja";
+noButton = "Nein";
+okButton = "Okay";
+
 lightSceneItem0 = "Licht - Aus";
 lightSceneItem5 = "Licht - Stimmung 1";
 lightSceneItem17 = "Licht - Stimmung 2";
@@ -29,11 +33,17 @@ loading = "Aktualisiere Liste...";
 preferences = "Einstellungen...";
 
 MainPreferences = "Verbindung zum dSS";
-preferenceMainTopTitle = "DSS Wählen oder Addresse eingeben";
+preferenceMainTopTitle = "dSS Wählen oder Adresse eingeben";
 preferenceMainAddressLabel = "IP Adresse";
+preferenceMainTokenLabel = "Applikations Token";
+preferenceResetConfigButton = "Konfiguration zurücksetzen";
+preferenceResetConfigAlert = "Dieser Schritt kann nicht rückgängig gemacht werden. Sind sie sicher?";
 errorConnecting = "Verbindung fehlgeschlagen";
 
 applicationTokenRequested = "Applikations wurde bei ihrem dSS registriert. Bitte erlauben Sie der Applikation den Zugriff (System/Zugriffsberechtigung)";
 pleaseConfigureDSS = "Bitte wählen Sie ihren lokal verfügbaren dSS";
 quit = "Beenden";
 refresh = "Räume neu laden...";
+
+launchAtStartupLabel = "macDS bei Systemstart starten";
+launchAtStartupQuestion = "Möchten Sie macDS bei Systemstart automatisch starten?";
