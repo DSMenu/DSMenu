@@ -53,7 +53,7 @@
             NSArray *customSceneNames = [[MDDSSManager defaultManager] customSceneNamesForGroup:groupInt inZone:[[zoneDict objectForKey:@"id"] intValue]];
             if(customSceneNames)
             {
-                NSLog(@"%@", customSceneNames);
+                DDLogVerbose(@"found custom scene name: %@ for %d", customSceneNames, groupInt);
             }
             for(int i=0;i<=19;i++)
             {
@@ -67,7 +67,7 @@
                 NSString *sceneTitle = NSLocalizedString(i18nLabel, @"Zone Submenu Scene X Item");
                 if(customName.length > 0)
                 {
-                    NSLog(@"%@", zoneDict);
+                    DDLogVerbose(@"%@", zoneDict);
                     sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
                 }
                 MDSceneMenuItem *lightScene = [[MDSceneMenuItem alloc] initWithTitle:sceneTitle action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
