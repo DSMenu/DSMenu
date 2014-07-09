@@ -1,6 +1,6 @@
 What is macDS
 -------
-![Icon](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/Icon.png)
+![Icon](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/Icon.png =128x128)
 
 
 macDS allows you to control you [Digitalstrom](https://www.digitalstrom.com) home automation system directly from your OSX Status Menu
