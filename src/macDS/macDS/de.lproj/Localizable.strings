@@ -31,6 +31,10 @@ group2scene15 = "Stop";
 group2scene17 = "Stimmung 2";
 group2scene18 = "Stimmung 3";
 group2scene19 = "Stimmung 4";
+group2scene6 = "Bereich 1 Auf";
+group2scene7 = "Bereich 2 Auf";
+group2scene8 = "Bereich 3 Auf";
+group2scene9 = "Bereich 4 Auf";
 
 unnamedRoom = "Raum";
 
@@ -58,3 +62,5 @@ refresh = "Räume neu laden...";
 
 launchAtStartupLabel = "macDS bei Systemstart starten";
 launchAtStartupQuestion = "Möchten Sie macDS bei Systemstart automatisch starten?";
+
+about = "Über...";
