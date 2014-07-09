@@ -143,7 +143,7 @@
                         self.appState = MDAppStateIdel;
                         [self.refreshTimer invalidate];
                         self.refreshTimer = nil;
-                        
+
                         [self performSelectorOnMainThread:@selector(refreshStructureMainThread:) withObject:json waitUntilDone:YES];
                     }
                 }];
@@ -267,9 +267,29 @@
     else if(zoneMenuItem.clickType == MDZoneMenuItemClickTypeDevice)
     {
         MDDeviceMenuItem *deviceMenuItem = (MDDeviceMenuItem *)zoneMenuItem.clickedSubmenu;
-        [[MDDSSManager defaultManager] callScene:scene deviceId:deviceMenuItem.dsid callback:^(NSDictionary *json, NSError *error){
-           
-        }];
+        
+        if(deviceMenuItem.turnOnOffMode)
+        {
+            if(zoneMenuItem.clickedSubmenu.tag)
+            {
+                [[MDDSSManager defaultManager] turnOnDeviceId:deviceMenuItem.dsid callback:^(NSDictionary *json, NSError *error){
+                    
+                }];
+            }
+            else
+            {
+                [[MDDSSManager defaultManager] turnOffDeviceId:deviceMenuItem.dsid callback:^(NSDictionary *json, NSError *error){
+                    
+                }];
+            }
+            
+        }
+        else {
+            [[MDDSSManager defaultManager] callScene:scene deviceId:deviceMenuItem.dsid callback:^(NSDictionary *json, NSError *error){
+                
+            }];
+        }
+
     }
     
 }

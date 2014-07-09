@@ -15,4 +15,5 @@
  */
 @interface MDDeviceMenuItem : MDSceneMenuItem
 @property (strong) NSString *dsid; /**< the related dsid for this device */
+@property (assign) BOOL turnOnOffMode;
 @end

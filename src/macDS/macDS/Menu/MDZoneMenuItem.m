@@ -23,70 +23,84 @@
     
     if(item.title.length <= 0)
     {
+        // define unnamed room
+        
         item.title = [NSLocalizedString(@"unnamedRoom", @"Menu String for unnamed room") stringByAppendingFormat:@" %@", item.zoneId];
     }
     
     item.submenu = [[NSMenu alloc] init];
 
-    // TODO: for the moment, only scene 0, 5, 17, 18, 19 are available
-    if([MDDSHelper hasGroup:1 inZone:zoneDict])
+    
+    NSArray *buildGroups = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], nil];
+    for(NSNumber *group in buildGroups)
     {
-        NSArray *customSceneNames = [[MDDSSManager defaultManager] customSceneNamesForGroup:1 inZone:[[zoneDict objectForKey:@"id"] intValue]];
-        if(customSceneNames)
-        {
-            NSLog(@"%@", customSceneNames);
-        }
-        ///// light (group 1)
-        for(int i=0;i<=19;i++)
-        {
-            if((i > 0 && i < 5) || (i > 5 && i < 17))
-            {
-                continue;
-            }
-
-            NSString *customName = [MDDSHelper customSceneNameForScene:i fromJSON:customSceneNames];
-            NSString *sceneTitle = NSLocalizedString(([@"lightSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item");
-            if(customName.length > 0)
-            {
-                NSLog(@"%@", zoneDict);
-                sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
-            }
-            MDSceneMenuItem *lightScene = [[MDSceneMenuItem alloc] initWithTitle:sceneTitle action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
-            lightScene.target = item;
-            lightScene.tag = i;
-            lightScene.group = 1;
-            lightScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_1"];
-            [item.submenu addItem:lightScene];
-        }
+        int groupInt = [group intValue];
         
-        [item.submenu addItem:[NSMenuItem separatorItem]];
-        ////////////////////////
-    }
-    
-    
-    if([MDDSHelper hasGroup:2 inZone:zoneDict])
-    {
-        for(int i=0;i<=19;i++)
+        if([MDDSHelper hasGroup:groupInt inZone:zoneDict])
         {
-            if((i > 0 && i < 5) || (i > 5 && i < 17))
+            // check is there are possible areas
+            NSMutableArray *areas       = [[NSMutableArray alloc] init];
+            NSMutableArray *areaItems   = [[NSMutableArray alloc] init];
+            for(NSDictionary *device in [zoneDict objectForKey:@"devices"])
             {
-                continue;
+                if([[device objectForKey:@"buttonActiveGroup"] intValue] == groupInt && [[device objectForKey:@"buttonID"] intValue] > 0 && [[device objectForKey:@"buttonID"] intValue] < 4)
+                {
+                    [areas addObject:[device objectForKey:@"buttonID"]];
+                }
             }
-            MDSceneMenuItem *shadowScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(([@"shadowSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
-            shadowScene.target = item;
-            shadowScene.tag = i;
-            shadowScene.group = 2;
-            shadowScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_2"];
-            [item.submenu addItem:shadowScene];
+            
+            // load custom scene names
+            NSArray *customSceneNames = [[MDDSSManager defaultManager] customSceneNamesForGroup:groupInt inZone:[[zoneDict objectForKey:@"id"] intValue]];
+            if(customSceneNames)
+            {
+                NSLog(@"%@", customSceneNames);
+            }
+            for(int i=0;i<=19;i++)
+            {
+                if(!(i==0 || i==5 || i==6 || i==7 || i==8 || i==9 || i==17 || i==18 || i==19 || (i==15 && groupInt == 2)))
+                {
+                    continue;
+                }
+                
+                NSString *customName = [MDDSHelper customSceneNameForScene:i fromJSON:customSceneNames];
+                NSString *i18nLabel = [NSString stringWithFormat:@"group%dscene%d", groupInt, i];
+                NSString *sceneTitle = NSLocalizedString(i18nLabel, @"Zone Submenu Scene X Item");
+                if(customName.length > 0)
+                {
+                    NSLog(@"%@", zoneDict);
+                    sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
+                }
+                MDSceneMenuItem *lightScene = [[MDSceneMenuItem alloc] initWithTitle:sceneTitle action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+                lightScene.target = item;
+                lightScene.tag = i;
+                lightScene.group = groupInt;
+                lightScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]];
+                
+                if( (i==6 || i==7 || i==8 || i==9 ) )
+                {
+                    if(([areas indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)(i-5)]] != NSNotFound))
+                    {
+                        [areaItems addObject:lightScene];
+                    }
+                }
+                else
+                {
+                    [item.submenu addItem:lightScene];
+                }
+            }
+            
+            // add area items at bottom
+            for(NSMenuItem *areaItem in areaItems)
+            {
+                [item.submenu addItem:areaItem];
+            }
+            
+            [item.submenu addItem:[NSMenuItem separatorItem]];
+            ////////////////////////
         }
-        
-        [item.submenu addItem:[NSMenuItem separatorItem]];
-        ////////////////////////
     }
-    
     
     // Deep Off
-
     MDSceneMenuItem *deepOffScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(@"deeopOffSceneItem", @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
     deepOffScene.target = item;
     deepOffScene.tag = 68;
@@ -94,97 +108,69 @@
     deepOffScene.image = [NSImage imageNamed:@"group_2"];
     [item.submenu addItem:deepOffScene];
     
-    [item.submenu addItem:[NSMenuItem separatorItem]];
-    
-    
     // Devices Menu
-    NSMenuItem *devicesItem = [[NSMenuItem alloc] init];
-    devicesItem.title = NSLocalizedString(@"menuDevices", @"Devices in Menu");
-    devicesItem.submenu = [[NSMenu alloc] init];
-    
-    // sort the devices A-Z
     NSArray *devices = [zoneDict objectForKey:@"devices"];
-    devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
-        return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
-    }];
-    
+    BOOL shouldShowDeviceMenu = NO;
     for(NSDictionary *device in devices)
     {
-        MDDeviceMenuItem *oneDeviceItem = [[MDDeviceMenuItem alloc] init];
-        oneDeviceItem.title = [device objectForKey:@"name"];
-        oneDeviceItem.target = item;
-        oneDeviceItem.tag = 5;
-        oneDeviceItem.dsid = [device objectForKey:@"id"];
-        oneDeviceItem.action = @selector(deviceMenuItemClicked:);
-        oneDeviceItem.image = [MDDSHelper iconForDevice:device];
-        [devicesItem.submenu addItem:oneDeviceItem];
-        
-        oneDeviceItem.submenu = [[NSMenu alloc] init];
-
-        MDDeviceMenuItem *onItem = [[MDDeviceMenuItem alloc] init];
-        onItem.title = NSLocalizedString(@"turnOn", @"Devices in Menu");
-        onItem.target = item;
-        onItem.tag = 5;
-        onItem.dsid = [device objectForKey:@"id"];
-        onItem.action = @selector(deviceMenuItemClicked:);
-        [oneDeviceItem.submenu addItem:onItem];
-
-        MDDeviceMenuItem *offItem = [[MDDeviceMenuItem alloc] init];
-        offItem.title = NSLocalizedString(@"turnOff", @"Devices in Menu");
-        offItem.target = item;
-        offItem.tag = 0;
-        offItem.dsid = [device objectForKey:@"id"];
-        offItem.action = @selector(deviceMenuItemClicked:);
-        [oneDeviceItem.submenu addItem:offItem];
-        [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
-        
-        if([MDDSHelper deviceHasLight:device])
+        if([[device objectForKey:@"groups"] count] == 1 && [[device objectForKey:@"groups"] indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)8]] != NSNotFound)
         {
-            ///// DEVICE light (group 1)
-            for(int i=0;i<=19;i++)
-            {
-                if((i > 0 && i < 5) || (i > 5 && i < 17))
-                {
-                    continue;
-                }
-                MDDeviceMenuItem *lightScene = [[MDDeviceMenuItem alloc] initWithTitle:NSLocalizedString(([@"lightSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(deviceMenuItemClicked:) keyEquivalent:@""];
-                lightScene.target = item;
-                lightScene.tag = i;
-                lightScene.dsid = [device objectForKey:@"id"];
-                lightScene.group = 1;
-                lightScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_1"];
-                [oneDeviceItem.submenu addItem:lightScene];
-            }
-            
-            [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
-            ////////////////////////
+            shouldShowDeviceMenu = YES;
         }
-        
-        
-        if([MDDSHelper deviceHasShadow:device])
-        {
-            ///// DEVICE shadow (group 2)
-            for(int i=0;i<=19;i++)
-            {
-                if((i > 0 && i < 5) || (i > 5 && i < 17))
-                {
-                    continue;
-                }
-                MDDeviceMenuItem *shadowScene = [[MDDeviceMenuItem alloc] initWithTitle:NSLocalizedString(([@"shadowSceneItem" stringByAppendingFormat:@"%d", i]), @"Zone Submenu Scene X Item") action:@selector(deviceMenuItemClicked:) keyEquivalent:@""];
-                shadowScene.target = item;
-                shadowScene.tag = i;
-                shadowScene.dsid = [device objectForKey:@"id"];
-                shadowScene.group = 2;
-                shadowScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:@"group_2"];
-                [oneDeviceItem.submenu addItem:shadowScene];
-            }
-            
-            [oneDeviceItem.submenu addItem:[NSMenuItem separatorItem]];
-            ////////////////////////
-        }
-        
     }
-    [item.submenu addItem:devicesItem];
+    
+    if(shouldShowDeviceMenu) {
+        
+        [item.submenu addItem:[NSMenuItem separatorItem]];
+        
+        NSMenuItem *devicesItem = [[NSMenuItem alloc] init];
+        devicesItem.title = NSLocalizedString(@"menuDevices", @"Devices in Menu");
+        devicesItem.submenu = [[NSMenu alloc] init];
+        
+        // sort the devices A-Z
+        devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
+            return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
+        }];
+        
+        for(NSDictionary *device in devices)
+        {
+            //TODO: more flexibility with possible groups for devices
+            if(! ([[device objectForKey:@"groups"] count] == 1 && [[device objectForKey:@"groups"] indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)8]] != NSNotFound))
+            {
+                continue;
+            }
+            
+            MDDeviceMenuItem *oneDeviceItem = [[MDDeviceMenuItem alloc] init];
+            oneDeviceItem.title = [device objectForKey:@"name"];
+            oneDeviceItem.target = item;
+            oneDeviceItem.tag = 5;
+            oneDeviceItem.dsid = [device objectForKey:@"id"];
+            oneDeviceItem.action = @selector(deviceMenuItemClicked:);
+            oneDeviceItem.image = [MDDSHelper iconForDevice:device];
+            [devicesItem.submenu addItem:oneDeviceItem];
+            
+            oneDeviceItem.submenu = [[NSMenu alloc] init];
+
+            MDDeviceMenuItem *onItem = [[MDDeviceMenuItem alloc] init];
+            onItem.title = NSLocalizedString(@"turnOn", @"Devices in Menu");
+            onItem.target = item;
+            onItem.tag = 1;
+            onItem.turnOnOffMode = YES;
+            onItem.dsid = [device objectForKey:@"id"];
+            onItem.action = @selector(deviceMenuItemClicked:);
+            [oneDeviceItem.submenu addItem:onItem];
+
+            MDDeviceMenuItem *offItem = [[MDDeviceMenuItem alloc] init];
+            offItem.title = NSLocalizedString(@"turnOff", @"Devices in Menu");
+            offItem.target = item;
+            offItem.tag = 0;
+            offItem.turnOnOffMode = YES;
+            offItem.dsid = [device objectForKey:@"id"];
+            offItem.action = @selector(deviceMenuItemClicked:);
+            [oneDeviceItem.submenu addItem:offItem];
+        }
+        [item.submenu addItem:devicesItem];
+    }
     
     
     return item;

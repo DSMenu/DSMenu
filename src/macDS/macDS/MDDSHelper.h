@@ -10,8 +10,7 @@
 
 @interface MDDSHelper : NSObject
 + (NSImage *)iconForDevice:(NSDictionary *)deviceDictonary;
-+ (BOOL)deviceHasLight:(NSDictionary *)deviceDictonary;
-+ (BOOL)deviceHasShadow:(NSDictionary *)deviceDictonary;
 + (NSString *)customSceneNameForScene:(int)scene fromJSON:(NSArray *)json;
++ (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group;
 + (BOOL)hasGroup:(int)groupNr inZone:(NSDictionary *)zoneDict;
 @end

@@ -23,22 +23,12 @@
     {
         iconName = [NSString stringWithFormat:@"group_%@_%@", [groups objectAtIndex:0], [groups objectAtIndex:1]];
     }
-    else
+    else if(groups.count == 1)
     {
         iconName = [NSString stringWithFormat:@"group_%@", [groups objectAtIndex:0]];
     }
     
     return [NSImage imageNamed:iconName];
-}
-
-+ (BOOL)deviceHasLight:(NSDictionary *)deviceDictonary
-{
-    return [self device:deviceDictonary hasGroup:1];
-}
-
-+ (BOOL)deviceHasShadow:(NSDictionary *)deviceDictonary
-{
-    return [self device:deviceDictonary hasGroup:2];
 }
 
 + (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group
