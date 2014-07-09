@@ -237,6 +237,11 @@
     NSMenuItem *refreshItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"refresh", @"Refresh Menu Item Title") action:@selector(refreshMenu) keyEquivalent:@""];
     [self.statusMenu addItem:refreshItem];
     
+    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"about", @"About Menu Item Title") action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
+    refreshItem.target = [NSApplication sharedApplication];
+    [self.statusMenu addItem:aboutItem];
+    
+    
     [self.statusMenu addItem:[NSMenuItem separatorItem]];
 
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"quit", @"Quit Menu Item Title") action:@selector(terminate:) keyEquivalent:@""];
