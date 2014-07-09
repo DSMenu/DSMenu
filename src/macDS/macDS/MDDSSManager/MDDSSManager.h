@@ -74,4 +74,7 @@
  */
 - (void)resetToDefaults;
 
+- (void)getSensorValues:(NSString *)dSID;
+- (void)turnOnDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
+- (void)turnOffDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
 @end

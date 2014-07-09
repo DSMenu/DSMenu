@@ -233,6 +233,23 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+- (void)turnOnDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":deviceId};
+    [self jsonCall:@"/json/device/turnOn" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        callback(json, error);
+    }];
+}
+- (void)turnOffDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":deviceId};
+    [self jsonCall:@"/json/device/turnOff" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        callback(json, error);
+    }];
+}
+
 - (void)zoneGetName:(NSString *)zoneId
 {
     
@@ -241,6 +258,49 @@ static MDDSSManager *defaultManager;
         
         DDLogDebug(@"%@", json);
         
+        
+    }];
+}
+
+- (void)getSensorValues:(NSString *)dSID
+{
+    
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:1]};
+    [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        
+        DDLogDebug(@"%@", json);
+        
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:2]};
+        [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            
+            DDLogDebug(@"%@", json);
+            
+            NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:3]};
+            [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+                
+                DDLogDebug(@"%@", json);
+                
+                NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:4]};
+                [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+                    
+                    DDLogDebug(@"%@", json);
+                    
+                    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:5]};
+                    [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+                        
+                        DDLogDebug(@"%@", json);
+                        
+                        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:6]};
+                        [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+                            
+                            DDLogDebug(@"%@", json);
+                            
+                            
+                        }];
+                    }];
+                }];
+            }];
+        }];
         
     }];
 }
