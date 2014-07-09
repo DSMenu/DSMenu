@@ -48,7 +48,7 @@ loading = "Loading list...";
 preferences = "Settings...";
 
 MainPreferences = "Connection to your dSS";
-preferenceMainTopTitle = "Please select your dSS or enter a ip address";
+preferenceMainTopTitle = "Please select your dSS or enter a IP address";
 preferenceMainAddressLabel = "IP address";
 preferenceMainTokenLabel = "Application Token";
 preferenceResetConfigButton = "Reset Configuration";
