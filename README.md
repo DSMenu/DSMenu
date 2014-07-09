@@ -1,6 +1,6 @@
 What is macDS
 -------
-![Icon](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/Icon.png =128x128)
+<img src="https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/Icon.png" alt="Icon" style="width:64px;"/>
 
 
 macDS allows you to control you [Digitalstrom](https://www.digitalstrom.com) home automation system directly from your OSX Status Menu
@@ -8,8 +8,9 @@ macDS allows you to control you [Digitalstrom](https://www.digitalstrom.com) hom
 Current Features
 -------
 
-* call scenes (yellow/gray)
-* directly call scenes on devices
+* call presets/areas for all awailable groups (a.k.a. colors)
+* display custom preset names
+* directly switch joker devices
 
 
 Screenshots
