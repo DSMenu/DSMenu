@@ -15,8 +15,6 @@
 
 + (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict
 {
-    DDLogDebug(@"%@", zoneDict);
-    
     MDZoneMenuItem *item = [[MDZoneMenuItem alloc] init];
     item.title = [zoneDict objectForKey:@"name"];
     item.zoneId = [zoneDict objectForKey:@"id"];
