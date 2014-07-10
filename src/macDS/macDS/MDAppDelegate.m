@@ -13,6 +13,8 @@
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
+#import "MDDSSConsumptionManager.h"
+#import "MDConsumptionView.h"
 
 #include "LaunchAtLoginController.h"
 
@@ -25,6 +27,7 @@
 @interface MDAppDelegate ()
 @property (strong) NSStatusItem * statusItem;
 @property (assign) IBOutlet NSMenu *statusMenu;
+@property (strong) NSMenuItem *consumptionMenu;
 @property (retain) RHPreferencesWindowController *preferencesWindowController;
 @property (strong) NSError * currentError;
 
@@ -84,7 +87,18 @@
     [self refreshMenu];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMenu) name:kMD_NOTIFICATION_HOST_DID_CHANGE object:nil];
+    
+    [MDDSSConsumptionManager defaultManager].callbackLatest = ^(NSArray *json, NSError *error){
+        [self updateConsumptionMenu:json error:error];
+    };
+    
+    [MDDSSConsumptionManager defaultManager].callbackHistory = ^(NSDictionary *values, NSArray *dSM){
+        [self updateEnergyMenuGraph:values dSMs:dSM];
+    };
+    
+    [[MDDSSConsumptionManager defaultManager] startPollingHistory:10];
 }
+
 
 - (void)refreshMenu
 {
@@ -187,6 +201,21 @@
         [self.statusMenu addItem:[NSMenuItem separatorItem]];
     }
     
+    // build energy menu
+    self.consumptionMenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Energy", @"Energy Menu Item") action:nil keyEquivalent:@""];
+    NSMenu *aMenu = [[NSMenu alloc] init];
+    NSMenuItem *energyViewItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+    MDConsumptionView *view = [[MDConsumptionView alloc] initWithFrame:NSMakeRect(0, 0, 300, 160)];
+    [energyViewItem setView:view];
+    [aMenu addItem:energyViewItem];
+    [aMenu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"loading", @"Loading Menu Item Title") action:nil keyEquivalent:@""]];
+    self.consumptionMenu.submenu = aMenu;
+    [self.statusMenu addItem:self.consumptionMenu];
+    [self.statusMenu addItem:[NSMenuItem separatorItem]];
+    
+    
+    
+    
     if(json) {
         
         //sort zones
@@ -234,11 +263,11 @@
     NSMenuItem *preferenceItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"preferences", @"Preferences Menu Item Title") action:@selector(showPreferences:) keyEquivalent:@""];
     [self.statusMenu addItem:preferenceItem];
     
-    NSMenuItem *refreshItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"refresh", @"Refresh Menu Item Title") action:@selector(refreshMenu) keyEquivalent:@""];
+    NSMenuItem *refreshItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"refresh", @"Refresh Menu Item Title") action:@selector(timerKick:) keyEquivalent:@""];
     [self.statusMenu addItem:refreshItem];
     
     NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"about", @"About Menu Item Title") action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
-    refreshItem.target = [NSApplication sharedApplication];
+    aboutItem.target = [NSApplication sharedApplication];
     [self.statusMenu addItem:aboutItem];
     
     
@@ -275,6 +304,8 @@
         
         if(deviceMenuItem.turnOnOffMode)
         {
+            //[[MDDSSManager defaultManager] setSensorTable];
+            
             if(zoneMenuItem.clickedSubmenu.tag)
             {
                 [[MDDSSManager defaultManager] turnOnDeviceId:deviceMenuItem.dsid callback:^(NSDictionary *json, NSError *error){
@@ -317,6 +348,17 @@
     [self.preferencesWindowController showWindow:self];
     [self.preferencesWindowController.window orderFrontRegardless];
     
+}
+
+#pragma mark - NSMenuDelegate
+
+-(void)menuWillOpen:(NSMenu *)menu{
+    //only poll consumtion when menu is open, prevent computers energy and CPU ticks
+    [[MDDSSConsumptionManager defaultManager] startPollingLatest:1];
+}
+
+-(void)menuDidClose:(NSMenu *)menu{
+    [[MDDSSConsumptionManager defaultManager] stopPollingLatest];
 }
 
 #pragma mark - NSTimer callbacks
@@ -379,6 +421,47 @@
     LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
     [launchController setLaunchAtLogin:aState];
     launchController = nil;
+}
+
+#pragma mark - energy display
+- (void)updateEnergyMenuGraph:(NSDictionary *)values dSMs:(NSArray *)dSMs
+{
+    dispatch_sync(dispatch_get_main_queue(), ^(){
+        NSMenuItem *energyGraph = [self.consumptionMenu.submenu itemAtIndex:0];
+        MDConsumptionView *energyView = (MDConsumptionView *)energyGraph.view;
+        [energyView setValues:values dSMs:dSMs];
+    });
+}
+
+- (void)updateConsumptionMenu:(NSArray *)json error:(NSError *)error
+{
+    NSMenuItem *energyList = [self.consumptionMenu.submenu itemAtIndex:1];
+    
+    NSMutableAttributedString* str =[[NSMutableAttributedString alloc] initWithString:@""];
+    
+    int cnt=0;
+    int total = 0;
+    for(NSDictionary *dSM in json)
+    {
+        NSString *name = [[MDDSSConsumptionManager defaultManager] dSMNameFromID:[dSM objectForKey:@"dsid"]];
+        NSString *value = [NSString stringWithFormat:@"%d W\t  %@", ([[dSM objectForKey:@"value"] intValue]), name];
+        total += [[dSM objectForKey:@"value"] intValue];
+        [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:value]];
+        if(cnt+1 < json.count)
+        {
+            [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\n"]];
+        }
+        cnt++;
+    }
+    
+    self.consumptionMenu.title = [NSString stringWithFormat:@"%@: %d W",NSLocalizedString(@"Consumption", @"Energy Menu Item"), total];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat tabInterval = 50.0;
+    NSArray *tabs = @[ [[NSTextTab alloc] initWithTextAlignment:kCTTextAlignmentLeft location:tabInterval * 1 options:nil] ];
+    paragraphStyle.tabStops = tabs;
+    [str setAttributes: @{ NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: [NSColor blackColor], NSFontAttributeName : [NSFont systemFontOfSize:12] } range: NSMakeRange(0, [str length])];
+    [energyList setAttributedTitle: str];
 }
 
 @end

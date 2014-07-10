@@ -64,3 +64,8 @@ launchAtStartupLabel = "Start macDS when your computer starts";
 launchAtStartupQuestion = "Would you like to start macDS when your mac starts?";
 
 about = "About...";
+DetailsPreferences = "App Behavior";
+
+lastTwoHours = "LAST TWO HOURS";
+loadingHistory = "Loading Data...";
+Consumption = "Consumption";

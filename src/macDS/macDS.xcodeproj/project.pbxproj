@@ -39,6 +39,8 @@
 		E57FA5A6196C997200CAB2BD /* group_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E57FA5A4196C997200CAB2BD /* group_8@2x.png */; };
 		E5C1BA81196D32D0009B2985 /* macDS.icns in Resources */ = {isa = PBXBuildFile; fileRef = E5C1BA80196D32D0009B2985 /* macDS.icns */; };
 		E5C1BA83196D34DD009B2985 /* macDS_Icon2.icns in Resources */ = {isa = PBXBuildFile; fileRef = E5C1BA82196D34DD009B2985 /* macDS_Icon2.icns */; };
+		E5C1BA86196D8C51009B2985 /* MDDSSConsumptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */; };
+		E5C1BA89196DD4A6009B2985 /* MDConsumptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA88196DD4A6009B2985 /* MDConsumptionView.m */; };
 		E5DE64321961A15600938FE2 /* MDZoneMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DE64311961A15600938FE2 /* MDZoneMenuItem.m */; };
 		E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DE64351961B11F00938FE2 /* MDDeviceMenuItem.m */; };
 		E5DE64421961E9CC00938FE2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5DE64401961E9CC00938FE2 /* Localizable.strings */; };
@@ -132,6 +134,10 @@
 		E5AEBBB01966EBC1001B4F8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5C1BA80196D32D0009B2985 /* macDS.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = macDS.icns; sourceTree = "<group>"; };
 		E5C1BA82196D34DD009B2985 /* macDS_Icon2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = macDS_Icon2.icns; sourceTree = "<group>"; };
+		E5C1BA84196D8C51009B2985 /* MDDSSConsumptionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSConsumptionManager.h; sourceTree = "<group>"; };
+		E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSConsumptionManager.m; sourceTree = "<group>"; };
+		E5C1BA87196DD4A6009B2985 /* MDConsumptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsumptionView.h; sourceTree = "<group>"; };
+		E5C1BA88196DD4A6009B2985 /* MDConsumptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsumptionView.m; sourceTree = "<group>"; };
 		E5DE64301961A15600938FE2 /* MDZoneMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDZoneMenuItem.h; sourceTree = "<group>"; };
 		E5DE64311961A15600938FE2 /* MDZoneMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDZoneMenuItem.m; sourceTree = "<group>"; };
 		E5DE64341961B11F00938FE2 /* MDDeviceMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDeviceMenuItem.h; sourceTree = "<group>"; };
@@ -236,6 +242,8 @@
 				E5280BBB1959F724006A9FB5 /* MDDSSManager */,
 				E5280B931959F5BD006A9FB5 /* MDAppDelegate.h */,
 				E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */,
+				E5C1BA87196DD4A6009B2985 /* MDConsumptionView.h */,
+				E5C1BA88196DD4A6009B2985 /* MDConsumptionView.m */,
 				E5280BB61959F6DB006A9FB5 /* GFX */,
 				E5280B961959F5BD006A9FB5 /* MainMenu.xib */,
 				E5280B991959F5BD006A9FB5 /* Images.xcassets */,
@@ -307,6 +315,8 @@
 				E5280BBD1959F733006A9FB5 /* MDDSSManager.m */,
 				E5280BBF1959FD6A006A9FB5 /* MDDSSURLConnection.h */,
 				E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */,
+				E5C1BA84196D8C51009B2985 /* MDDSSConsumptionManager.h */,
+				E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */,
 			);
 			path = MDDSSManager;
 			sourceTree = "<group>";
@@ -543,6 +553,7 @@
 				E5524E651962A70B0031D1B6 /* DDASLLogCapture.m in Sources */,
 				E5524E671962A70B0031D1B6 /* DDFileLogger.m in Sources */,
 				E5524E7B1962AADA0031D1B6 /* RHPreferencesCustomPlaceholderController.m in Sources */,
+				E5C1BA86196D8C51009B2985 /* MDDSSConsumptionManager.m in Sources */,
 				E5DE64321961A15600938FE2 /* MDZoneMenuItem.m in Sources */,
 				E5280B8E1959F5BD006A9FB5 /* main.m in Sources */,
 				E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */,
@@ -553,6 +564,7 @@
 				E5524E641962A70B0031D1B6 /* DDAbstractDatabaseLogger.m in Sources */,
 				E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */,
 				E5DE64511961F9A500938FE2 /* MDDSHelper.m in Sources */,
+				E5C1BA89196DD4A6009B2985 /* MDConsumptionView.m in Sources */,
 				E5524E661962A70B0031D1B6 /* DDASLLogger.m in Sources */,
 				E5E8CA38196538E500A2997D /* MDDetailPreferencesViewController.m in Sources */,
 				E5524E821962ABC50031D1B6 /* MDMainPreferencesViewController.m in Sources */,
