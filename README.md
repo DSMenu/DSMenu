@@ -16,7 +16,9 @@ Current Features
 Screenshots
 -------
 
+![Screenshot 2](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/macDS_beta0.3_2.png)
 ![Screenshot 1](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/macDS_beta0.2.png)
+
 
 WARNING
 -------
