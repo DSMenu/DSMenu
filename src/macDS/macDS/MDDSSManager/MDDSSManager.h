@@ -75,6 +75,12 @@
 - (void)resetToDefaults;
 
 - (void)getSensorValues:(NSString *)dSID;
+- (void)setSensorTable;
+
 - (void)turnOnDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)turnOffDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
+
+- (void)getEnergyLevelsLatest:(void (^)(NSDictionary*, NSError*))callback;
+- (void)getEnergyLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback;
+- (void)getCircuits:(void (^)(NSDictionary*, NSError*))callback;
 @end

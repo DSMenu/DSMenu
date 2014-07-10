@@ -20,7 +20,7 @@ static MDDSSManager *defaultManager;
 @interface MDDSSManager ()
 @property NSString *currentSessionToken;
 @property (readonly) NSString *hostWithPort;
-@property NSDictionary *customSzeneNamesJSONCache;
+@property NSDictionary *customSceneNamesJSONCache;
 @end
 
 @implementation MDDSSManager
@@ -194,10 +194,9 @@ static MDDSSManager *defaultManager;
 - (void)getStructureWithCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback
 {
     [self jsonCall:@"/json/apartment/getStructure" params:[NSDictionary dictionaryWithObject:self.currentSessionToken forKey:@"token"] completionHandler:^(NSDictionary *json, NSError *error){
-        
         NSDictionary *params = @{ @"token": self.currentSessionToken, @"query": @"/apartment/zones/*(ZoneID,scenes)/groups/*(group)/scenes/*(scene,name)"};
         [self jsonCall:@"/json/property/query" params:params completionHandler:^(NSDictionary *jsonSceneNames, NSError *error){
-            self.customSzeneNamesJSONCache = jsonSceneNames;
+            self.customSceneNamesJSONCache = jsonSceneNames;
             callback(json, error);
         }];
     }];
@@ -305,6 +304,29 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+
+- (void)setSensorTable
+{
+    NSString *dSID = @"3504175fe00000000006553a";
+    NSDictionary *params = @{ @"token": self.currentSessionToken,
+                              
+                              @"dsid":dSID,
+                              @"eventIndex": [NSNumber numberWithInt:1],
+                              @"eventName": @"Zwischenstecker-aus",
+                              @"sensorIndex": [NSNumber numberWithInt:2],
+                              @"test": [NSNumber numberWithInt:1],
+                              @"value": [NSNumber numberWithInt:3],
+                              @"hysteresis": [NSNumber numberWithInt:1],
+                              @"validity": [NSNumber numberWithInt:2],
+                              @"action": [NSNumber numberWithInt:0]
+                              };
+    [self jsonCall:@"/json/device/setSensorEventTableEntry" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        DDLogVerbose(@"%@", json);
+    }];
+    
+//setSensorEventTableEntry?_dc=1404910928359&dsid=3504175fe00000000006ef99&eventIndex=1&eventName=Bastelklemme%20aus&sensorIndex=2&test=1&value=20&hysteresis=10&validity=2&action=0
+}
+
 - (void)resetToDefaults
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMDDSSMANAGER_HOST_UD_KEY];
@@ -319,12 +341,12 @@ static MDDSSManager *defaultManager;
 
 - (BOOL)hasCustomSceneNamesForGroup:(int)searchGroup inZone:(int)forZoneId
 {
-    if(!self.customSzeneNamesJSONCache)
+    if(!self.customSceneNamesJSONCache)
     {
         return NO;
     }
     
-    for(NSDictionary *zone in [[self.customSzeneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
+    for(NSDictionary *zone in [[self.customSceneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
     {
         if([[zone objectForKey:@"ZoneID"] intValue] == forZoneId)
         {
@@ -346,12 +368,12 @@ static MDDSSManager *defaultManager;
 - (NSArray *)customSceneNamesForGroup:(int)forGroup inZone:(int)forZoneId
 {
     //TODO, load scene names in case of empty cache
-    if(!self.customSzeneNamesJSONCache)
+    if(!self.customSceneNamesJSONCache)
     {
         return nil;
     }
     
-    for(NSDictionary *zone in [[self.customSzeneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
+    for(NSDictionary *zone in [[self.customSceneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
     {
         if([[zone objectForKey:@"ZoneID"] intValue] == forZoneId)
         {
@@ -371,5 +393,34 @@ static MDDSSManager *defaultManager;
     
     return nil;
 }
+
+#pragma mark - metering
+
+- (void)getCircuits:(void (^)(NSDictionary*, NSError*))callback
+{
+    NSDictionary *params = @{ @"token": self.currentSessionToken};
+    [self jsonCall:@"/json/apartment/getCircuits" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        callback(json, error);
+    }];
+}
+
+
+- (void)getEnergyLevelsLatest:(void (^)(NSDictionary*, NSError*))callback
+{
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"from":@"all", @"type": @"consumption"};
+    [self jsonCall:@"/json/metering/getLatest" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        callback(json, error);
+    }];
+}
+
+- (void)getEnergyLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    NSTimeInterval startTime = [[NSDate dateWithTimeIntervalSinceNow:-60*60*2] timeIntervalSince1970];
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"from":@"all", @"startTime": [NSNumber numberWithLong:startTime], @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:1]};
+    [self jsonCall:@"/json/metering/getValues" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        callback(json, error);
+    }];
+}
+
 
 @end
