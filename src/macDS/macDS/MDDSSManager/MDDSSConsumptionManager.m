@@ -97,6 +97,10 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 {
     [self.refreshTimerHistory invalidate];
     self.refreshTimerHistory = nil;
+    
+    self.historyValues = [[NSMutableDictionary alloc] init];
+    
+    self.callbackHistory(nil, nil);
 }
 
 - (void)latestTimerFired:(id)sender
@@ -164,7 +168,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                 
                 
                 [self.historyValues removeAllObjects];
-                
+                sleep(2);
                 [[MDDSSManager defaultManager] getEnergyLevelsDSID:@".meters(all)" callback:^(NSDictionary *jsonV, NSError *errorV)
                  {
                      if(errorV)
@@ -395,7 +399,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         CGContextSetTextDrawingMode(imageContext, kCGTextFill);
         
         CGContextSetFillColorWithColor(imageContext, [[NSColor whiteColor] CGColor]);
-        CGContextShowTextAtPoint(imageContext, size.width/2.0-pt.x/2.0, size.height/2.0, [loadingText cStringUsingEncoding:NSUTF8StringEncoding], loadingText.length);
+        CGContextShowTextAtPoint(imageContext, size.width/2.0-pt.x/2.0, size.height/2.0-10, [loadingText cStringUsingEncoding:NSUTF8StringEncoding], loadingText.length);
     }
     else
     {

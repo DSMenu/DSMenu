@@ -93,10 +93,8 @@
     };
     
     [MDDSSConsumptionManager defaultManager].callbackHistory = ^(NSDictionary *values, NSArray *dSM){
-        [self updateEnergyMenuGraph:values dSMs:dSM];
+        [self updateConsumptionMenuChart:values dSMs:dSM];
     };
-    
-    [[MDDSSConsumptionManager defaultManager] startPollingHistory:10];
 }
 
 
@@ -354,11 +352,13 @@
 
 -(void)menuWillOpen:(NSMenu *)menu{
     //only poll consumtion when menu is open, prevent computers energy and CPU ticks
-    [[MDDSSConsumptionManager defaultManager] startPollingLatest:1];
+    [[MDDSSConsumptionManager defaultManager] startPollingLatest:2];
+    [[MDDSSConsumptionManager defaultManager] startPollingHistory:10];
 }
 
 -(void)menuDidClose:(NSMenu *)menu{
     [[MDDSSConsumptionManager defaultManager] stopPollingLatest];
+    [[MDDSSConsumptionManager defaultManager] stopPollingHistory];
 }
 
 #pragma mark - NSTimer callbacks
@@ -424,13 +424,22 @@
 }
 
 #pragma mark - energy display
-- (void)updateEnergyMenuGraph:(NSDictionary *)values dSMs:(NSArray *)dSMs
+- (void)updateConsumptionMenuChart:(NSDictionary *)values dSMs:(NSArray *)dSMs
 {
-    dispatch_sync(dispatch_get_main_queue(), ^(){
-        NSMenuItem *energyGraph = [self.consumptionMenu.submenu itemAtIndex:0];
-        MDConsumptionView *energyView = (MDConsumptionView *)energyGraph.view;
-        [energyView setValues:values dSMs:dSMs];
-    });
+    if (!NSThread.isMainThread)
+    {
+        dispatch_sync(dispatch_get_main_queue(), ^(){
+            NSMenuItem *consumptionChartItem = [self.consumptionMenu.submenu itemAtIndex:0];
+            MDConsumptionView *consumptionView = (MDConsumptionView *)consumptionChartItem.view;
+            [consumptionView setNeedsDisplay:YES];
+        });
+    }
+    else
+    {
+        NSMenuItem *consumptionChartItem = [self.consumptionMenu.submenu itemAtIndex:0];
+        MDConsumptionView *consumptionView = (MDConsumptionView *)consumptionChartItem.view;
+        [consumptionView setNeedsDisplay:YES];
+    }
 }
 
 - (void)updateConsumptionMenu:(NSArray *)json error:(NSError *)error

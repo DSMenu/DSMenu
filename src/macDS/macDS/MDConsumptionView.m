@@ -10,8 +10,6 @@
 #import "MDDSSConsumptionManager.h"
 
 @interface MDConsumptionView ()
-@property (strong) NSDictionary *values;
-@property (strong) NSArray *dSMs;
 @end
 
 @implementation MDConsumptionView
@@ -37,8 +35,6 @@
 
 - (void)setValues:(NSDictionary *)values dSMs:(NSArray *)dSMs
 {
-    self.values = [values copy];
-    self.dSMs = [dSMs copy];
     [self setNeedsDisplay:YES];
 }
 

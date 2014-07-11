@@ -9,5 +9,4 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MDConsumptionView : NSView
-- (void)setValues:(NSDictionary *)values dSMs:(NSArray *)dSMs;
 @end
