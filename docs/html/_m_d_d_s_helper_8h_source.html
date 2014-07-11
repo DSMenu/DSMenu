@@ -98,14 +98,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_helper.html">   11</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_m_d_d_s_helper.html">MDDSHelper</a> : NSObject</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;+ (NSImage *)iconForDevice:(NSDictionary *)deviceDictonary;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;+ (BOOL)deviceHasLight:(NSDictionary *)deviceDictonary;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;+ (BOOL)deviceHasShadow:(NSDictionary *)deviceDictonary;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;+ (NSString *)customSceneNameForScene:(<span class="keywordtype">int</span>)scene fromJSON:(NSArray *)json;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;+ (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;+ (BOOL)hasGroup:(<span class="keywordtype">int</span>)groupNr inZone:(NSDictionary *)zoneDict;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">@end</span></div>
 <div class="ttc" id="interface_m_d_d_s_helper_html"><div class="ttname"><a href="interface_m_d_d_s_helper.html">MDDSHelper</a></div><div class="ttdef"><b>Definition:</b> MDDSHelper.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 2 2014 20:58:09 for macDS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 11 2014 16:36:10 for macDS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

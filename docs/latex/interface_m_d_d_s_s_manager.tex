@@ -20,13 +20,38 @@ Inheritance diagram for M\-D\-D\-S\-S\-Manager\-:\begin{figure}[H]
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a372f9b7faa41788df9a0051cbb3001d6}{get\-Structure\-:}
 \item 
+(void) -\/ \hyperlink{interface_m_d_d_s_s_manager_af23ff713c6f0860924c0fa55cff11acd}{get\-Structure\-With\-Custom\-Scene\-Names\-:}
+\item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a132057831e843d4888c44f7147ad28a1}{request\-Application\-Token\-:}
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a5380dc94b95172a6131901f23a73bd7d}{call\-Scene\-:zone\-Id\-:group\-I\-D\-:callback\-:}
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a33e9c999b7b7547d42c4102097102ee8}{call\-Scene\-:device\-Id\-:callback\-:}
 \item 
+(N\-S\-Array $\ast$) -\/ \hyperlink{interface_m_d_d_s_s_manager_a879391644298f08b9dd399d69dc5b137}{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}
+\item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_afd4b532e4a25c628ff150eb2199515da}{reset\-To\-Defaults}
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_aafaa7083382f6e128205d821f6adeacd}{(void) -\/ {\bfseries get\-Sensor\-Values\-:}}\label{interface_m_d_d_s_s_manager_aafaa7083382f6e128205d821f6adeacd}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_a88e46a8084e45775c057a1849c046ed5}{(void) -\/ {\bfseries set\-Sensor\-Table}}\label{interface_m_d_d_s_s_manager_a88e46a8084e45775c057a1849c046ed5}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_a13132214fe9bb3b269804c68f880707f}{(void) -\/ {\bfseries turn\-On\-Device\-Id\-:callback\-:}}\label{interface_m_d_d_s_s_manager_a13132214fe9bb3b269804c68f880707f}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_ac96629f2d573ee6acb469892c649533c}{(void) -\/ {\bfseries turn\-Off\-Device\-Id\-:callback\-:}}\label{interface_m_d_d_s_s_manager_ac96629f2d573ee6acb469892c649533c}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_a0ade895ec94f02001b59067b835c6ed0}{(void) -\/ {\bfseries get\-Energy\-Levels\-Latest\-:}}\label{interface_m_d_d_s_s_manager_a0ade895ec94f02001b59067b835c6ed0}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_aa4524948db08b3a0a623db564301ef2a}{(void) -\/ {\bfseries get\-Energy\-Levels\-D\-S\-I\-D\-:callback\-:}}\label{interface_m_d_d_s_s_manager_aa4524948db08b3a0a623db564301ef2a}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_manager_ae616b77a6cd640f66217ea2aa70bc8a1}{(void) -\/ {\bfseries get\-Circuits\-:}}\label{interface_m_d_d_s_s_manager_ae616b77a6cd640f66217ea2aa70bc8a1}
+
 \end{DoxyCompactItemize}
 \subsection*{Class Methods}
 \begin{DoxyCompactItemize}
@@ -77,7 +102,15 @@ call a scene on a device \hypertarget{interface_m_d_d_s_s_manager_a5380dc94b9517
 \item[{callback:(void($^\wedge$)(N\-S\-Dictionary $\ast$, N\-S\-Error $\ast$))}]{callback}
 \end{DoxyParamCaption}
 }}\label{interface_m_d_d_s_s_manager_a5380dc94b95172a6131901f23a73bd7d}
-call a scene on a zone \hypertarget{interface_m_d_d_s_s_manager_af0359d38979df1d414575dfb7aa6b537}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!default\-Manager@{default\-Manager}}
+call a scene on a zone \hypertarget{interface_m_d_d_s_s_manager_a879391644298f08b9dd399d69dc5b137}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:@{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}}
+\index{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:@{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}!MDDSSManager@{M\-D\-D\-S\-S\-Manager}}
+\subsubsection[{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Array $\ast$) custom\-Scene\-Names\-For\-Group\-: 
+\begin{DoxyParamCaption}
+\item[{(int)}]{for\-Group}
+\item[{inZone:(int)}]{for\-Zone\-Id}
+\end{DoxyParamCaption}
+}}\label{interface_m_d_d_s_s_manager_a879391644298f08b9dd399d69dc5b137}
+get custom scene names for a zone/group \hypertarget{interface_m_d_d_s_s_manager_af0359d38979df1d414575dfb7aa6b537}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!default\-Manager@{default\-Manager}}
 \index{default\-Manager@{default\-Manager}!MDDSSManager@{M\-D\-D\-S\-S\-Manager}}
 \subsubsection[{default\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}+ ({\bf M\-D\-D\-S\-S\-Manager} $\ast$) default\-Manager 
 \begin{DoxyParamCaption}
@@ -91,7 +124,14 @@ singleton \hypertarget{interface_m_d_d_s_s_manager_a372f9b7faa41788df9a0051cbb30
 \item[{(void($^\wedge$)(N\-S\-Dictionary $\ast$, N\-S\-Error $\ast$))}]{callback}
 \end{DoxyParamCaption}
 }}\label{interface_m_d_d_s_s_manager_a372f9b7faa41788df9a0051cbb3001d6}
-get the appartment structure \hypertarget{interface_m_d_d_s_s_manager_a74358d521e85fc2a1a04f15bd8b3954e}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!get\-Version\-:@{get\-Version\-:}}
+get the appartment structure \hypertarget{interface_m_d_d_s_s_manager_af23ff713c6f0860924c0fa55cff11acd}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!get\-Structure\-With\-Custom\-Scene\-Names\-:@{get\-Structure\-With\-Custom\-Scene\-Names\-:}}
+\index{get\-Structure\-With\-Custom\-Scene\-Names\-:@{get\-Structure\-With\-Custom\-Scene\-Names\-:}!MDDSSManager@{M\-D\-D\-S\-S\-Manager}}
+\subsubsection[{get\-Structure\-With\-Custom\-Scene\-Names\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) get\-Structure\-With\-Custom\-Scene\-Names\-: 
+\begin{DoxyParamCaption}
+\item[{(void($^\wedge$)(N\-S\-Dictionary $\ast$, N\-S\-Error $\ast$))}]{callback}
+\end{DoxyParamCaption}
+}}\label{interface_m_d_d_s_s_manager_af23ff713c6f0860924c0fa55cff11acd}
+get the appartment structure including user defined scene names \hypertarget{interface_m_d_d_s_s_manager_a74358d521e85fc2a1a04f15bd8b3954e}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!get\-Version\-:@{get\-Version\-:}}
 \index{get\-Version\-:@{get\-Version\-:}!MDDSSManager@{M\-D\-D\-S\-S\-Manager}}
 \subsubsection[{get\-Version\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) get\-Version\-: 
 \begin{DoxyParamCaption}

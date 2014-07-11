@@ -114,15 +114,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;- (void)getStructure:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;- (void)requestApplicationToken:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;- (void)getStructureWithCustomSceneNames:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;- (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;- (void)requestApplicationToken:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;- (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;- (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;- (void)<a class="code" href="interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da">resetToDefaults</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;- (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;- (NSArray *)customSceneNamesForGroup:(<span class="keywordtype">int</span>)forGroup inZone:(<span class="keywordtype">int</span>)forZoneId;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;- (void)<a class="code" href="interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da">resetToDefaults</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;- (void)getSensorValues:(NSString *)dSID;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;- (void)setSensorTable;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;- (void)turnOnDeviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;- (void)turnOffDeviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;- (void)getEnergyLevelsLatest:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;- (void)getEnergyLevelsDSID:(NSString *)dsid callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;- (void)getCircuits:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">@end</span></div>
 <div class="ttc" id="interface_m_d_d_s_s_manager_html_afd4b532e4a25c628ff150eb2199515da"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da">-[MDDSSManager resetToDefaults]</a></div><div class="ttdeci">void resetToDefaults()</div></div>
 <div class="ttc" id="interface_m_d_d_s_s_manager_html_a27147ce2bf5c9186c96503588983c047"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">MDDSSManager::appName</a></div><div class="ttdeci">NSString * appName</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:21</div></div>
 <div class="ttc" id="interface_m_d_d_s_s_manager_html_a55aa29ea7dc235519473b2e4ea44c48c"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">MDDSSManager::host</a></div><div class="ttdeci">NSString * host</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:23</div></div>
@@ -134,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 2 2014 20:58:09 for macDS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 11 2014 16:36:10 for macDS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
