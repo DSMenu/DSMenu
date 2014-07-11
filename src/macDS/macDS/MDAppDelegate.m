@@ -353,7 +353,7 @@
 -(void)menuWillOpen:(NSMenu *)menu{
     //only poll consumtion when menu is open, prevent computers energy and CPU ticks
     [[MDDSSConsumptionManager defaultManager] startPollingLatest:2];
-    [[MDDSSConsumptionManager defaultManager] startPollingHistory:10];
+    [[MDDSSConsumptionManager defaultManager] startPollingHistory:30];
 }
 
 -(void)menuDidClose:(NSMenu *)menu{

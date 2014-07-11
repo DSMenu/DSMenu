@@ -165,10 +165,8 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             if(self.pollInProgressHistory == NO)
             {
                 self.pollInProgressHistory = YES;
-                
-                
                 [self.historyValues removeAllObjects];
-                sleep(2);
+                
                 [[MDDSSManager defaultManager] getEnergyLevelsDSID:@".meters(all)" callback:^(NSDictionary *jsonV, NSError *errorV)
                  {
                      if(errorV)
