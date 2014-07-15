@@ -16,6 +16,8 @@ Inheritance diagram for M\-D\-D\-S\-S\-Manager\-:\begin{figure}[H]
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a7fc82977a968af77139dfd04e407a242}{set\-And\-Persist\-Host\-:}
 \item 
+(void) -\/ \hyperlink{interface_m_d_d_s_s_manager_aa343aa36fdf36c13752a1f0542f04b42}{check\-Host\-:callback\-:}
+\item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a74358d521e85fc2a1a04f15bd8b3954e}{get\-Version\-:}
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_manager_a372f9b7faa41788df9a0051cbb3001d6}{get\-Structure\-:}
@@ -44,10 +46,10 @@ Inheritance diagram for M\-D\-D\-S\-S\-Manager\-:\begin{figure}[H]
 \hypertarget{interface_m_d_d_s_s_manager_ac96629f2d573ee6acb469892c649533c}{(void) -\/ {\bfseries turn\-Off\-Device\-Id\-:callback\-:}}\label{interface_m_d_d_s_s_manager_ac96629f2d573ee6acb469892c649533c}
 
 \item 
-\hypertarget{interface_m_d_d_s_s_manager_a0ade895ec94f02001b59067b835c6ed0}{(void) -\/ {\bfseries get\-Energy\-Levels\-Latest\-:}}\label{interface_m_d_d_s_s_manager_a0ade895ec94f02001b59067b835c6ed0}
+\hypertarget{interface_m_d_d_s_s_manager_a28b119a86c4ce5baaf5900800b404f74}{(void) -\/ {\bfseries get\-Consumption\-Levels\-Latest\-:}}\label{interface_m_d_d_s_s_manager_a28b119a86c4ce5baaf5900800b404f74}
 
 \item 
-\hypertarget{interface_m_d_d_s_s_manager_aa4524948db08b3a0a623db564301ef2a}{(void) -\/ {\bfseries get\-Energy\-Levels\-D\-S\-I\-D\-:callback\-:}}\label{interface_m_d_d_s_s_manager_aa4524948db08b3a0a623db564301ef2a}
+\hypertarget{interface_m_d_d_s_s_manager_a84579d1873d6ca19a693c972296ebdcc}{(void) -\/ {\bfseries get\-Consumption\-Levels\-D\-S\-I\-D\-:callback\-:}}\label{interface_m_d_d_s_s_manager_a84579d1873d6ca19a693c972296ebdcc}
 
 \item 
 \hypertarget{interface_m_d_d_s_s_manager_ae616b77a6cd640f66217ea2aa70bc8a1}{(void) -\/ {\bfseries get\-Circuits\-:}}\label{interface_m_d_d_s_s_manager_ae616b77a6cd640f66217ea2aa70bc8a1}
@@ -102,7 +104,15 @@ call a scene on a device \hypertarget{interface_m_d_d_s_s_manager_a5380dc94b9517
 \item[{callback:(void($^\wedge$)(N\-S\-Dictionary $\ast$, N\-S\-Error $\ast$))}]{callback}
 \end{DoxyParamCaption}
 }}\label{interface_m_d_d_s_s_manager_a5380dc94b95172a6131901f23a73bd7d}
-call a scene on a zone \hypertarget{interface_m_d_d_s_s_manager_a879391644298f08b9dd399d69dc5b137}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:@{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}}
+call a scene on a zone \hypertarget{interface_m_d_d_s_s_manager_aa343aa36fdf36c13752a1f0542f04b42}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!check\-Host\-:callback\-:@{check\-Host\-:callback\-:}}
+\index{check\-Host\-:callback\-:@{check\-Host\-:callback\-:}!MDDSSManager@{M\-D\-D\-S\-S\-Manager}}
+\subsubsection[{check\-Host\-:callback\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) check\-Host\-: 
+\begin{DoxyParamCaption}
+\item[{(N\-S\-String $\ast$)}]{host}
+\item[{callback:(void($^\wedge$)(B\-O\-O\-L))}]{handler}
+\end{DoxyParamCaption}
+}}\label{interface_m_d_d_s_s_manager_aa343aa36fdf36c13752a1f0542f04b42}
+check if behind a host is a d\-S\-S \hypertarget{interface_m_d_d_s_s_manager_a879391644298f08b9dd399d69dc5b137}{\index{M\-D\-D\-S\-S\-Manager@{M\-D\-D\-S\-S\-Manager}!custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:@{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}}
 \index{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:@{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}!MDDSSManager@{M\-D\-D\-S\-S\-Manager}}
 \subsubsection[{custom\-Scene\-Names\-For\-Group\-:in\-Zone\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (N\-S\-Array $\ast$) custom\-Scene\-Names\-For\-Group\-: 
 \begin{DoxyParamCaption}
