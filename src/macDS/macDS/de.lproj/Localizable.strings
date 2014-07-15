@@ -24,6 +24,10 @@ group1scene6 = "Bereich 1 Ein";
 group1scene7 = "Bereich 2 Ein";
 group1scene8 = "Bereich 3 Ein";
 group1scene9 = "Bereich 4 Ein";
+group1scene1 = "Bereich 1 Aus";
+group1scene2 = "Bereich 2 Aus";
+group1scene3 = "Bereich 3 Aus";
+group1scene4 = "Bereich 4 Aus";
 
 group2scene0 = "Zu";
 group2scene5 = "Auf";
@@ -35,6 +39,10 @@ group2scene6 = "Bereich 1 Auf";
 group2scene7 = "Bereich 2 Auf";
 group2scene8 = "Bereich 3 Auf";
 group2scene9 = "Bereich 4 Auf";
+group2scene1 = "Bereich 1 Zu";
+group2scene2 = "Bereich 2 Zu";
+group2scene3 = "Bereich 3 Zu";
+group2scene4 = "Bereich 4 Zu";
 
 unnamedRoom = "Raum";
 

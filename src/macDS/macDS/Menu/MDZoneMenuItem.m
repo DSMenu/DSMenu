@@ -22,7 +22,6 @@
     if(item.title.length <= 0)
     {
         // define unnamed room
-        
         item.title = [NSLocalizedString(@"unnamedRoom", @"Menu String for unnamed room") stringByAppendingFormat:@" %@", item.zoneId];
     }
     
@@ -74,11 +73,29 @@
                 lightScene.group = groupInt;
                 lightScene.image = ( i == 0) ? [NSImage imageNamed:@"off_menu_icon"] : [NSImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]];
                 
+                // Area Scenes
                 if( (i==6 || i==7 || i==8 || i==9 ) )
                 {
+                    // only add if the area is present
                     if(([areas indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)(i-5)]] != NSNotFound))
                     {
                         [areaItems addObject:lightScene];
+                        
+                        NSString *customName = [MDDSHelper customSceneNameForScene:i-5 fromJSON:customSceneNames]; //-5 for area off scene (check ds_basic.pdf)
+                        NSString *i18nLabel = [NSString stringWithFormat:@"group%dscene%d", groupInt, i-5];
+                        NSString *sceneTitle = NSLocalizedString(i18nLabel, @"Zone Submenu Scene X Item");
+                        if(customName.length > 0)
+                        {
+                            DDLogVerbose(@"%@", zoneDict);
+                            sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
+                        }
+                        
+                        MDSceneMenuItem *areaSceneOff = [[MDSceneMenuItem alloc] initWithTitle:sceneTitle action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+                        areaSceneOff.target = item;
+                        areaSceneOff.tag = i-5; //-5 for area off scene (check ds_basic.pdf)
+                        areaSceneOff.group = groupInt;
+                        areaSceneOff.image = [NSImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]];
+                        [areaItems addObject:areaSceneOff];
                     }
                 }
                 else
