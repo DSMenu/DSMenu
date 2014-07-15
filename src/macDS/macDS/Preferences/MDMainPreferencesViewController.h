@@ -15,7 +15,11 @@
 @property IBOutlet NSTextField *addressTextField;
 @property IBOutlet NSTextField *titleTextField;
 @property IBOutlet NSTextField *serverAddressLabel;
+@property IBOutlet NSButton *manualIPCheckbox;
 
 @property IBOutlet NSTextField *tokenLabel;
 @property IBOutlet NSTextField *tokenField;
+@property IBOutlet NSProgressIndicator *progressIndicator;
+
+@property (assign) BOOL manualIP;
 @end

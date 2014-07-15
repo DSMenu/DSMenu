@@ -58,6 +58,7 @@ preferences = "Einstellungen...";
 MainPreferences = "Verbindung zum dSS";
 preferenceMainTopTitle = "dSS Wählen oder Adresse eingeben";
 preferenceMainAddressLabel = "IP Adresse";
+preferenceMainAddressCustomIPLabel = "Manuelle IP Adresse verwenden";
 preferenceMainTokenLabel = "Applikations Token";
 preferenceResetConfigButton = "Konfiguration zurücksetzen";
 preferenceResetConfigAlert = "Dieser Schritt kann nicht rückgängig gemacht werden. Sind sie sicher?";

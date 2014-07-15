@@ -40,12 +40,16 @@
     [self.titleTextField setStringValue:NSLocalizedString(@"preferenceMainTopTitle", @"Preference Main Title")];
     [self.serverAddressLabel setStringValue:NSLocalizedString(@"preferenceMainAddressLabel", @"Preference Address Label")];
     [self.tokenLabel setStringValue:NSLocalizedString(@"preferenceMainTokenLabel", @"Preference Address Label")];
+    self.manualIPCheckbox.title =NSLocalizedString(@"preferenceMainAddressCustomIPLabel", @"Preference Checkbox manual Address Label");
+    
     
     [self tokenDidChange];
 
     
+    [self.addressTextField setEnabled:NO];
     if([MDDSSManager defaultManager].useIPAddress)
     {
+        [self.addressTextField setEnabled:YES];
         self.addressTextField.stringValue = [MDDSSManager defaultManager].host;
     }
     
@@ -101,6 +105,36 @@
     return self.mDNSServices.count;
 }
 
+// This method is optional if you use bindings to provide the data
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSString *identifier = [tableColumn identifier];
+    
+    if ([identifier isEqualToString:@"MainCell"]) {
+        NSNetService *netService = [self.mDNSServices objectAtIndex:row];
+        NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
+        // Then setup properties on the cellView based on the column
+        cellView.textField.stringValue = [netService.name stringByAppendingString:@".local"];
+        
+        if([[netService.name stringByAppendingString:@".local"] isEqualToString:[MDDSSManager defaultManager].host])
+        {
+            cellView.imageView.objectValue = [NSImage imageNamed:NSImageNameMenuOnStateTemplate];
+            self.dontUpdate = YES;
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:row];
+            [self.tableView selectRowIndexes:indexSet byExtendingSelection:NO];
+            self.dontUpdate = NO;
+        }
+        else
+        {
+            cellView.imageView.objectValue = nil;
+        }
+        
+        return cellView;
+    } else {
+        NSAssert1(NO, @"Unhandled table column identifier %@", identifier);
+    }
+    return nil;
+}
+
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     NSNetService *netService = [self.mDNSServices objectAtIndex:rowIndex];
@@ -111,8 +145,20 @@
     if(self.dontUpdate || self.tableView.selectedRow == -1) { return; }
 
     NSNetService *netService = [self.mDNSServices objectAtIndex:self.tableView.selectedRow];
-    [[MDDSSManager defaultManager] setAndPersistHost:[netService.name stringByAppendingString:@".local"]];
-    [MDDSSManager defaultManager].useIPAddress = NO;
+    
+    [self.progressIndicator startAnimation:self];
+    [[MDDSSManager defaultManager] checkHost:[netService.name stringByAppendingString:@".local"] callback:^(BOOL status)
+     {
+         [self.progressIndicator stopAnimation:self];
+         if(status)
+         {
+             [[MDDSSManager defaultManager] setAndPersistHost:[netService.name stringByAppendingString:@".local"]];
+             [MDDSSManager defaultManager].useIPAddress = NO;
+             [self.tableView reloadData];
+         }
+     }];
+    
+    
 }
 
 #pragma mark - NSTextField Delegate
@@ -140,6 +186,23 @@
 - (IBAction)reset:(id)sender
 {
     [[MDDSSManager defaultManager] resetToDefaults];
+}
+
+#pragma mark - Manual IP
+
+- (BOOL)manualIP
+{
+    return [MDDSSManager defaultManager].useIPAddress;
+}
+
+- (void)setManualIP:(BOOL)aState
+{
+    [MDDSSManager defaultManager].useIPAddress = aState;
+    [self.addressTextField setEnabled:aState];
+    if(aState == YES)
+    {
+        [self.tableView deselectAll:self];
+    }
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol

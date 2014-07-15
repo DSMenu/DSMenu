@@ -24,6 +24,10 @@ group1scene6 = "Area 1 on";
 group1scene7 = "Area 2 on";
 group1scene8 = "Area 3 on";
 group1scene9 = "Area 4 on";
+group1scene1 = "Area 1 off";
+group1scene2 = "Area 2 off";
+group1scene3 = "Area 3 off";
+group1scene4 = "Area 4 off";
 
 group2scene0 = "Down";
 group2scene5 = "Up";
@@ -35,6 +39,10 @@ group2scene6 = "Area 1 up";
 group2scene7 = "Area 2 up";
 group2scene8 = "Area 3 up";
 group2scene9 = "Area 4 up";
+group2scene1 = "Area 1 down";
+group2scene2 = "Area 2 down";
+group2scene3 = "Area 3 down";
+group2scene4 = "Area 4 down";
 
 unnamedRoom = "Room";
 
@@ -49,7 +57,8 @@ preferences = "Settings...";
 
 MainPreferences = "Connection to your dSS";
 preferenceMainTopTitle = "Please select your dSS or enter a IP address";
-preferenceMainAddressLabel = "IP address";
+preferenceMainAddressLabel = "IP Address";
+preferenceMainAddressCustomIPLabel = "Use a custom IP Address";
 preferenceMainTokenLabel = "Application Token";
 preferenceResetConfigButton = "Reset Configuration";
 preferenceResetConfigAlert = "Are you sure?";
