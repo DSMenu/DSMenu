@@ -35,6 +35,11 @@
 - (void)setAndPersistHost:(NSString *)host;
 
 /**
+ * check if behind a host is a dSS
+ */
+- (void)checkHost:(NSString *)host callback:(void (^)(BOOL))handler;
+
+/**
  * load the versionstring from dSS
  */
 - (void)getVersion:(void (^)(NSDictionary*, NSError*))callback;

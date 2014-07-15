@@ -1,4 +1,4 @@
-//
+ //
 //  MDDSSManager.m
 //  macDS
 //
@@ -81,6 +81,22 @@ static MDDSSManager *defaultManager;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_HOST_DID_CHANGE object:self.host];
+}
+
+- (void)checkHost:(NSString *)host callback:(void (^)(BOOL))handler
+{
+    NSString *hostWithPort = [host stringByAppendingFormat:@":8080"];
+    
+    [MDDSSURLConnection jsonConnectionToHostWithPort:hostWithPort path:@"/json/system/version" params:nil completionHandler:^(NSDictionary *json, NSError *error){
+        if([json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"version"])
+        {
+            self.dSSVersionString = [[json objectForKey:@"result"] objectForKey:@"version"];
+            handler(YES);
+        }
+        else {
+            handler(NO);
+        }
+    }];
 }
 
 - (BOOL)hasApplicationToken
