@@ -14,6 +14,7 @@
  *  This enum will be used to distinct the menu item type
  */
 typedef enum MDZoneMenuItemClickType {
+    MDZoneMenuItemClickTypeNotOfInterest,
     MDZoneMenuItemClickTypeScene, /**<  if the clicked menu item is a scene/root, this value will be used */
     MDZoneMenuItemClickTypeDevice /**< will be set on clicked menu from the "devices menu" */
 } MDZoneMenuItemClickType;
