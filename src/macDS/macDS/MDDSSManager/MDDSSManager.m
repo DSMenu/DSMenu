@@ -40,6 +40,10 @@ static MDDSSManager *defaultManager;
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.applicationToken = [defaults objectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
+        if(self.applicationToken == nil)
+        {
+            self.applicationToken = @"";
+        }
         self.currentSessionToken = @""; // use a empty string as not-logged-in indicator
         self.port = @"8080";
         self.host = @"";
@@ -405,7 +409,7 @@ static MDDSSManager *defaultManager;
 }
 
 
-- (void)getEnergyLevelsLatest:(void (^)(NSDictionary*, NSError*))callback
+- (void)getConsumptionLevelsLatest:(void (^)(NSDictionary*, NSError*))callback
 {
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"from":@"all", @"type": @"consumption"};
     [self jsonCall:@"/json/metering/getLatest" params:params completionHandler:^(NSDictionary *json, NSError *error){
@@ -413,10 +417,10 @@ static MDDSSManager *defaultManager;
     }];
 }
 
-- (void)getEnergyLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback
+- (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback
 {
-    NSTimeInterval startTime = [[NSDate dateWithTimeIntervalSinceNow:-60*60*2] timeIntervalSince1970];
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"from":@"all", @"startTime": [NSNumber numberWithLong:startTime], @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:1]};
+    //NSTimeInterval startTime = [[NSDate dateWithTimeIntervalSinceNow:-60*60*2] timeIntervalSince1970];
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"valueCount":[NSNumber numberWithInt:600], @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:60]};
     [self jsonCall:@"/json/metering/getValues" params:params completionHandler:^(NSDictionary *json, NSError *error){
         callback(json, error);
     }];

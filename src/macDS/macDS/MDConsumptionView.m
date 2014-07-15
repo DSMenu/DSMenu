@@ -1,5 +1,5 @@
 //
-//  MDEnergyView.m
+//  MDConsumptionView.m
 //  macDS
 //
 //  Created by Jonas Schnelli on 09.07.14.

@@ -9,7 +9,7 @@
 
 /**
  * MDDSSEnegryManager.
- *  This class handles asynchronous polling of energy/consumption data.
+ *  This class handles asynchronous polling of consumption data.
  */
 @interface MDDSSConsumptionManager : NSObject
 

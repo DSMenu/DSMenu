@@ -199,13 +199,13 @@
         [self.statusMenu addItem:[NSMenuItem separatorItem]];
     }
     
-    // build energy menu
-    self.consumptionMenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Energy", @"Energy Menu Item") action:nil keyEquivalent:@""];
+    // build consumption menu
+    self.consumptionMenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Consumption", @"Consumption Menu Item") action:nil keyEquivalent:@""];
     NSMenu *aMenu = [[NSMenu alloc] init];
-    NSMenuItem *energyViewItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+    NSMenuItem *consumptionViewItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
     MDConsumptionView *view = [[MDConsumptionView alloc] initWithFrame:NSMakeRect(0, 0, 300, 160)];
-    [energyViewItem setView:view];
-    [aMenu addItem:energyViewItem];
+    [consumptionViewItem setView:view];
+    [aMenu addItem:consumptionViewItem];
     [aMenu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"loading", @"Loading Menu Item Title") action:nil keyEquivalent:@""]];
     self.consumptionMenu.submenu = aMenu;
     [self.statusMenu addItem:self.consumptionMenu];
@@ -302,7 +302,7 @@
         
         if(deviceMenuItem.turnOnOffMode)
         {
-            //[[MDDSSManager defaultManager] setSensorTable];
+            [[MDDSSManager defaultManager] setSensorTable];
             
             if(zoneMenuItem.clickedSubmenu.tag)
             {
@@ -423,7 +423,7 @@
     launchController = nil;
 }
 
-#pragma mark - energy display
+#pragma mark - consumption display
 - (void)updateConsumptionMenuChart:(NSDictionary *)values dSMs:(NSArray *)dSMs
 {
     if (!NSThread.isMainThread)
@@ -444,7 +444,7 @@
 
 - (void)updateConsumptionMenu:(NSArray *)json error:(NSError *)error
 {
-    NSMenuItem *energyList = [self.consumptionMenu.submenu itemAtIndex:1];
+    NSMenuItem *consumptionList = [self.consumptionMenu.submenu itemAtIndex:1];
     
     NSMutableAttributedString* str =[[NSMutableAttributedString alloc] initWithString:@""];
     
@@ -463,14 +463,14 @@
         cnt++;
     }
     
-    self.consumptionMenu.title = [NSString stringWithFormat:@"%@: %d W",NSLocalizedString(@"Consumption", @"Energy Menu Item"), total];
+    self.consumptionMenu.title = [NSString stringWithFormat:@"%@: %d W",NSLocalizedString(@"Consumption", @"Consumption Menu Item"), total];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     CGFloat tabInterval = 50.0;
     NSArray *tabs = @[ [[NSTextTab alloc] initWithTextAlignment:kCTTextAlignmentLeft location:tabInterval * 1 options:nil] ];
     paragraphStyle.tabStops = tabs;
     [str setAttributes: @{ NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: [NSColor blackColor], NSFontAttributeName : [NSFont systemFontOfSize:12] } range: NSMakeRange(0, [str length])];
-    [energyList setAttributedTitle: str];
+    [consumptionList setAttributedTitle: str];
 }
 
 @end

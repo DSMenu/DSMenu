@@ -9,6 +9,13 @@
 #import "MDDSSConsumptionManager.h"
 #import "MDDSSManager.h"
 
+#include "TargetConditionals.h"
+
+
+#if TARGET_OS_IPHONE
+    #define NSColor UIColor
+#endif
+
 static MDDSSConsumptionManager *defaultManager;
 
 @interface MDDSSConsumptionManager ()
@@ -62,7 +69,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         self.loadCircuitsInProgress = NO;
         
         self.historyValues = [[NSMutableDictionary alloc] init];
-        self.colors = @[[NSColor redColor], [NSColor cyanColor], [NSColor greenColor], [NSColor blueColor], [NSColor purpleColor], [NSColor yellowColor]];
+        self.colors = @[(id)[NSColor redColor].CGColor, (id)[NSColor cyanColor].CGColor, (id)[NSColor greenColor].CGColor, (id)[NSColor blueColor].CGColor, (id)[NSColor purpleColor].CGColor, (id)[NSColor yellowColor].CGColor];
     }
     return self;
 }
@@ -128,7 +135,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             {
                 self.pollInProgressLatest = YES;
      
-                [[MDDSSManager defaultManager] getEnergyLevelsLatest:^(NSDictionary *json, NSError *error){
+                [[MDDSSManager defaultManager] getConsumptionLevelsLatest:^(NSDictionary *json, NSError *error){
                     self.pollInProgressLatest = NO;
                     
                     if(self.callbackLatest)
@@ -154,37 +161,24 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 - (void)pollHistoryValuesInBackground
 {
     @autoreleasepool {
-        
-        NSArray *dsm = nil;
-        @synchronized(self) {
-            dsm = [self.dSMs copy];
-        }
-        if(dsm)
+
+        if(self.pollInProgressHistory == NO)
         {
+            self.pollInProgressHistory = YES;
+            [self.historyValues removeAllObjects];
             
-            if(self.pollInProgressHistory == NO)
-            {
-                self.pollInProgressHistory = YES;
-                [self.historyValues removeAllObjects];
-                
-                [[MDDSSManager defaultManager] getEnergyLevelsDSID:@".meters(all)" callback:^(NSDictionary *jsonV, NSError *errorV)
+            [[MDDSSManager defaultManager] getConsumptionLevelsDSID:@".meters(all)" callback:^(NSDictionary *jsonV, NSError *errorV)
+             {
+                 if(errorV)
                  {
-                     if(errorV)
-                     {
-                         self.pollInProgressHistory = NO;
-                     }
-                     [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
                      self.pollInProgressHistory = NO;
-                     self.callbackHistory(self.historyValues, self.dSMs);
-                 }];
-            }
+                 }
+                 [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
+                 self.pollInProgressHistory = NO;
+                 self.callbackHistory(self.historyValues, self.dSMs);
+             }];
         }
-        else
-        {
-            [self loadCircuits];
-        }
-        
-        
+
         CFRunLoopRun();
     }
 }
@@ -306,14 +300,17 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     return maxHeight;
 }
 
-- (NSColor *)colorForDSM:(NSString *)dsid
+- (CGColorRef)colorForDSM:(NSString *)dsid
 {
-    NSColor *color = [NSColor colorWithCalibratedRed:1.0000 green:0.1 blue:0.1 alpha:0.8];
+    CGFloat components[4] = {1.0,0.1,0.1,0.8};
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef color = CGColorCreate(colorSpace, components);
+    
     for(NSDictionary *dsm in self.dSMs)
     {
         if([[dsm objectForKey:@"dsid"] isEqualToString:dsid])
         {
-            color = [dsm objectForKey:@"color"];
+            return (__bridge CGColorRef)[dsm objectForKey:@"color"];
         }
     }
     return color;
@@ -408,9 +405,10 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         {
             double value = [(NSNumber *)[timeValue objectAtIndex:1] doubleValue];
             
-            NSColor *color = [self colorForDSM:referenceDSM];
-            CGContextSetRGBFillColor(imageContext,color.redComponent*1.3,color.greenComponent*1.3,color.blueComponent*1.3,0.5);
-            CGContextSetRGBStrokeColor(imageContext,color.redComponent,color.greenComponent,color.blueComponent,color.alphaComponent);
+            CGColorRef color = [self colorForDSM:referenceDSM];
+            const CGFloat * colorComponents = CGColorGetComponents(color);
+            CGContextSetRGBFillColor(imageContext,colorComponents[0]*1.3,colorComponents[1]*1.3,colorComponents[2]*1.3,0.5);
+            CGContextSetStrokeColorWithColor(imageContext,color);
             
             
             if(currentX == baseX)
@@ -436,17 +434,6 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         NSString *topString = [NSString stringWithFormat:@"%d W", (int)(maxValue/cutoff)+1];
         CGContextShowTextAtPoint(imageContext, paddingRect.origin.x+3, size.height-paddingRect.size.height-10, [topString cStringUsingEncoding:NSUTF8StringEncoding], topString.length);
         
-    }
-    
-    if(drawOnBitmap) {
-        CGImageRef imgRef = CGBitmapContextCreateImage(imageContext);
-        NSImage *image = [[NSImage alloc] initWithCGImage:imgRef size:NSZeroSize];
-        
-        NSData *imageData = [image TIFFRepresentation];
-        NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
-        
-        imageData = [imageRep representationUsingType:NSPNGFileType properties:nil];
-        [imageData writeToFile: @"/Users/jonasschnelli/Desktop/test1.png" atomically: YES];
     }
 }
 
