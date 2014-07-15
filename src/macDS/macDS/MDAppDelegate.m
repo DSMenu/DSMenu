@@ -302,7 +302,7 @@
         
         if(deviceMenuItem.turnOnOffMode)
         {
-            [[MDDSSManager defaultManager] setSensorTable];
+            //[[MDDSSManager defaultManager] setSensorTable];
             
             if(zoneMenuItem.clickedSubmenu.tag)
             {
