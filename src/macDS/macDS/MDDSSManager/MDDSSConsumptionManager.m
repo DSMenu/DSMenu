@@ -28,6 +28,11 @@ static MDDSSConsumptionManager *defaultManager;
 @property (strong) NSMutableArray *dSMs;
 @property (strong) NSMutableDictionary *historyValues;
 @property (strong) NSArray *colors;
+
+@property CGRect padding;
+@property CGRect paddingRect;
+@property CGFloat extendFactor;
+
 @end
 
 @implementation MDDSSConsumptionManager
@@ -70,6 +75,10 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         
         self.historyValues = [[NSMutableDictionary alloc] init];
         self.colors = @[(id)[NSColor redColor].CGColor, (id)[NSColor cyanColor].CGColor, (id)[NSColor greenColor].CGColor, (id)[NSColor blueColor].CGColor, (id)[NSColor purpleColor].CGColor, (id)[NSColor yellowColor].CGColor];
+        
+        self.padding = CGRectMake(20, 20, 20, 20);
+        self.paddingRect = CGRectMake(18, 18, 18, 28);
+        self.extendFactor = 1.2;
     }
     return self;
 }
@@ -316,6 +325,38 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     return color;
 }
 
+- (CGFloat)heightForXValue:(CGFloat)xVal size:(CGSize)size wValue:(double *)wValue time:(double *)time
+{
+    double maxValue = [self maxValue];
+    double maxHeight = maxValue * self.extendFactor; // /0.7 = 30% empty space at top
+    
+    float sizeFakt = (size.height-self.padding.origin.y-self.padding.size.height-self.paddingRect.origin.y)/maxHeight;
+    
+    NSString *referenceDSM = @"all";//[self referenceDSM];
+    
+
+    
+    CGFloat baseX = self.padding.origin.x;
+    CGFloat currentX = baseX;
+    NSUInteger valueCount = [[self.historyValues objectForKey:referenceDSM] count];
+    CGFloat xStepWidth = (size.width-self.padding.origin.x-self.padding.size.width)/(valueCount-1);
+    
+    for(NSArray *timeValue in [self.historyValues objectForKey:referenceDSM])
+    {
+        double value = [(NSNumber *)[timeValue objectAtIndex:1] doubleValue];
+        double timeV = [(NSNumber *)[timeValue objectAtIndex:0] doubleValue];
+        
+        currentX+=xStepWidth;
+        if(round(currentX) == round(xVal))
+        {
+            *wValue = value;
+            *time = timeV;
+            return self.padding.size.height+value*sizeFakt;
+        }
+    }
+    return 0;
+}
+
 - (void)drawHistoryOnContext:(CGContextRef)imageContext size:(CGSize)size
 {
     BOOL drawOnBitmap = NO;
@@ -324,10 +365,9 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     CGRect paddingRect = CGRectMake(18, 18, 18, 28);
     
     double maxValue = [self maxValue];
-    CGFloat cutoff = 0.7;
-    double maxHeight = maxValue / cutoff; // /0.7 = 30% empty space at top
+    double maxHeight = maxValue * self.extendFactor; // /0.7 = 30% empty space at top
     
-    float sizeFakt = (size.height-padding.origin.y-padding.size.height)/maxHeight;
+    float sizeFakt = (size.height-padding.origin.y-padding.size.height-paddingRect.origin.y)/maxHeight;
     
     // draw image
     if(!imageContext)
@@ -356,12 +396,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     CGContextSetLineWidth(imageContext, 1);
     
     
-    NSString *referenceDSM = @"all";//[self referenceDSM];
-    
-    
-    CGMutablePathRef aPath = CGPathCreateMutable();
-    
-    
+    NSString *referenceDSM = @"all";
     
     CGFloat baseX = padding.origin.x;
     CGFloat currentX = baseX;
@@ -369,8 +404,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     
 
     CGContextSelectFont(imageContext, "Helvetica-Light", 12, kCGEncodingMacRoman);
-    
-    NSString *titleString = NSLocalizedString(@"lastTwoHours", @"last two hours graph title");
+    NSString *titleString = NSLocalizedString(@"historyTitle", @"history graph title");
    
     CGContextSetTextDrawingMode(imageContext, kCGTextInvisible);
     CGContextShowTextAtPoint(imageContext, 0, 0, [titleString cStringUsingEncoding:NSUTF8StringEncoding], titleString.length);
@@ -382,6 +416,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     
     CGContextSelectFont(imageContext, "Helvetica-Light", 10, kCGEncodingMacRoman);
     
+    CGMutablePathRef aPath = CGPathCreateMutable();
     
     if((!self.historyValues) || valueCount <= 0)
     {
@@ -431,7 +466,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         
         CGContextSetFillColorWithColor(imageContext, [[NSColor whiteColor] CGColor]);
         CGContextShowTextAtPoint(imageContext, paddingRect.origin.x+3, paddingRect.origin.y+5, "0 W", 3);
-        NSString *topString = [NSString stringWithFormat:@"%d W", (int)(maxValue/cutoff)+1];
+        NSString *topString = [NSString stringWithFormat:@"%d W", (int)(maxValue*self.extendFactor)+1];
         CGContextShowTextAtPoint(imageContext, paddingRect.origin.x+3, size.height-paddingRect.size.height-10, [topString cStringUsingEncoding:NSUTF8StringEncoding], topString.length);
         
     }

@@ -9,4 +9,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MDConsumptionView : NSView
+
 @end

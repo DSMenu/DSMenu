@@ -75,6 +75,6 @@ launchAtStartupQuestion = "Would you like to start macDS when your mac starts?";
 about = "About...";
 DetailsPreferences = "App Behavior";
 
-lastTwoHours = "LAST TWO HOURS";
+historyTitle = "HISTORY";
 loadingHistory = "Loading Data...";
 Consumption = "Consumption";

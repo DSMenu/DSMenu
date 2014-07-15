@@ -50,4 +50,8 @@
  */
 - (void)drawHistoryOnContext:(CGContextRef)imageContext size:(CGSize)size;
 
+/**
+ * returns the height (y point) of a certain x pos
+ */
+- (CGFloat)heightForXValue:(CGFloat)xVal size:(CGSize)size wValue:(double *)wValue time:(double *)time;
 @end

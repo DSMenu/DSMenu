@@ -22,6 +22,10 @@
 		E5280BBA1959F6DB006A9FB5 /* status_bar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5280BB81959F6DB006A9FB5 /* status_bar_icon@2x.png */; };
 		E5280BBE1959F733006A9FB5 /* MDDSSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BBD1959F733006A9FB5 /* MDDSSManager.m */; };
 		E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */; };
+		E52C13C21975B5740010385E /* MDConsumptionLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C13C11975B5740010385E /* MDConsumptionLineView.m */; };
+		E52C13C51975B6270010385E /* MDConsumptionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C13C41975B6270010385E /* MDConsumptionTextView.m */; };
+		E52C13C81975C09C0010385E /* cchart_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C61975C09C0010385E /* cchart_highlight.png */; };
+		E52C13C91975C09C0010385E /* cchart_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C71975C09C0010385E /* cchart_highlight@2x.png */; };
 		E5524E481962A5680031D1B6 /* MDSceneMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */; };
 		E5524E631962A70B0031D1B6 /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E4D1962A70B0031D1B6 /* CLIColor.m */; };
 		E5524E641962A70B0031D1B6 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E4F1962A70B0031D1B6 /* DDAbstractDatabaseLogger.m */; };
@@ -101,6 +105,12 @@
 		E5280BBD1959F733006A9FB5 /* MDDSSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSManager.m; sourceTree = "<group>"; };
 		E5280BBF1959FD6A006A9FB5 /* MDDSSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSURLConnection.h; sourceTree = "<group>"; };
 		E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSURLConnection.m; sourceTree = "<group>"; };
+		E52C13C01975B5740010385E /* MDConsumptionLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsumptionLineView.h; sourceTree = "<group>"; };
+		E52C13C11975B5740010385E /* MDConsumptionLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsumptionLineView.m; sourceTree = "<group>"; };
+		E52C13C31975B6270010385E /* MDConsumptionTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsumptionTextView.h; sourceTree = "<group>"; };
+		E52C13C41975B6270010385E /* MDConsumptionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsumptionTextView.m; sourceTree = "<group>"; };
+		E52C13C61975C09C0010385E /* cchart_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cchart_highlight.png; sourceTree = "<group>"; };
+		E52C13C71975C09C0010385E /* cchart_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cchart_highlight@2x.png"; sourceTree = "<group>"; };
 		E538225619645E320036E33F /* ErrorCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorCodes.h; sourceTree = "<group>"; };
 		E5524E461962A5680031D1B6 /* MDSceneMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSceneMenuItem.h; sourceTree = "<group>"; };
 		E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSceneMenuItem.m; sourceTree = "<group>"; };
@@ -244,6 +254,10 @@
 				E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */,
 				E5C1BA87196DD4A6009B2985 /* MDConsumptionView.h */,
 				E5C1BA88196DD4A6009B2985 /* MDConsumptionView.m */,
+				E52C13C01975B5740010385E /* MDConsumptionLineView.h */,
+				E52C13C11975B5740010385E /* MDConsumptionLineView.m */,
+				E52C13C31975B6270010385E /* MDConsumptionTextView.h */,
+				E52C13C41975B6270010385E /* MDConsumptionTextView.m */,
 				E5280BB61959F6DB006A9FB5 /* GFX */,
 				E5280B961959F5BD006A9FB5 /* MainMenu.xib */,
 				E5280B991959F5BD006A9FB5 /* Images.xcassets */,
@@ -304,6 +318,8 @@
 				E5DE64481961F46000938FE2 /* off_menu_icon@2x.png */,
 				E5280BB71959F6DB006A9FB5 /* status_bar_icon.png */,
 				E5280BB81959F6DB006A9FB5 /* status_bar_icon@2x.png */,
+				E52C13C61975C09C0010385E /* cchart_highlight.png */,
+				E52C13C71975C09C0010385E /* cchart_highlight@2x.png */,
 			);
 			path = GFX;
 			sourceTree = "<group>";
@@ -519,6 +535,7 @@
 				E5280B9A1959F5BD006A9FB5 /* Images.xcassets in Resources */,
 				E5DE64581961FB8600938FE2 /* group_2_8.png in Resources */,
 				E5DE644A1961F46000938FE2 /* off_menu_icon@2x.png in Resources */,
+				E52C13C91975C09C0010385E /* cchart_highlight@2x.png in Resources */,
 				E5280B921959F5BD006A9FB5 /* Credits.rtf in Resources */,
 				E5DE64421961E9CC00938FE2 /* Localizable.strings in Resources */,
 				E5C1BA83196D34DD009B2985 /* macDS_Icon2.icns in Resources */,
@@ -527,6 +544,7 @@
 				E5E8CA4119653BA200A2997D /* preferences_details.png in Resources */,
 				E5280B981959F5BD006A9FB5 /* MainMenu.xib in Resources */,
 				E5DE64601961FC6800938FE2 /* group_2.png in Resources */,
+				E52C13C81975C09C0010385E /* cchart_highlight.png in Resources */,
 				E5DE64561961FB8600938FE2 /* group_1_8.png in Resources */,
 				E5E8CA3E19653B2900A2997D /* preferences_connection@2x.png in Resources */,
 				E5280BBA1959F6DB006A9FB5 /* status_bar_icon@2x.png in Resources */,
@@ -551,6 +569,7 @@
 			files = (
 				E5524E681962A70B0031D1B6 /* DDLog.m in Sources */,
 				E5524E651962A70B0031D1B6 /* DDASLLogCapture.m in Sources */,
+				E52C13C51975B6270010385E /* MDConsumptionTextView.m in Sources */,
 				E5524E671962A70B0031D1B6 /* DDFileLogger.m in Sources */,
 				E5524E7B1962AADA0031D1B6 /* RHPreferencesCustomPlaceholderController.m in Sources */,
 				E5C1BA86196D8C51009B2985 /* MDDSSConsumptionManager.m in Sources */,
@@ -558,6 +577,7 @@
 				E5280B8E1959F5BD006A9FB5 /* main.m in Sources */,
 				E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */,
 				E5E8CA331965361300A2997D /* LaunchAtLoginController.m in Sources */,
+				E52C13C21975B5740010385E /* MDConsumptionLineView.m in Sources */,
 				E5524E691962A70B0031D1B6 /* DDTTYLogger.m in Sources */,
 				E5524E7D1962AADA0031D1B6 /* RHPreferencesWindowController.m in Sources */,
 				E5280BC11959FD6A006A9FB5 /* MDDSSURLConnection.m in Sources */,

@@ -75,6 +75,6 @@ launchAtStartupQuestion = "Möchten Sie macDS bei Systemstart automatisch starte
 about = "Über...";
 DetailsPreferences = "App Verhalten";
 
-lastTwoHours = "LETZEN ZWEI STUNDEN";
+historyTitle = "VERGANGENER ZEITRAUM";
 loadingHistory = "Lade Daten...";
 Consumption = "Verbrauch";
