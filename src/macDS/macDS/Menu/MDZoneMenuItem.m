@@ -28,7 +28,7 @@
     item.submenu = [[NSMenu alloc] init];
 
     
-    NSArray *buildGroups = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:2], nil];
+    NSArray *buildGroups = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:4],[NSNumber numberWithInt:5], nil];
     for(NSNumber *group in buildGroups)
     {
         int groupInt = [group intValue];

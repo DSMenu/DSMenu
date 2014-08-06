@@ -12,8 +12,9 @@ okButton = "Okay";
 
 group1 = "Licht";
 group2 = "Schatten";
-group3 = "?";
-group4 = "?";
+group3 = "Klima";
+group4 = "Audio";
+group5 = "Video";
 
 group1scene0 = "Aus";
 group1scene5 = "Stimmung 1";
@@ -43,6 +44,48 @@ group2scene1 = "Bereich 1 Zu";
 group2scene2 = "Bereich 2 Zu";
 group2scene3 = "Bereich 3 Zu";
 group2scene4 = "Bereich 4 Zu";
+
+group3scene0 = "Aus";
+group3scene5 = "Stimmung 1";
+group3scene17 = "Stimmung 2";
+group3scene18 = "Stimmung 3";
+group3scene19 = "Stimmung 4";
+group3scene6 = "Bereich 1 Ein";
+group3scene7 = "Bereich 2 Ein";
+group3scene8 = "Bereich 3 Ein";
+group3scene9 = "Bereich 4 Ein";
+group3scene1 = "Bereich 1 Aus";
+group3scene2 = "Bereich 2 Aus";
+group3scene3 = "Bereich 3 Aus";
+group3scene4 = "Bereich 4 Aus";
+
+group4scene0 = "Aus";
+group4scene5 = "Stimmung 1";
+group4scene17 = "Stimmung 2";
+group4scene18 = "Stimmung 3";
+group4scene19 = "Stimmung 4";
+group4scene6 = "Bereich 1 Ein";
+group4scene7 = "Bereich 2 Ein";
+group4scene8 = "Bereich 3 Ein";
+group4scene9 = "Bereich 4 Ein";
+group4scene1 = "Bereich 1 Aus";
+group4scene2 = "Bereich 2 Aus";
+group4scene3 = "Bereich 3 Aus";
+group4scene4 = "Bereich 4 Aus";
+
+group5scene0 = "Aus";
+group5scene5 = "Stimmung 1";
+group5scene17 = "Stimmung 2";
+group5scene18 = "Stimmung 3";
+group5scene19 = "Stimmung 4";
+group5scene6 = "Bereich 1 Ein";
+group5scene7 = "Bereich 2 Ein";
+group5scene8 = "Bereich 3 Ein";
+group5scene9 = "Bereich 4 Ein";
+group5scene1 = "Bereich 1 Aus";
+group5scene2 = "Bereich 2 Aus";
+group5scene3 = "Bereich 3 Aus";
+group5scene4 = "Bereich 4 Aus";
 
 unnamedRoom = "Raum";
 
