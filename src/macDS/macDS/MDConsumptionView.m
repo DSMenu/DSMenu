@@ -46,7 +46,7 @@
         [self addTrackingArea:trackingArea];
         
         // initially hide elements
-        [self setVisibleState:NO];
+        [self setVisibleState:YES];
     }
     return self;
 }
