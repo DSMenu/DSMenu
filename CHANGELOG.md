@@ -1,3 +1,17 @@
+V0.3.5
+-------
+* Interactive consumption chart!
+* Support for groups 3-5 (climate, audio, video)
+
+V0.3.1
+-------
+* Fixes issue with consumption chart polling.
+* The polling will now only happen when the user has the macDS menu open.
+
+V0.3
+-------
+* current consumption and consumption history will now be displayed.
+
 V0.2
 -------
 * added support for custom preset names
