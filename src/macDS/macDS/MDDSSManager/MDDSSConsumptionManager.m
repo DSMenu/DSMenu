@@ -74,7 +74,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         self.loadCircuitsInProgress = NO;
         
         self.historyValues = [[NSMutableDictionary alloc] init];
-        self.colors = @[(id)[NSColor redColor].CGColor, (id)[NSColor cyanColor].CGColor, (id)[NSColor greenColor].CGColor, (id)[NSColor blueColor].CGColor, (id)[NSColor purpleColor].CGColor, (id)[NSColor yellowColor].CGColor];
+        self.colors = @[(id)[NSColor redColor].CGColor, (id)[NSColor cyanColor].CGColor, (id)[NSColor greenColor].CGColor];
         
         self.padding = CGRectMake(20, 20, 20, 20);
         self.paddingRect = CGRectMake(18, 18, 18, 28);
@@ -206,7 +206,16 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                 int i = 0;
                 for(NSMutableDictionary *dSM in self.dSMs)
                 {
-                    [dSM setObject:[self.colors objectAtIndex:i] forKey:@"color"];
+                    @try {
+                        int searchColor = i % self.colors.count;
+                        [dSM setObject:[self.colors objectAtIndex:searchColor] forKey:@"color"];
+                    }
+                    @catch (NSException *exception) {
+                        [dSM setObject:[self.colors objectAtIndex:0] forKey:@"color"];
+                    }
+                    @finally {
+                    }
+                    
                     i++;
                 }
             }
