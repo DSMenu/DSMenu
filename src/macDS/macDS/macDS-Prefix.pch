@@ -11,6 +11,11 @@
 
     #import "Notifications.h"
     #import "ErrorCodes.h"
+#endif
 
-    static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #endif
