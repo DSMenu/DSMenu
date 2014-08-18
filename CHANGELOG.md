@@ -1,3 +1,7 @@
+V0.3.5.1
+-------
+* Fix Bug where macDS crashes when dS environment has more then 5 dSM
+
 V0.3.5
 -------
 * Interactive consumption chart!
