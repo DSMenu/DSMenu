@@ -162,6 +162,7 @@
 		E561C7AC19921CFA00496303 /* group_5_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_5_8@2x.png"; sourceTree = "<group>"; };
 		E561C7AD19921CFA00496303 /* group_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_5.png; sourceTree = "<group>"; };
 		E561C7AE19921CFA00496303 /* group_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_5@2x.png"; sourceTree = "<group>"; };
+		E561C7BB199235D800496303 /* macDS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = macDS.entitlements; sourceTree = "<group>"; };
 		E57FA5A3196C997200CAB2BD /* group_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_8.png; sourceTree = "<group>"; };
 		E57FA5A4196C997200CAB2BD /* group_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_8@2x.png"; sourceTree = "<group>"; };
 		E5A05F8E1964183E00399064 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
@@ -269,6 +270,7 @@
 		E5280B871959F5BD006A9FB5 /* macDS */ = {
 			isa = PBXGroup;
 			children = (
+				E561C7BB199235D800496303 /* macDS.entitlements */,
 				E5DE644F1961F9A500938FE2 /* MDDSHelper.h */,
 				E5DE64501961F9A500938FE2 /* MDDSHelper.m */,
 				E5524E7E1962ABA40031D1B6 /* Preferences */,
@@ -524,6 +526,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = include7;
 				TargetAttributes = {
+					E5280B7D1959F5BD006A9FB5 = {
+						DevelopmentTeam = 5XAKXZTWN4;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
 					E5280B9E1959F5BD006A9FB5 = {
 						TestTargetID = E5280B7D1959F5BD006A9FB5;
 					};
@@ -781,6 +791,8 @@
 		E5280BB01959F5BD006A9FB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = macDS/macDS.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "macDS/macDS-Prefix.pch";
@@ -794,6 +806,8 @@
 		E5280BB11959F5BD006A9FB5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = macDS/macDS.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "macDS/macDS-Prefix.pch";
