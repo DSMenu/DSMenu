@@ -178,13 +178,24 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             
             [[MDDSSManager defaultManager] getConsumptionLevelsDSID:@".meters(all)" callback:^(NSDictionary *jsonV, NSError *errorV)
              {
-                 if(errorV)
-                 {
-                     self.pollInProgressHistory = NO;
+                 @try {
+                     if(jsonV && [jsonV isKindOfClass:[NSDictionary class]])
+                     {
+                         if(errorV)
+                         {
+                             self.pollInProgressHistory = NO;
+                         }
+                         [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
+                         self.pollInProgressHistory = NO;
+                         self.callbackHistory(self.historyValues, self.dSMs);
+                     }
                  }
-                 [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
-                 self.pollInProgressHistory = NO;
-                 self.callbackHistory(self.historyValues, self.dSMs);
+                 @catch (NSException *exception) {
+                     
+                 }
+                 @finally {
+                     
+                 }
              }];
         }
 
