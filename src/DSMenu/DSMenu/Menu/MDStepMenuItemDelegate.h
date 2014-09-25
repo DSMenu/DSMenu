@@ -1,5 +1,5 @@
 //
-//  MDDimSliderMenuItemDelegate.h
+//  MDStepMenuItemDelegate.h
 //  DSMenu
 //
 //  Created by Jonas Schnelli on 25.09.14.
@@ -9,6 +9,6 @@
 @class MDStepMenuItem;
 @protocol MDStepMenuItemDelegate
 
--(void)stepMenuItem:(MDStepMenuItem *)dimSliderMenuItem increment:(BOOL)value;
+-(void)stepMenuItem:(MDStepMenuItem *)stepMenuItem increment:(BOOL)value;
 
 @end

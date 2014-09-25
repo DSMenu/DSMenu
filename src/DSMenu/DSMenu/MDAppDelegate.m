@@ -282,32 +282,29 @@
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
 }
 
-#pragma mark - DimSlider Callback
+#pragma mark - StepButton Callback
 
-- (void)stepMenuItem:(MDStepMenuItem *)dimSliderMenuItem increment:(BOOL)value
+- (void)stepMenuItem:(MDStepMenuItem *)stepMenuItem increment:(BOOL)value
 {
     
-    [self performSelectorInBackground:@selector(dimSliderMenuItemInBackground:) withObject:dimSliderMenuItem];
-    //NSLog(@"%f", value);
+    [self performSelectorInBackground:@selector(stepMenuItemInBackground:) withObject:stepMenuItem];
 }
 
-- (void)dimSliderMenuItemInBackground:(MDStepMenuItem *)dimSliderMenuItem
+- (void)stepMenuItemInBackground:(MDStepMenuItem *)stepMenuItem
 {
     @autoreleasepool {
     
-        NSString *groupIdString = [NSString stringWithFormat:@"%d", dimSliderMenuItem.groupId];
+        NSString *groupIdString = [NSString stringWithFormat:@"%d", stepMenuItem.groupId];
         NSString *sceneNum = @"11";
-        if(dimSliderMenuItem.incrementPressed)
+        if(stepMenuItem.incrementPressed)
         {
             sceneNum = @"12";
         }
-        NSLog(@"dim slider %@", sceneNum);
-        if(dimSliderMenuItem.callToDSSInProgress == NO)
+        if(stepMenuItem.callToDSSInProgress == NO)
         {
-            dimSliderMenuItem.callToDSSInProgress = YES;
-            [[MDDSSManager defaultManager] callScene:sceneNum zoneId:dimSliderMenuItem.zoneId groupID:groupIdString callback:^(NSDictionary *json, NSError *error){
-                dimSliderMenuItem.callToDSSInProgress = NO;
-                NSLog(@"dim end");
+            stepMenuItem.callToDSSInProgress = YES;
+            [[MDDSSManager defaultManager] callScene:sceneNum zoneId:stepMenuItem.zoneId groupID:groupIdString callback:^(NSDictionary *json, NSError *error){
+                stepMenuItem.callToDSSInProgress = NO;
             }];
         }
     

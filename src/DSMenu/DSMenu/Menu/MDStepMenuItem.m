@@ -1,5 +1,5 @@
 //
-//  MDDimSliderMenuItem.m
+//  MDStepMenuItem.m
 //  DSMenu
 //
 //  Created by Jonas Schnelli on 25.09.14.

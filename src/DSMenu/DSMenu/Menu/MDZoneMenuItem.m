@@ -20,7 +20,6 @@
     item.clickType = MDZoneMenuItemClickTypeNotOfInterest;
     item.title = [zoneDict objectForKey:@"name"];
     item.zoneId = [zoneDict objectForKey:@"id"];
-    item.sliderValue = 0.0;
     if(item.title.length <= 0)
     {
         // define unnamed room
@@ -109,12 +108,11 @@
             if(groupInt == 1)
             {
                 // show dimming
-                MDStepMenuItem *dimSliderMenuItem = [[MDStepMenuItem alloc] init];
-                dimSliderMenuItem.stepTarget = aTarget;
-                dimSliderMenuItem.groupId = groupInt;
-                dimSliderMenuItem.zoneId = item.zoneId;
-                
-                [item.submenu addItem:dimSliderMenuItem];
+                MDStepMenuItem *stepMenuItem = [[MDStepMenuItem alloc] init];
+                stepMenuItem.stepTarget = aTarget;
+                stepMenuItem.groupId = groupInt;
+                stepMenuItem.zoneId = item.zoneId;
+                [item.submenu addItem:stepMenuItem];
             }
             
             // add area items at bottom

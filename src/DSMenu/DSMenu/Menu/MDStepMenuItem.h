@@ -1,5 +1,5 @@
 //
-//  MDDimSliderMenuItem.h
+//  MDStepMenuItem.h
 //  DSMenu
 //
 //  Created by Jonas Schnelli on 25.09.14.
@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MDDimSliderMenuItemDelegate.h"
+#import "MDStepMenuItemDelegate.h"
 
 @interface MDStepMenuItem : NSMenuItem
 @property (assign) NSObject <MDStepMenuItemDelegate> *stepTarget;

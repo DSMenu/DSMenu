@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MDDimSliderMenuItemDelegate.h"
+#import "MDStepMenuItemDelegate.h"
 
 typedef enum MDAppState {
     MDAppStateBootstrapping, /**< enum state for booting the app */

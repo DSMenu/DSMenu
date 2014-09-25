@@ -206,7 +206,7 @@
 		E5FDA5B219D42A9D00F5040F /* DDLogMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDLogMacros.h; sourceTree = "<group>"; };
 		E5FDA5B319D42B8E00F5040F /* MDStepMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDStepMenuItem.h; sourceTree = "<group>"; };
 		E5FDA5B419D42B8E00F5040F /* MDStepMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDStepMenuItem.m; sourceTree = "<group>"; };
-		E5FDA5B619D42F9200F5040F /* MDDimSliderMenuItemDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDDimSliderMenuItemDelegate.h; sourceTree = "<group>"; };
+		E5FDA5B619D42F9200F5040F /* MDStepMenuItemDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDStepMenuItemDelegate.h; sourceTree = "<group>"; };
 		E5FDA5B719D453B700F5040F /* dimDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dimDown.png; sourceTree = "<group>"; };
 		E5FDA5B819D453B700F5040F /* dimDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dimDown@2x.png"; sourceTree = "<group>"; };
 		E5FDA5B919D453B700F5040F /* dimUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dimUp.png; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 				E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */,
 				E5FDA5B319D42B8E00F5040F /* MDStepMenuItem.h */,
 				E5FDA5B419D42B8E00F5040F /* MDStepMenuItem.m */,
-				E5FDA5B619D42F9200F5040F /* MDDimSliderMenuItemDelegate.h */,
+				E5FDA5B619D42F9200F5040F /* MDStepMenuItemDelegate.h */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
