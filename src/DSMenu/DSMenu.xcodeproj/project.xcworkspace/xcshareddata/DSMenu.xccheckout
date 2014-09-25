@@ -56,14 +56,6 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</string>
-			<key>IDESourceControlWCCName</key>
-			<string>CocoaLumberjack</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>8947EA02-577B-47E8-AE77-AD2BCF74AF99</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CocoaLumberjack</string>
@@ -72,7 +64,15 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3AE9027AD4821144839FB80B6BA9EF7C84E6A595</string>
+			<string>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CocoaLumberjack</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AB7B4CA6-B47F-4228-82F0-88786F44D2A0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LaunchAtLoginController</string>
 		</dict>
@@ -80,7 +80,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AB7B4CA6-B47F-4228-82F0-88786F44D2A0</string>
+			<string>3AE9027AD4821144839FB80B6BA9EF7C84E6A595</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LaunchAtLoginController</string>
 		</dict>

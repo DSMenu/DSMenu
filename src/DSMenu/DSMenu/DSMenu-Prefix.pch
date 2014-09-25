@@ -7,7 +7,7 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
     #import "MDDSHelper.h"
-    #import "DDLog.h"
+    #import "CocoaLumberjack.h"
 
     #import "Notifications.h"
     #import "ErrorCodes.h"
@@ -22,5 +22,5 @@
 #ifdef DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #else
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_OFF;
 #endif

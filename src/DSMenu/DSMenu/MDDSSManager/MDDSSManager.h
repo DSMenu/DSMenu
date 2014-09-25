@@ -85,6 +85,8 @@
 - (void)turnOnDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)turnOffDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;
 
+- (void)dimZone:(NSString *)zoneId groupID:(NSString *)groupID value:(float)value callback:(void (^)(NSDictionary*, NSError*))callback;
+
 - (void)getConsumptionLevelsLatest:(void (^)(NSDictionary*, NSError*))callback;
 - (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)getCircuits:(void (^)(NSDictionary*, NSError*))callback;

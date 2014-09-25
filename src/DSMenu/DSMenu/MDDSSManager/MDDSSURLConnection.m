@@ -42,7 +42,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:fullURLAsString]];
     
-    DDLogVerbose(@"Request: %@", request);
+    //DDLogVerbose(@"Request: %@", request);
     
     self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }

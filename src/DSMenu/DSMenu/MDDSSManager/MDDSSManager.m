@@ -269,6 +269,18 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+- (void)dimZone:(NSString *)zoneId groupID:(NSString *)groupID value:(float)value callback:(void (^)(NSDictionary*, NSError*))callback
+{
+ 
+    DDLogVerbose(@"DimZone to: %f", value);
+    
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId,@"groupID":groupID, @"value":[NSNumber numberWithInt:(int)(value*100)]  };
+    [self jsonCall:@"/json/zone/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        DDLogVerbose(@"DimZone end");
+        callback(json, error);
+    }];
+}
+
 - (void)zoneGetName:(NSString *)zoneId
 {
     

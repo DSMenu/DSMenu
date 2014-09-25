@@ -16,7 +16,8 @@
 typedef enum MDZoneMenuItemClickType {
     MDZoneMenuItemClickTypeNotOfInterest,
     MDZoneMenuItemClickTypeScene, /**<  if the clicked menu item is a scene/root, this value will be used */
-    MDZoneMenuItemClickTypeDevice /**< will be set on clicked menu from the "devices menu" */
+    MDZoneMenuItemClickTypeDevice, /**< will be set on clicked menu from the "devices menu" */
+    MDZoneMenuItemClickTypeSlider
 } MDZoneMenuItemClickType;
 
 /**
@@ -27,6 +28,7 @@ typedef enum MDZoneMenuItemClickType {
 @property (strong) NSString *zoneId;  /**< the connected zoneId  */
 @property (strong) MDSceneMenuItem *clickedSubmenu;  /**< if a submenu was clicked, this ivar will be filled. */
 @property (assign) MDZoneMenuItemClickType clickType;
+@property (assign) float sliderValue;
 
-+ (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict;
++ (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict target:(NSObject *)aTarget;
 @end

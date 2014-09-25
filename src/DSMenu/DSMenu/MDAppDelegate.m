@@ -15,6 +15,7 @@
 #import "DDFileLogger.h"
 #import "MDDSSConsumptionManager.h"
 #import "MDConsumptionView.h"
+#import "MDStepMenuItem.h"
 
 #include "LaunchAtLoginController.h"
 
@@ -238,8 +239,7 @@
                 // logical ID 0 room
                 continue;
             }
-            MDZoneMenuItem *menuItem = [MDZoneMenuItem menuItemWithZoneDictionary:zoneDict];
-            menuItem.target = self;
+            MDZoneMenuItem *menuItem = [MDZoneMenuItem menuItemWithZoneDictionary:zoneDict target:self];
             menuItem.action = @selector(zoneMenuItemClicked:);
             [self.statusMenu addItem:menuItem];
         }
@@ -274,6 +274,40 @@
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"quit", @"Quit Menu Item Title") action:@selector(terminate:) keyEquivalent:@""];
     quitItem.target = [NSApplication sharedApplication];
     [self.statusMenu addItem:quitItem];
+}
+
+#pragma mark - DimSlider Callback
+
+- (void)stepMenuItem:(MDStepMenuItem *)dimSliderMenuItem increment:(BOOL)value
+{
+    
+    [self performSelectorInBackground:@selector(dimSliderMenuItemInBackground:) withObject:dimSliderMenuItem];
+    //NSLog(@"%f", value);
+}
+
+- (void)dimSliderMenuItemInBackground:(MDStepMenuItem *)dimSliderMenuItem
+{
+    @autoreleasepool {
+    
+        NSString *groupIdString = [NSString stringWithFormat:@"%d", dimSliderMenuItem.groupId];
+        NSString *sceneNum = @"11";
+        if(dimSliderMenuItem.incrementPressed)
+        {
+            sceneNum = @"12";
+        }
+        NSLog(@"dim slider %@", sceneNum);
+        if(dimSliderMenuItem.callToDSSInProgress == NO)
+        {
+            dimSliderMenuItem.callToDSSInProgress = YES;
+            [[MDDSSManager defaultManager] callScene:sceneNum zoneId:dimSliderMenuItem.zoneId groupID:groupIdString callback:^(NSDictionary *json, NSError *error){
+                dimSliderMenuItem.callToDSSInProgress = NO;
+                NSLog(@"dim end");
+            }];
+        }
+    
+    
+        CFRunLoopRun();
+    }
 }
 
 #pragma mark - Menu Item callbacks

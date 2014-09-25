@@ -10,15 +10,17 @@
 #import "MDDeviceMenuItem.h"
 #import "MDSceneMenuItem.h"
 #import "MDDSSManager.h"
+#import "MDStepMenuItem.h"
 
 @implementation MDZoneMenuItem
 
-+ (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict
++ (MDZoneMenuItem *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict target:(NSObject<MDStepMenuItemDelegate> *)aTarget
 {
     MDZoneMenuItem *item = [[MDZoneMenuItem alloc] init];
     item.clickType = MDZoneMenuItemClickTypeNotOfInterest;
     item.title = [zoneDict objectForKey:@"name"];
     item.zoneId = [zoneDict objectForKey:@"id"];
+    item.sliderValue = 0.0;
     if(item.title.length <= 0)
     {
         // define unnamed room
@@ -102,6 +104,17 @@
                 {
                     [item.submenu addItem:lightScene];
                 }
+            }
+            
+            if(groupInt == 1)
+            {
+                // show dimming
+                MDStepMenuItem *dimSliderMenuItem = [[MDStepMenuItem alloc] init];
+                dimSliderMenuItem.stepTarget = aTarget;
+                dimSliderMenuItem.groupId = groupInt;
+                dimSliderMenuItem.zoneId = item.zoneId;
+                
+                [item.submenu addItem:dimSliderMenuItem];
             }
             
             // add area items at bottom

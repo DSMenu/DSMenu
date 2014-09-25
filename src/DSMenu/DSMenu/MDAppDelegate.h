@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MDDimSliderMenuItemDelegate.h"
 
 typedef enum MDAppState {
     MDAppStateBootstrapping, /**< enum state for booting the app */
@@ -16,7 +17,7 @@ typedef enum MDAppState {
     MDAppStateIdel
 }MDAppState;
 
-@interface MDAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
+@interface MDAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, MDStepMenuItemDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) BOOL launchAtStartup;
