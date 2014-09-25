@@ -1,3 +1,9 @@
+V0.3.7
+-------
+* Dimming for whole zones is now possible
+* Fix about pannel issue
+* update to XCode6 env
+
 ====== RENAME TO DSMenu (the word "mac" is not allowed on the OSX App Store and the new name also prepares a possible win/linux app)
 
 V0.3.5.1

@@ -1,3 +1,4 @@
 *.DS_Store
 /src/macDS/macDS.xcodeproj/project.xcworkspace/xcuserdata/*
 /src/macDS/macDS.xcodeproj/xcuserdata/
+src/DSMenu/DSMenu.xcodeproj/project.xcworkspace/xcuserdata/jonasschnelli.xcuserdatad/UserInterfaceState.xcuserstate
