@@ -25,6 +25,8 @@ Inheritance diagram for M\-D\-D\-S\-S\-Consumption\-Manager\-:\begin{figure}[H]
 (N\-S\-String $\ast$) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_a4347a6f14215e842e5629072c1a883c4}{d\-S\-M\-Name\-From\-I\-D\-:}
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_ac4d5086c7cf8ce63e8e3996ba5e841ea}{draw\-History\-On\-Context\-:size\-:}
+\item 
+(C\-G\-Float) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_a4df48a1a45fa35b89206c129fdcda839}{height\-For\-X\-Value\-:size\-:w\-Value\-:time\-:}
 \end{DoxyCompactItemize}
 \subsection*{Class Methods}
 \begin{DoxyCompactItemize}
@@ -68,7 +70,17 @@ draw the history on a context \hypertarget{interface_m_d_d_s_s_consumption_manag
 \item[{(N\-S\-String $\ast$)}]{dsid}
 \end{DoxyParamCaption}
 }}\label{interface_m_d_d_s_s_consumption_manager_a4347a6f14215e842e5629072c1a883c4}
-Helper for getting d\-S\-M name by dsid out of the cache \hypertarget{interface_m_d_d_s_s_consumption_manager_a9a21d799de7fc9069558a53c73cdfb9c}{\index{M\-D\-D\-S\-S\-Consumption\-Manager@{M\-D\-D\-S\-S\-Consumption\-Manager}!start\-Polling\-History\-:@{start\-Polling\-History\-:}}
+Helper for getting d\-S\-M name by dsid out of the cache \hypertarget{interface_m_d_d_s_s_consumption_manager_a4df48a1a45fa35b89206c129fdcda839}{\index{M\-D\-D\-S\-S\-Consumption\-Manager@{M\-D\-D\-S\-S\-Consumption\-Manager}!height\-For\-X\-Value\-:size\-:w\-Value\-:time\-:@{height\-For\-X\-Value\-:size\-:w\-Value\-:time\-:}}
+\index{height\-For\-X\-Value\-:size\-:w\-Value\-:time\-:@{height\-For\-X\-Value\-:size\-:w\-Value\-:time\-:}!MDDSSConsumptionManager@{M\-D\-D\-S\-S\-Consumption\-Manager}}
+\subsubsection[{height\-For\-X\-Value\-:size\-:w\-Value\-:time\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (C\-G\-Float) height\-For\-X\-Value\-: 
+\begin{DoxyParamCaption}
+\item[{(C\-G\-Float)}]{x\-Val}
+\item[{size:(C\-G\-Size)}]{size}
+\item[{wValue:(double $\ast$)}]{w\-Value}
+\item[{time:(double $\ast$)}]{time}
+\end{DoxyParamCaption}
+}}\label{interface_m_d_d_s_s_consumption_manager_a4df48a1a45fa35b89206c129fdcda839}
+returns the height (y point) of a certain x pos \hypertarget{interface_m_d_d_s_s_consumption_manager_a9a21d799de7fc9069558a53c73cdfb9c}{\index{M\-D\-D\-S\-S\-Consumption\-Manager@{M\-D\-D\-S\-S\-Consumption\-Manager}!start\-Polling\-History\-:@{start\-Polling\-History\-:}}
 \index{start\-Polling\-History\-:@{start\-Polling\-History\-:}!MDDSSConsumptionManager@{M\-D\-D\-S\-S\-Consumption\-Manager}}
 \subsubsection[{start\-Polling\-History\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) start\-Polling\-History\-: 
 \begin{DoxyParamCaption}
@@ -100,4 +112,4 @@ stop polling latest data
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-mac\-D\-S/\-M\-D\-D\-S\-S\-Manager/M\-D\-D\-S\-S\-Consumption\-Manager.\-h\end{DoxyCompactItemize}
+D\-S\-Menu/\-M\-D\-D\-S\-S\-Manager/M\-D\-D\-S\-S\-Consumption\-Manager.\-h\end{DoxyCompactItemize}

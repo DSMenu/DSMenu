@@ -1,6 +1,8 @@
 var searchData=
 [
   ['mdappdelegate',['MDAppDelegate',['../interface_m_d_app_delegate.html',1,'']]],
+  ['mdconsumptionlineview',['MDConsumptionLineView',['../interface_m_d_consumption_line_view.html',1,'']]],
+  ['mdconsumptiontextview',['MDConsumptionTextView',['../interface_m_d_consumption_text_view.html',1,'']]],
   ['mdconsumptionview',['MDConsumptionView',['../interface_m_d_consumption_view.html',1,'']]],
   ['mddetailpreferencesviewcontroller',['MDDetailPreferencesViewController',['../interface_m_d_detail_preferences_view_controller.html',1,'']]],
   ['mddevicemenuitem',['MDDeviceMenuItem',['../interface_m_d_device_menu_item.html',1,'']]],

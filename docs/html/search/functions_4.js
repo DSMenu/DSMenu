@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['requestapplicationtoken_3a',['requestApplicationToken:',['../interface_m_d_d_s_s_manager.html#a132057831e843d4888c44f7147ad28a1',1,'MDDSSManager']]],
-  ['resettodefaults',['resetToDefaults',['../interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da',1,'MDDSSManager']]]
+  ['jsonconnectiontohostwithport_3apath_3aparams_3acompletionhandler_3a',['jsonConnectionToHostWithPort:path:params:completionHandler:',['../interface_m_d_d_s_s_u_r_l_connection.html#a4adceb5901feaca4d9f185830628c552',1,'MDDSSURLConnection']]]
 ];

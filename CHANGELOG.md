@@ -1,3 +1,5 @@
+====== RENAME TO DSMenu (the word "mac" is not allowed on the OSX App Store and the new name also prepares a possible win/linux app)
+
 V0.3.5.1
 -------
 * Fix Bug where macDS crashes when dS environment has more then 5 dSM

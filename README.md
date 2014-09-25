@@ -1,9 +1,9 @@
-What is macDS
+What is DSMenu
 -------
-<img src="https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/Icon.png" alt="Icon" style="width:64px;"/>
+<img src="https://raw.githubusercontent.com/DSMenu/DSMenu/master/screenshots/Icon.png" alt="Icon" style="width:64px;"/>
 
 
-macDS allows you to control you [Digitalstrom](https://www.digitalstrom.com) home automation system directly from your OSX Status Menu
+DSMenu allows you to control you [Digitalstrom](https://www.digitalstrom.com) home automation system directly from your OSX Status Menu
 
 Current Features
 -------
@@ -16,8 +16,8 @@ Current Features
 Screenshots
 -------
 
-![Screenshot 2](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/macDS_beta0.3.5.jpg)
-![Screenshot 1](https://raw.githubusercontent.com/jonasschnelli/macDS/master/screenshots/macDS_beta0.2.png)
+![Screenshot 2](https://raw.githubusercontent.com/DSMenu/DSMenu/master/screenshots/DSMenu_beta0.3.5.jpg)
+![Screenshot 1](https://raw.githubusercontent.com/DSMenu/DSMenu/master/screenshots/DSMenu_beta0.2.png)
 
 
 WARNING
@@ -30,7 +30,7 @@ Download
 
 Binary releases can be downloaded here:
 
-* https://github.com/jonasschnelli/macDS/releases
+* https://github.com/DSMenu/DSMenu/releases
 
 
 Requirements
@@ -42,5 +42,5 @@ Requirements
 License
 -------
 
-macDS is released under the terms of the MIT license. See `LICENSE` for more
+DSMenu is released under the terms of the MIT license. See `LICENSE` for more
 information or see http://opensource.org/licenses/MIT.
