@@ -264,8 +264,8 @@
     NSMenuItem *refreshItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"refresh", @"Refresh Menu Item Title") action:@selector(timerKick:) keyEquivalent:@""];
     [self.statusMenu addItem:refreshItem];
     
-    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"about", @"About Menu Item Title") action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
-    aboutItem.target = [NSApplication sharedApplication];
+    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"about", @"About Menu Item Title") action:@selector(showAbout) keyEquivalent:@""];
+    aboutItem.target = self;
     [self.statusMenu addItem:aboutItem];
     
     
@@ -274,6 +274,12 @@
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"quit", @"Quit Menu Item Title") action:@selector(terminate:) keyEquivalent:@""];
     quitItem.target = [NSApplication sharedApplication];
     [self.statusMenu addItem:quitItem];
+}
+
+- (void)showAbout
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
 }
 
 #pragma mark - DimSlider Callback
