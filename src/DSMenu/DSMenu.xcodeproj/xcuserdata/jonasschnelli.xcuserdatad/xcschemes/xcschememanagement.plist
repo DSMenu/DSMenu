@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DSMenu Non App Store.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>DSMenu.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>E5280B9E1959F5BD006A9FB5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5B437A619D6CB0300A0703F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
