@@ -20,6 +20,7 @@
     item.clickType = MDZoneMenuItemClickTypeNotOfInterest;
     item.title = [zoneDict objectForKey:@"name"];
     item.zoneId = [zoneDict objectForKey:@"id"];
+    item.target = aTarget;
     if(item.title.length <= 0)
     {
         // define unnamed room
