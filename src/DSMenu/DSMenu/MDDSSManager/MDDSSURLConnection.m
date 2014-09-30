@@ -21,12 +21,20 @@
 {
     MDDSSURLConnection *connection = [[MDDSSURLConnection alloc] init];
     connection.handler = handler;
-    [connection callJSON:path params:params hostAndPort:hostAndPort];
+    [connection callJSON:path params:params hostAndPort:hostAndPort HTTPPost:NO];
+    return connection;
+}
+
++(instancetype)jsonConnectionToHostWithPort:(NSString *)hostAndPort path:(NSString *)path params:(NSDictionary *)params HTTPPost:(BOOL)HTTPPost completionHandler:(void (^)(NSDictionary*, NSError*))handler
+{
+    MDDSSURLConnection *connection = [[MDDSSURLConnection alloc] init];
+    connection.handler = handler;
+    [connection callJSON:path params:params hostAndPort:hostAndPort HTTPPost:HTTPPost];
     return connection;
 }
 
 
-- (void)callJSON:(NSString *)path params:(NSDictionary *)params hostAndPort:(NSString *)hostAndPort
+- (void)callJSON:(NSString *)path params:(NSDictionary *)params hostAndPort:(NSString *)hostAndPort HTTPPost:(BOOL)HTTPPost;
 {
     NSMutableString *pathString = [path mutableCopy];
     if(params.allKeys.count > 0) { [pathString appendFormat:@"?"]; }
@@ -40,9 +48,14 @@
     
     NSString *fullURLAsString = [baseURL stringByAppendingString:pathString];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:fullURLAsString]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:fullURLAsString]];
+    if(HTTPPost)
+    {
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    }
     
-    //DDLogVerbose(@"Request: %@", request);
+    DDLogVerbose(@"Request: %@", request);
     
     self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }

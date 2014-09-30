@@ -21,4 +21,6 @@
  */
 +(instancetype)jsonConnectionToHostWithPort:(NSString *)hostAndPort path:(NSString *)path params:(NSDictionary *)params completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 
++(instancetype)jsonConnectionToHostWithPort:(NSString *)hostAndPort path:(NSString *)path params:(NSDictionary *)params HTTPPost:(BOOL)HTTPPost completionHandler:(void (^)(NSDictionary*, NSError*))handler;
+
 @end

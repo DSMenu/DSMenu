@@ -56,7 +56,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</string>
+			<string>8947EA02-577B-47E8-AE77-AD2BCF74AF99</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CocoaLumberjack</string>
 		</dict>
@@ -64,7 +64,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8947EA02-577B-47E8-AE77-AD2BCF74AF99</string>
+			<string>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CocoaLumberjack</string>
 		</dict>
@@ -96,7 +96,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>23A0B390B1CE5E6381E26866945EC73673AFB184</string>
+			<string>8127F5DE-E2BE-4273-A2A6-90D16F4B710F</string>
 			<key>IDESourceControlWCCName</key>
 			<string>RHPreferences</string>
 		</dict>
@@ -104,7 +104,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8127F5DE-E2BE-4273-A2A6-90D16F4B710F</string>
+			<string>23A0B390B1CE5E6381E26866945EC73673AFB184</string>
 			<key>IDESourceControlWCCName</key>
 			<string>RHPreferences</string>
 		</dict>

@@ -12,6 +12,8 @@
 #define kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY @"MDDSSManagerApplicationToken"
 #define kMDDSSMANAGER_HOST_UD_KEY @"MDDSSManagerHost"
 #define kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY @"MDDSSUseIPAddress"
+#define kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY @"MDDSSUseRemoteConnectivity"
+#define kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME @"MDDSSRemoteConnectivityUsername"
 
 #define kMDDSSMANAGER_APPLICATION_TOKEN_MIN_LENGTH 3
 
@@ -67,6 +69,28 @@ static MDDSSManager *defaultManager;
 - (BOOL)useIPAddress
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
+}
+
+- (void)setUseRemoteConnectivity:(BOOL)useRemoteConnectivity
+{
+    [[NSUserDefaults standardUserDefaults] setBool:useRemoteConnectivity forKey:kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)useRemoteConnectivity
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY];
+}
+
+- (void)setRemoteConnectivityUsername:(NSString *)username
+{
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)remoteConnectivityUsername
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME];
 }
 
 - (NSString *)hostWithPort
@@ -451,6 +475,21 @@ static MDDSSManager *defaultManager;
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"valueCount":[NSNumber numberWithInt:600], @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:60]};
     [self jsonCall:@"/json/metering/getValues" params:params completionHandler:^(NSDictionary *json, NSError *error){
         callback(json, error);
+    }];
+}
+
+#pragma mark - RemoteConnectivityStack
+
+- (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    //username = @"jonas.schnelli@include7.ch"; password = @"Digi!111s";
+    
+    NSDictionary *params = @{ @"user": username, @"password" : password, @"mobileAppUuid": @"4C9C5A66-180F-45E7-A15D-F278157774E9", @"appName": self.appName, @"mobileName": @"TestApp"};
+    
+    [MDDSSURLConnection jsonConnectionToHostWithPort:@"dsservices.aizo.com" path:@"public/accessmanagement/V1_0/RemoteConnectivity/GetRelayLinkAndToken" params:params HTTPPost:YES completionHandler:^(NSDictionary *json, NSError *error){
+       
+        callback(json,error);
+        
     }];
 }
 

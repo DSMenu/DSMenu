@@ -53,6 +53,32 @@
         self.addressTextField.stringValue = [MDDSSManager defaultManager].host;
     }
     
+    if([MDDSSManager defaultManager].useRemoteConnectivity)
+    {
+        [self.tabView selectLastTabViewItem:self];
+        
+        NSString *remoteConnectivityUsername = [MDDSSManager defaultManager].remoteConnectivityUsername;
+        if(remoteConnectivityUsername && [remoteConnectivityUsername isKindOfClass:[NSString class]])
+        {
+            self.remoteConnectivityUsernameField.stringValue = remoteConnectivityUsername;
+        }
+        
+        self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusNone"];
+        [self.remoteConnectivityProgressIndicator startAnimation:self];
+        
+        [[MDDSSManager defaultManager] getVersion:^(NSDictionary *json, NSError *error){
+            [self.remoteConnectivityProgressIndicator stopAnimation:self];
+            if(!error)
+            {
+                self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusAvailable"];
+            }
+            else
+            {
+                self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusUnavailable"];
+            }
+        }];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenDidChange) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
 }
 
@@ -154,6 +180,7 @@
          {
              [[MDDSSManager defaultManager] setAndPersistHost:[netService.name stringByAppendingString:@".local"]];
              [MDDSSManager defaultManager].useIPAddress = NO;
+             [MDDSSManager defaultManager].useRemoteConnectivity = NO;
              [self.tableView reloadData];
          }
      }];
@@ -174,6 +201,7 @@
     {
         [[MDDSSManager defaultManager] setAndPersistHost:[control stringValue]];
         [MDDSSManager defaultManager].useIPAddress = YES;
+        [MDDSSManager defaultManager].useRemoteConnectivity = NO;
     }
     if(control == self.tokenField)
     {
@@ -203,6 +231,29 @@
     {
         [self.tableView deselectAll:self];
     }
+}
+
+#pragma mark - remoteConnectivityLogin
+
+- (IBAction)loginPressed:(id)sender
+{
+    
+    [self.remoteConnectivityProgressIndicator startAnimation:self];
+    
+    [[MDDSSManager defaultManager] checkRemoteConnectivityFor:[self.remoteConnectivityUsernameField stringValue] password:[self.remoteConnectivityPasswordField stringValue] callback:^(NSDictionary *json, NSError *error)
+     {
+         [self.remoteConnectivityProgressIndicator stopAnimation:self];
+         if(json && [json objectForKey:@"Response"] && [[json objectForKey:@"Response"] objectForKey:@"RelayLink"])
+         {
+             // we have connection
+             NSURL *url = [NSURL URLWithString:[[json objectForKey:@"Response"] objectForKey:@"RelayLink"]];
+             
+             [[MDDSSManager defaultManager] setAndPersistHost:url.host];
+             [MDDSSManager defaultManager].useRemoteConnectivity = YES;
+             [[MDDSSManager defaultManager] setRemoteConnectivityUsername:[self.remoteConnectivityUsernameField stringValue]];
+         }
+     }
+     ];
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol

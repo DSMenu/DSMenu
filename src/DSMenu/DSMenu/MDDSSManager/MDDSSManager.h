@@ -27,6 +27,9 @@
 @property NSString *dSSVersionString; /**< last known version string (will be be store on disk!) */
 @property BOOL useIPAddress; /**< (temp) bool for leeting the preference pannel known if user has set a ip manual of by choosing from the mDNS browser  */ //FIXME
 
+@property BOOL useRemoteConnectivity;
+@property NSString *remoteConnectivityUsername;
+
 + (MDDSSManager *)defaultManager; /**< singleton */
 
 /**
@@ -90,4 +93,7 @@
 - (void)getConsumptionLevelsLatest:(void (^)(NSDictionary*, NSError*))callback;
 - (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)getCircuits:(void (^)(NSDictionary*, NSError*))callback;
+
+#pragma mark - RemoteConnectivityStack
+- (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(void (^)(NSDictionary*, NSError*))callback;
 @end
