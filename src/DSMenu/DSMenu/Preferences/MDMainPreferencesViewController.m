@@ -42,6 +42,18 @@
     [self.tokenLabel setStringValue:NSLocalizedString(@"preferenceMainTokenLabel", @"Preference Address Label")];
     self.manualIPCheckbox.title =NSLocalizedString(@"preferenceMainAddressCustomIPLabel", @"Preference Checkbox manual Address Label");
     
+    [self.remoteConnectivityLoginButton setTitle:NSLocalizedString(@"loginButton", @"Preference Remote Connectivity Login Button")];
+    
+    [self.remoteConnectivityDisconnectButton setTitle:NSLocalizedString(@"disconnectButton", @"Preference Remote Connectivity Disconnect Button")];
+    
+    self.remoteConnectivityPasswordLabel.stringValue = NSLocalizedString(@"passwordLabel", @"Preference Password Label");
+    self.remoteConnectivityUsernameLabel.stringValue = NSLocalizedString(@"usernameLabel", @"Preference Username Label");
+    
+    NSTabViewItem *aItem = [self.tabView tabViewItemAtIndex:0];
+    [aItem setLabel:NSLocalizedString(@"localConnectionTab", @"First Tab Item Label")];
+    
+    aItem = [self.tabView tabViewItemAtIndex:1];
+    [aItem setLabel:NSLocalizedString(@"remoteConnectivityTab", @"Second Tab Item Label")];
     
     [self tokenDidChange];
 
@@ -52,6 +64,10 @@
         [self.addressTextField setEnabled:YES];
         self.addressTextField.stringValue = [MDDSSManager defaultManager].host;
     }
+    
+    [self.remoteConnectivityDisconnectButton setHidden:YES];
+    [self.remoteConnectivityStateText setHidden:YES];
+    self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusNone"];
     
     if([MDDSSManager defaultManager].useRemoteConnectivity)
     {
@@ -65,15 +81,25 @@
         
         self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusNone"];
         [self.remoteConnectivityProgressIndicator startAnimation:self];
-        
+        self.remoteConnectivityStateText.stringValue = NSLocalizedString(@"tryToConnectMessage", @"Try to connect message in preference");
         [[MDDSSManager defaultManager] getVersion:^(NSDictionary *json, NSError *error){
             [self.remoteConnectivityProgressIndicator stopAnimation:self];
             if(!error)
             {
+                
+                self.remoteConnectivityStateText.stringValue = NSLocalizedString(@"connectionSuccessfull", @"connection established message in settings");
+                
                 self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusAvailable"];
+                [self.remoteConnectivityDisconnectButton setHidden:NO];
+                
+                [self.remoteConnectivityPasswordField setHidden:YES];
+                [self.remoteConnectivityPasswordLabel setHidden:YES];
+                [self.remoteConnectivityLoginButton setHidden:YES];
             }
             else
             {
+                self.remoteConnectivityStateText.stringValue = NSLocalizedString(@"connectionFailed", @"connection error message in preference");
+                
                 self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusUnavailable"];
             }
         }];
@@ -238,13 +264,25 @@
 - (IBAction)loginPressed:(id)sender
 {
     
+    self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusNone"];
     [self.remoteConnectivityProgressIndicator startAnimation:self];
+    self.remoteConnectivityStateText.stringValue = NSLocalizedString(@"tryToConnectMessage", @"Try to connect message in preference");
     
     [[MDDSSManager defaultManager] checkRemoteConnectivityFor:[self.remoteConnectivityUsernameField stringValue] password:[self.remoteConnectivityPasswordField stringValue] callback:^(NSDictionary *json, NSError *error)
      {
          [self.remoteConnectivityProgressIndicator stopAnimation:self];
-         if(json && [json objectForKey:@"Response"] && [[json objectForKey:@"Response"] objectForKey:@"RelayLink"])
+         if(error == NO && json && [json objectForKey:@"Response"] != [NSNull null] && [[json objectForKey:@"Response"] objectForKey:@"RelayLink"])
          {
+             self.remoteConnectivityStateText.stringValue = NSLocalizedString(@"connectionSuccessfull", @"connection established message in settings");
+             
+             [self.remoteConnectivityDisconnectButton setHidden:NO];
+             [self.remoteConnectivityPasswordField setHidden:YES];
+             [self.remoteConnectivityPasswordLabel setHidden:YES];
+             [self.remoteConnectivityLoginButton setHidden:YES];
+             [self.remoteConnectivityStateText setHidden:NO];
+             
+             self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusAvailable"];
+             
              // we have connection
              NSURL *url = [NSURL URLWithString:[[json objectForKey:@"Response"] objectForKey:@"RelayLink"]];
              
@@ -252,8 +290,29 @@
              [MDDSSManager defaultManager].useRemoteConnectivity = YES;
              [[MDDSSManager defaultManager] setRemoteConnectivityUsername:[self.remoteConnectivityUsernameField stringValue]];
          }
+         else
+         {
+             [self.remoteConnectivityStateText setHidden:NO];
+             self.remoteConnectivityStateText.stringValue = NSLocalizedString(@"connectionFailed", @"connection established message in settings");
+             
+             self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusUnavailable"];
+         }
      }
      ];
+}
+
+- (IBAction)disconnectPressed:(id)sender
+{
+    [[MDDSSManager defaultManager] setAndPersistHost:@""];
+    [MDDSSManager defaultManager].useRemoteConnectivity = NO;
+    
+    self.remoteConnectivityStateImage.image = [NSImage imageNamed:@"NSStatusNone"];
+    
+    [self.remoteConnectivityDisconnectButton setHidden:YES];
+    [self.remoteConnectivityPasswordField setHidden:NO];
+    [self.remoteConnectivityPasswordLabel setHidden:NO];
+    [self.remoteConnectivityLoginButton setHidden:NO];
+    [self.remoteConnectivityStateText setHidden:YES];
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol

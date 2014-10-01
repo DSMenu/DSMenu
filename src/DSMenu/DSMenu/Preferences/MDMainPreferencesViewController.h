@@ -32,5 +32,10 @@
 
 @property IBOutlet NSImageView *remoteConnectivityStateImage;
 
+@property IBOutlet NSTextField *remoteConnectivityStateText;
+@property IBOutlet NSButton *remoteConnectivityDisconnectButton;
+@property IBOutlet NSButton *remoteConnectivityLoginButton;
+
+
 @property (assign) BOOL manualIP;
 @end

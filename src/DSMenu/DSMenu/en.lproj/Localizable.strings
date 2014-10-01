@@ -121,3 +121,16 @@ DetailsPreferences = "App Behavior";
 historyTitle = "HISTORY";
 loadingHistory = "Loading Data...";
 Consumption = "Consumption";
+
+connectionSuccessfull = "Connected";
+connectionFailed = "Not connected";
+tryToConnectMessage = "Try to connect...";
+
+loginButton = "Login";
+disconnectButton = "Disconnect";
+
+usernameLabel = "Username";
+passwordLabel = "Password";
+
+localConnectionTab = "Local Connection";
+remoteConnectivityTab = "digitalstrom.com Login";

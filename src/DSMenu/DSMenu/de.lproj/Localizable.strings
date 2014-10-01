@@ -121,3 +121,16 @@ DetailsPreferences = "App Verhalten";
 historyTitle = "VERGANGENER ZEITRAUM";
 loadingHistory = "Lade Daten...";
 Consumption = "Verbrauch";
+
+connectionSuccessfull = "Verbunden";
+connectionFailed = "Nicht Verbunden (Fehler)";
+tryToConnectMessage = "Versuche zu verbinden...";
+
+loginButton = "Anmelden";
+disconnectButton = "Verbindung trennen";
+
+usernameLabel = "Benutzername";
+passwordLabel = "Passwort";
+
+localConnectionTab = "Lokale Verbindung";
+remoteConnectivityTab = "digitalstrom.com Login";
