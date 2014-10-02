@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51AED4E19DD29CC007296FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED4D19DD29CC007296FB /* AppDelegate.m */; };
+		E51AED5019DD29CC007296FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED4F19DD29CC007296FB /* main.m */; };
+		E51AED6119DD29CC007296FB /* DSMenuHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED6019DD29CC007296FB /* DSMenuHelperTests.m */; };
+		E51AED6E19DD2B1A007296FB /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51AED6D19DD2B1A007296FB /* ServiceManagement.framework */; };
+		E51AED7519DD2CDA007296FB /* MainMenuHelper.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51AED7419DD2CDA007296FB /* MainMenuHelper.xib */; };
+		E51AED7919DD2D46007296FB /* DSMenuHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = E51AED4819DD29CC007296FB /* DSMenuHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E51AED7C19DD2EE3007296FB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51AED7A19DD2EE3007296FB /* MainMenu.xib */; };
 		E5280B821959F5BD006A9FB5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5280B811959F5BD006A9FB5 /* Cocoa.framework */; };
 		E5280B8C1959F5BD006A9FB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5280B8A1959F5BD006A9FB5 /* InfoPlist.strings */; };
 		E5280B951959F5BD006A9FB5 /* MDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */; };
-		E5280B981959F5BD006A9FB5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5280B961959F5BD006A9FB5 /* MainMenu.xib */; };
 		E5280BA11959F5BD006A9FB5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5280BA01959F5BD006A9FB5 /* XCTest.framework */; };
 		E5280BA21959F5BD006A9FB5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5280B811959F5BD006A9FB5 /* Cocoa.framework */; };
 		E5280BAA1959F5BD006A9FB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5280BA81959F5BD006A9FB5 /* InfoPlist.strings */; };
@@ -38,6 +44,7 @@
 		E5548E7819D408D400082430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5548E7619D408D400082430 /* main.m */; };
 		E5548E7B19D408EB00082430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E5548E7C19D408EB00082430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
+		E557E8BC19DC4F5B00A25C4A /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557E8B919DC4F5B00A25C4A /* StartAtLoginController.m */; };
 		E561C7AF19921CFA00496303 /* group_3_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A319921CFA00496303 /* group_3_8.png */; };
 		E561C7B019921CFA00496303 /* group_3_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A419921CFA00496303 /* group_3_8@2x.png */; };
 		E561C7B119921CFA00496303 /* group_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A519921CFA00496303 /* group_3.png */; };
@@ -112,7 +119,6 @@
 		E5B437E319D6CB0300A0703F /* preferences_details.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA3F19653BA200A2997D /* preferences_details.png */; };
 		E5B437E419D6CB0300A0703F /* dimUp.png in Resources */ = {isa = PBXBuildFile; fileRef = E5FDA5B919D453B700F5040F /* dimUp.png */; };
 		E5B437E519D6CB0300A0703F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5DC092A19D4605E00BC1110 /* Images.xcassets */; };
-		E5B437E619D6CB0300A0703F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5280B961959F5BD006A9FB5 /* MainMenu.xib */; };
 		E5B437E719D6CB0300A0703F /* group_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645C1961FC6800938FE2 /* group_2.png */; };
 		E5B437E819D6CB0300A0703F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E5B437E919D6CB0300A0703F /* dimDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5FDA5B819D453B700F5040F /* dimDown@2x.png */; };
@@ -143,7 +149,6 @@
 		E5DE64601961FC6800938FE2 /* group_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645C1961FC6800938FE2 /* group_2.png */; };
 		E5DE64611961FC6800938FE2 /* group_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645D1961FC6800938FE2 /* group_2@2x.png */; };
 		E5E8CA331965361300A2997D /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E8CA311965361300A2997D /* LaunchAtLoginController.m */; };
-		E5E8CA341965361300A2997D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA321965361300A2997D /* README.md */; };
 		E5E8CA38196538E500A2997D /* MDDetailPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E8CA36196538E500A2997D /* MDDetailPreferencesViewController.m */; };
 		E5E8CA39196538E500A2997D /* MDDetailPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA37196538E500A2997D /* MDDetailPreferencesViewController.xib */; };
 		E5E8CA3D19653B2900A2997D /* preferences_connection.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA3B19653B2900A2997D /* preferences_connection.png */; };
@@ -163,6 +168,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E51AED5B19DD29CC007296FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5280B761959F5BD006A9FB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E51AED4719DD29CC007296FB;
+			remoteInfo = DSMenuHelper;
+		};
 		E5280BA31959F5BD006A9FB5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E5280B761959F5BD006A9FB5 /* Project object */;
@@ -170,9 +182,41 @@
 			remoteGlobalIDString = E5280B7D1959F5BD006A9FB5;
 			remoteInfo = macDS;
 		};
+		E569F46A19DDAC610074BC78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5280B761959F5BD006A9FB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E51AED4719DD29CC007296FB;
+			remoteInfo = DSMenuHelper;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E51AED7819DD2D3E007296FB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				E51AED7919DD2D46007296FB /* DSMenuHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E51AED4819DD29CC007296FB /* DSMenuHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMenuHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E51AED4B19DD29CC007296FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E51AED4C19DD29CC007296FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E51AED4D19DD29CC007296FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E51AED4F19DD29CC007296FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E51AED5A19DD29CC007296FB /* DSMenuHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DSMenuHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E51AED5F19DD29CC007296FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E51AED6019DD29CC007296FB /* DSMenuHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSMenuHelperTests.m; sourceTree = "<group>"; };
+		E51AED6C19DD2AAF007296FB /* DSMenuHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DSMenuHelper.entitlements; sourceTree = "<group>"; };
+		E51AED6D19DD2B1A007296FB /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		E51AED7419DD2CDA007296FB /* MainMenuHelper.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuHelper.xib; sourceTree = "<group>"; };
+		E51AED7B19DD2EE3007296FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E5280B7E1959F5BD006A9FB5 /* DSMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5280B811959F5BD006A9FB5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E5280B841959F5BD006A9FB5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -181,7 +225,6 @@
 		E5280B8B1959F5BD006A9FB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E5280B931959F5BD006A9FB5 /* MDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDAppDelegate.h; sourceTree = "<group>"; };
 		E5280B941959F5BD006A9FB5 /* MDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDAppDelegate.m; sourceTree = "<group>"; };
-		E5280B971959F5BD006A9FB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E5280B9F1959F5BD006A9FB5 /* DSMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DSMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5280BA01959F5BD006A9FB5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E5280BA71959F5BD006A9FB5 /* DSMenuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DSMenuTests-Info.plist"; sourceTree = "<group>"; };
@@ -229,6 +272,8 @@
 		E5548E7A19D408EB00082430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5548E7D19D408F000082430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5548E7E19D408F300082430 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E557E8B819DC4F5B00A25C4A /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
+		E557E8B919DC4F5B00A25C4A /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
 		E561C7A319921CFA00496303 /* group_3_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_3_8.png; sourceTree = "<group>"; };
 		E561C7A419921CFA00496303 /* group_3_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_3_8@2x.png"; sourceTree = "<group>"; };
 		E561C7A519921CFA00496303 /* group_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_3.png; sourceTree = "<group>"; };
@@ -296,10 +341,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E51AED4519DD29CC007296FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E51AED5719DD29CC007296FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5280B7B1959F5BD006A9FB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51AED6E19DD2B1A007296FB /* ServiceManagement.framework in Frameworks */,
 				E5280B821959F5BD006A9FB5 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,11 +384,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E51AED4919DD29CC007296FB /* DSMenuHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E51AED7419DD2CDA007296FB /* MainMenuHelper.xib */,
+				E51AED6C19DD2AAF007296FB /* DSMenuHelper.entitlements */,
+				E51AED4C19DD29CC007296FB /* AppDelegate.h */,
+				E51AED4D19DD29CC007296FB /* AppDelegate.m */,
+				E51AED4A19DD29CC007296FB /* Supporting Files */,
+			);
+			path = DSMenuHelper;
+			sourceTree = "<group>";
+		};
+		E51AED4A19DD29CC007296FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E51AED4B19DD29CC007296FB /* Info.plist */,
+				E51AED4F19DD29CC007296FB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E51AED5D19DD29CC007296FB /* DSMenuHelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				E51AED6019DD29CC007296FB /* DSMenuHelperTests.m */,
+				E51AED5E19DD29CC007296FB /* Supporting Files */,
+			);
+			path = DSMenuHelperTests;
+			sourceTree = "<group>";
+		};
+		E51AED5E19DD29CC007296FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E51AED5F19DD29CC007296FB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E5280B751959F5BD006A9FB5 = {
 			isa = PBXGroup;
 			children = (
 				E5280B871959F5BD006A9FB5 /* DSMenu */,
 				E5280BA51959F5BD006A9FB5 /* macDSTests */,
+				E51AED4919DD29CC007296FB /* DSMenuHelper */,
+				E51AED5D19DD29CC007296FB /* DSMenuHelperTests */,
 				E5280B801959F5BD006A9FB5 /* Frameworks */,
 				E5280B7F1959F5BD006A9FB5 /* Products */,
 				E5B437F819D6CB0300A0703F /* DSMenuNonAppStore-Info.plist */,
@@ -341,6 +441,8 @@
 				E5280B7E1959F5BD006A9FB5 /* DSMenu.app */,
 				E5280B9F1959F5BD006A9FB5 /* DSMenuTests.xctest */,
 				E5B437F719D6CB0300A0703F /* DSMenu.app */,
+				E51AED4819DD29CC007296FB /* DSMenuHelper.app */,
+				E51AED5A19DD29CC007296FB /* DSMenuHelperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,6 +450,7 @@
 		E5280B801959F5BD006A9FB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E51AED6D19DD2B1A007296FB /* ServiceManagement.framework */,
 				E5280B811959F5BD006A9FB5 /* Cocoa.framework */,
 				E5280BA01959F5BD006A9FB5 /* XCTest.framework */,
 				E5280B831959F5BD006A9FB5 /* Other Frameworks */,
@@ -368,6 +471,7 @@
 		E5280B871959F5BD006A9FB5 /* DSMenu */ = {
 			isa = PBXGroup;
 			children = (
+				E51AED7A19DD2EE3007296FB /* MainMenu.xib */,
 				E561C7BB199235D800496303 /* DSMenu.entitlements */,
 				E5DE644F1961F9A500938FE2 /* MDDSHelper.h */,
 				E5DE64501961F9A500938FE2 /* MDDSHelper.m */,
@@ -383,7 +487,6 @@
 				E52C13C31975B6270010385E /* MDConsumptionTextView.h */,
 				E52C13C41975B6270010385E /* MDConsumptionTextView.m */,
 				E5280BB61959F6DB006A9FB5 /* GFX */,
-				E5280B961959F5BD006A9FB5 /* MainMenu.xib */,
 				E5280B881959F5BD006A9FB5 /* Supporting Files */,
 				E5524E491962A7030031D1B6 /* Vendor */,
 				E5DC092A19D4605E00BC1110 /* Images.xcassets */,
@@ -481,6 +584,7 @@
 		E5524E491962A7030031D1B6 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E557E8B519DC4F5B00A25C4A /* StartAtLoginController */,
 				E5E8CA2F1965361300A2997D /* LaunchAtLoginController */,
 				E5524E6E1962AADA0031D1B6 /* RHPreferences */,
 				E5524E4A1962A70B0031D1B6 /* Lumberjack */,
@@ -548,6 +652,16 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		E557E8B519DC4F5B00A25C4A /* StartAtLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				E557E8B819DC4F5B00A25C4A /* StartAtLoginController.h */,
+				E557E8B919DC4F5B00A25C4A /* StartAtLoginController.m */,
+			);
+			name = StartAtLoginController;
+			path = ../../vendor/StartAtLoginController;
+			sourceTree = "<group>";
+		};
 		E5DE642F1961A15600938FE2 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +703,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E51AED4719DD29CC007296FB /* DSMenuHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E51AED6619DD29CD007296FB /* Build configuration list for PBXNativeTarget "DSMenuHelper" */;
+			buildPhases = (
+				E51AED4419DD29CC007296FB /* Sources */,
+				E51AED4519DD29CC007296FB /* Frameworks */,
+				E51AED4619DD29CC007296FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DSMenuHelper;
+			productName = DSMenuHelper;
+			productReference = E51AED4819DD29CC007296FB /* DSMenuHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E51AED5919DD29CC007296FB /* DSMenuHelperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E51AED6719DD29CD007296FB /* Build configuration list for PBXNativeTarget "DSMenuHelperTests" */;
+			buildPhases = (
+				E51AED5619DD29CC007296FB /* Sources */,
+				E51AED5719DD29CC007296FB /* Frameworks */,
+				E51AED5819DD29CC007296FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E51AED5C19DD29CC007296FB /* PBXTargetDependency */,
+			);
+			name = DSMenuHelperTests;
+			productName = DSMenuHelperTests;
+			productReference = E51AED5A19DD29CC007296FB /* DSMenuHelperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E5280B7D1959F5BD006A9FB5 /* DSMenu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5280BAF1959F5BD006A9FB5 /* Build configuration list for PBXNativeTarget "DSMenu" */;
@@ -596,10 +745,12 @@
 				E5280B7A1959F5BD006A9FB5 /* Sources */,
 				E5280B7B1959F5BD006A9FB5 /* Frameworks */,
 				E5280B7C1959F5BD006A9FB5 /* Resources */,
+				E51AED7819DD2D3E007296FB /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E569F46B19DDAC610074BC78 /* PBXTargetDependency */,
 			);
 			name = DSMenu;
 			productName = macDS;
@@ -651,6 +802,19 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = include7;
 				TargetAttributes = {
+					E51AED4719DD29CC007296FB = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 5XAKXZTWN4;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					E51AED5919DD29CC007296FB = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = E51AED4719DD29CC007296FB;
+					};
 					E5280B7D1959F5BD006A9FB5 = {
 						DevelopmentTeam = 5XAKXZTWN4;
 						SystemCapabilities = {
@@ -689,21 +853,38 @@
 				E5280B7D1959F5BD006A9FB5 /* DSMenu */,
 				E5280B9E1959F5BD006A9FB5 /* DSMenuTests */,
 				E5B437A619D6CB0300A0703F /* DSMenu (non app store) */,
+				E51AED4719DD29CC007296FB /* DSMenuHelper */,
+				E51AED5919DD29CC007296FB /* DSMenuHelperTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E51AED4619DD29CC007296FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E51AED7519DD2CDA007296FB /* MainMenuHelper.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E51AED5819DD29CC007296FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5280B7C1959F5BD006A9FB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E5E8CA3D19653B2900A2997D /* preferences_connection.png in Resources */,
+				E51AED7C19DD2EE3007296FB /* MainMenu.xib in Resources */,
 				E5DE64611961FC6800938FE2 /* group_2@2x.png in Resources */,
 				E561C7B419921CFA00496303 /* group_4_8@2x.png in Resources */,
 				E5FDA5BE19D453B700F5040F /* dimUp@2x.png in Resources */,
 				E5280BB91959F6DB006A9FB5 /* status_bar_icon.png in Resources */,
-				E5E8CA341965361300A2997D /* README.md in Resources */,
 				E5DE64591961FB8600938FE2 /* group_2_8@2x.png in Resources */,
 				E5DE64491961F46000938FE2 /* off_menu_icon.png in Resources */,
 				E561C7B719921CFA00496303 /* group_5_8.png in Resources */,
@@ -732,7 +913,6 @@
 				E5E8CA4119653BA200A2997D /* preferences_details.png in Resources */,
 				E5FDA5BD19D453B700F5040F /* dimUp.png in Resources */,
 				E5DC092B19D4605E00BC1110 /* Images.xcassets in Resources */,
-				E5280B981959F5BD006A9FB5 /* MainMenu.xib in Resources */,
 				E5DE64601961FC6800938FE2 /* group_2.png in Resources */,
 				E5548E7B19D408EB00082430 /* Localizable.strings in Resources */,
 				E5FDA5BC19D453B700F5040F /* dimDown@2x.png in Resources */,
@@ -796,7 +976,6 @@
 				E5B437E319D6CB0300A0703F /* preferences_details.png in Resources */,
 				E5B437E419D6CB0300A0703F /* dimUp.png in Resources */,
 				E5B437E519D6CB0300A0703F /* Images.xcassets in Resources */,
-				E5B437E619D6CB0300A0703F /* MainMenu.xib in Resources */,
 				E5B437E719D6CB0300A0703F /* group_2.png in Resources */,
 				E5B437E819D6CB0300A0703F /* Localizable.strings in Resources */,
 				E5B437E919D6CB0300A0703F /* dimDown@2x.png in Resources */,
@@ -816,6 +995,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E51AED4419DD29CC007296FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E51AED5019DD29CC007296FB /* main.m in Sources */,
+				E51AED4E19DD29CC007296FB /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E51AED5619DD29CC007296FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E51AED6119DD29CC007296FB /* DSMenuHelperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5280B7A1959F5BD006A9FB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -824,6 +1020,7 @@
 				E5524E651962A70B0031D1B6 /* DDASLLogCapture.m in Sources */,
 				E52C13C51975B6270010385E /* MDConsumptionTextView.m in Sources */,
 				E5524E671962A70B0031D1B6 /* DDFileLogger.m in Sources */,
+				E557E8BC19DC4F5B00A25C4A /* StartAtLoginController.m in Sources */,
 				E5C1BA86196D8C51009B2985 /* MDDSSConsumptionManager.m in Sources */,
 				E5DE64321961A15600938FE2 /* MDZoneMenuItem.m in Sources */,
 				E5DE64361961B11F00938FE2 /* MDDeviceMenuItem.m in Sources */,
@@ -891,14 +1088,32 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E51AED5C19DD29CC007296FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E51AED4719DD29CC007296FB /* DSMenuHelper */;
+			targetProxy = E51AED5B19DD29CC007296FB /* PBXContainerItemProxy */;
+		};
 		E5280BA41959F5BD006A9FB5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E5280B7D1959F5BD006A9FB5 /* DSMenu */;
 			targetProxy = E5280BA31959F5BD006A9FB5 /* PBXContainerItemProxy */;
 		};
+		E569F46B19DDAC610074BC78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E51AED4719DD29CC007296FB /* DSMenuHelper */;
+			targetProxy = E569F46A19DDAC610074BC78 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E51AED7A19DD2EE3007296FB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E51AED7B19DD2EE3007296FB /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		E5280B8A1959F5BD006A9FB5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -906,14 +1121,6 @@
 				E5DE64441961EA0100938FE2 /* de */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E5280B961959F5BD006A9FB5 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E5280B971959F5BD006A9FB5 /* Base */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		E5280BA81959F5BD006A9FB5 /* InfoPlist.strings */ = {
@@ -937,6 +1144,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E51AED6219DD29CD007296FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = DSMenuHelper/DSMenuHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DSMenuHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "48133401-7995-4b6f-aa9f-6c892390dc17";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E51AED6319DD29CD007296FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = DSMenuHelper/DSMenuHelper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = DSMenuHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "48133401-7995-4b6f-aa9f-6c892390dc17";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E51AED6419DD29CD007296FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DSMenuHelperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSMenuHelper.app/Contents/MacOS/DSMenuHelper";
+			};
+			name = Debug;
+		};
+		E51AED6519DD29CD007296FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DSMenuHelperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSMenuHelper.app/Contents/MacOS/DSMenuHelper";
+			};
+			name = Release;
+		};
 		E5280BAD1959F5BD006A9FB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -969,7 +1262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1002,7 +1295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1016,6 +1309,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DSMenu/DSMenu-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"APPSTORE=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "DSMenu/DSMenu-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1032,6 +1329,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DSMenu/DSMenu-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "APPSTORE=1";
 				INFOPLIST_FILE = "DSMenu/DSMenu-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1110,6 +1408,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E51AED6619DD29CD007296FB /* Build configuration list for PBXNativeTarget "DSMenuHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E51AED6219DD29CD007296FB /* Debug */,
+				E51AED6319DD29CD007296FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E51AED6719DD29CD007296FB /* Build configuration list for PBXNativeTarget "DSMenuHelperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E51AED6419DD29CD007296FB /* Debug */,
+				E51AED6519DD29CD007296FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E5280B791959F5BD006A9FB5 /* Build configuration list for PBXProject "DSMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

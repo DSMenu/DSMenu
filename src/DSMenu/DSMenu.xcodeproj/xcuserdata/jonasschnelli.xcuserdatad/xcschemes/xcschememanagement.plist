@@ -14,9 +14,24 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>DSMenuHelper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>E51AED4719DD29CC007296FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E51AED5919DD29CC007296FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E5280B7D1959F5BD006A9FB5</key>
 		<dict>
 			<key>primary</key>

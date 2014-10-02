@@ -25,6 +25,11 @@
 
 #define kMACDE_PREV_VERSIONS_STARTED_UD_KEY @"MacDsPrevStartupVersions"
 
+#ifdef APPSTORE
+#include "StartAtLoginController.h"
+#define kMD_START_AT_LOGIN_HELPER_APP_BUNDLE_ID @"com.include7.DSMenuHelper"
+#endif
+
 @interface MDAppDelegate ()
 @property (strong) NSStatusItem * statusItem;
 @property (assign) IBOutlet NSMenu *statusMenu;
@@ -447,17 +452,30 @@
 
 - (BOOL)launchAtStartup
 {
+#ifdef APPSTORE
+    StartAtLoginController *startAtLoginController = [[StartAtLoginController alloc] initWithIdentifier:kMD_START_AT_LOGIN_HELPER_APP_BUNDLE_ID];
+    BOOL state = startAtLoginController.startAtLogin;
+    startAtLoginController = nil;
+    return state;
+#else
     LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
     BOOL state = [launchController launchAtLogin];
     launchController = nil;
     return state;
+#endif
 }
 
 - (void)setLaunchAtStartup:(BOOL)aState
 {
+#ifdef APPSTORE
+    StartAtLoginController *startAtLoginController = [[StartAtLoginController alloc] initWithIdentifier:kMD_START_AT_LOGIN_HELPER_APP_BUNDLE_ID];
+    startAtLoginController.startAtLogin = aState;
+    startAtLoginController = nil;
+#else
     LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
     [launchController setLaunchAtLogin:aState];
     launchController = nil;
+#endif
 }
 
 #pragma mark - consumption display

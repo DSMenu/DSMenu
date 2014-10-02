@@ -13,53 +13,33 @@
 		<key>23A0B390B1CE5E6381E26866945EC73673AFB184</key>
 		<string>https://github.com/vilhalmer/RHPreferences</string>
 		<key>25A2F9967B583E980560ECE69097B4CA9A2E81D3</key>
-		<string>ssh://github.com/jonasschnelli/macDS.git</string>
+		<string>github.com:jonasschnelli/macDS.git</string>
 		<key>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</key>
 		<string>https://github.com/CocoaLumberjack/CocoaLumberjack</string>
-		<key>3AE9027AD4821144839FB80B6BA9EF7C84E6A595</key>
-		<string>https://github.com/jonasschnelli/LaunchAtLoginController</string>
-		<key>8127F5DE-E2BE-4273-A2A6-90D16F4B710F</key>
-		<string>https://github.com/vilhalmer/RHPreferences</string>
-		<key>8947EA02-577B-47E8-AE77-AD2BCF74AF99</key>
-		<string>https://github.com/CocoaLumberjack/CocoaLumberjack</string>
-		<key>AB7B4CA6-B47F-4228-82F0-88786F44D2A0</key>
-		<string>https://github.com/jonasschnelli/LaunchAtLoginController</string>
+		<key>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</key>
+		<string>https://github.com/alexzielenski/StartAtLoginController</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>src/macDS/DSMenu.xcodeproj/project.xcworkspace</string>
+	<string>src/DSMenu/DSMenu.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>23A0B390B1CE5E6381E26866945EC73673AFB184</key>
-		<string>../../../../src/vendor/RHPreferences</string>
+		<string>../../../..src/vendor/RHPreferences</string>
 		<key>25A2F9967B583E980560ECE69097B4CA9A2E81D3</key>
 		<string>../../../..</string>
 		<key>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</key>
-		<string>../../../../src/vendor/CocoaLumberjack</string>
-		<key>3AE9027AD4821144839FB80B6BA9EF7C84E6A595</key>
-		<string>../../../../src/vendor/LaunchAtLoginController</string>
-		<key>8127F5DE-E2BE-4273-A2A6-90D16F4B710F</key>
-		<string>../../../../../vendor/RHPreferences</string>
-		<key>8947EA02-577B-47E8-AE77-AD2BCF74AF99</key>
-		<string>../../../../../vendor/CocoaLumberjack</string>
-		<key>AB7B4CA6-B47F-4228-82F0-88786F44D2A0</key>
-		<string>../../../../../vendor/LaunchAtLoginController</string>
+		<string>../../../..src/vendor/CocoaLumberjack</string>
+		<key>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</key>
+		<string>../../../../src/vendor/StartAtLoginController</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/jonasschnelli/macDS.git</string>
+	<string>github.com:jonasschnelli/macDS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>25A2F9967B583E980560ECE69097B4CA9A2E81D3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8947EA02-577B-47E8-AE77-AD2BCF74AF99</string>
-			<key>IDESourceControlWCCName</key>
-			<string>CocoaLumberjack</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
@@ -72,33 +52,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3AE9027AD4821144839FB80B6BA9EF7C84E6A595</string>
-			<key>IDESourceControlWCCName</key>
-			<string>LaunchAtLoginController</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AB7B4CA6-B47F-4228-82F0-88786F44D2A0</string>
-			<key>IDESourceControlWCCName</key>
-			<string>LaunchAtLoginController</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>25A2F9967B583E980560ECE69097B4CA9A2E81D3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>macDS</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8127F5DE-E2BE-4273-A2A6-90D16F4B710F</string>
-			<key>IDESourceControlWCCName</key>
-			<string>RHPreferences</string>
+			<string>DSMenu</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -107,6 +63,14 @@
 			<string>23A0B390B1CE5E6381E26866945EC73673AFB184</string>
 			<key>IDESourceControlWCCName</key>
 			<string>RHPreferences</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StartAtLoginController</string>
 		</dict>
 	</array>
 </dict>
