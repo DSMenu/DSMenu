@@ -45,6 +45,7 @@
 		E5548E7B19D408EB00082430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E5548E7C19D408EB00082430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E557E8BC19DC4F5B00A25C4A /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557E8B919DC4F5B00A25C4A /* StartAtLoginController.m */; };
+		E55F029C19DDD1A10019AF2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51AED7A19DD2EE3007296FB /* MainMenu.xib */; };
 		E561C7AF19921CFA00496303 /* group_3_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A319921CFA00496303 /* group_3_8.png */; };
 		E561C7B019921CFA00496303 /* group_3_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A419921CFA00496303 /* group_3_8@2x.png */; };
 		E561C7B119921CFA00496303 /* group_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A519921CFA00496303 /* group_3.png */; };
@@ -973,6 +974,7 @@
 				E5B437E019D6CB0300A0703F /* dimUpActive@2x.png in Resources */,
 				E5B437E119D6CB0300A0703F /* group_8.png in Resources */,
 				E5B437E219D6CB0300A0703F /* group_5_8@2x.png in Resources */,
+				E55F029C19DDD1A10019AF2D /* MainMenu.xib in Resources */,
 				E5B437E319D6CB0300A0703F /* preferences_details.png in Resources */,
 				E5B437E419D6CB0300A0703F /* dimUp.png in Resources */,
 				E5B437E519D6CB0300A0703F /* Images.xcassets in Resources */,
