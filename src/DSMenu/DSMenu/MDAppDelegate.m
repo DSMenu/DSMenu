@@ -522,7 +522,7 @@
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     CGFloat tabInterval = 50.0;
-    NSArray *tabs = @[ [[NSTextTab alloc] initWithTextAlignment:kCTTextAlignmentLeft location:tabInterval * 1 options:nil] ];
+    NSArray *tabs = @[ [[NSTextTab alloc] initWithTextAlignment:NSLeftTextAlignment location:tabInterval * 1 options:nil] ];
     paragraphStyle.tabStops = tabs;
     [str setAttributes: @{ NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: [NSColor blackColor], NSFontAttributeName : [NSFont systemFontOfSize:12] } range: NSMakeRange(0, [str length])];
     [consumptionList setAttributedTitle: str];
