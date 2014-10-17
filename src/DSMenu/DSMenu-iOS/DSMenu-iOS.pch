@@ -1,0 +1,20 @@
+
+#ifdef __OBJC__
+#import "MDDSHelper.h"
+#import "CocoaLumberjack.h"
+
+#import "Notifications.h"
+#import "ErrorCodes.h"
+#endif
+
+#if TARGET_OS_IPHONE
+#define NSView_OR_UIView UIView
+#else
+#define NSView_OR_UIView NSView
+#endif
+
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_OFF;
+#endif

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>DSMenu-iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>DSMenu.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,16 @@
 			<true/>
 		</dict>
 		<key>E5B437A619D6CB0300A0703F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5B544C119F1079500B7B7A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5B544DC19F1079500B7B7A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

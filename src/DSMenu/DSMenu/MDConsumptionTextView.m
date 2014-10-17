@@ -16,6 +16,10 @@
     if (self) {
         self.textColor = [NSColor_OR_UIColor whiteColor];
         // Initialization code here.
+        
+        #if TARGET_OS_IPHONE
+            self.backgroundColor = [UIColor clearColor];
+        #endif
     }
     return self;
 }

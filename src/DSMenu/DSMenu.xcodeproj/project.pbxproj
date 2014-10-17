@@ -133,6 +133,44 @@
 		E5B437F119D6CB0300A0703F /* dimUpActive.png in Resources */ = {isa = PBXBuildFile; fileRef = E5FDA5C119D455DC00F5040F /* dimUpActive.png */; };
 		E5B437F219D6CB0300A0703F /* dimDownActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5FDA5C019D455DC00F5040F /* dimDownActive@2x.png */; };
 		E5B437F319D6CB0300A0703F /* group_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE645A1961FC6800938FE2 /* group_1.png */; };
+		E5B544C719F1079500B7B7A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B544C619F1079500B7B7A9 /* main.m */; };
+		E5B544CA19F1079500B7B7A9 /* MDIOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B544C919F1079500B7B7A9 /* MDIOSAppDelegate.m */; };
+		E5B544D519F1079500B7B7A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5B544D419F1079500B7B7A9 /* Images.xcassets */; };
+		E5B544D819F1079500B7B7A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B544D619F1079500B7B7A9 /* LaunchScreen.xib */; };
+		E5B544E419F1079500B7B7A9 /* DSMenu_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B544E319F1079500B7B7A9 /* DSMenu_iOSTests.m */; };
+		E5B544EB19F107F400B7B7A9 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E4F1962A70B0031D1B6 /* DDAbstractDatabaseLogger.m */; };
+		E5B544EC19F107F800B7B7A9 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E511962A70B0031D1B6 /* DDASLLogCapture.m */; };
+		E5B544ED19F107FE00B7B7A9 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E531962A70B0031D1B6 /* DDASLLogger.m */; };
+		E5B544EE19F107FE00B7B7A9 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E551962A70B0031D1B6 /* DDFileLogger.m */; };
+		E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E581962A70B0031D1B6 /* DDLog.m */; };
+		E5B544F019F107FE00B7B7A9 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E5A1962A70B0031D1B6 /* DDTTYLogger.m */; };
+		E5B544F119F1080A00B7B7A9 /* MDDSSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BBD1959F733006A9FB5 /* MDDSSManager.m */; };
+		E5B544F219F1080D00B7B7A9 /* MDDSSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */; };
+		E5B544F319F1080D00B7B7A9 /* MDDSSConsumptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */; };
+		E5B5450019F1083E00B7B7A9 /* alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544F619F1083E00B7B7A9 /* alert@2x.png */; };
+		E5B5450119F1083E00B7B7A9 /* chartTabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544F719F1083E00B7B7A9 /* chartTabbar@2x.png */; };
+		E5B5450219F1083E00B7B7A9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544F819F1083E00B7B7A9 /* checkmark@2x.png */; };
+		E5B5450319F1083E00B7B7A9 /* favoritesTabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544F919F1083E00B7B7A9 /* favoritesTabbar@2x.png */; };
+		E5B5450419F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544FA19F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png */; };
+		E5B5450519F1083E00B7B7A9 /* listTabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544FB19F1083E00B7B7A9 /* listTabbar@2x.png */; };
+		E5B5450619F1083E00B7B7A9 /* listTabbarSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544FC19F1083E00B7B7A9 /* listTabbarSelected@2x.png */; };
+		E5B5450719F1083E00B7B7A9 /* noConnection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544FD19F1083E00B7B7A9 /* noConnection@2x.png */; };
+		E5B5450819F1083E00B7B7A9 /* settingsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544FE19F1083E00B7B7A9 /* settingsTab@2x.png */; };
+		E5B5450919F1083E00B7B7A9 /* settingsTabSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5B544FF19F1083E00B7B7A9 /* settingsTabSelected@2x.png */; };
+		E5B5450A19F1085200B7B7A9 /* cchart_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C61975C09C0010385E /* cchart_highlight.png */; };
+		E5B5450B19F1085200B7B7A9 /* cchart_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C71975C09C0010385E /* cchart_highlight@2x.png */; };
+		E5B5451019F1087900B7B7A9 /* MDIOSConsumptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5450D19F1087900B7B7A9 /* MDIOSConsumptionViewController.m */; };
+		E5B5451119F1087900B7B7A9 /* MDIOSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5450F19F1087900B7B7A9 /* MDIOSSettingsViewController.m */; };
+		E5B5451619F10A2C00B7B7A9 /* MDIOSConsumptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5451519F10A2C00B7B7A9 /* MDIOSConsumptionView.m */; };
+		E5B5451919F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5451819F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.m */; };
+		E5B5451A19F10AC200B7B7A9 /* MDConsumptionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C13C41975B6270010385E /* MDConsumptionTextView.m */; };
+		E5B5451B19F10AC500B7B7A9 /* MDConsumptionLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C13C11975B5740010385E /* MDConsumptionLineView.m */; };
+		E5B5451D19F10AF600B7B7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5451C19F10AF600B7B7A9 /* Main.storyboard */; };
+		E5B5452419F10B4700B7B7A9 /* MDIOSRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5451F19F10B4700B7B7A9 /* MDIOSRoomsViewController.m */; };
+		E5B5452519F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5452119F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m */; };
+		E5B5452619F10B4700B7B7A9 /* MDIOSScenesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5452319F10B4700B7B7A9 /* MDIOSScenesTableViewController.m */; };
+		E5B5452719F10B7000B7B7A9 /* MDDSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DE64501961F9A500938FE2 /* MDDSHelper.m */; };
+		E5B5452819F10EA300B7B7A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E5C1BA86196D8C51009B2985 /* MDDSSConsumptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */; };
 		E5C1BA89196DD4A6009B2985 /* MDConsumptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA88196DD4A6009B2985 /* MDConsumptionView.m */; };
 		E5DC092B19D4605E00BC1110 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5DC092A19D4605E00BC1110 /* Images.xcassets */; };
@@ -189,6 +227,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = E51AED4719DD29CC007296FB;
 			remoteInfo = DSMenuHelper;
+		};
+		E5B544DE19F1079500B7B7A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5280B761959F5BD006A9FB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5B544C119F1079500B7B7A9;
+			remoteInfo = "DSMenu-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -292,6 +337,43 @@
 		E57FA5A4196C997200CAB2BD /* group_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_8@2x.png"; sourceTree = "<group>"; };
 		E5B437F719D6CB0300A0703F /* DSMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B437F819D6CB0300A0703F /* DSMenuNonAppStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DSMenuNonAppStore-Info.plist"; path = "/Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenuNonAppStore-Info.plist"; sourceTree = "<absolute>"; };
+		E5B544C219F1079500B7B7A9 /* DSMenu-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSMenu-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5B544C519F1079500B7B7A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5B544C619F1079500B7B7A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E5B544C819F1079500B7B7A9 /* MDIOSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDIOSAppDelegate.h; sourceTree = "<group>"; };
+		E5B544C919F1079500B7B7A9 /* MDIOSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDIOSAppDelegate.m; sourceTree = "<group>"; };
+		E5B544D419F1079500B7B7A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E5B544D719F1079500B7B7A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E5B544DD19F1079500B7B7A9 /* DSMenu-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DSMenu-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5B544E219F1079500B7B7A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5B544E319F1079500B7B7A9 /* DSMenu_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSMenu_iOSTests.m; sourceTree = "<group>"; };
+		E5B544F619F1083E00B7B7A9 /* alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert@2x.png"; sourceTree = "<group>"; };
+		E5B544F719F1083E00B7B7A9 /* chartTabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chartTabbar@2x.png"; sourceTree = "<group>"; };
+		E5B544F819F1083E00B7B7A9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
+		E5B544F919F1083E00B7B7A9 /* favoritesTabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favoritesTabbar@2x.png"; sourceTree = "<group>"; };
+		E5B544FA19F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favoritesTabbarSelected@2x.png"; sourceTree = "<group>"; };
+		E5B544FB19F1083E00B7B7A9 /* listTabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listTabbar@2x.png"; sourceTree = "<group>"; };
+		E5B544FC19F1083E00B7B7A9 /* listTabbarSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listTabbarSelected@2x.png"; sourceTree = "<group>"; };
+		E5B544FD19F1083E00B7B7A9 /* noConnection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noConnection@2x.png"; sourceTree = "<group>"; };
+		E5B544FE19F1083E00B7B7A9 /* settingsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsTab@2x.png"; sourceTree = "<group>"; };
+		E5B544FF19F1083E00B7B7A9 /* settingsTabSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsTabSelected@2x.png"; sourceTree = "<group>"; };
+		E5B5450C19F1087900B7B7A9 /* MDIOSConsumptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSConsumptionViewController.h; sourceTree = "<group>"; };
+		E5B5450D19F1087900B7B7A9 /* MDIOSConsumptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSConsumptionViewController.m; sourceTree = "<group>"; };
+		E5B5450E19F1087900B7B7A9 /* MDIOSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSSettingsViewController.h; sourceTree = "<group>"; };
+		E5B5450F19F1087900B7B7A9 /* MDIOSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSSettingsViewController.m; sourceTree = "<group>"; };
+		E5B5451219F1090400B7B7A9 /* DSMenu-iOS.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DSMenu-iOS.pch"; sourceTree = "<group>"; };
+		E5B5451319F1098800B7B7A9 /* Notifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		E5B5451419F10A2C00B7B7A9 /* MDIOSConsumptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSConsumptionView.h; sourceTree = "<group>"; };
+		E5B5451519F10A2C00B7B7A9 /* MDIOSConsumptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSConsumptionView.m; sourceTree = "<group>"; };
+		E5B5451719F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSConsumptionTableViewCell.h; sourceTree = "<group>"; };
+		E5B5451819F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSConsumptionTableViewCell.m; sourceTree = "<group>"; };
+		E5B5451C19F10AF600B7B7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E5B5451E19F10B4700B7B7A9 /* MDIOSRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSRoomsViewController.h; sourceTree = "<group>"; };
+		E5B5451F19F10B4700B7B7A9 /* MDIOSRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSRoomsViewController.m; sourceTree = "<group>"; };
+		E5B5452019F10B4700B7B7A9 /* MDIOSRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSRoomTableViewCell.h; sourceTree = "<group>"; };
+		E5B5452119F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSRoomTableViewCell.m; sourceTree = "<group>"; };
+		E5B5452219F10B4700B7B7A9 /* MDIOSScenesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSScenesTableViewController.h; sourceTree = "<group>"; };
+		E5B5452319F10B4700B7B7A9 /* MDIOSScenesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSScenesTableViewController.m; sourceTree = "<group>"; };
 		E5C1BA84196D8C51009B2985 /* MDDSSConsumptionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSConsumptionManager.h; sourceTree = "<group>"; };
 		E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSConsumptionManager.m; sourceTree = "<group>"; };
 		E5C1BA87196DD4A6009B2985 /* MDConsumptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsumptionView.h; sourceTree = "<group>"; };
@@ -382,6 +464,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5B544BF19F1079500B7B7A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B544DA19F1079500B7B7A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -430,6 +526,8 @@
 				E5280BA51959F5BD006A9FB5 /* macDSTests */,
 				E51AED4919DD29CC007296FB /* DSMenuHelper */,
 				E51AED5D19DD29CC007296FB /* DSMenuHelperTests */,
+				E5B544C319F1079500B7B7A9 /* DSMenu-iOS */,
+				E5B544E019F1079500B7B7A9 /* DSMenu-iOSTests */,
 				E5280B801959F5BD006A9FB5 /* Frameworks */,
 				E5280B7F1959F5BD006A9FB5 /* Products */,
 				E5B437F819D6CB0300A0703F /* DSMenuNonAppStore-Info.plist */,
@@ -444,6 +542,8 @@
 				E5B437F719D6CB0300A0703F /* DSMenu.app */,
 				E51AED4819DD29CC007296FB /* DSMenuHelper.app */,
 				E51AED5A19DD29CC007296FB /* DSMenuHelperTests.xctest */,
+				E5B544C219F1079500B7B7A9 /* DSMenu-iOS.app */,
+				E5B544DD19F1079500B7B7A9 /* DSMenu-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -502,6 +602,7 @@
 				E5548E7619D408D400082430 /* main.m */,
 				E5548E7519D4087400082430 /* DSMenu-Prefix.pch */,
 				E5548E7419D4086000082430 /* ErrorCodes.h */,
+				E5B5451319F1098800B7B7A9 /* Notifications.h */,
 				E5280B8A1959F5BD006A9FB5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -663,6 +764,86 @@
 			path = ../../vendor/StartAtLoginController;
 			sourceTree = "<group>";
 		};
+		E5B544C319F1079500B7B7A9 /* DSMenu-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E5B5451419F10A2C00B7B7A9 /* MDIOSConsumptionView.h */,
+				E5B5451519F10A2C00B7B7A9 /* MDIOSConsumptionView.m */,
+				E5B5451719F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.h */,
+				E5B5451819F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.m */,
+				E5B5450C19F1087900B7B7A9 /* MDIOSConsumptionViewController.h */,
+				E5B5450D19F1087900B7B7A9 /* MDIOSConsumptionViewController.m */,
+				E5B5450E19F1087900B7B7A9 /* MDIOSSettingsViewController.h */,
+				E5B5450F19F1087900B7B7A9 /* MDIOSSettingsViewController.m */,
+				E5B5451E19F10B4700B7B7A9 /* MDIOSRoomsViewController.h */,
+				E5B5451F19F10B4700B7B7A9 /* MDIOSRoomsViewController.m */,
+				E5B5452019F10B4700B7B7A9 /* MDIOSRoomTableViewCell.h */,
+				E5B5452119F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m */,
+				E5B5452219F10B4700B7B7A9 /* MDIOSScenesTableViewController.h */,
+				E5B5452319F10B4700B7B7A9 /* MDIOSScenesTableViewController.m */,
+				E5B544F419F1082B00B7B7A9 /* Resources */,
+				E5B544C819F1079500B7B7A9 /* MDIOSAppDelegate.h */,
+				E5B544C919F1079500B7B7A9 /* MDIOSAppDelegate.m */,
+				E5B5451C19F10AF600B7B7A9 /* Main.storyboard */,
+				E5B544D419F1079500B7B7A9 /* Images.xcassets */,
+				E5B544D619F1079500B7B7A9 /* LaunchScreen.xib */,
+				E5B544C419F1079500B7B7A9 /* Supporting Files */,
+				E5B5451219F1090400B7B7A9 /* DSMenu-iOS.pch */,
+			);
+			path = "DSMenu-iOS";
+			sourceTree = "<group>";
+		};
+		E5B544C419F1079500B7B7A9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5B544C519F1079500B7B7A9 /* Info.plist */,
+				E5B544C619F1079500B7B7A9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5B544E019F1079500B7B7A9 /* DSMenu-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E5B544E319F1079500B7B7A9 /* DSMenu_iOSTests.m */,
+				E5B544E119F1079500B7B7A9 /* Supporting Files */,
+			);
+			path = "DSMenu-iOSTests";
+			sourceTree = "<group>";
+		};
+		E5B544E119F1079500B7B7A9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5B544E219F1079500B7B7A9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5B544F419F1082B00B7B7A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5B544F519F1082B00B7B7A9 /* GFX */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E5B544F519F1082B00B7B7A9 /* GFX */ = {
+			isa = PBXGroup;
+			children = (
+				E5B544F619F1083E00B7B7A9 /* alert@2x.png */,
+				E5B544F719F1083E00B7B7A9 /* chartTabbar@2x.png */,
+				E5B544F819F1083E00B7B7A9 /* checkmark@2x.png */,
+				E5B544F919F1083E00B7B7A9 /* favoritesTabbar@2x.png */,
+				E5B544FA19F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png */,
+				E5B544FB19F1083E00B7B7A9 /* listTabbar@2x.png */,
+				E5B544FC19F1083E00B7B7A9 /* listTabbarSelected@2x.png */,
+				E5B544FD19F1083E00B7B7A9 /* noConnection@2x.png */,
+				E5B544FE19F1083E00B7B7A9 /* settingsTab@2x.png */,
+				E5B544FF19F1083E00B7B7A9 /* settingsTabSelected@2x.png */,
+			);
+			path = GFX;
+			sourceTree = "<group>";
+		};
 		E5DE642F1961A15600938FE2 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +974,41 @@
 			productReference = E5B437F719D6CB0300A0703F /* DSMenu.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E5B544C119F1079500B7B7A9 /* DSMenu-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5B544E919F1079500B7B7A9 /* Build configuration list for PBXNativeTarget "DSMenu-iOS" */;
+			buildPhases = (
+				E5B544BE19F1079500B7B7A9 /* Sources */,
+				E5B544BF19F1079500B7B7A9 /* Frameworks */,
+				E5B544C019F1079500B7B7A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DSMenu-iOS";
+			productName = "DSMenu-iOS";
+			productReference = E5B544C219F1079500B7B7A9 /* DSMenu-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5B544DC19F1079500B7B7A9 /* DSMenu-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5B544EA19F1079500B7B7A9 /* Build configuration list for PBXNativeTarget "DSMenu-iOSTests" */;
+			buildPhases = (
+				E5B544D919F1079500B7B7A9 /* Sources */,
+				E5B544DA19F1079500B7B7A9 /* Frameworks */,
+				E5B544DB19F1079500B7B7A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5B544DF19F1079500B7B7A9 /* PBXTargetDependency */,
+			);
+			name = "DSMenu-iOSTests";
+			productName = "DSMenu-iOSTests";
+			productReference = E5B544DD19F1079500B7B7A9 /* DSMenu-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -835,6 +1051,13 @@
 							};
 						};
 					};
+					E5B544C119F1079500B7B7A9 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					E5B544DC19F1079500B7B7A9 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = E5B544C119F1079500B7B7A9;
+					};
 				};
 			};
 			buildConfigurationList = E5280B791959F5BD006A9FB5 /* Build configuration list for PBXProject "DSMenu" */;
@@ -856,6 +1079,8 @@
 				E5B437A619D6CB0300A0703F /* DSMenu (non app store) */,
 				E51AED4719DD29CC007296FB /* DSMenuHelper */,
 				E51AED5919DD29CC007296FB /* DSMenuHelperTests */,
+				E5B544C119F1079500B7B7A9 /* DSMenu-iOS */,
+				E5B544DC19F1079500B7B7A9 /* DSMenu-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -994,6 +1219,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5B544C019F1079500B7B7A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5B5450A19F1085200B7B7A9 /* cchart_highlight.png in Resources */,
+				E5B5450619F1083E00B7B7A9 /* listTabbarSelected@2x.png in Resources */,
+				E5B5450B19F1085200B7B7A9 /* cchart_highlight@2x.png in Resources */,
+				E5B5451D19F10AF600B7B7A9 /* Main.storyboard in Resources */,
+				E5B5450019F1083E00B7B7A9 /* alert@2x.png in Resources */,
+				E5B5450719F1083E00B7B7A9 /* noConnection@2x.png in Resources */,
+				E5B5450119F1083E00B7B7A9 /* chartTabbar@2x.png in Resources */,
+				E5B5450419F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png in Resources */,
+				E5B5450919F1083E00B7B7A9 /* settingsTabSelected@2x.png in Resources */,
+				E5B5450319F1083E00B7B7A9 /* favoritesTabbar@2x.png in Resources */,
+				E5B5450819F1083E00B7B7A9 /* settingsTab@2x.png in Resources */,
+				E5B5450519F1083E00B7B7A9 /* listTabbar@2x.png in Resources */,
+				E5B544D819F1079500B7B7A9 /* LaunchScreen.xib in Resources */,
+				E5B5452819F10EA300B7B7A9 /* Localizable.strings in Resources */,
+				E5B5450219F1083E00B7B7A9 /* checkmark@2x.png in Resources */,
+				E5B544D519F1079500B7B7A9 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B544DB19F1079500B7B7A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1087,6 +1342,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5B544BE19F1079500B7B7A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5B544EC19F107F800B7B7A9 /* DDASLLogCapture.m in Sources */,
+				E5B544F019F107FE00B7B7A9 /* DDTTYLogger.m in Sources */,
+				E5B544EE19F107FE00B7B7A9 /* DDFileLogger.m in Sources */,
+				E5B5452619F10B4700B7B7A9 /* MDIOSScenesTableViewController.m in Sources */,
+				E5B544F119F1080A00B7B7A9 /* MDDSSManager.m in Sources */,
+				E5B544F319F1080D00B7B7A9 /* MDDSSConsumptionManager.m in Sources */,
+				E5B5452419F10B4700B7B7A9 /* MDIOSRoomsViewController.m in Sources */,
+				E5B544F219F1080D00B7B7A9 /* MDDSSURLConnection.m in Sources */,
+				E5B5451B19F10AC500B7B7A9 /* MDConsumptionLineView.m in Sources */,
+				E5B5451919F10A3B00B7B7A9 /* MDIOSConsumptionTableViewCell.m in Sources */,
+				E5B544CA19F1079500B7B7A9 /* MDIOSAppDelegate.m in Sources */,
+				E5B5451619F10A2C00B7B7A9 /* MDIOSConsumptionView.m in Sources */,
+				E5B5451119F1087900B7B7A9 /* MDIOSSettingsViewController.m in Sources */,
+				E5B544C719F1079500B7B7A9 /* main.m in Sources */,
+				E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */,
+				E5B5451A19F10AC200B7B7A9 /* MDConsumptionTextView.m in Sources */,
+				E5B544ED19F107FE00B7B7A9 /* DDASLLogger.m in Sources */,
+				E5B544EB19F107F400B7B7A9 /* DDAbstractDatabaseLogger.m in Sources */,
+				E5B5452519F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m in Sources */,
+				E5B5452719F10B7000B7B7A9 /* MDDSHelper.m in Sources */,
+				E5B5451019F1087900B7B7A9 /* MDIOSConsumptionViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B544D919F1079500B7B7A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5B544E419F1079500B7B7A9 /* DSMenu_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1104,6 +1395,11 @@
 			isa = PBXTargetDependency;
 			target = E51AED4719DD29CC007296FB /* DSMenuHelper */;
 			targetProxy = E569F46A19DDAC610074BC78 /* PBXContainerItemProxy */;
+		};
+		E5B544DF19F1079500B7B7A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5B544C119F1079500B7B7A9 /* DSMenu-iOS */;
+			targetProxy = E5B544DE19F1079500B7B7A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1143,6 +1439,14 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		E5B544D619F1079500B7B7A9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5B544D719F1079500B7B7A9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1152,7 +1456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = DSMenuHelper/DSMenuHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1175,7 +1479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = DSMenuHelper/DSMenuHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = DSMenuHelper/Info.plist;
@@ -1407,6 +1711,92 @@
 			};
 			name = Release;
 		};
+		E5B544E519F1079500B7B7A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DSMenu-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5B544E619F1079500B7B7A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
+				INFOPLIST_FILE = "DSMenu-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E5B544E719F1079500B7B7A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DSMenu-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSMenu-iOS.app/DSMenu-iOS";
+			};
+			name = Debug;
+		};
+		E5B544E819F1079500B7B7A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DSMenu-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSMenu-iOS.app/DSMenu-iOS";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1463,6 +1853,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E5B544E919F1079500B7B7A9 /* Build configuration list for PBXNativeTarget "DSMenu-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5B544E519F1079500B7B7A9 /* Debug */,
+				E5B544E619F1079500B7B7A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E5B544EA19F1079500B7B7A9 /* Build configuration list for PBXNativeTarget "DSMenu-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5B544E719F1079500B7B7A9 /* Debug */,
+				E5B544E819F1079500B7B7A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -16,6 +16,15 @@
 @property (nonatomic, copy) void (^callbackLatest)(NSArray*, NSError*);
 @property (nonatomic, copy) void (^callbackHistory)(NSDictionary*, NSArray*);
 
+@property (strong) NSString *filterHistoryWithDSMID;
+
+@property (assign) CGRect padding;
+@property (assign) CGRect paddingRect;
+
+@property (assign) CGColorRef backgroundColor;
+@property (assign) CGColorRef lineColor;
+@property (assign) CGColorRef fillColor;
+
 + (MDDSSConsumptionManager *)defaultManager;  /**< singleton */
 
 
@@ -39,6 +48,10 @@
  */
 - (void)stopPollingHistory;
 
+/**
+ * invalidate the date
+ */
+- (void)invalidateHistory;
 
 /**
  * Helper for getting dSM name by dsid out of the cache

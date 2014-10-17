@@ -13,7 +13,7 @@
 
 
 #if TARGET_OS_IPHONE
-    #define NSColor UIColor
+#define NSColor UIColor
 #endif
 
 static MDDSSConsumptionManager *defaultManager;
@@ -29,17 +29,17 @@ static MDDSSConsumptionManager *defaultManager;
 @property (strong) NSMutableDictionary *historyValues;
 @property (strong) NSArray *colors;
 
-@property CGRect padding;
-@property CGRect paddingRect;
 @property CGFloat extendFactor;
 
 @end
 
 @implementation MDDSSConsumptionManager
 
+@synthesize filterHistoryWithDSMID = _filterHistoryWithDSMID;
+
 void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 {
-
+    
     CGFloat minx = CGRectGetMinX(rrect), midx = CGRectGetMidX(rrect), maxx = CGRectGetMaxX(rrect);
     CGFloat miny = CGRectGetMinY(rrect), midy = CGRectGetMidY(rrect), maxy = CGRectGetMaxY(rrect);
     
@@ -52,7 +52,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     CGContextAddArcToPoint(context, maxx, maxy, midx, maxy, radius);
     // Add an arc through 8 to 9
     CGContextAddArcToPoint(context, minx, maxy, minx, midy, radius);
-    // Close the path 
+    // Close the path
     CGContextClosePath(context);
 }
 
@@ -79,6 +79,15 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         self.padding = CGRectMake(20, 20, 20, 20);
         self.paddingRect = CGRectMake(18, 18, 18, 28);
         self.extendFactor = 1.2;
+        
+        CGFloat components[4] = {0.06,0.07,0.07,0.9};
+        self.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), components);
+        
+        CGFloat componentsFill[4] = {0.9,0.0,0.0,0.3};
+        self.fillColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), componentsFill);
+        
+        CGFloat componentsLine[4] = {0.9,0.0,0.0,0.8};
+        self.lineColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), componentsLine);
     }
     return self;
 }
@@ -86,9 +95,9 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 - (void)startPollingLatest:(NSInteger)intervallInSeconds
 {
     self.refreshTimerLatest = [NSTimer timerWithTimeInterval:intervallInSeconds
-                                             target:self
-                                           selector:@selector(latestTimerFired:)
-                                           userInfo:nil repeats:YES];
+                                                      target:self
+                                                    selector:@selector(latestTimerFired:)
+                                                    userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.refreshTimerLatest forMode:NSRunLoopCommonModes];
     [self.refreshTimerLatest fire];
 }
@@ -96,9 +105,9 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 - (void)startPollingHistory:(NSInteger)intervallInSeconds
 {
     self.refreshTimerHistory = [NSTimer timerWithTimeInterval:intervallInSeconds
-                                                target:self
-                                              selector:@selector(historyTimerFired:)
-                                              userInfo:nil repeats:YES];
+                                                       target:self
+                                                     selector:@selector(historyTimerFired:)
+                                                     userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.refreshTimerHistory forMode:NSRunLoopCommonModes];
     [self.refreshTimerHistory fire];
 }
@@ -119,6 +128,23 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     self.callbackHistory(nil, nil);
 }
 
+- (void)invalidateHistory
+{
+    self.historyValues = [[NSMutableDictionary alloc] init];
+}
+
+- (void)setFilterHistoryWithDSMID:(NSString *)filterHistoryWithDSMID
+{
+    _filterHistoryWithDSMID = filterHistoryWithDSMID;
+    [self invalidateHistory];
+    [self historyTimerFired:self];
+}
+
+- (NSString *)filterHistoryWithDSMID
+{
+    return _filterHistoryWithDSMID;
+}
+
 - (void)latestTimerFired:(id)sender
 {
     [self performSelectorInBackground:@selector(pollLatestValuesInBackground) withObject:nil];
@@ -132,7 +158,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 - (void)pollLatestValuesInBackground
 {
     @autoreleasepool {
-
+        
         if(self.pollInProgressLatest == NO)
         {
             // copy dSM array synchronized to prevent thread conflicts
@@ -143,7 +169,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             if(dsm)
             {
                 self.pollInProgressLatest = YES;
-     
+                
                 [[MDDSSManager defaultManager] getConsumptionLevelsLatest:^(NSDictionary *json, NSError *error){
                     self.pollInProgressLatest = NO;
                     
@@ -163,20 +189,26 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             }
             CFRunLoopRun();
         }
-     
+        
     }
 }
 
 - (void)pollHistoryValuesInBackground
 {
     @autoreleasepool {
-
+        
         if(self.pollInProgressHistory == NO)
         {
             self.pollInProgressHistory = YES;
             [self.historyValues removeAllObjects];
             
-            [[MDDSSManager defaultManager] getConsumptionLevelsDSID:@".meters(all)" callback:^(NSDictionary *jsonV, NSError *errorV)
+            NSString *dsmID = @".meters(all)";
+            if(self.filterHistoryWithDSMID && self.filterHistoryWithDSMID.length > 3)
+            {
+                dsmID = [NSString stringWithFormat:@".meters(%@)", self.filterHistoryWithDSMID];
+            }
+            
+            [[MDDSSManager defaultManager] getConsumptionLevelsDSID:dsmID callback:^(NSDictionary *jsonV, NSError *errorV)
              {
                  @try {
                      if(jsonV && [jsonV isKindOfClass:[NSDictionary class]])
@@ -187,7 +219,10 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                          }
                          [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
                          self.pollInProgressHistory = NO;
-                         self.callbackHistory(self.historyValues, self.dSMs);
+                         if(self.callbackHistory)
+                         {
+                             self.callbackHistory(self.historyValues, self.dSMs);
+                         }
                      }
                  }
                  @catch (NSException *exception) {
@@ -198,7 +233,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                  }
              }];
         }
-
+        
         CFRunLoopRun();
     }
 }
@@ -282,7 +317,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             }
             return 0;
         }
-
+        
     }
     return 0;
 }
@@ -354,7 +389,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     
     NSString *referenceDSM = @"all";//[self referenceDSM];
     
-
+    
     
     CGFloat baseX = self.padding.origin.x;
     CGFloat currentX = baseX;
@@ -381,8 +416,8 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
 {
     BOOL drawOnBitmap = NO;
     
-    CGRect padding = CGRectMake(20, 20, 20, 20);
-    CGRect paddingRect = CGRectMake(18, 18, 18, 28);
+    CGRect padding = self.padding;
+    CGRect paddingRect = self.paddingRect;
     
     double maxValue = [self maxValue];
     double maxHeight = maxValue * self.extendFactor; // /0.7 = 30% empty space at top
@@ -406,7 +441,8 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                                              (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     }
     
-    CGContextSetRGBFillColor(imageContext,0.0,0.0,0.0,1.0);
+    const CGFloat *components = CGColorGetComponents(self.backgroundColor);
+    CGContextSetRGBFillColor(imageContext,components[0],components[1],components[2],components[3]);
     MDContextAddRoundedRect(imageContext, CGRectMake(paddingRect.origin.x, paddingRect.origin.y, size.width-paddingRect.size.width-paddingRect.origin.x, size.height-paddingRect.size.height-paddingRect.origin.y), 3);
     CGContextDrawPath(imageContext, kCGPathFill);
     
@@ -422,14 +458,14 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     CGFloat currentX = baseX;
     NSUInteger valueCount = [[self.historyValues objectForKey:referenceDSM] count];
     
-
+    
     CGContextSelectFont(imageContext, "Helvetica-Light", 12, kCGEncodingMacRoman);
     NSString *titleString = NSLocalizedString(@"historyTitle", @"history graph title");
-   
+    
     CGContextSetTextDrawingMode(imageContext, kCGTextInvisible);
     CGContextShowTextAtPoint(imageContext, 0, 0, [titleString cStringUsingEncoding:NSUTF8StringEncoding], titleString.length);
     CGPoint pt = CGContextGetTextPosition(imageContext);
-
+    
     CGContextSetTextDrawingMode(imageContext, kCGTextFill);
     CGContextSetFillColorWithColor(imageContext, [[NSColor grayColor] CGColor]);
     CGContextShowTextAtPoint(imageContext, size.width/2.0-pt.x/2.0, size.height-20,  [titleString cStringUsingEncoding:NSUTF8StringEncoding], titleString.length);
@@ -440,7 +476,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
     
     if((!self.historyValues) || valueCount <= 0)
     {
-
+        
         CGContextSetTextDrawingMode(imageContext, kCGTextInvisible);
         
         NSString *loadingText = NSLocalizedString(@"loadingHistory", @"");
@@ -460,12 +496,6 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         {
             double value = [(NSNumber *)[timeValue objectAtIndex:1] doubleValue];
             
-            CGColorRef color = [self colorForDSM:referenceDSM];
-            const CGFloat * colorComponents = CGColorGetComponents(color);
-            CGContextSetRGBFillColor(imageContext,colorComponents[0]*1.3,colorComponents[1]*1.3,colorComponents[2]*1.3,0.5);
-            CGContextSetStrokeColorWithColor(imageContext,color);
-            
-            
             if(currentX == baseX)
             {
                 CGPathMoveToPoint(aPath, NULL, currentX, padding.size.height+value*sizeFakt);
@@ -476,13 +506,45 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
             currentX+=xStepWidth;
         }
         
-        CGContextAddPath(imageContext, aPath);
-        CGContextDrawPath(imageContext, kCGPathStroke);
+        const CGFloat *components = CGColorGetComponents(self.fillColor);
+        CGContextSetRGBFillColor(imageContext,components[0],components[1],components[2],components[3]);
+        
+        const CGFloat *componentsStroke = CGColorGetComponents(self.lineColor);
+        CGContextSetStrokeColor(imageContext, componentsStroke);
+        
+        
+        
+        
+        
+        
+        
+        CGContextSaveGState(imageContext);
         
         CGContextAddPath(imageContext, aPath);
         CGContextAddLineToPoint(imageContext, currentX-xStepWidth, padding.size.height);
         CGContextAddLineToPoint(imageContext, baseX, padding.size.height);
-        CGContextDrawPath(imageContext, kCGPathFill);
+        CGContextClip(imageContext);
+        
+        
+        
+        CGFloat colors [] = {
+            components[0]*0.7, components[1]*0.7, components[2]*0.7, components[3],
+            components[0]*3.0, components[1]*3.0, components[2]*3.0, components[3]*1.5
+        };
+        
+        CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+        CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+        CGPoint startPoint = CGPointMake(0,0);
+        CGPoint endPoint = CGPointMake(0,size.height);
+        CGContextDrawLinearGradient(imageContext, gradient, startPoint, endPoint, 0);
+        CGGradientRelease(gradient), gradient = NULL;
+        
+        CGContextRestoreGState(imageContext);
+        
+        
+        CGContextAddPath(imageContext, aPath);
+        CGContextDrawPath(imageContext, kCGPathStroke);
         
         CGContextSetFillColorWithColor(imageContext, [[NSColor whiteColor] CGColor]);
         CGContextShowTextAtPoint(imageContext, paddingRect.origin.x+3, paddingRect.origin.y+5, "0 W", 3);
