@@ -13,7 +13,7 @@
 @end
 @implementation MDDSHelper
 
-+ (NSImage *)iconForDevice:(NSDictionary *)deviceDictonary
++ (NSImage_OR_UIImage *)iconForDevice:(NSDictionary *)deviceDictonary
 {
     NSArray *groups = [(NSDictionary *)deviceDictonary objectForKey:@"groups"];
     
@@ -28,7 +28,7 @@
         iconName = [NSString stringWithFormat:@"group_%@", [groups objectAtIndex:0]];
     }
     
-    return [NSImage imageNamed:iconName];
+    return [NSImage_OR_UIImage imageNamed:iconName];
 }
 
 + (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group
