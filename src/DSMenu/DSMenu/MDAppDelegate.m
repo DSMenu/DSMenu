@@ -505,11 +505,25 @@
     
     int cnt=0;
     int total = 0;
+    
+    
+    NSMutableArray *consumptionData = [NSMutableArray arrayWithCapacity:20];
+    
     for(NSDictionary *dSM in json)
     {
         NSString *name = [[MDDSSConsumptionManager defaultManager] dSMNameFromID:[dSM objectForKey:@"dsid"]];
-        NSString *value = [NSString stringWithFormat:@"%d W\t  %@", ([[dSM objectForKey:@"value"] intValue]), name];
-        total += [[dSM objectForKey:@"value"] intValue];
+        [consumptionData addObject:@{@"name": name, @"value" : [dSM objectForKey:@"value"]}];
+    }
+    
+    [consumptionData sortUsingComparator:^ NSComparisonResult(NSDictionary *d1, NSDictionary *d2){
+        return [[d1 objectForKey:@"name"] compare:[d2 objectForKey:@"name"]];
+    }];
+    
+    for(NSDictionary *dict in consumptionData)
+    {
+        
+        NSString *value = [NSString stringWithFormat:@"%d W\t  %@", ([[dict objectForKey:@"value"] intValue]), [dict objectForKey:@"name"]];
+        total += [[dict objectForKey:@"value"] intValue];
         [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:value]];
         if(cnt+1 < json.count)
         {
@@ -517,6 +531,7 @@
         }
         cnt++;
     }
+    
     
     self.consumptionMenu.title = [NSString stringWithFormat:@"%@: %d W",NSLocalizedString(@"Consumption", @"Consumption Menu Item"), total];
     
