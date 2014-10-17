@@ -488,8 +488,6 @@ static MDDSSManager *defaultManager;
 
 - (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(void (^)(NSDictionary*, NSError*))callback
 {
-    //username = @"jonas.schnelli@include7.ch"; password = @"Digi!111s";
-    
     NSDictionary *params = @{ @"user": username, @"password" : password, @"mobileAppUuid": self.appUUID, @"appName": self.appName, @"mobileName": @"TestApp"};
     
     [MDDSSURLConnection jsonConnectionToHostWithPort:@"dsservices.aizo.com" path:@"public/accessmanagement/V1_0/RemoteConnectivity/GetRelayLinkAndToken" params:params HTTPPost:YES completionHandler:^(NSDictionary *json, NSError *error){
