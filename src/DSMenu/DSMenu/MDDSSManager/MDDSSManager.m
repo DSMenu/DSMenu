@@ -282,6 +282,15 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+- (void)lastCalledSceneInZoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId, @"groupID":groupID };
+    [self jsonCall:@"/json/zone/getLastCalledScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        callback(json, error);
+    }];
+}
+
 - (void)turnOnDeviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback
 {
     

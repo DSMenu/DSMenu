@@ -69,4 +69,18 @@
     return NO;
 }
 
++ (NSArray *)availableGroupsForZone:(NSDictionary *)zoneDict
+{
+    NSMutableArray *groups = [NSMutableArray array];
+    for(int i = 1; i<9;i++)
+    {
+        if([self hasGroup:i inZone:zoneDict])
+        {
+            [groups addObject:[NSString stringWithFormat:@"%d", i]];
+        }
+    }
+    
+    return groups;
+}
+
 @end

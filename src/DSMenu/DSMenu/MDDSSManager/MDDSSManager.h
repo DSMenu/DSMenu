@@ -85,6 +85,11 @@
 - (NSArray *)customSceneNamesForGroup:(int)forGroup inZone:(int)forZoneId;
 
 /**
+ * get the last called scene
+ */
+- (void)lastCalledSceneInZoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback;
+
+/**
  * reset host/token/etc. to default (will persist!)
  */
 - (void)resetToDefaults;

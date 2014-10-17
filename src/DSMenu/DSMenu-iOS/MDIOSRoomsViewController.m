@@ -95,9 +95,10 @@
         roomName = [NSLocalizedString(@"unnamedRoom", @"Menu String for unnamed room") stringByAppendingFormat:@" %@", [zoneDict objectForKey:@"id"]];
     }
     
+    [cell buildLabels:[MDDSHelper availableGroupsForZone:zoneDict]];
+    
     cell.zoneId = [zoneDict objectForKey:@"id"];
-    cell.textLabel.text = roomName;
-    cell.detailTextLabel.text = @"Licht / Schatten";
+    cell.mainLabel.text = roomName;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }

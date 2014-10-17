@@ -18,4 +18,20 @@
  */
 @interface MDIOSRoomTableViewCell : UITableViewCell
 @property (strong) NSString *zoneId;
+@property (strong) IBOutlet UIView *colorBadge;
+@property (strong) IBOutlet UILabel *mainLabel;
+@property (strong) IBOutlet UIView *labelsView;
+@property (strong) UILabel *firstLabel;
+@property (strong) UIView *firstLabelView;
+
+@property (strong) UILabel *loadingLabel;
+@property (strong) UIView *loadingLabelBackgroundView;
+
+@property (strong) NSMutableArray *labels;
+@property (strong) NSMutableArray *labelBackgroundViews;
+
+@property (strong) NSArray *availableGroups;
+
+- (void)buildLabels:(NSArray *)groupNumbers;
+
 @end

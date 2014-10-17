@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
-            timestampString = "435227910.5777"
+            timestampString = "435257962.363642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
             landmarkName = "-loginUser:password:callBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -105,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DSMenu-iOS/MDIOSSettingsViewController.m"
-            timestampString = "435227924.605999"
+            filePath = "DSMenu-iOS/MDIOSRoomTableViewCell.m"
+            timestampString = "435258733.563528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "-loginPressed:"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-secondButton:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
