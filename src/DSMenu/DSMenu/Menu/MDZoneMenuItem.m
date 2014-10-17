@@ -207,14 +207,20 @@
 {
     self.clickedSubmenu = (MDSceneMenuItem *)sender;
     self.clickType = MDZoneMenuItemClickTypeScene;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.target performSelector:self.action withObject:self]; //<TODO: refactor
+#pragma clang diagnostic pop
 }
 
 - (void)deviceMenuItemClicked:(id)sender
 {
     self.clickedSubmenu = (MDSceneMenuItem *)sender;
     self.clickType = MDZoneMenuItemClickTypeDevice;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self.target performSelector:self.action withObject:self]; //<TODO: refactor
+#pragma clang diagnostic pop   
 }
 
 
