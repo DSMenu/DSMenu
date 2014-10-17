@@ -1,4 +1,4 @@
- //
+//
 //  MDDSSManager.m
 //  DSMenu
 //
@@ -50,6 +50,9 @@ static MDDSSManager *defaultManager;
         self.port = @"8080";
         self.host = @"";
         self.dSSVersionString = nil;
+        self.appUUID = @"8720a278-64d3-49df-ac89-6cb70cafccfd";
+        
+        self.connectionProblems = NO;
         
         NSString *possibleHost = [[NSUserDefaults standardUserDefaults] objectForKey:kMDDSSMANAGER_HOST_UD_KEY];
         if(possibleHost && [possibleHost isKindOfClass:[NSString class]])
@@ -149,6 +152,7 @@ static MDDSSManager *defaultManager;
 
 - (void)jsonCall:(NSString *)path params:(NSDictionary *)params completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
+    self.connectionProblems = NO;
     [MDDSSURLConnection jsonConnectionToHostWithPort:self.hostWithPort path:path params:params completionHandler:^(NSDictionary *json, NSError *error){
         if(error != nil)
         {
@@ -163,6 +167,7 @@ static MDDSSManager *defaultManager;
             if([[json objectForKey:@"message"] isEqualToString:@"Application-Authentication failed"])
             {
                 //ERROR TODO
+                self.connectionProblems = YES;
                 DDLogWarn(@"ERROR, can't login");
                 NSError *error = [NSError errorWithDomain:@"" code:MD_ERROR_AUTH_ERROR userInfo:nil]; // TODO
                 handler(nil, error);
@@ -174,6 +179,7 @@ static MDDSSManager *defaultManager;
                 
                 if(error)
                 {
+                    self.connectionProblems = YES;
                     handler(nil, error);
                     return;
                 }
@@ -195,7 +201,7 @@ static MDDSSManager *defaultManager;
         {
             self.dSSVersionString = [[json objectForKey:@"result"] objectForKey:@"version"];
         }
-       callback(json, error);
+        callback(json, error);
     }];
 }
 
@@ -216,7 +222,7 @@ static MDDSSManager *defaultManager;
 
 - (void)loginApplication:(NSString *)loginToken callBlock:(void (^)(NSDictionary*, NSError*))handler
 {
-    [self jsonCall:@"/json/system/loginApplication" params:[NSDictionary dictionaryWithObject:self.applicationToken forKey:@"loginToken"] completionHandler:^(NSDictionary *json, NSError *error){
+    [self jsonCall:@"/json/system/loginApplication" params:[NSDictionary dictionaryWithObject:loginToken forKey:@"loginToken"] completionHandler:^(NSDictionary *json, NSError *error){
         
         if([json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"token"])
         {
@@ -253,8 +259,8 @@ static MDDSSManager *defaultManager;
     [self jsonCall:@"/json/device/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
         DDLogDebug(@"%@", json);
-
-
+        
+        
     }];
 }
 
@@ -295,7 +301,7 @@ static MDDSSManager *defaultManager;
 
 - (void)dimZone:(NSString *)zoneId groupID:(NSString *)groupID value:(float)value callback:(void (^)(NSDictionary*, NSError*))callback
 {
- 
+    
     DDLogVerbose(@"DimZone to: %f", value);
     
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId,@"groupID":groupID, @"value":[NSNumber numberWithInt:(int)(value*100)]  };
@@ -380,7 +386,7 @@ static MDDSSManager *defaultManager;
         DDLogVerbose(@"%@", json);
     }];
     
-//setSensorEventTableEntry?_dc=1404910928359&dsid=3504175fe00000000006ef99&eventIndex=1&eventName=Bastelklemme%20aus&sensorIndex=2&test=1&value=20&hysteresis=10&validity=2&action=0
+    //setSensorEventTableEntry?_dc=1404910928359&dsid=3504175fe00000000006ef99&eventIndex=1&eventName=Bastelklemme%20aus&sensorIndex=2&test=1&value=20&hysteresis=10&validity=2&action=0
 }
 
 - (void)resetToDefaults
@@ -484,11 +490,65 @@ static MDDSSManager *defaultManager;
 {
     //username = @"jonas.schnelli@include7.ch"; password = @"Digi!111s";
     
-    NSDictionary *params = @{ @"user": username, @"password" : password, @"mobileAppUuid": @"4C9C5A66-180F-45E7-A15D-F278157774E9", @"appName": self.appName, @"mobileName": @"TestApp"};
+    NSDictionary *params = @{ @"user": username, @"password" : password, @"mobileAppUuid": self.appUUID, @"appName": self.appName, @"mobileName": @"TestApp"};
     
     [MDDSSURLConnection jsonConnectionToHostWithPort:@"dsservices.aizo.com" path:@"public/accessmanagement/V1_0/RemoteConnectivity/GetRelayLinkAndToken" params:params HTTPPost:YES completionHandler:^(NSDictionary *json, NSError *error){
-       
+        
+        @try {
+            if([json objectForKey:@"Response"] && [[json objectForKey:@"Response"] objectForKey:@"Token"])
+            {
+                self.applicationToken = [[json objectForKey:@"Response"] objectForKey:@"Token"];
+                [self persistApplicationToken];
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+        
         callback(json,error);
+        
+    }];
+}
+
+- (void)loginUser:(NSString *)username password:(NSString *)password callBlock:(void (^)(NSDictionary*, NSError*))handler
+{
+    NSDictionary *params = @{ @"user": username, @"password" : password};
+    
+    [self jsonCall:@"/json/system/login" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        
+        if([json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"token"])
+        {
+            self.currentSessionToken = [[json objectForKey:@"result"] objectForKey:@"token"];
+        }
+        
+        handler(json, error);
+        
+    }];
+}
+
+- (void)enableToken:(NSString *)applicationToken callBlock:(void (^)(NSDictionary*, NSError*))handler
+{
+    NSDictionary *params = @{ @"applicationToken": applicationToken};
+    
+    [self jsonCall:@"/json/system/enableToken" params:params completionHandler:^(NSDictionary *json, NSError *error){
+        
+        
+        handler(json, error);
+        
+    }];
+}
+
+- (void)logoutUser:(void (^)(NSDictionary*, NSError*))handler
+{
+    [self jsonCall:@"/json/system/logout" params:@{} completionHandler:^(NSDictionary *json, NSError *error){
+        
+        self.currentSessionToken = nil;
+        
+        handler(json, error);
         
     }];
 }

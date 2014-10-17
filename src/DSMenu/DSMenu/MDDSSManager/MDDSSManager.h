@@ -19,6 +19,7 @@
  * Details.
  */
 @property NSString *appName;
+@property NSString *appUUID;
 
 @property NSString *host; /**< Host to connect with (without https://). */
 @property NSString *port;
@@ -29,6 +30,8 @@
 
 @property BOOL useRemoteConnectivity;
 @property NSString *remoteConnectivityUsername;
+
+@property BOOL connectionProblems;
 
 + (MDDSSManager *)defaultManager; /**< singleton */
 
@@ -96,4 +99,8 @@
 
 #pragma mark - RemoteConnectivityStack
 - (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(void (^)(NSDictionary*, NSError*))callback;
+- (void)enableToken:(NSString *)applicationToken callBlock:(void (^)(NSDictionary*, NSError*))handler;
+- (void)loginUser:(NSString *)username password:(NSString *)password callBlock:(void (^)(NSDictionary*, NSError*))handler;
+- (void)logoutUser:(void (^)(NSDictionary*, NSError*))handler;
+- (void)loginApplication:(NSString *)loginToken callBlock:(void (^)(NSDictionary*, NSError*))handler;
 @end
