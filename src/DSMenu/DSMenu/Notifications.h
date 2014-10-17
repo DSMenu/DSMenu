@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup core
+ */
+
 #ifndef DSMenu_Notifications_h
 #define DSMenu_Notifications_h
 

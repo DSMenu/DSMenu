@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup core
+ */
+
 #if TARGET_OS_IPHONE
 #define NSView_OR_UIView UIView
 #define NSColor_OR_UIColor UIColor

@@ -9,6 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "MDStepMenuItemDelegate.h"
 
+/**
+ * \ingroup OSX
+ */
+
 typedef enum MDAppState {
     MDAppStateBootstrapping, /**< enum state for booting the app */
     MDAppStateLoadingStructure,

@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ * \ingroup OSX
+ */
+
 @interface MDConsumptionView : NSView
 
 @end

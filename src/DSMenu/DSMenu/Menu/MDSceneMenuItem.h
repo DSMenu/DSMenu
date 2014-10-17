@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup OSX
+ */
+
 #import <Cocoa/Cocoa.h>
 
 /**

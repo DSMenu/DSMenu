@@ -22,6 +22,8 @@ Inheritance diagram for M\-D\-D\-S\-S\-Consumption\-Manager\-:\begin{figure}[H]
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_a5c9bf787dd26bf05d1185cf06412ba32}{stop\-Polling\-History}
 \item 
+(void) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_a4f8c8f4bff4220024dbb031d046b494c}{invalidate\-History}
+\item 
 (N\-S\-String $\ast$) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_a4347a6f14215e842e5629072c1a883c4}{d\-S\-M\-Name\-From\-I\-D\-:}
 \item 
 (void) -\/ \hyperlink{interface_m_d_d_s_s_consumption_manager_ac4d5086c7cf8ce63e8e3996ba5e841ea}{draw\-History\-On\-Context\-:size\-:}
@@ -40,6 +42,24 @@ Inheritance diagram for M\-D\-D\-S\-S\-Consumption\-Manager\-:\begin{figure}[H]
 
 \item 
 \hypertarget{interface_m_d_d_s_s_consumption_manager_a710c4c8abe3ecfb0555ae66cd7c0d938}{void($^\wedge$ {\bfseries callback\-History} )(N\-S\-Dictionary $\ast$, N\-S\-Array $\ast$)}\label{interface_m_d_d_s_s_consumption_manager_a710c4c8abe3ecfb0555ae66cd7c0d938}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_consumption_manager_aa9437e121568771ef8c8154b7a115fac}{N\-S\-String $\ast$ {\bfseries filter\-History\-With\-D\-S\-M\-I\-D}}\label{interface_m_d_d_s_s_consumption_manager_aa9437e121568771ef8c8154b7a115fac}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_consumption_manager_aa959f2a0c6d71d92fa17853d597736cf}{C\-G\-Rect {\bfseries padding}}\label{interface_m_d_d_s_s_consumption_manager_aa959f2a0c6d71d92fa17853d597736cf}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_consumption_manager_a72e5d34d0dcff5ada9153d61c76889ef}{C\-G\-Rect {\bfseries padding\-Rect}}\label{interface_m_d_d_s_s_consumption_manager_a72e5d34d0dcff5ada9153d61c76889ef}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_consumption_manager_a347ae0cd5bc07ac0b91bb2a11e4a1d92}{C\-G\-Color\-Ref {\bfseries background\-Color}}\label{interface_m_d_d_s_s_consumption_manager_a347ae0cd5bc07ac0b91bb2a11e4a1d92}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_consumption_manager_ac8ccb8272ae380d168642d5472b25e25}{C\-G\-Color\-Ref {\bfseries line\-Color}}\label{interface_m_d_d_s_s_consumption_manager_ac8ccb8272ae380d168642d5472b25e25}
+
+\item 
+\hypertarget{interface_m_d_d_s_s_consumption_manager_ab668f2d7e7d51b70a0648d9fa2600436}{C\-G\-Color\-Ref {\bfseries fill\-Color}}\label{interface_m_d_d_s_s_consumption_manager_ab668f2d7e7d51b70a0648d9fa2600436}
 
 \end{DoxyCompactItemize}
 
@@ -80,7 +100,14 @@ Helper for getting d\-S\-M name by dsid out of the cache \hypertarget{interface_
 \item[{time:(double $\ast$)}]{time}
 \end{DoxyParamCaption}
 }}\label{interface_m_d_d_s_s_consumption_manager_a4df48a1a45fa35b89206c129fdcda839}
-returns the height (y point) of a certain x pos \hypertarget{interface_m_d_d_s_s_consumption_manager_a9a21d799de7fc9069558a53c73cdfb9c}{\index{M\-D\-D\-S\-S\-Consumption\-Manager@{M\-D\-D\-S\-S\-Consumption\-Manager}!start\-Polling\-History\-:@{start\-Polling\-History\-:}}
+returns the height (y point) of a certain x pos \hypertarget{interface_m_d_d_s_s_consumption_manager_a4f8c8f4bff4220024dbb031d046b494c}{\index{M\-D\-D\-S\-S\-Consumption\-Manager@{M\-D\-D\-S\-S\-Consumption\-Manager}!invalidate\-History@{invalidate\-History}}
+\index{invalidate\-History@{invalidate\-History}!MDDSSConsumptionManager@{M\-D\-D\-S\-S\-Consumption\-Manager}}
+\subsubsection[{invalidate\-History}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) invalidate\-History 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}\label{interface_m_d_d_s_s_consumption_manager_a4f8c8f4bff4220024dbb031d046b494c}
+invalidate the date \hypertarget{interface_m_d_d_s_s_consumption_manager_a9a21d799de7fc9069558a53c73cdfb9c}{\index{M\-D\-D\-S\-S\-Consumption\-Manager@{M\-D\-D\-S\-S\-Consumption\-Manager}!start\-Polling\-History\-:@{start\-Polling\-History\-:}}
 \index{start\-Polling\-History\-:@{start\-Polling\-History\-:}!MDDSSConsumptionManager@{M\-D\-D\-S\-S\-Consumption\-Manager}}
 \subsubsection[{start\-Polling\-History\-:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) start\-Polling\-History\-: 
 \begin{DoxyParamCaption}

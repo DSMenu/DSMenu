@@ -6,8 +6,17 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup iOS
+ */
+
+
 #import <UIKit/UIKit.h>
 
+/**
+ *  MDIOSConsumptionTableViewCell
+ *  view controller of the iOS settings screen
+ */
 @interface MDIOSSettingsViewController : UIViewController <UITextFieldDelegate, NSNetServiceBrowserDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong) IBOutlet UITextField *emailField;

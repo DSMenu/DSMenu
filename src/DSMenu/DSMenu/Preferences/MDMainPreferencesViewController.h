@@ -2,9 +2,10 @@
 //  RHAboutViewController.h
 //  RHPreferencesTester
 //
-//  Created by Richard Heard on 17/04/12.
-//  Copyright (c) 2012 Richard Heard. All rights reserved.
-//
+
+/**
+ * \ingroup OSX
+ */
 
 #import <Cocoa/Cocoa.h>
 #import "RHPreferences.h"

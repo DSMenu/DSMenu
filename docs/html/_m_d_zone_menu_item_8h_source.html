@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -67,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,30 +95,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//  Copyright (c) 2014 include7. All rights reserved.</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#import &lt;Cocoa/Cocoa.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#import &quot;MDSceneMenuItem.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> MDZoneMenuItemClickType {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    MDZoneMenuItemClickTypeNotOfInterest,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    MDZoneMenuItemClickTypeScene, </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    MDZoneMenuItemClickTypeDevice </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} MDZoneMenuItemClickType;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="interface_m_d_zone_menu_item.html">   26</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_m_d_zone_menu_item.html">MDZoneMenuItem</a> : NSMenuItem &lt;NSMenuDelegate&gt;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="interface_m_d_zone_menu_item.html#a0233a890891b84a2c30226439a3185ea">   27</a></span>&#160;<span class="keyword">@property</span> (strong) NSString *<a class="code" href="interface_m_d_zone_menu_item.html#a0233a890891b84a2c30226439a3185ea">zoneId</a>;  </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="interface_m_d_zone_menu_item.html#a6a4957a6b3fe720a65aa67f6c07be18f">   28</a></span>&#160;<span class="keyword">@property</span> (strong) <a class="code" href="interface_m_d_scene_menu_item.html">MDSceneMenuItem</a> *<a class="code" href="interface_m_d_zone_menu_item.html#a6a4957a6b3fe720a65aa67f6c07be18f">clickedSubmenu</a>;  </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">@property</span> (assign) MDZoneMenuItemClickType clickType;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;+ (<a class="code" href="interface_m_d_zone_menu_item.html">MDZoneMenuItem</a> *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">@end</span></div>
-<div class="ttc" id="interface_m_d_zone_menu_item_html_a6a4957a6b3fe720a65aa67f6c07be18f"><div class="ttname"><a href="interface_m_d_zone_menu_item.html#a6a4957a6b3fe720a65aa67f6c07be18f">MDZoneMenuItem::clickedSubmenu</a></div><div class="ttdeci">MDSceneMenuItem * clickedSubmenu</div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:28</div></div>
-<div class="ttc" id="interface_m_d_zone_menu_item_html"><div class="ttname"><a href="interface_m_d_zone_menu_item.html">MDZoneMenuItem</a></div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:26</div></div>
-<div class="ttc" id="interface_m_d_scene_menu_item_html"><div class="ttname"><a href="interface_m_d_scene_menu_item.html">MDSceneMenuItem</a></div><div class="ttdef"><b>Definition:</b> MDSceneMenuItem.h:15</div></div>
-<div class="ttc" id="interface_m_d_zone_menu_item_html_a0233a890891b84a2c30226439a3185ea"><div class="ttname"><a href="interface_m_d_zone_menu_item.html#a0233a890891b84a2c30226439a3185ea">MDZoneMenuItem::zoneId</a></div><div class="ttdeci">NSString * zoneId</div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:27</div></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#import &lt;Cocoa/Cocoa.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#import &quot;MDSceneMenuItem.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="group___o_s_x.html#gab0fcddeac9a07ecadc61a58ed26c2a7a">   20</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="group___o_s_x.html#gab0fcddeac9a07ecadc61a58ed26c2a7a">MDZoneMenuItemClickType</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    MDZoneMenuItemClickTypeNotOfInterest,</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="group___o_s_x.html#ggab0fcddeac9a07ecadc61a58ed26c2a7aa392a69c51cbb02416bee44cecda902b2">   22</a></span>&#160;    <a class="code" href="group___o_s_x.html#ggab0fcddeac9a07ecadc61a58ed26c2a7aa392a69c51cbb02416bee44cecda902b2">MDZoneMenuItemClickTypeScene</a>, </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="group___o_s_x.html#ggab0fcddeac9a07ecadc61a58ed26c2a7aa1db07b72af73daafa5ec0c9915d8033b">   23</a></span>&#160;    <a class="code" href="group___o_s_x.html#ggab0fcddeac9a07ecadc61a58ed26c2a7aa1db07b72af73daafa5ec0c9915d8033b">MDZoneMenuItemClickTypeDevice</a> </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;} <a class="code" href="group___o_s_x.html#gab0fcddeac9a07ecadc61a58ed26c2a7a">MDZoneMenuItemClickType</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="interface_m_d_zone_menu_item.html">   30</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_m_d_zone_menu_item.html">MDZoneMenuItem</a> : NSMenuItem &lt;NSMenuDelegate&gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="interface_m_d_zone_menu_item.html#a0233a890891b84a2c30226439a3185ea">   31</a></span>&#160;<span class="keyword">@property</span> (strong) NSString *<a class="code" href="interface_m_d_zone_menu_item.html#a0233a890891b84a2c30226439a3185ea">zoneId</a>;  </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="interface_m_d_zone_menu_item.html#a6a4957a6b3fe720a65aa67f6c07be18f">   32</a></span>&#160;<span class="keyword">@property</span> (strong) <a class="code" href="interface_m_d_scene_menu_item.html">MDSceneMenuItem</a> *<a class="code" href="interface_m_d_zone_menu_item.html#a6a4957a6b3fe720a65aa67f6c07be18f">clickedSubmenu</a>;  </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">@property</span> (assign) <a class="code" href="group___o_s_x.html#gab0fcddeac9a07ecadc61a58ed26c2a7a">MDZoneMenuItemClickType</a> clickType;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;+ (<a class="code" href="interface_m_d_zone_menu_item.html">MDZoneMenuItem</a> *)menuItemWithZoneDictionary:(NSDictionary *)zoneDict target:(NSObject *)aTarget;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">@end</span></div>
+<div class="ttc" id="group___o_s_x_html_gab0fcddeac9a07ecadc61a58ed26c2a7a"><div class="ttname"><a href="group___o_s_x.html#gab0fcddeac9a07ecadc61a58ed26c2a7a">MDZoneMenuItemClickType</a></div><div class="ttdeci">MDZoneMenuItemClickType</div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:20</div></div>
+<div class="ttc" id="interface_m_d_zone_menu_item_html_a6a4957a6b3fe720a65aa67f6c07be18f"><div class="ttname"><a href="interface_m_d_zone_menu_item.html#a6a4957a6b3fe720a65aa67f6c07be18f">MDZoneMenuItem::clickedSubmenu</a></div><div class="ttdeci">MDSceneMenuItem * clickedSubmenu</div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:32</div></div>
+<div class="ttc" id="interface_m_d_zone_menu_item_html"><div class="ttname"><a href="interface_m_d_zone_menu_item.html">MDZoneMenuItem</a></div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:30</div></div>
+<div class="ttc" id="group___o_s_x_html_ggab0fcddeac9a07ecadc61a58ed26c2a7aa1db07b72af73daafa5ec0c9915d8033b"><div class="ttname"><a href="group___o_s_x.html#ggab0fcddeac9a07ecadc61a58ed26c2a7aa1db07b72af73daafa5ec0c9915d8033b">MDZoneMenuItemClickTypeDevice</a></div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:23</div></div>
+<div class="ttc" id="interface_m_d_scene_menu_item_html"><div class="ttname"><a href="interface_m_d_scene_menu_item.html">MDSceneMenuItem</a></div><div class="ttdef"><b>Definition:</b> MDSceneMenuItem.h:19</div></div>
+<div class="ttc" id="interface_m_d_zone_menu_item_html_a0233a890891b84a2c30226439a3185ea"><div class="ttname"><a href="interface_m_d_zone_menu_item.html#a0233a890891b84a2c30226439a3185ea">MDZoneMenuItem::zoneId</a></div><div class="ttdeci">NSString * zoneId</div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:31</div></div>
+<div class="ttc" id="group___o_s_x_html_ggab0fcddeac9a07ecadc61a58ed26c2a7aa392a69c51cbb02416bee44cecda902b2"><div class="ttname"><a href="group___o_s_x.html#ggab0fcddeac9a07ecadc61a58ed26c2a7aa392a69c51cbb02416bee44cecda902b2">MDZoneMenuItemClickTypeScene</a></div><div class="ttdef"><b>Definition:</b> MDZoneMenuItem.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 25 2014 10:41:33 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 17 2014 13:06:51 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

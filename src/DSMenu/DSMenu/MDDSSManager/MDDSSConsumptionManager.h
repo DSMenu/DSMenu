@@ -5,6 +5,11 @@
 //  Created by Jonas Schnelli on 09.07.14.
 //  Copyright (c) 2014 include7. All rights reserved.
 //
+
+/**
+ * \ingroup core
+ */
+
 #import <Foundation/Foundation.h>
 
 /**

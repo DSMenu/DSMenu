@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -67,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,62 +95,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//  Copyright (c) 2014 include7. All rights reserved.</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html">   15</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_m_d_d_s_s_manager.html">MDDSSManager</a> : NSObject &lt;NSURLConnectionDataDelegate, NSURLConnectionDelegate&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">   21</a></span>&#160;<span class="keyword">@property</span> NSString *<a class="code" href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">appName</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">   23</a></span>&#160;<span class="keyword">@property</span> NSString *<a class="code" href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">host</a>; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">@property</span> NSString *port;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a25dada9b29593dcd220590d8fdabc58a">   25</a></span>&#160;<span class="keyword">@property</span> (readonly) BOOL <a class="code" href="interface_m_d_d_s_s_manager.html#a25dada9b29593dcd220590d8fdabc58a">hasApplicationToken</a>; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">@property</span> NSString *applicationToken;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a49c80f7f7f2042658136095fe9f6928f">   27</a></span>&#160;<span class="keyword">@property</span> NSString *<a class="code" href="interface_m_d_d_s_s_manager.html#a49c80f7f7f2042658136095fe9f6928f">dSSVersionString</a>; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a4851a2746d573ed0bceddef07fd520f7">   28</a></span>&#160;<span class="keyword">@property</span> BOOL <a class="code" href="interface_m_d_d_s_s_manager.html#a4851a2746d573ed0bceddef07fd520f7">useIPAddress</a>;  <span class="comment">//FIXME</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;+ (<a class="code" href="interface_m_d_d_s_s_manager.html">MDDSSManager</a> *)<a class="code" href="interface_m_d_d_s_s_manager.html#af0359d38979df1d414575dfb7aa6b537">defaultManager</a>; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;- (void)setAndPersistHost:(NSString *)host;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;- (void)checkHost:(NSString *)host callback:(<span class="keywordtype">void</span> (^)(BOOL))handler;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;- (void)getVersion:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html">   19</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="interface_m_d_d_s_s_manager.html">MDDSSManager</a> : NSObject &lt;NSURLConnectionDataDelegate, NSURLConnectionDelegate&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">   25</a></span>&#160;<span class="keyword">@property</span> NSString *<a class="code" href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">appName</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">@property</span> NSString *appUUID;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">   28</a></span>&#160;<span class="keyword">@property</span> NSString *<a class="code" href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">host</a>; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">@property</span> NSString *port;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a25dada9b29593dcd220590d8fdabc58a">   30</a></span>&#160;<span class="keyword">@property</span> (readonly) BOOL <a class="code" href="interface_m_d_d_s_s_manager.html#a25dada9b29593dcd220590d8fdabc58a">hasApplicationToken</a>; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">@property</span> NSString *applicationToken;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a49c80f7f7f2042658136095fe9f6928f">   32</a></span>&#160;<span class="keyword">@property</span> NSString *<a class="code" href="interface_m_d_d_s_s_manager.html#a49c80f7f7f2042658136095fe9f6928f">dSSVersionString</a>; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="interface_m_d_d_s_s_manager.html#a4851a2746d573ed0bceddef07fd520f7">   33</a></span>&#160;<span class="keyword">@property</span> BOOL <a class="code" href="interface_m_d_d_s_s_manager.html#a4851a2746d573ed0bceddef07fd520f7">useIPAddress</a>;  <span class="comment">//FIXME</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">@property</span> BOOL useRemoteConnectivity;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">@property</span> NSString *remoteConnectivityUsername;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">@property</span> BOOL connectionProblems;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;+ (<a class="code" href="interface_m_d_d_s_s_manager.html">MDDSSManager</a> *)<a class="code" href="interface_m_d_d_s_s_manager.html#af0359d38979df1d414575dfb7aa6b537">defaultManager</a>; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;- (void)setAndPersistHost:(NSString *)host;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;- (void)getStructure:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;- (void)checkHost:(NSString *)host callback:(<span class="keywordtype">void</span> (^)(BOOL))handler;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;- (void)getStructureWithCustomSceneNames:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;- (void)getVersion:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;- (void)requestApplicationToken:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;- (void)getStructure:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;- (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;- (void)getStructureWithCustomSceneNames:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;- (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;- (void)requestApplicationToken:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;- (NSArray *)customSceneNamesForGroup:(<span class="keywordtype">int</span>)forGroup inZone:(<span class="keywordtype">int</span>)forZoneId;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;- (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;- (void)<a class="code" href="interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da">resetToDefaults</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;- (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;- (void)getSensorValues:(NSString *)dSID;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;- (void)setSensorTable;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;- (void)turnOnDeviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;- (void)turnOffDeviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;- (void)getConsumptionLevelsLatest:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;- (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;- (void)getCircuits:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">@end</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;- (NSArray *)customSceneNamesForGroup:(<span class="keywordtype">int</span>)forGroup inZone:(<span class="keywordtype">int</span>)forZoneId;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;- (void)<a class="code" href="interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da">resetToDefaults</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;- (void)getSensorValues:(NSString *)dSID;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;- (void)setSensorTable;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;- (void)turnOnDeviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;- (void)turnOffDeviceId:(NSString *)deviceId callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;- (void)dimZone:(NSString *)zoneId groupID:(NSString *)groupID value:(<span class="keywordtype">float</span>)value callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;- (void)getConsumptionLevelsLatest:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;- (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;- (void)getCircuits:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#pragma mark - RemoteConnectivityStack</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor"></span>- (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))callback;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;- (void)enableToken:(NSString *)applicationToken callBlock:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))handler;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;- (void)loginUser:(NSString *)username password:(NSString *)password callBlock:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))handler;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;- (void)logoutUser:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))handler;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;- (void)loginApplication:(NSString *)loginToken callBlock:(<span class="keywordtype">void</span> (^)(NSDictionary*, NSError*))handler;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">@end</span></div>
 <div class="ttc" id="interface_m_d_d_s_s_manager_html_afd4b532e4a25c628ff150eb2199515da"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#afd4b532e4a25c628ff150eb2199515da">-[MDDSSManager resetToDefaults]</a></div><div class="ttdeci">void resetToDefaults()</div></div>
-<div class="ttc" id="interface_m_d_d_s_s_manager_html_a27147ce2bf5c9186c96503588983c047"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">MDDSSManager::appName</a></div><div class="ttdeci">NSString * appName</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:21</div></div>
-<div class="ttc" id="interface_m_d_d_s_s_manager_html_a55aa29ea7dc235519473b2e4ea44c48c"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">MDDSSManager::host</a></div><div class="ttdeci">NSString * host</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:23</div></div>
-<div class="ttc" id="interface_m_d_d_s_s_manager_html_a4851a2746d573ed0bceddef07fd520f7"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a4851a2746d573ed0bceddef07fd520f7">MDDSSManager::useIPAddress</a></div><div class="ttdeci">BOOL useIPAddress</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:28</div></div>
-<div class="ttc" id="interface_m_d_d_s_s_manager_html"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html">MDDSSManager</a></div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:15</div></div>
+<div class="ttc" id="interface_m_d_d_s_s_manager_html_a27147ce2bf5c9186c96503588983c047"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a27147ce2bf5c9186c96503588983c047">MDDSSManager::appName</a></div><div class="ttdeci">NSString * appName</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:25</div></div>
+<div class="ttc" id="interface_m_d_d_s_s_manager_html_a55aa29ea7dc235519473b2e4ea44c48c"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a55aa29ea7dc235519473b2e4ea44c48c">MDDSSManager::host</a></div><div class="ttdeci">NSString * host</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:28</div></div>
+<div class="ttc" id="interface_m_d_d_s_s_manager_html_a4851a2746d573ed0bceddef07fd520f7"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a4851a2746d573ed0bceddef07fd520f7">MDDSSManager::useIPAddress</a></div><div class="ttdeci">BOOL useIPAddress</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:33</div></div>
+<div class="ttc" id="interface_m_d_d_s_s_manager_html"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html">MDDSSManager</a></div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:19</div></div>
 <div class="ttc" id="interface_m_d_d_s_s_manager_html_af0359d38979df1d414575dfb7aa6b537"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#af0359d38979df1d414575dfb7aa6b537">+[MDDSSManager defaultManager]</a></div><div class="ttdeci">MDDSSManager * defaultManager()</div></div>
-<div class="ttc" id="interface_m_d_d_s_s_manager_html_a25dada9b29593dcd220590d8fdabc58a"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a25dada9b29593dcd220590d8fdabc58a">MDDSSManager::hasApplicationToken</a></div><div class="ttdeci">BOOL hasApplicationToken</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:25</div></div>
-<div class="ttc" id="interface_m_d_d_s_s_manager_html_a49c80f7f7f2042658136095fe9f6928f"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a49c80f7f7f2042658136095fe9f6928f">MDDSSManager::dSSVersionString</a></div><div class="ttdeci">NSString * dSSVersionString</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:27</div></div>
+<div class="ttc" id="interface_m_d_d_s_s_manager_html_a25dada9b29593dcd220590d8fdabc58a"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a25dada9b29593dcd220590d8fdabc58a">MDDSSManager::hasApplicationToken</a></div><div class="ttdeci">BOOL hasApplicationToken</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:30</div></div>
+<div class="ttc" id="interface_m_d_d_s_s_manager_html_a49c80f7f7f2042658136095fe9f6928f"><div class="ttname"><a href="interface_m_d_d_s_s_manager.html#a49c80f7f7f2042658136095fe9f6928f">MDDSSManager::dSSVersionString</a></div><div class="ttdeci">NSString * dSSVersionString</div><div class="ttdef"><b>Definition:</b> MDDSSManager.h:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 25 2014 10:41:33 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 17 2014 13:06:51 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

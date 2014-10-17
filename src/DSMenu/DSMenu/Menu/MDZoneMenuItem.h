@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup OSX
+ */
+
 #import <Cocoa/Cocoa.h>
 #import "MDSceneMenuItem.h"
 
@@ -20,7 +24,7 @@ typedef enum MDZoneMenuItemClickType {
 } MDZoneMenuItemClickType;
 
 /**
- * MDZoneMenuItemClickType.
+ * MDZoneMenuItem.
  *  This class represents a Zone as a MenuItem.
  */
 @interface MDZoneMenuItem : NSMenuItem <NSMenuDelegate>

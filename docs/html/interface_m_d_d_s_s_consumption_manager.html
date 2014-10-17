@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#properties">Properties</a> &#124;
 <a href="class_m_d_d_s_s_consumption_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">MDDSSConsumptionManager Class Reference</div>  </div>
+<div class="title">MDDSSConsumptionManager Class Reference<div class="ingroups"><a class="el" href="group__core.html">Core</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -111,6 +112,8 @@ Instance Methods</h2></td></tr>
 <tr class="separator:af253ad6e5f08008ceec0a247a27b2526"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c9bf787dd26bf05d1185cf06412ba32"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_m_d_d_s_s_consumption_manager.html#a5c9bf787dd26bf05d1185cf06412ba32">stopPollingHistory</a></td></tr>
 <tr class="separator:a5c9bf787dd26bf05d1185cf06412ba32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8c8f4bff4220024dbb031d046b494c"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_m_d_d_s_s_consumption_manager.html#a4f8c8f4bff4220024dbb031d046b494c">invalidateHistory</a></td></tr>
+<tr class="separator:a4f8c8f4bff4220024dbb031d046b494c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4347a6f14215e842e5629072c1a883c4"><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_m_d_d_s_s_consumption_manager.html#a4347a6f14215e842e5629072c1a883c4">dSMNameFromID:</a></td></tr>
 <tr class="separator:a4347a6f14215e842e5629072c1a883c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4d5086c7cf8ce63e8e3996ba5e841ea"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_m_d_d_s_s_consumption_manager.html#ac4d5086c7cf8ce63e8e3996ba5e841ea">drawHistoryOnContext:size:</a></td></tr>
@@ -131,6 +134,24 @@ void(^&#160;</td><td class="memItemRight" valign="bottom"><b>callbackLatest</b> 
 <tr class="memitem:a710c4c8abe3ecfb0555ae66cd7c0d938"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a710c4c8abe3ecfb0555ae66cd7c0d938"></a>
 void(^&#160;</td><td class="memItemRight" valign="bottom"><b>callbackHistory</b> )(NSDictionary *, NSArray *)</td></tr>
 <tr class="separator:a710c4c8abe3ecfb0555ae66cd7c0d938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9437e121568771ef8c8154b7a115fac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9437e121568771ef8c8154b7a115fac"></a>
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>filterHistoryWithDSMID</b></td></tr>
+<tr class="separator:aa9437e121568771ef8c8154b7a115fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa959f2a0c6d71d92fa17853d597736cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa959f2a0c6d71d92fa17853d597736cf"></a>
+CGRect&#160;</td><td class="memItemRight" valign="bottom"><b>padding</b></td></tr>
+<tr class="separator:aa959f2a0c6d71d92fa17853d597736cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e5d34d0dcff5ada9153d61c76889ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72e5d34d0dcff5ada9153d61c76889ef"></a>
+CGRect&#160;</td><td class="memItemRight" valign="bottom"><b>paddingRect</b></td></tr>
+<tr class="separator:a72e5d34d0dcff5ada9153d61c76889ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a347ae0cd5bc07ac0b91bb2a11e4a1d92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a347ae0cd5bc07ac0b91bb2a11e4a1d92"></a>
+CGColorRef&#160;</td><td class="memItemRight" valign="bottom"><b>backgroundColor</b></td></tr>
+<tr class="separator:a347ae0cd5bc07ac0b91bb2a11e4a1d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ccb8272ae380d168642d5472b25e25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8ccb8272ae380d168642d5472b25e25"></a>
+CGColorRef&#160;</td><td class="memItemRight" valign="bottom"><b>lineColor</b></td></tr>
+<tr class="separator:ac8ccb8272ae380d168642d5472b25e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab668f2d7e7d51b70a0648d9fa2600436"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab668f2d7e7d51b70a0648d9fa2600436"></a>
+CGColorRef&#160;</td><td class="memItemRight" valign="bottom"><b>fillColor</b></td></tr>
+<tr class="separator:ab668f2d7e7d51b70a0648d9fa2600436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>MDDSSEnegryManager. This class handles asynchronous polling of consumption data. </p>
@@ -234,6 +255,22 @@ void(^&#160;</td><td class="memItemRight" valign="bottom"><b>callbackHistory</b>
 
 </div>
 </div>
+<a class="anchor" id="a4f8c8f4bff4220024dbb031d046b494c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) invalidateHistory </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>invalidate the date </p>
+
+</div>
+</div>
 <a class="anchor" id="a9a21d799de7fc9069558a53c73cdfb9c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -306,7 +343,7 @@ void(^&#160;</td><td class="memItemRight" valign="bottom"><b>callbackHistory</b>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 25 2014 10:41:33 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 17 2014 13:06:51 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

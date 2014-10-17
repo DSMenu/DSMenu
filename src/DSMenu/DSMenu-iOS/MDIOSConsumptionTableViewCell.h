@@ -6,8 +6,16 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup iOS
+ */
+
 #import <UIKit/UIKit.h>
 
+/**
+ *  MDIOSConsumptionTableViewCell
+ *  This class represents a dsm consumption cell
+ */
 @interface MDIOSConsumptionTableViewCell : UITableViewCell
 
 @property (strong) UILabel *consumptionLabel;

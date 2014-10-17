@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+/**
+ * \ingroup core
+ */
+
 #ifndef macDS_ErrorCodes_h
 #define macDS_ErrorCodes_h
 

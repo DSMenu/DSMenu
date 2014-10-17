@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -85,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#properties">Properties</a> &#124;
 <a href="class_m_d_main_preferences_view_controller-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">MDMainPreferencesViewController Class Reference</div>  </div>
+<div class="title">MDMainPreferencesViewController Class Reference<div class="ingroups"><a class="el" href="group___o_s_x.html">OSX</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -102,6 +103,9 @@ Properties</h2></td></tr>
 <tr class="memitem:aa61a9ae962dc2a8d7fd5be8f36c8cf62"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa61a9ae962dc2a8d7fd5be8f36c8cf62"></a>
 IBOutlet NSTableView *&#160;</td><td class="memItemRight" valign="bottom"><b>tableView</b></td></tr>
 <tr class="separator:aa61a9ae962dc2a8d7fd5be8f36c8cf62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5b5c852565b43afc452a4207171f25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c5b5c852565b43afc452a4207171f25"></a>
+IBOutlet NSTabView *&#160;</td><td class="memItemRight" valign="bottom"><b>tabView</b></td></tr>
+<tr class="separator:a5c5b5c852565b43afc452a4207171f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dfae1433203c8ec852648b2da348020"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dfae1433203c8ec852648b2da348020"></a>
 IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>addressTextField</b></td></tr>
 <tr class="separator:a9dfae1433203c8ec852648b2da348020"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,6 +127,36 @@ IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>tok
 <tr class="memitem:a183c0e47b1347fce6b8aab64d5699fb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a183c0e47b1347fce6b8aab64d5699fb0"></a>
 IBOutlet NSProgressIndicator *&#160;</td><td class="memItemRight" valign="bottom"><b>progressIndicator</b></td></tr>
 <tr class="separator:a183c0e47b1347fce6b8aab64d5699fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f6de749f466faed5411ebac6cd138dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f6de749f466faed5411ebac6cd138dd"></a>
+IBOutlet NSProgressIndicator *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityProgressIndicator</b></td></tr>
+<tr class="separator:a0f6de749f466faed5411ebac6cd138dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af128e0c8bcfd01971e2215c26bb03fc0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af128e0c8bcfd01971e2215c26bb03fc0"></a>
+IBOutlet NSButton *&#160;</td><td class="memItemRight" valign="bottom"><b>loginButton</b></td></tr>
+<tr class="separator:af128e0c8bcfd01971e2215c26bb03fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7f3c03e1d0197706b047ee4e4c3146"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f7f3c03e1d0197706b047ee4e4c3146"></a>
+IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityUsernameField</b></td></tr>
+<tr class="separator:a0f7f3c03e1d0197706b047ee4e4c3146"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7df25cacece630d6984354b2c60df1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea7df25cacece630d6984354b2c60df1"></a>
+IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityPasswordField</b></td></tr>
+<tr class="separator:aea7df25cacece630d6984354b2c60df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80954d05623ba3af06147b28fcd90a7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80954d05623ba3af06147b28fcd90a7f"></a>
+IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityPasswordLabel</b></td></tr>
+<tr class="separator:a80954d05623ba3af06147b28fcd90a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a592c32039011a58b9abb787d77648"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19a592c32039011a58b9abb787d77648"></a>
+IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityUsernameLabel</b></td></tr>
+<tr class="separator:a19a592c32039011a58b9abb787d77648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a367562bf10e87dfeb191aef3316d5380"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a367562bf10e87dfeb191aef3316d5380"></a>
+IBOutlet NSImageView *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityStateImage</b></td></tr>
+<tr class="separator:a367562bf10e87dfeb191aef3316d5380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0f13db10c25ea93e52698a129d6dbfd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0f13db10c25ea93e52698a129d6dbfd"></a>
+IBOutlet NSTextField *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityStateText</b></td></tr>
+<tr class="separator:aa0f13db10c25ea93e52698a129d6dbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc45af415bc61d472d847587baf745e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc45af415bc61d472d847587baf745e6"></a>
+IBOutlet NSButton *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityDisconnectButton</b></td></tr>
+<tr class="separator:acc45af415bc61d472d847587baf745e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1330a8cc7feec7c7f20276d418a00ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1330a8cc7feec7c7f20276d418a00ef"></a>
+IBOutlet NSButton *&#160;</td><td class="memItemRight" valign="bottom"><b>remoteConnectivityLoginButton</b></td></tr>
+<tr class="separator:ac1330a8cc7feec7c7f20276d418a00ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d92c5b6792860afa6e80c28f797b698"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d92c5b6792860afa6e80c28f797b698"></a>
 BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>manualIP</b></td></tr>
 <tr class="separator:a2d92c5b6792860afa6e80c28f797b698"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,7 +167,7 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>manualIP</b></td></tr
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 25 2014 10:41:33 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 17 2014 13:06:51 for DSMenu by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
