@@ -19,13 +19,23 @@
     [super viewDidLoad];
     
     
+    self.title = NSLocalizedString(@"roomsTitle", @"");
+    
     self.zones = [NSMutableArray array];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+    
+    
+    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+    [wheel startAnimating];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable:) name:kDS_STRUCTURE_DID_CHANGE object:nil];
 }
 
 - (void)updateTable:(NSNotification *)not
 {
+    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+    [wheel stopAnimating];
+    
     NSDictionary *json = not.object;
     
     //sort zones
@@ -77,8 +87,16 @@
     }
     
     NSDictionary *zoneDict = [self.zones objectAtIndex:indexPath.row];
+    
+    NSString *roomName = [zoneDict objectForKey:@"name"];
+    if(roomName.length <= 0)
+    {
+        // define unnamed room
+        roomName = [NSLocalizedString(@"unnamedRoom", @"Menu String for unnamed room") stringByAppendingFormat:@" %@", [zoneDict objectForKey:@"id"]];
+    }
+    
     cell.zoneId = [zoneDict objectForKey:@"id"];
-    cell.textLabel.text = [zoneDict objectForKey:@"name"];
+    cell.textLabel.text = roomName;
     cell.detailTextLabel.text = @"Licht / Schatten";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;

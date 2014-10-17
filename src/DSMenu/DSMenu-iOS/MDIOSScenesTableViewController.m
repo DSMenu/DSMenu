@@ -45,7 +45,7 @@
             
             NSMutableDictionary *section = [NSMutableDictionary dictionary];
             [section setObject:[NSMutableArray array] forKey:@"cells"];
-            [section setObject:NSLocalizedString( ([NSString stringWithFormat:@"groupTitle%d",[group intValue]]) , @"") forKey:@"title"];
+            [section setObject:NSLocalizedString( ([NSString stringWithFormat:@"group%d",[group intValue]]) , @"") forKey:@"title"];
             
             
         
@@ -84,39 +84,44 @@
                 }
                 
                 
-                NSDictionary *cellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i], @"group": [NSNumber numberWithInt:groupInt], @"image" : @""};//(( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]])};
+                NSDictionary *cellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i], @"group": [NSNumber numberWithInt:groupInt], @"image" : (( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]])};
                 
-                [(NSMutableArray *)[section objectForKey:@"cells"] addObject:cellDict];
-                
-//                // Area Scenes
-//                if( (i==6 || i==7 || i==8 || i==9 ) )
-//                {
-//                    // only add if the area is present
-//                    if(([areas indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)(i-5)]] != NSNotFound))
-//                    {
-//                        [areaItems addObject:lightScene];
-//                        
-//                        NSString *customName = [MDDSHelper customSceneNameForScene:i-5 fromJSON:customSceneNames]; //-5 for area off scene (check ds_basic.pdf)
-//                        NSString *i18nLabel = [NSString stringWithFormat:@"group%dscene%d", groupInt, i-5];
-//                        NSString *sceneTitle = NSLocalizedString(i18nLabel, @"Zone Submenu Scene X Item");
-//                        if(customName.length > 0)
-//                        {
-//                            DDLogVerbose(@"%@", zoneDict);
-//                            sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
-//                        }
-//                        
+               
+                // Area Scenes
+                if( (i==6 || i==7 || i==8 || i==9 ) )
+                {
+                    // only add if the area is present
+                    if(([areas indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)(i-5)]] != NSNotFound))
+                    {
+                        
+                        [areaItems addObject:cellDict];
+                        
+                        NSString *customName = [MDDSHelper customSceneNameForScene:i-5 fromJSON:customSceneNames]; //-5 for area off scene (check ds_basic.pdf)
+                        NSString *i18nLabel = [NSString stringWithFormat:@"group%dscene%d", groupInt, i-5];
+                        NSString *sceneTitle = NSLocalizedString(i18nLabel, @"Zone Submenu Scene X Item");
+                        if(customName.length > 0)
+                        {
+                            sceneTitle = [[sceneTitle stringByAppendingString:@" - "] stringByAppendingString:customName];
+                        }
+                        
+                        
+                        
+                        NSDictionary *areaCellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i-5], @"group": [NSNumber numberWithInt:groupInt], @"image" : (( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]])};
+                        
+                        [areaItems addObject:areaCellDict];
+                        
 //                        MDSceneMenuItem *areaSceneOff = [[MDSceneMenuItem alloc] initWithTitle:sceneTitle action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
 //                        areaSceneOff.target = item;
 //                        areaSceneOff.tag = i-5; //-5 for area off scene (check ds_basic.pdf)
 //                        areaSceneOff.group = groupInt;
 //                        areaSceneOff.image = [NSImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]];
 //                        [areaItems addObject:areaSceneOff];
-//                    }
-//                }
-//                else
-//                {
-//                    [item.submenu addItem:lightScene];
-//                }
+                    }
+                }
+                else
+                {
+                    [(NSMutableArray *)[section objectForKey:@"cells"] addObject:cellDict];
+                }
             }
             
 //            if(groupInt == 1)
@@ -130,12 +135,10 @@
 //            }
 //            
             // add area items at bottom
-//            for(NSMenuItem *areaItem in areaItems)
-//            {
-//                [item.submenu addItem:areaItem];
-//            }
-//            
-//            [item.submenu addItem:[NSMenuItem separatorItem]];
+            for(NSDictionary *areaItem in areaItems)
+            {
+                [(NSMutableArray *)[section objectForKey:@"cells"] addObject:areaItem];
+            }
             ////////////////////////
             
             [self.sections addObject:section];
@@ -152,7 +155,17 @@
 //    deepOffScene.group = 1;
 //    deepOffScene.image = [NSImage imageNamed:@"group_2"];
 //    [item.submenu addItem:deepOffScene];
-//    
+//
+    
+    NSMutableDictionary *section = [NSMutableDictionary dictionary];
+    [section setObject:[NSMutableArray array] forKey:@"cells"];
+    [section setObject:NSLocalizedString( @"specialMenu" , @"") forKey:@"title"];
+    
+    NSDictionary *deepOffDict = @{ @"title": NSLocalizedString(@"deeopOffSceneItem",@""),  @"tag" : [NSNumber numberWithInt:68], @"group": [NSNumber numberWithInt:1], @"image" : [UIImage imageNamed:@"group_2"]};
+    
+    [section setObject:[NSArray arrayWithObject:deepOffDict] forKey:@"cells"];
+    [self.sections addObject:section];
+    
 //    // Devices Menu
 //    NSArray *devices = [zoneDict objectForKey:@"devices"];
 //    BOOL shouldShowDeviceMenu = NO;
@@ -251,6 +264,8 @@
     
     NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
     cell.textLabel.text = [cellDict objectForKey:@"title"];
+    
+    cell.imageView.image = [cellDict objectForKey:@"image"];
     
     return cell;
 }
