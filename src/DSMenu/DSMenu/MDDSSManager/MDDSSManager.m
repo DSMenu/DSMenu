@@ -51,7 +51,7 @@ static MDDSSManager *defaultManager;
         self.host = @"";
         self.dSSVersionString = nil;
         self.appUUID = @"8720a278-64d3-49df-ac89-6cb70cafccfd";
-        
+        self.useLastCalledSceneCheck = YES;
         self.connectionProblems = NO;
         
         NSString *possibleHost = [[NSUserDefaults standardUserDefaults] objectForKey:kMDDSSMANAGER_HOST_UD_KEY];
@@ -236,6 +236,7 @@ static MDDSSManager *defaultManager;
 
 - (void)getStructure:(void (^)(NSDictionary*, NSError*))callback
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDS_START_LOADING_STRUCTURE object:nil];
     [self jsonCall:@"/json/apartment/getStructure" params:[NSDictionary dictionaryWithObject:self.currentSessionToken forKey:@"token"] completionHandler:^(NSDictionary *json, NSError *error){
         callback(json, error);
     }];

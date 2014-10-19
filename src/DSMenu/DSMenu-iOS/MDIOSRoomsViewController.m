@@ -8,33 +8,84 @@
 
 #import "MDIOSRoomsViewController.h"
 #import "MDIOSRoomTableViewCell.h"
+#import "MDDSSManager.h"
 
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
 @end
 
 @implementation MDIOSRoomsViewController
+@synthesize isLoading=_isLoading;
+@synthesize noConnection=_noConnection;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
     self.title = NSLocalizedString(@"roomsTitle", @"");
     
     self.zones = [NSMutableArray array];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
     
-    
-    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
-    [wheel startAnimating];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable:) name:kDS_STRUCTURE_DID_CHANGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoading) name:kDS_START_LOADING_STRUCTURE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recheckConnection) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
+    
+    self.isLoading = YES;
+    
+    [self recheckConnection];
+}
+
+- (void)showLoading
+{
+    self.isLoading = YES;
+}
+
+- (void)recheckConnection
+{
+    if([MDDSSManager defaultManager].connectionProblems || [MDDSSManager defaultManager].host == nil || [MDDSSManager defaultManager].host.length <= 1)
+    {
+        self.noConnection = YES;
+        self.isLoading = NO;
+    }
+    else
+    {
+        self.noConnection = NO;
+    }
+    [self.tableView reloadData];
+}
+
+- (void)setIsLoading:(BOOL)isLoading
+{
+    _isLoading = isLoading;
+    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+    if(isLoading)
+    {
+        [wheel startAnimating];
+    }
+    else
+    {
+        [wheel stopAnimating];
+    }
+}
+
+- (BOOL)isLoading
+{
+    return _isLoading;
+}
+
+- (void)setNoConnection:(BOOL)noConnection
+{
+    _noConnection = noConnection;
+}
+
+- (BOOL)noConnection
+{
+    return _noConnection;
 }
 
 - (void)updateTable:(NSNotification *)not
 {
-    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
-    [wheel stopAnimating];
+    self.isLoading = NO;
     
     NSDictionary *json = not.object;
     
@@ -75,10 +126,26 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(self.noConnection || self.isLoading)
+    {
+        return 1;
+    }
     return self.zones.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.isLoading)
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        cell.textLabel.text = NSLocalizedString(@"loading", @"");
+        return cell;
+    }
+    if(self.noConnection)
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        cell.textLabel.text = NSLocalizedString(@"No Connection To Your DSS...", @"");
+        return cell;
+    }
     static NSString *CellIdentifier = @"RoomCell";
     MDIOSRoomTableViewCell *cell = (MDIOSRoomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)

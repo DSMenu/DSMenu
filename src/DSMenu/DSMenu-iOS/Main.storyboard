@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -38,25 +39,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6s-Uv-VIP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noConnection.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPX-oB-4Y4">
+                                        <rect key="frame" x="36" y="185" width="248" height="248"/>
+                                    </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="No connection to you dSS." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uKb-FS-57M">
-                                        <rect key="frame" x="10" y="146" width="301" height="97"/>
+                                        <rect key="frame" x="10" y="137" width="301" height="97"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="97" id="1qL-1f-FeO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noConnection.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPX-oB-4Y4">
-                                        <rect key="frame" x="36" y="251" width="248" height="248"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="uKb-FS-57M" firstAttribute="centerX" secondItem="o6s-Uv-VIP" secondAttribute="centerX" id="9Oc-6U-lVz"/>
                                     <constraint firstItem="hPX-oB-4Y4" firstAttribute="centerX" secondItem="uKb-FS-57M" secondAttribute="centerX" id="9Qy-OR-dq3"/>
-                                    <constraint firstItem="uKb-FS-57M" firstAttribute="top" secondItem="o6s-Uv-VIP" secondAttribute="top" constant="146" id="J6w-Bi-pti"/>
+                                    <constraint firstItem="uKb-FS-57M" firstAttribute="top" secondItem="o6s-Uv-VIP" secondAttribute="top" constant="137" id="J6w-Bi-pti"/>
                                     <constraint firstItem="uKb-FS-57M" firstAttribute="leading" secondItem="o6s-Uv-VIP" secondAttribute="leading" constant="10" id="huI-oM-FvY"/>
-                                    <constraint firstItem="hPX-oB-4Y4" firstAttribute="top" secondItem="uKb-FS-57M" secondAttribute="bottom" constant="8" symbolic="YES" id="usA-at-ouY"/>
+                                    <constraint firstItem="hPX-oB-4Y4" firstAttribute="top" secondItem="uKb-FS-57M" secondAttribute="bottom" constant="-49" id="usA-at-ouY"/>
                                 </constraints>
                             </view>
                         </subviews>

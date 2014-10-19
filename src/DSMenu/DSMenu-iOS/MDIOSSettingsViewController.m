@@ -26,6 +26,7 @@ typedef enum DMSettingsViewControllerState {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"Settings", @"");
     
     self.netServiceBrowser = [[NSNetServiceBrowser alloc] init];
     [self.netServiceBrowser setDelegate:self];

@@ -20,5 +20,6 @@
 @interface MDIOSRoomsViewController : UITableViewController
 @property (strong) IBOutlet UITableView *roomsTable;
 @property (strong) IBOutlet MDIOSScenesTableViewController *sceneViewController;
-
+@property (assign) BOOL isLoading;
+@property (assign) BOOL noConnection;
 @end

@@ -37,6 +37,8 @@
 
 @property BOOL connectionProblems;
 
+@property BOOL useLastCalledSceneCheck;
+
 + (MDDSSManager *)defaultManager; /**< singleton */
 
 /**

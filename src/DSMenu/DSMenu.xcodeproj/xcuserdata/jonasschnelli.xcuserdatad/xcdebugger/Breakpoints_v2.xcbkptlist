@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
-            timestampString = "435257962.363642"
+            timestampString = "435439587.332778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
             landmarkName = "-loginUser:password:callBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,12 +106,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu-iOS/MDIOSRoomTableViewCell.m"
-            timestampString = "435258733.563528"
+            timestampString = "435436671.089391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-secondButton:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSMenu-iOS/MDIOSRoomsViewController.m"
+            timestampString = "435439736.376653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-showLoading"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

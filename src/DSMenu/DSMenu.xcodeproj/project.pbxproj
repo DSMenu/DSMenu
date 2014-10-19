@@ -28,6 +28,9 @@
 		E52C13C51975B6270010385E /* MDConsumptionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C13C41975B6270010385E /* MDConsumptionTextView.m */; };
 		E52C13C81975C09C0010385E /* cchart_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C61975C09C0010385E /* cchart_highlight.png */; };
 		E52C13C91975C09C0010385E /* cchart_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C71975C09C0010385E /* cchart_highlight@2x.png */; };
+		E54BC20419F43FB70022A818 /* PUFavoriteOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */; };
+		E54BC20519F43FB70022A818 /* PUFavoriteOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54BC20319F43FB70022A818 /* PUFavoriteOn@2x.png */; };
+		E54BC20819F4405B0022A818 /* MDIOSScenePresetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E54BC20719F4405B0022A818 /* MDIOSScenePresetTableViewCell.m */; };
 		E5524E481962A5680031D1B6 /* MDSceneMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */; };
 		E5524E631962A70B0031D1B6 /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E4D1962A70B0031D1B6 /* CLIColor.m */; };
 		E5524E641962A70B0031D1B6 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E4F1962A70B0031D1B6 /* DDAbstractDatabaseLogger.m */; };
@@ -137,7 +140,6 @@
 		E5B544CA19F1079500B7B7A9 /* MDIOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B544C919F1079500B7B7A9 /* MDIOSAppDelegate.m */; };
 		E5B544D519F1079500B7B7A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5B544D419F1079500B7B7A9 /* Images.xcassets */; };
 		E5B544D819F1079500B7B7A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B544D619F1079500B7B7A9 /* LaunchScreen.xib */; };
-		E5B544E419F1079500B7B7A9 /* DSMenu_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B544E319F1079500B7B7A9 /* DSMenu_iOSTests.m */; };
 		E5B544EB19F107F400B7B7A9 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E4F1962A70B0031D1B6 /* DDAbstractDatabaseLogger.m */; };
 		E5B544EC19F107F800B7B7A9 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E511962A70B0031D1B6 /* DDASLLogCapture.m */; };
 		E5B544ED19F107FE00B7B7A9 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E531962A70B0031D1B6 /* DDASLLogger.m */; };
@@ -257,13 +259,6 @@
 			remoteGlobalIDString = E51AED4719DD29CC007296FB;
 			remoteInfo = DSMenuHelper;
 		};
-		E5B544DE19F1079500B7B7A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E5280B761959F5BD006A9FB5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E5B544C119F1079500B7B7A9;
-			remoteInfo = "DSMenu-iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -317,6 +312,10 @@
 		E52C13C41975B6270010385E /* MDConsumptionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsumptionTextView.m; sourceTree = "<group>"; };
 		E52C13C61975C09C0010385E /* cchart_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cchart_highlight.png; sourceTree = "<group>"; };
 		E52C13C71975C09C0010385E /* cchart_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cchart_highlight@2x.png"; sourceTree = "<group>"; };
+		E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PUFavoriteOff@2x.png"; sourceTree = "<group>"; };
+		E54BC20319F43FB70022A818 /* PUFavoriteOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PUFavoriteOn@2x.png"; sourceTree = "<group>"; };
+		E54BC20619F4405B0022A818 /* MDIOSScenePresetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSScenePresetTableViewCell.h; sourceTree = "<group>"; };
+		E54BC20719F4405B0022A818 /* MDIOSScenePresetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSScenePresetTableViewCell.m; sourceTree = "<group>"; };
 		E5524E461962A5680031D1B6 /* MDSceneMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSceneMenuItem.h; sourceTree = "<group>"; };
 		E5524E471962A5680031D1B6 /* MDSceneMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSceneMenuItem.m; sourceTree = "<group>"; };
 		E5524E4C1962A70B0031D1B6 /* CLIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIColor.h; sourceTree = "<group>"; };
@@ -373,9 +372,6 @@
 		E5B544C919F1079500B7B7A9 /* MDIOSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDIOSAppDelegate.m; sourceTree = "<group>"; };
 		E5B544D419F1079500B7B7A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E5B544D719F1079500B7B7A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E5B544DD19F1079500B7B7A9 /* DSMenu-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DSMenu-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5B544E219F1079500B7B7A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5B544E319F1079500B7B7A9 /* DSMenu_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSMenu_iOSTests.m; sourceTree = "<group>"; };
 		E5B544F619F1083E00B7B7A9 /* alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert@2x.png"; sourceTree = "<group>"; };
 		E5B544F719F1083E00B7B7A9 /* chartTabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chartTabbar@2x.png"; sourceTree = "<group>"; };
 		E5B544F819F1083E00B7B7A9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
@@ -505,13 +501,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5B544DA19F1079500B7B7A9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -561,7 +550,6 @@
 				E51AED4919DD29CC007296FB /* DSMenuHelper */,
 				E51AED5D19DD29CC007296FB /* DSMenuHelperTests */,
 				E5B544C319F1079500B7B7A9 /* DSMenu-iOS */,
-				E5B544E019F1079500B7B7A9 /* DSMenu-iOSTests */,
 				E5280B801959F5BD006A9FB5 /* Frameworks */,
 				E5280B7F1959F5BD006A9FB5 /* Products */,
 				E5B437F819D6CB0300A0703F /* DSMenuNonAppStore-Info.plist */,
@@ -577,7 +565,6 @@
 				E51AED4819DD29CC007296FB /* DSMenuHelper.app */,
 				E51AED5A19DD29CC007296FB /* DSMenuHelperTests.xctest */,
 				E5B544C219F1079500B7B7A9 /* DSMenu-iOS.app */,
-				E5B544DD19F1079500B7B7A9 /* DSMenu-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -815,6 +802,8 @@
 				E5B5452119F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m */,
 				E5B5452219F10B4700B7B7A9 /* MDIOSScenesTableViewController.h */,
 				E5B5452319F10B4700B7B7A9 /* MDIOSScenesTableViewController.m */,
+				E54BC20619F4405B0022A818 /* MDIOSScenePresetTableViewCell.h */,
+				E54BC20719F4405B0022A818 /* MDIOSScenePresetTableViewCell.m */,
 				E5B544F419F1082B00B7B7A9 /* Resources */,
 				E5B544C819F1079500B7B7A9 /* MDIOSAppDelegate.h */,
 				E5B544C919F1079500B7B7A9 /* MDIOSAppDelegate.m */,
@@ -836,23 +825,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E5B544E019F1079500B7B7A9 /* DSMenu-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				E5B544E319F1079500B7B7A9 /* DSMenu_iOSTests.m */,
-				E5B544E119F1079500B7B7A9 /* Supporting Files */,
-			);
-			path = "DSMenu-iOSTests";
-			sourceTree = "<group>";
-		};
-		E5B544E119F1079500B7B7A9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E5B544E219F1079500B7B7A9 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E5B544F419F1082B00B7B7A9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,6 +836,8 @@
 		E5B544F519F1082B00B7B7A9 /* GFX */ = {
 			isa = PBXGroup;
 			children = (
+				E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */,
+				E54BC20319F43FB70022A818 /* PUFavoriteOn@2x.png */,
 				E5D3A88319F135870025A6C3 /* audio@2x.png */,
 				E5D3A88419F135870025A6C3 /* heating@2x.png */,
 				E5D3A88519F135870025A6C3 /* video@2x.png */,
@@ -1030,24 +1004,6 @@
 			productReference = E5B544C219F1079500B7B7A9 /* DSMenu-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E5B544DC19F1079500B7B7A9 /* DSMenu-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E5B544EA19F1079500B7B7A9 /* Build configuration list for PBXNativeTarget "DSMenu-iOSTests" */;
-			buildPhases = (
-				E5B544D919F1079500B7B7A9 /* Sources */,
-				E5B544DA19F1079500B7B7A9 /* Frameworks */,
-				E5B544DB19F1079500B7B7A9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E5B544DF19F1079500B7B7A9 /* PBXTargetDependency */,
-			);
-			name = "DSMenu-iOSTests";
-			productName = "DSMenu-iOSTests";
-			productReference = E5B544DD19F1079500B7B7A9 /* DSMenu-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1092,10 +1048,7 @@
 					};
 					E5B544C119F1079500B7B7A9 = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					E5B544DC19F1079500B7B7A9 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = E5B544C119F1079500B7B7A9;
+						DevelopmentTeam = 5XAKXZTWN4;
 					};
 				};
 			};
@@ -1119,7 +1072,6 @@
 				E51AED4719DD29CC007296FB /* DSMenuHelper */,
 				E51AED5919DD29CC007296FB /* DSMenuHelperTests */,
 				E5B544C119F1079500B7B7A9 /* DSMenu-iOS */,
-				E5B544DC19F1079500B7B7A9 /* DSMenu-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1281,6 +1233,7 @@
 				E5B5453819F1166100B7B7A9 /* group_3@2x.png in Resources */,
 				E5B5450119F1083E00B7B7A9 /* chartTabbar@2x.png in Resources */,
 				E5B5453019F1166100B7B7A9 /* group_1_8@2x.png in Resources */,
+				E54BC20519F43FB70022A818 /* PUFavoriteOn@2x.png in Resources */,
 				E5B5452C19F1166100B7B7A9 /* group_1@2x.png in Resources */,
 				E5B5450419F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png in Resources */,
 				E5B5453919F1166100B7B7A9 /* group_4_8.png in Resources */,
@@ -1295,6 +1248,7 @@
 				E5B5453419F1166100B7B7A9 /* group_8@2x.png in Resources */,
 				E5B5453319F1166100B7B7A9 /* group_8.png in Resources */,
 				E5B5453E19F1166100B7B7A9 /* group_5_8@2x.png in Resources */,
+				E54BC20419F43FB70022A818 /* PUFavoriteOff@2x.png in Resources */,
 				E5B5453519F1166100B7B7A9 /* group_3_8.png in Resources */,
 				E5B5450519F1083E00B7B7A9 /* listTabbar@2x.png in Resources */,
 				E5B544D819F1079500B7B7A9 /* LaunchScreen.xib in Resources */,
@@ -1307,13 +1261,6 @@
 				E5B5452919F1165B00B7B7A9 /* off_menu_icon.png in Resources */,
 				E5B544D519F1079500B7B7A9 /* Images.xcassets in Resources */,
 				E5D3A88619F135870025A6C3 /* audio@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E5B544DB19F1079500B7B7A9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1418,6 +1365,7 @@
 				E5B544F019F107FE00B7B7A9 /* DDTTYLogger.m in Sources */,
 				E5B544EE19F107FE00B7B7A9 /* DDFileLogger.m in Sources */,
 				E5B5452619F10B4700B7B7A9 /* MDIOSScenesTableViewController.m in Sources */,
+				E54BC20819F4405B0022A818 /* MDIOSScenePresetTableViewCell.m in Sources */,
 				E5B544F119F1080A00B7B7A9 /* MDDSSManager.m in Sources */,
 				E5B544F319F1080D00B7B7A9 /* MDDSSConsumptionManager.m in Sources */,
 				E5B5452419F10B4700B7B7A9 /* MDIOSRoomsViewController.m in Sources */,
@@ -1438,14 +1386,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5B544D919F1079500B7B7A9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E5B544E419F1079500B7B7A9 /* DSMenu_iOSTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1463,11 +1403,6 @@
 			isa = PBXTargetDependency;
 			target = E51AED4719DD29CC007296FB /* DSMenuHelper */;
 			targetProxy = E569F46A19DDAC610074BC78 /* PBXContainerItemProxy */;
-		};
-		E5B544DF19F1079500B7B7A9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E5B544C119F1079500B7B7A9 /* DSMenu-iOS */;
-			targetProxy = E5B544DE19F1079500B7B7A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1782,8 +1717,9 @@
 		E5B544E519F1079500B7B7A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = IOSAppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jonas Schnelli (422V58G985)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
@@ -1792,7 +1728,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "DSMenu-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1804,63 +1740,19 @@
 		E5B544E619F1079500B7B7A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = IOSAppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
 				INFOPLIST_FILE = "DSMenu-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E5B544E719F1079500B7B7A9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DSMenu-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSMenu-iOS.app/DSMenu-iOS";
-			};
-			name = Debug;
-		};
-		E5B544E819F1079500B7B7A9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DSMenu-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DSMenu-iOS.app/DSMenu-iOS";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1927,15 +1819,6 @@
 			buildConfigurations = (
 				E5B544E519F1079500B7B7A9 /* Debug */,
 				E5B544E619F1079500B7B7A9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E5B544EA19F1079500B7B7A9 /* Build configuration list for PBXNativeTarget "DSMenu-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E5B544E719F1079500B7B7A9 /* Debug */,
-				E5B544E819F1079500B7B7A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

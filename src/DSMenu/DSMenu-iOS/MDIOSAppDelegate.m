@@ -49,6 +49,11 @@
 
 - (void)startPollingData
 {
+    [[MDDSSManager defaultManager] getStructure:^(NSDictionary *json, NSError *error){
+        self.structure = json;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:self.structure];
+    }];
+    
     [MDDSSConsumptionManager defaultManager].callbackLatest = ^(NSArray *json, NSError *error){
         
         NSMutableAttributedString* str =[[NSMutableAttributedString alloc] initWithString:@""];
@@ -87,10 +92,7 @@
     [[MDDSSConsumptionManager defaultManager] startPollingHistory:10];
     [[MDDSSConsumptionManager defaultManager] startPollingLatest:2];
     
-    [[MDDSSManager defaultManager] getStructure:^(NSDictionary *json, NSError *error){
-        self.structure = json;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:self.structure];
-    }];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -24,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Consumption", @"");
 
 //    self.consumptionView = [[DMConsumptionView alloc] initWithFrame:CGRectMake(0,0,self.view.bounds.size.width,self.view.bounds.size.height-100)];
 //    [self.view addSubview:self.consumptionView];
@@ -59,9 +61,6 @@
 - (void)recheckConnection
 {
     self.noConnectionView.hidden = YES;
-    
-    BOOL cp = [MDDSSManager defaultManager].connectionProblems;
-    NSString *host = [MDDSSManager defaultManager].host;
     
     if([MDDSSManager defaultManager].connectionProblems || [MDDSSManager defaultManager].host == nil || [MDDSSManager defaultManager].host.length <= 1)
     {

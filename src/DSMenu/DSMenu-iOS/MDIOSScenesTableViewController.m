@@ -9,6 +9,7 @@
 #import "MDIOSScenesTableViewController.h"
 #import "MDDSHelper.h"
 #import "MDDSSManager.h"
+#import "MDIOSScenePresetTableViewCell.h"
 
 @interface MDIOSScenesTableViewController ()
 @property NSMutableArray *sections;
@@ -256,18 +257,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MDIOSScenePresetTableViewCell *cell = (MDIOSScenePresetTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[MDIOSScenePresetTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
     cell.textLabel.text = [cellDict objectForKey:@"title"];
-    
     cell.imageView.image = [cellDict objectForKey:@"image"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
+    NSLog(@"%@", cellDict);
+    
+    MDIOSScenePresetTableViewCell *cell = (MDIOSScenePresetTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.isLoading = YES;
+    
+    [[MDDSSManager defaultManager] callScene:[cellDict objectForKey:@"tag"] zoneId:[self.zoneDict objectForKey:@"id"] groupID:[cellDict objectForKey:@"group"] callback:^(NSDictionary *json, NSError *error)
+     {
+         cell.isLoading = NO;
+     }];
 }
 
 /*

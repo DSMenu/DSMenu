@@ -134,3 +134,8 @@ passwordLabel = "Passwort";
 
 localConnectionTab = "Lokale Verbindung";
 remoteConnectivityTab = "digitalstrom.com Login";
+
+
+/*IOS only*/
+roomsTitle = "Räume";
+settingsTitle = "Einstellungen";

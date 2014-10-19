@@ -100,40 +100,75 @@
     NSString *group = [NSString stringWithFormat:@"%ld", sender.tag];
     NSLog(@"taped: %@", group);
     
-    [[MDDSSManager defaultManager] lastCalledSceneInZoneId:self.zoneId groupID:group callback:^(NSDictionary *json, NSError *error)
-     {
-         if(!error && [json objectForKey:@"result"])
+    
+    
+    if([MDDSSManager defaultManager].useLastCalledSceneCheck)
+    {
+        [[MDDSSManager defaultManager] lastCalledSceneInZoneId:self.zoneId groupID:group callback:^(NSDictionary *json, NSError *error)
          {
-             NSString *scene = [[json objectForKey:@"result"] objectForKey:@"scene"];
-             int currentScene = [scene intValue];
-             int desiredScene = 0;
-             if(currentScene == 5)
+             if(!error && [json objectForKey:@"result"])
              {
-                 desiredScene = 0;
-             }
-             else if(currentScene >5)
-             {
-                 desiredScene = 5;
-             }
-             
-             NSUInteger aIndex = [self.labelBackgroundViews indexOfObject:sender];
-             UILabel *label = [self.labels objectAtIndex:aIndex];
-             
-             [UIView animateWithDuration:0.5 animations:^{
+                 NSString *scene = [[json objectForKey:@"result"] objectForKey:@"scene"];
+                 int currentScene = [scene intValue];
+                 int desiredScene = 0;
+                 if(currentScene == 5)
+                 {
+                     desiredScene = 0;
+                 }
+                 else if(currentScene == 0 || currentScene >5)
+                 {
+                     desiredScene = 5;
+                 }
                  
-                 label.text = [NSString stringWithFormat:@"calling scene %d...", desiredScene];
-                 [self calculateSizes];
-             }];
-         }
-     }];
+                 NSUInteger aIndex = [self.labelBackgroundViews indexOfObject:sender];
+                 UILabel *label = [self.labels objectAtIndex:aIndex];
+                 
+                 [UIView animateWithDuration:0.5 animations:^{
+                     
+                     label.text = [NSString stringWithFormat:@"calling %@", NSLocalizedString(( [NSString stringWithFormat:@"group%@scene%d",  group,desiredScene]), @"")];
+                     [self calculateSizes];
+                     
+                 }];
+                 
+                 NSString *sceneString = [NSString stringWithFormat:@"%d", desiredScene];
+                 [[MDDSSManager defaultManager] callScene:sceneString zoneId:self.zoneId groupID:group callback:^(NSDictionary *json, NSError *error)
+                  {
+                      [self buildLabels:self.availableGroups];
+                      [self calculateSizes];
+                  }];
+             }
+         }];
+        
+        NSUInteger aIndex = [self.labelBackgroundViews indexOfObject:sender];
+        UILabel *label = [self.labels objectAtIndex:aIndex];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            label.text = @"loading state...";
+            [self calculateSizes];
+        }];
+    }
+    else
+    {
+        NSUInteger aIndex = [self.labelBackgroundViews indexOfObject:sender];
+        UILabel *label = [self.labels objectAtIndex:aIndex];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            label.text = NSLocalizedString(( [NSString stringWithFormat:@"group%@scene5", group]), @"");
+            [self calculateSizes];
+            
+        }];
+        
+        [[MDDSSManager defaultManager] callScene:@"5" zoneId:self.zoneId groupID:group callback:^(NSDictionary *json, NSError *error)
+         {
+             label.text = @"done";
+             [self calculateSizes];
+         }];
+    }
     
-    NSUInteger aIndex = [self.labelBackgroundViews indexOfObject:sender];
-    UILabel *label = [self.labels objectAtIndex:aIndex];
     
-    [UIView animateWithDuration:0.5 animations:^{
-        label.text = @"loading state...";
-        [self calculateSizes];
-    }];
+    
+    
 }
 
 - (void)calculateSizes
@@ -159,6 +194,7 @@
         }
         
         self.mainLabel.frame = CGRectMake(self.mainLabel.frame.origin.x,10,self.mainLabel.frame.size.width,self.mainLabel.frame.size.height);
+        NSLog(@"---> %f", self.mainLabel.frame.origin.y);
         self.labelsView.hidden = NO;
         
         self.labelsView.frame = CGRectMake(self.labelsView.frame.origin.x, self.labelsView.frame.origin.y, self.labelsView.frame.size.width, labelHeight+6);
