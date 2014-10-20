@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"Consumption", @"");
+    self.title = NSLocalizedString(@"consumptionTitle", @"");
 
 //    self.consumptionView = [[DMConsumptionView alloc] initWithFrame:CGRectMake(0,0,self.view.bounds.size.width,self.view.bounds.size.height-100)];
 //    [self.view addSubview:self.consumptionView];
