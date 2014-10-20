@@ -12,11 +12,16 @@
 @property (assign) BOOL showLocalConnection;
 @property (assign) BOOL searchingMDNS;
 @property (assign) BOOL tryToConnect;
+@property (assign) BOOL tryToConnectLocal;
 @property (assign) BOOL checkConnection;
 @property (assign) BOOL connectionError;
+@property (assign) BOOL connectionErrorLocal;
 
 
 @property (strong) NSString *currentUsername;
 @property (strong) NSString *currentPassword;
+@property (strong) NSString *currentIPAddressOrHostname;
+
+@property (strong) UITextField *passwordTextField;
 
 @end

@@ -13,6 +13,7 @@
 #define kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_SECTION 0
 #define kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION 1
 #define kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION 2
+#define kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION 3
 
 @interface MDIOSSettingsConnectionsViewController ()
 @property NSNetServiceBrowser *netServiceBrowser;
@@ -58,6 +59,11 @@
             }
         }];
     }
+    
+    if([MDDSSManager defaultManager].useIPAddress)
+    {
+        self.showLocalConnection = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,20 +91,9 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     DDLogVerbose(@"%@ %@", [aNetService.name stringByAppendingString:@".local"], [MDDSSManager defaultManager].host);
+
     
-    if([[aNetService.name stringByAppendingString:@".local"] isEqualToString:[MDDSSManager defaultManager].host])
-    {
-        for(int i=0;i<self.mDNSServices.count;i++)
-        {
-            NSNetService *anotherService = [self.mDNSServices objectAtIndex:i];
-            if([anotherService isEqual:aNetService])
-            {
-                self.dontUpdate = YES;
-//                [self.localHostMDNSList selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1] animated:NO scrollPosition:UITableViewScrollPositionNone];
-                self.dontUpdate = NO;
-            }
-        }
-    }
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     DDLogDebug(@"%@ %@", aNetService.name, [NSNumber numberWithLong:[aNetService port]]);
     DDLogDebug(@"%@", [[NSString alloc] initWithData:aNetService.TXTRecordData encoding:NSUTF8StringEncoding]);
@@ -113,18 +108,18 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
     {
-        return @"mein.digitalStrom";
+        return NSLocalizedString(@"remoteConnectivityTab", @"");
     }
     else if(section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION)
     {
-        return @"local Connection";
+        return NSLocalizedString(@"localConnectionTab", @"");
     }
     else
     {
@@ -134,24 +129,42 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+
+    return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
     if(section == kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION)
     {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,100)];
-        return footerView;
+        return @"Connect over the Internet by using the Remote Connectivity (mein.digitalSTRO) App on you dSS";
     }
     
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION)
+    {
+        return 100.0;
+    }
+    else if(section == kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_SECTION)
+    {
+        return 40.0;
+    }
+    return 0.0;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if(section == kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_SECTION)
+    if(section == kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_SECTION || section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION)
     {
         return 1;
     }
     else if(section == kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION)
     {
-        return 40;
+        return 60;
     }
     else
     {
@@ -180,6 +193,12 @@
         }
         return 1;
     }
+    else if(section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION)
+    {
+        return self.showLocalConnection;
+    }
+    
+    
     
     return 0;
 }
@@ -192,8 +211,8 @@
         MDIOSSettingTextFieldTableViewCell *cell2 = (MDIOSSettingTextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell"];
         
         
-        NSString *usernameLabel = @"Username";
-        NSString *passwordLabel = @"Password";
+        NSString *usernameLabel = NSLocalizedString(@"usernameLabel", @"Usernamel label");
+        NSString *passwordLabel = NSLocalizedString(@"passwordLabel", @"Password label");
         
         cell2.textLabel.text = usernameLabel;
         CGRect sizeUsername = [cell2.textLabel textRectForBounds:CGRectMake(0,0,1000,30) limitedToNumberOfLines:1];
@@ -209,14 +228,16 @@
         if(indexPath.row == 0)
         {
             cell2.textLabel.text = usernameLabel;
-            cell2.textField.placeholder = NSLocalizedString(@"john@dooh.com", @"username placeholder");
+            cell2.textField.placeholder = NSLocalizedString(@"usernamePlaceholder", @"username placeholder");
             cell2.textField.tag = 1;
+            cell2.textField.keyboardType = UIKeyboardTypeEmailAddress;
+            cell2.textField.secureTextEntry = NO;
             cell2.accessoryView = nil;
         
+            cell2.textField.text = self.currentUsername;
+            
             if(self.currentUsername)
             {
-                cell2.textField.text = self.currentUsername;
-                
                 if(self.checkConnection == YES)
                 {
                     cell2.accessoryView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -240,26 +261,29 @@
         }
         else
         {
+            cell2.accessoryView = nil;
             cell2.textLabel.text = passwordLabel;
-            cell2.textField.placeholder = NSLocalizedString(@"your password", @"password placeholder");
+            cell2.textField.text = self.currentPassword;
+            cell2.textField.placeholder = NSLocalizedString(@"passwordPlaceholder", @"password placeholder");
             cell2.textField.tag = 2;
             cell2.textField.secureTextEntry = YES;
+            cell2.textField.keyboardType =  UIKeyboardTypeDefault;
+            
+            self.passwordTextField = cell2.textField;
         }
-        
-        
-        
+
         cell = (UITableViewCell *)cell2;
     }
     else if(indexPath.section == kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION)
     {
-        cell.textLabel.text = @"Connect";
+        cell.textLabel.text = NSLocalizedString(@"loginButton", @"login button");
         cell.accessoryView = nil;
         cell.textLabel.textColor = BLUE_LINK_COLOR;
         cell.tag = 0;
         
         if([MDDSSManager defaultManager].useRemoteConnectivity)
         {
-            cell.textLabel.text = @"Disconnect";
+            cell.textLabel.text = NSLocalizedString(@"disconnectButton", @"disconnect button");
             cell.tag = 1;
             cell.textLabel.textColor = [UIColor colorWithRed:0.8 green:0.1 blue:0.1 alpha:1.0];
         }
@@ -281,19 +305,25 @@
             UISwitch *aSwitch = (UISwitch *)[cell.contentView viewWithTag:101];
             aSwitch.on = self.showLocalConnection;
             
-            cell.textLabel.text = @"Local Connection";
+            cell.textLabel.text = NSLocalizedString(@"useLocalConnection", @"local connection switch/button");
         }
         else if(indexPath.row > 0 && indexPath.row < self.mDNSServices.count)
         {
-            NSNetService *netService = [self.mDNSServices objectAtIndex:indexPath.row-1];
             
+            NSNetService *netService = [self.mDNSServices objectAtIndex:indexPath.row-1];
             cell.textLabel.text = netService.name;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            if([[netService.name stringByAppendingString:@".local"] isEqualToString:[MDDSSManager defaultManager].host])
+            {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
         }
         else
         {
             if(self.searchingMDNS && indexPath.row == self.mDNSServices.count+1)
             {
-                cell.textLabel.text = @"searching neibourhood...";
+                cell.textLabel.text = NSLocalizedString(@"searchingBonjour", @"searching mDNS indicator text");
                 cell.textLabel.font = [UIFont systemFontOfSize:12];
                 
                 cell.accessoryView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -304,22 +334,35 @@
             {
                 MDIOSSettingTextFieldTableViewCell *cell2 = (MDIOSSettingTextFieldTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"textFieldCell"];
                 
-                cell2.textLabel.text = @"Local IP";
+                cell2.textLabel.text = NSLocalizedString(@"preferenceMainAddressLabel", @"");
                 cell2.textField.placeholder = NSLocalizedString(@"192.168.0.10", @"IP placeholder");
+                cell2.textField.tag = 3;
+                cell2.textField.secureTextEntry = NO;
+                cell2.textField.keyboardType = UIKeyboardTypeDefault;
+                cell2.textField.text = self.currentIPAddressOrHostname;
+                cell2.accessoryView = nil;
+                
                 cell = (UITableViewCell *)cell2;
             }
         }
     }
-    
-    // Configure the cell...
+    else if(indexPath.section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION)
+    {
+        cell.textLabel.text = NSLocalizedString(@"loginButton", @"login button");
+        cell.accessoryView = nil;
+        cell.textLabel.textColor = BLUE_LINK_COLOR;
+        cell.tag = 100;
+        
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        
+        if(self.tryToConnectLocal) {
+            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+            [activityIndicator startAnimating];
+            cell.accessoryView = activityIndicator;
+        }
+    }
     return cell;
-}
-
-- (IBAction)switchValueChanged:(id)sender
-{
-    UISwitch *aSwitch = (UISwitch *)sender;
-    self.showLocalConnection = aSwitch.on;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -340,28 +383,43 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
+    else if(indexPath.section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION)
+    {
+        UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        if(cell.tag == 100)
+        {
+            [self connectLocal];
+        }
+        else
+        {
+            
+        }
+        
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark login/logout stack
+#pragma mark - login/logout/etc. stack
+
+- (IBAction)switchValueChanged:(id)sender
+{
+    UISwitch *aSwitch = (UISwitch *)sender;
+    self.showLocalConnection = aSwitch.on;
+    
+    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] initWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION];
+    [indexSet addIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION];
+    
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 - (IBAction)loginTapped
 {
     self.tryToConnect = YES;
     [self.tableView.superview endEditing:YES];
-    
-//    [self.passwordField resignFirstResponder];
-//    [self.emailField resignFirstResponder];
-//    [self.networkActivityIndicator startAnimating];
 
-    
-    
-//    self.connectionStateInfoText.text = NSLocalizedString(@"tryToConnectMessage", @"Try to connect message in preference");
-//    self.connectionStateInfoText.textColor = [UIColor darkGrayColor];
-//    self.connectionStateInfoText.hidden = NO;
-//    self.statusImage.hidden = YES;
-    
-//    
     [[MDDSSManager defaultManager] checkRemoteConnectivityFor:self.currentUsername password:self.currentPassword callback:^(NSDictionary *json, NSError *error)
      {
          if(error == NO && json && [json objectForKey:@"Response"] != [NSNull null] && [[json objectForKey:@"Response"] objectForKey:@"RelayLink"])
@@ -381,7 +439,8 @@
                   {
                       self.tryToConnect = NO;
                       self.connectionError = NO;
-
+                      self.showLocalConnection = NO;
+                      
                       [self.tableView reloadData];
                       
                       [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
@@ -420,7 +479,59 @@
     {
         self.currentPassword = textField.text;
     }
+    else if(textField.tag == 3)
+    {
+        self.currentIPAddressOrHostname = textField.text;
+    }
     return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField.tag == 1)
+    {
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if(textField.tag == 2)
+    {
+        [self loginTapped];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    return YES;
+}
+
+#pragma mark - local check
+
+- (void)connectLocal
+{
+    
+    
+    self.tryToConnectLocal = YES;
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [[MDDSSManager defaultManager] checkHost:self.currentIPAddressOrHostname callback:^(BOOL status)
+     {
+         
+         self.tryToConnectLocal = NO;
+         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+         
+         if(status)
+         {
+             if([MDDSSManager defaultManager].useRemoteConnectivity)
+             {
+                 [self disconnectTapped];
+             }
+             
+             self.connectionErrorLocal = NO;
+         }
+         else
+         {
+             self.connectionErrorLocal = YES;
+         }
+         
+         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+     }];
 }
 
 /*

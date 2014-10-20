@@ -53,6 +53,8 @@
 		E5548E7C19D408EB00082430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E557E8BC19DC4F5B00A25C4A /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557E8B919DC4F5B00A25C4A /* StartAtLoginController.m */; };
 		E55F029C19DDD1A10019AF2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51AED7A19DD2EE3007296FB /* MainMenu.xib */; };
+		E561822219F5727000D39DC7 /* MDIOSSettingsExpertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E561822119F5727000D39DC7 /* MDIOSSettingsExpertViewController.m */; };
+		E561822519F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E561822419F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.m */; };
 		E561C7AF19921CFA00496303 /* group_3_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A319921CFA00496303 /* group_3_8.png */; };
 		E561C7B019921CFA00496303 /* group_3_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A419921CFA00496303 /* group_3_8@2x.png */; };
 		E561C7B119921CFA00496303 /* group_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A519921CFA00496303 /* group_3.png */; };
@@ -360,6 +362,10 @@
 		E5548E7E19D408F300082430 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E557E8B819DC4F5B00A25C4A /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
 		E557E8B919DC4F5B00A25C4A /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
+		E561822019F5727000D39DC7 /* MDIOSSettingsExpertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSSettingsExpertViewController.h; sourceTree = "<group>"; };
+		E561822119F5727000D39DC7 /* MDIOSSettingsExpertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSSettingsExpertViewController.m; sourceTree = "<group>"; };
+		E561822319F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSSettingsConsumptionViewController.h; sourceTree = "<group>"; };
+		E561822419F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSSettingsConsumptionViewController.m; sourceTree = "<group>"; };
 		E561C7A319921CFA00496303 /* group_3_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_3_8.png; sourceTree = "<group>"; };
 		E561C7A419921CFA00496303 /* group_3_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_3_8@2x.png"; sourceTree = "<group>"; };
 		E561C7A519921CFA00496303 /* group_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_3.png; sourceTree = "<group>"; };
@@ -816,6 +822,10 @@
 				E5B5450F19F1087900B7B7A9 /* MDIOSSettingsConnectionViewController.m */,
 				E53C981D19F5196B00362ECB /* MDIOSSettingsConnectionsViewController.h */,
 				E53C981E19F5196B00362ECB /* MDIOSSettingsConnectionsViewController.m */,
+				E561822019F5727000D39DC7 /* MDIOSSettingsExpertViewController.h */,
+				E561822119F5727000D39DC7 /* MDIOSSettingsExpertViewController.m */,
+				E561822319F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.h */,
+				E561822419F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.m */,
 				E53C982019F5252400362ECB /* MDIOSSettingTextFieldTableViewCell.h */,
 				E53C982119F5252400362ECB /* MDIOSSettingTextFieldTableViewCell.m */,
 				E5B5451E19F10B4700B7B7A9 /* MDIOSRoomsViewController.h */,
@@ -1388,6 +1398,7 @@
 				E54BC20819F4405B0022A818 /* MDIOSScenePresetTableViewCell.m in Sources */,
 				E5B544F119F1080A00B7B7A9 /* MDDSSManager.m in Sources */,
 				E5B544F319F1080D00B7B7A9 /* MDDSSConsumptionManager.m in Sources */,
+				E561822219F5727000D39DC7 /* MDIOSSettingsExpertViewController.m in Sources */,
 				E53C981F19F5196B00362ECB /* MDIOSSettingsConnectionsViewController.m in Sources */,
 				E5B5452419F10B4700B7B7A9 /* MDIOSRoomsViewController.m in Sources */,
 				E5B544F219F1080D00B7B7A9 /* MDDSSURLConnection.m in Sources */,
@@ -1402,6 +1413,7 @@
 				E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */,
 				E53C981919F4E8B000362ECB /* MDIOSSettingsViewController.m in Sources */,
 				E5B5451A19F10AC200B7B7A9 /* MDConsumptionTextView.m in Sources */,
+				E561822519F5754500D39DC7 /* MDIOSSettingsConsumptionViewController.m in Sources */,
 				E5B544ED19F107FE00B7B7A9 /* DDASLLogger.m in Sources */,
 				E5B544EB19F107F400B7B7A9 /* DDAbstractDatabaseLogger.m in Sources */,
 				E5B5452519F10B4700B7B7A9 /* MDIOSRoomTableViewCell.m in Sources */,
