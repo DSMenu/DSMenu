@@ -15,6 +15,8 @@
 #define kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY @"MDDSSUseRemoteConnectivity"
 #define kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME @"MDDSSRemoteConnectivityUsername"
 
+#define kMDDSSMANAGER_HISTORY_VALUE_COUNT @"MDDSSManagerHistoryValueCount"
+
 #define kMDDSSMANAGER_APPLICATION_TOKEN_MIN_LENGTH 3
 
 static MDDSSManager *defaultManager;
@@ -26,6 +28,7 @@ static MDDSSManager *defaultManager;
 @end
 
 @implementation MDDSSManager
+@synthesize consumptionHistoryValueCount=_consumptionHistoryValueCount;
 
 + (MDDSSManager *)defaultManager
 {
@@ -42,6 +45,14 @@ static MDDSSManager *defaultManager;
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.applicationToken = [defaults objectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
+        self.consumptionHistoryValueCount = [NSNumber numberWithInt:600];
+        
+        NSNumber *possibleHistoryValueCount = [defaults objectForKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
+        if(possibleHistoryValueCount && [possibleHistoryValueCount isKindOfClass:[NSNumber class]])
+        {
+            self.consumptionHistoryValueCount = possibleHistoryValueCount;
+        }
+        
         if(self.applicationToken == nil)
         {
             self.applicationToken = @"";
@@ -488,10 +499,22 @@ static MDDSSManager *defaultManager;
 - (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback
 {
     //NSTimeInterval startTime = [[NSDate dateWithTimeIntervalSinceNow:-60*60*2] timeIntervalSince1970];
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"valueCount":[NSNumber numberWithInt:600], @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:60]};
+    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"valueCount": self.consumptionHistoryValueCount , @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:60]};
     [self jsonCall:@"/json/metering/getValues" params:params completionHandler:^(NSDictionary *json, NSError *error){
         callback(json, error);
     }];
+}
+
+- (void)setConsumptionHistoryValueCount:(NSNumber *)consumptionHistoryValueCount
+{
+    _consumptionHistoryValueCount = consumptionHistoryValueCount;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:_consumptionHistoryValueCount forKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
+}
+
+- (NSNumber *)consumptionHistoryValueCount
+{
+    return _consumptionHistoryValueCount;
 }
 
 #pragma mark - RemoteConnectivityStack

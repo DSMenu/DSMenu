@@ -39,6 +39,8 @@
 
 @property BOOL useLastCalledSceneCheck;
 
+@property (strong) NSNumber *consumptionHistoryValueCount; /**< how many values for the history should be loaded, 600 per default */
+
 + (MDDSSManager *)defaultManager; /**< singleton */
 
 /**
