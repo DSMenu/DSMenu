@@ -21,6 +21,15 @@
 
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
+    NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc]
+                                        initWithSuiteName:@"group.com.include7.DSMenu"];
+    
+    
+    NSLog(@"NSUserDefaults dump: %@", [mySharedDefaults dictionaryRepresentation]);
+    
+    [MDDSSManager defaultManager].currentUserDefaults = mySharedDefaults;
+    [[MDDSSManager defaultManager] loadDefaults];
+    
     [MDDSSManager defaultManager].appName = @"DSMenuiOS";
     [MDDSSManager defaultManager].appUUID = @"e4634770-11a3-412f-9946-91911c2a4d25";
     
