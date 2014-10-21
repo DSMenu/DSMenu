@@ -55,7 +55,9 @@
         [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     }
     
+#ifdef DDDEBUG
     DDLogVerbose(@"Request: %@", request);
+#endif
     
     self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
@@ -80,7 +82,11 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSString *jsonResponse = [[NSString alloc] initWithData:self.connectionData encoding:NSUTF8StringEncoding];
+    
+#ifdef DDDEBUG
     DDLogVerbose(@"Response: %@", jsonResponse);
+#endif
+    
     
     NSError *e = nil;
     NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self.connectionData options:NSJSONReadingMutableContainers error:&e];
