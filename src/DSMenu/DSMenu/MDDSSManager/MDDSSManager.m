@@ -8,6 +8,8 @@
 
 #import "MDDSSManager.h"
 #import "MDDSSURLConnection.h"
+#import "Notifications.h"
+#import "ErrorCodes.h"
 
 #define kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY @"MDDSSManagerApplicationToken"
 #define kMDDSSMANAGER_HOST_UD_KEY @"MDDSSManagerHost"
@@ -43,16 +45,6 @@ static MDDSSManager *defaultManager;
 {
     self = [super init];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        self.applicationToken = [defaults objectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
-        self.consumptionHistoryValueCount = [NSNumber numberWithInt:600];
-        
-        NSNumber *possibleHistoryValueCount = [defaults objectForKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
-        if(possibleHistoryValueCount && [possibleHistoryValueCount isKindOfClass:[NSNumber class]])
-        {
-            self.consumptionHistoryValueCount = possibleHistoryValueCount;
-        }
-        
         if(self.applicationToken == nil)
         {
             self.applicationToken = @"";
@@ -65,46 +57,71 @@ static MDDSSManager *defaultManager;
         self.useLastCalledSceneCheck = YES;
         self.connectionProblems = NO;
         
-        NSString *possibleHost = [[NSUserDefaults standardUserDefaults] objectForKey:kMDDSSMANAGER_HOST_UD_KEY];
-        if(possibleHost && [possibleHost isKindOfClass:[NSString class]])
-        {
-            self.host = possibleHost;
-        }
+        [self loadDefaults];
     }
     return self;
 }
 
+- (void)loadDefaults
+{
+    // must be called after user defaults object has been changed
+    NSUserDefaults *defaults = self.userDefaultsProxy;
+    self.applicationToken = [defaults objectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
+    self.consumptionHistoryValueCount = [NSNumber numberWithInt:360];
+    
+    NSNumber *possibleHistoryValueCount = [defaults objectForKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
+    if(possibleHistoryValueCount && [possibleHistoryValueCount isKindOfClass:[NSNumber class]])
+    {
+        self.consumptionHistoryValueCount = possibleHistoryValueCount;
+    }
+    
+    NSString *possibleHost = [self.userDefaultsProxy objectForKey:kMDDSSMANAGER_HOST_UD_KEY];
+    if(possibleHost && [possibleHost isKindOfClass:[NSString class]])
+    {
+        self.host = possibleHost;
+    }
+}
+
+- (NSUserDefaults *)userDefaultsProxy
+{
+    if(self.currentUserDefaults)
+    {
+        return self.currentUserDefaults;
+    }
+    return [NSUserDefaults standardUserDefaults];
+}
+
 - (void)setUseIPAddress:(BOOL)useIPAddress
 {
-    [[NSUserDefaults standardUserDefaults] setBool:useIPAddress forKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.userDefaultsProxy setBool:useIPAddress forKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
+    [self.userDefaultsProxy synchronize];
 }
 
 - (BOOL)useIPAddress
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
+    return [self.userDefaultsProxy boolForKey:kMDDSSMANAGER_USE_IP_ADDRESS_UD_KEY];
 }
 
 - (void)setUseRemoteConnectivity:(BOOL)useRemoteConnectivity
 {
-    [[NSUserDefaults standardUserDefaults] setBool:useRemoteConnectivity forKey:kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.userDefaultsProxy setBool:useRemoteConnectivity forKey:kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY];
+    [self.userDefaultsProxy synchronize];
 }
 
 - (BOOL)useRemoteConnectivity
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY];
+    return [self.userDefaultsProxy boolForKey:kMDDSSMANAGER_USE_REMOTE_CONNECTIVITY];
 }
 
 - (void)setRemoteConnectivityUsername:(NSString *)username
 {
-    [[NSUserDefaults standardUserDefaults] setObject:username forKey:kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.userDefaultsProxy setObject:username forKey:kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME];
+    [self.userDefaultsProxy synchronize];
 }
 
 - (NSString *)remoteConnectivityUsername
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME];
+    return [self.userDefaultsProxy objectForKey:kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME];
 }
 
 - (NSString *)hostWithPort
@@ -115,8 +132,8 @@ static MDDSSManager *defaultManager;
 - (void)setAndPersistHost:(NSString *)host
 {
     self.host = host;
-    [[NSUserDefaults standardUserDefaults] setObject:self.host forKey:kMDDSSMANAGER_HOST_UD_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.userDefaultsProxy setObject:self.host forKey:kMDDSSMANAGER_HOST_UD_KEY];
+    [self.userDefaultsProxy synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_HOST_DID_CHANGE object:self.host];
 }
@@ -148,7 +165,7 @@ static MDDSSManager *defaultManager;
 
 - (void)persistApplicationToken
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = self.userDefaultsProxy;
     [defaults setValue:self.applicationToken forKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
     [defaults synchronize];
 }
@@ -170,7 +187,9 @@ static MDDSSManager *defaultManager;
             handler(nil, error);
             return;
         }
+#ifdef DDDEBUG
         DDLogDebug(@"json: %@", [json objectForKey:@"ok"]);
+#endif
         if([[json objectForKey:@"ok"] intValue] == 0)
         {
             
@@ -179,7 +198,9 @@ static MDDSSManager *defaultManager;
             {
                 //ERROR TODO
                 self.connectionProblems = YES;
-                DDLogWarn(@"ERROR, can't login");
+                #ifdef DDDEBUG
+                    DDLogWarn(@"ERROR, can't login");
+                #endif
                 NSError *error = [NSError errorWithDomain:@"" code:MD_ERROR_AUTH_ERROR userInfo:nil]; // TODO
                 handler(nil, error);
                 return;
@@ -270,8 +291,9 @@ static MDDSSManager *defaultManager;
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"value": value };
     [self jsonCall:@"/json/device/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
+#ifdef DDDEBUG
         DDLogDebug(@"%@", json);
-        
+#endif
         
     }];
 }
@@ -323,11 +345,15 @@ static MDDSSManager *defaultManager;
 - (void)dimZone:(NSString *)zoneId groupID:(NSString *)groupID value:(float)value callback:(void (^)(NSDictionary*, NSError*))callback
 {
     
+#ifdef DDDEBUG
     DDLogVerbose(@"DimZone to: %f", value);
+#endif
     
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId,@"groupID":groupID, @"value":[NSNumber numberWithInt:(int)(value*100)]  };
     [self jsonCall:@"/json/zone/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+#ifdef DDDEBUG
         DDLogVerbose(@"DimZone end");
+#endif
         callback(json, error);
     }];
 }
@@ -338,7 +364,9 @@ static MDDSSManager *defaultManager;
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId};
     [self jsonCall:@"/json/zone/getName" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
+#ifdef DDDEBUG
         DDLogDebug(@"%@", json);
+#endif
         
         
     }];
@@ -350,33 +378,40 @@ static MDDSSManager *defaultManager;
     NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:1]};
     [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
         
+#ifdef DDDEBUG
         DDLogDebug(@"%@", json);
+#endif
         
         NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:2]};
         [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
-            
+
+#ifdef DDDEBUG
             DDLogDebug(@"%@", json);
+#endif
             
             NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:3]};
             [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
-                
+
+#ifdef DDDEBUG
                 DDLogDebug(@"%@", json);
+#endif
                 
                 NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:4]};
                 [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
                     
+#ifdef DDDEBUG
                     DDLogDebug(@"%@", json);
-                    
+#endif
                     NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:5]};
                     [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
-                        
+#ifdef DDDEBUG
                         DDLogDebug(@"%@", json);
-                        
+#endif
                         NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":dSID, @"sensorIndex": [NSNumber numberWithInt:6]};
                         [self jsonCall:@"/json/device/getSensorValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
-                            
+#ifdef DDDEBUG
                             DDLogDebug(@"%@", json);
-                            
+#endif
                             
                         }];
                     }];
@@ -404,7 +439,9 @@ static MDDSSManager *defaultManager;
                               @"action": [NSNumber numberWithInt:0]
                               };
     [self jsonCall:@"/json/device/setSensorEventTableEntry" params:params completionHandler:^(NSDictionary *json, NSError *error){
+#ifdef DDDEBUG
         DDLogVerbose(@"%@", json);
+#endif
     }];
     
     //setSensorEventTableEntry?_dc=1404910928359&dsid=3504175fe00000000006ef99&eventIndex=1&eventName=Bastelklemme%20aus&sensorIndex=2&test=1&value=20&hysteresis=10&validity=2&action=0
@@ -412,9 +449,9 @@ static MDDSSManager *defaultManager;
 
 - (void)resetToDefaults
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMDDSSMANAGER_HOST_UD_KEY];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.userDefaultsProxy removeObjectForKey:kMDDSSMANAGER_HOST_UD_KEY];
+    [self.userDefaultsProxy removeObjectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
+    [self.userDefaultsProxy synchronize];
     
     self.applicationToken = @"";
     self.currentSessionToken = @"";
@@ -509,7 +546,7 @@ static MDDSSManager *defaultManager;
 {
     _consumptionHistoryValueCount = consumptionHistoryValueCount;
     
-    [[NSUserDefaults standardUserDefaults] setObject:_consumptionHistoryValueCount forKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
+    [self.userDefaultsProxy setObject:_consumptionHistoryValueCount forKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
 }
 
 - (NSNumber *)consumptionHistoryValueCount

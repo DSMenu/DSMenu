@@ -39,6 +39,9 @@
 
 @property BOOL useLastCalledSceneCheck;
 
+@property NSUserDefaults *currentUserDefaults;
+- (void)loadDefaults; /**< load the data from the defaults (persisted storage a.k.a. disk) */
+
 @property (strong) NSNumber *consumptionHistoryValueCount; /**< how many values for the history should be loaded, 600 per default */
 
 + (MDDSSManager *)defaultManager; /**< singleton */
