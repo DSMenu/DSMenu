@@ -29,10 +29,6 @@
     self.netServiceBrowser = [[NSNetServiceBrowser alloc] init];
     [self.netServiceBrowser setDelegate:self];
     
-    self.searchingMDNS = YES;
-    NSTimer *timer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(searchEnd) userInfo:nil repeats:NO];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-    
     self.dontUpdate = NO;
     self.mDNSServices = [NSMutableArray array];
     
@@ -59,11 +55,16 @@
             }
         }];
     }
-    
-    if([MDDSSManager defaultManager].useIPAddress)
+    else
     {
-        self.showLocalConnection = YES;
+        if([MDDSSManager defaultManager].host && [MDDSSManager defaultManager].host.length > 0)
+        {
+            [self startBonjourSearch];
+            self.currentIPAddressOrHostname = [MDDSSManager defaultManager].host;
+            self.showLocalConnection = YES;
+        }
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +75,14 @@
 
 #pragma mark - mDNS / Bonjour Stack
 
+- (void)startBonjourSearch
+{
+    self.searchingMDNS = YES;
+    NSTimer *timer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(searchEnd) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
+    [self.netServiceBrowser searchForServicesOfType:@"_http._tcp." inDomain:@"local"];
+}
 - (void)searchEnd
 {
     self.searchingMDNS = NO;
@@ -307,7 +316,7 @@
             
             cell.textLabel.text = NSLocalizedString(@"useLocalConnection", @"local connection switch/button");
         }
-        else if(indexPath.row > 0 && indexPath.row < self.mDNSServices.count)
+        else if(indexPath.row > 0 && indexPath.row <= self.mDNSServices.count)
         {
             
             NSNetService *netService = [self.mDNSServices objectAtIndex:indexPath.row-1];
@@ -383,6 +392,16 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
+    else if(indexPath.section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION)
+    {
+        if(indexPath.row > 0 && indexPath.row <= self.mDNSServices.count)
+        {
+            NSNetService *netService = [self.mDNSServices objectAtIndex:indexPath.row-1];
+            
+            self.currentIPAddressOrHostname = [netService.name stringByAppendingString:@".local"];
+            [self connectLocal];        
+        }
+    }
     else if(indexPath.section == kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION)
     {
         UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -408,6 +427,11 @@
 {
     UISwitch *aSwitch = (UISwitch *)sender;
     self.showLocalConnection = aSwitch.on;
+    
+    if(aSwitch.on)
+    {
+        [self startBonjourSearch];
+    }
     
     NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] initWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION];
     [indexSet addIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_BUTTON_SECTION];
@@ -524,6 +548,12 @@
              }
              
              self.connectionErrorLocal = NO;
+             
+             [[MDDSSManager defaultManager] setAndPersistHost:self.currentIPAddressOrHostname];
+             [MDDSSManager defaultManager].useIPAddress = NO;
+             [MDDSSManager defaultManager].useRemoteConnectivity = NO;
+             
+             [self searchEnd];
          }
          else
          {
@@ -534,14 +564,5 @@
      }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
