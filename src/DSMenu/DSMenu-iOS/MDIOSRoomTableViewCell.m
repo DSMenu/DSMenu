@@ -98,10 +98,6 @@
 - (void)labelTaped:(UIButton *)sender
 {
     NSString *group = [NSString stringWithFormat:@"%ld", sender.tag];
-    NSLog(@"taped: %@", group);
-    
-    
-    
     if([MDDSSManager defaultManager].useLastCalledSceneCheck)
     {
         [[MDDSSManager defaultManager] lastCalledSceneInZoneId:self.zoneId groupID:group callback:^(NSDictionary *json, NSError *error)
@@ -194,7 +190,6 @@
         }
         
         self.mainLabel.frame = CGRectMake(self.mainLabel.frame.origin.x,10,self.mainLabel.frame.size.width,self.mainLabel.frame.size.height);
-        NSLog(@"---> %f", self.mainLabel.frame.origin.y);
         self.labelsView.hidden = NO;
         
         self.labelsView.frame = CGRectMake(self.labelsView.frame.origin.x, self.labelsView.frame.origin.y, self.labelsView.frame.size.width, labelHeight+6);
