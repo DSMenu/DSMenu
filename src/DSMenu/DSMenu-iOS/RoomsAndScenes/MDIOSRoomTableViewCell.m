@@ -15,12 +15,14 @@
     // Initialization code
     
     self.colorBadge.backgroundColor = [UIColor clearColor];
-    
-    
 }
 
 - (void)buildLabels:(NSArray *)groupNumbers
 {
+    if(groupNumbers == nil || groupNumbers.count == 0)
+    {
+        groupNumbers = @[@"nogroups"];
+    }
     self.availableGroups = groupNumbers;
     
     [self.labelsView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -30,8 +32,16 @@
     NSMutableArray *groups = [NSMutableArray array];
     for(NSString *groupNumber in groupNumbers)
     {
-        NSString *title = NSLocalizedString(([NSString stringWithFormat:@"group%@", groupNumber]), @"");
-        [groups addObject:@{@"title": title, @"group": groupNumber, @"textcolor": [UIColor whiteColor], @"bgcolor": [UIColor darkGrayColor]}];
+        if([groupNumber isEqualToString:@"nogroups"])
+        {
+            NSString *title = NSLocalizedString(@"nogroupslabel", @"");
+            [groups addObject:@{@"title": title, @"group": @"", @"textcolor": [UIColor whiteColor], @"bgcolor": [UIColor lightGrayColor]}];
+        }
+        else
+        {
+            NSString *title = NSLocalizedString(([NSString stringWithFormat:@"group%@", groupNumber]), @"");
+            [groups addObject:@{@"title": title, @"group": groupNumber, @"textcolor": [UIColor whiteColor], @"bgcolor": [UIColor darkGrayColor]}];
+        }
     }
     
     for(NSDictionary *labelDict in groups)
@@ -47,6 +57,8 @@
         UIButton *labelBackgroundView = [[UIButton alloc] init];
         labelBackgroundView.backgroundColor = [labelDict objectForKey:@"bgcolor"];
         [labelBackgroundView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"group_%@.png", [labelDict objectForKey:@"group"]]] forState:UIControlStateNormal];
+        
+        
         labelBackgroundView.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         
         labelBackgroundView.layer.cornerRadius = 2.0;
@@ -58,6 +70,8 @@
         [self.labelsView addSubview:labelBackgroundView];
         [self.labelsView addSubview:label];
     }
+    
+    [self calculateSizes];
 }
 
 - (void)showLoading
@@ -87,12 +101,6 @@
     [self.labelsView addSubview:labelBackgroundView];
     [self.labelsView addSubview:label];
 
-}
-
-- (void)loadingLabelTaped:(id)sender
-{
-//    [self buildLabels:self.availableGroups];
-//    [self setNeedsLayout];
 }
 
 - (void)labelTaped:(UIButton *)sender
@@ -175,6 +183,10 @@
         CGFloat xOffset = 0;
         CGFloat xSpace = 4;
         CGFloat imageSpaceH = 12;
+//        if(self.availableGroups && self.availableGroups.count == 1 && [[self.availableGroups objectAtIndex:0] isEqualToString:@"nogroups"])
+//        {
+//            imageSpaceH = 0;
+//        }
         CGFloat labelHeight = 16;
         for(UILabel *label in self.labels)
         {
@@ -188,42 +200,14 @@
             xOffset+=backgroundView.frame.size.width+xSpace;
             cnt++;
         }
-        
-        self.mainLabel.frame = CGRectMake(self.mainLabel.frame.origin.x,10,self.mainLabel.frame.size.width,self.mainLabel.frame.size.height);
         self.labelsView.hidden = NO;
-        
         self.labelsView.frame = CGRectMake(self.labelsView.frame.origin.x, self.labelsView.frame.origin.y, self.labelsView.frame.size.width, labelHeight+6);
     }
     else
     {
-        self.mainLabel.frame = CGRectMake(self.mainLabel.frame.origin.x,0,self.mainLabel.frame.size.width,self.contentView.frame.size.height);
         self.labelsView.hidden = YES;
     }
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    [self calculateSizes];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-- (IBAction)firstButton:(id)sender
-{
-//    [[MDDSSManager defaultManager] callScene:@"5" zoneId:self.zoneId groupID:@"1" callback:^(NSDictionary *json, NSError *error)
-//     {
-//         
-//     }];
-}
-
-- (IBAction)secondButton:(id)sender
-{
-    
-}
 
 @end

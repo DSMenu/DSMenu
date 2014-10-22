@@ -11,6 +11,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MDIOSRoomsViewControllerDelegate.h"
 
 /**
  *  MDIOSConsumptionTableViewCell
@@ -18,4 +19,7 @@
  */
 @interface MDIOSScenesTableViewController : UITableViewController
 @property (strong) NSDictionary *zoneDict;
+@property (strong) id <MDIOSRoomsViewControllerDelegate> delegate;
+@property (assign) BOOL selectWidgetMode;
+@property (assign) BOOL isFavorite;
 @end

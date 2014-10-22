@@ -10,7 +10,7 @@
 
 @interface MDIOSSettingTextFieldTableViewCell : UITableViewCell <UITextFieldDelegate>
 @property (strong) IBOutlet UITextField *textField;
-@property (strong) IBOutlet UILabel *contraintsHelperLabel;
+@property (strong) IBOutlet UILabel *constraintsHelperLabel;
 @property (assign) NSInteger textFieldColumns;
 @property (assign) CGFloat spaceLeft;
 @end

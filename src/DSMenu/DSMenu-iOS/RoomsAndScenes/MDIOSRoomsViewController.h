@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MDIOSScenesTableViewController.h"
+#import "MDIOSRoomsViewControllerDelegate.h"
 
 /**
  *  MDIOSConsumptionTableViewCell
@@ -22,4 +23,6 @@
 @property (strong) IBOutlet MDIOSScenesTableViewController *sceneViewController;
 @property (assign) BOOL isLoading;
 @property (assign) BOOL noConnection;
+@property (assign) BOOL selectWidgetMode;
+@property (strong) id <MDIOSRoomsViewControllerDelegate> delegate;
 @end

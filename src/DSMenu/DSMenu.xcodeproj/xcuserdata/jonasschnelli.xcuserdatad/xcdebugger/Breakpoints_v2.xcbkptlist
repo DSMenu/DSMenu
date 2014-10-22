@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
-            timestampString = "435520707.258637"
+            timestampString = "435677443.221437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "587"
-            endingLineNumber = "587"
+            startingLineNumber = "623"
+            endingLineNumber = "623"
             landmarkName = "-loginUser:password:callBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu-iOS/MDIOSRoomTableViewCell.m"
-            timestampString = "435595122.697215"
+            timestampString = "435660440.75592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "-secondButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -144,6 +144,22 @@
             startingLineNumber = "60"
             endingLineNumber = "60"
             landmarkName = "-testButtonTapped:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSMenu-iOS/MDIOSSettingsWidgetViewController.m"
+            timestampString = "435663439.509535"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-roomsOrScenesViewController:didSelectAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

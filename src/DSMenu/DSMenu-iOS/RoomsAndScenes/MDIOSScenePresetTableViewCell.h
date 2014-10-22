@@ -12,5 +12,8 @@
 
 @property (assign) BOOL isFavorized;
 @property (assign) BOOL isLoading;
-
+@property (strong) NSString *zone;
+@property (strong) NSString *group;
+@property (strong) NSString *scene;
+- (void)checkFavoriteState;
 @end

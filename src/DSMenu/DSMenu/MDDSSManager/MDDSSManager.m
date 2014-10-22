@@ -18,6 +18,8 @@
 #define kMDDSSMANAGER_REMOTE_CONNECTIVITY_USERNAME @"MDDSSRemoteConnectivityUsername"
 
 #define kMDDSSMANAGER_HISTORY_VALUE_COUNT @"MDDSSManagerHistoryValueCount"
+#define kMDDSSMANAGER_LAST_LOADED_CUSTROM_SCENE_NAMES_STRUCTURE @"MDDSSManagerLastLoadedCustomSceneNameStructur"
+#define kMDDSSMANAGER_LAST_LOADED_STRUCTURE @"MDDSSManagerLastLoadedStructur"
 
 #define kMDDSSMANAGER_APPLICATION_TOKEN_MIN_LENGTH 3
 
@@ -26,7 +28,6 @@ static MDDSSManager *defaultManager;
 @interface MDDSSManager ()
 @property NSString *currentSessionToken;
 @property (readonly) NSString *hostWithPort;
-@property NSDictionary *customSceneNamesJSONCache;
 @end
 
 @implementation MDDSSManager
@@ -80,6 +81,8 @@ static MDDSSManager *defaultManager;
     {
         self.host = possibleHost;
     }
+    
+    [self loadLastLoadesStructure];
 }
 
 - (NSUserDefaults *)userDefaultsProxy
@@ -213,6 +216,11 @@ static MDDSSManager *defaultManager;
                 {
                     self.connectionProblems = YES;
                     handler(nil, error);
+                    
+                    if(!self.suppressAuthError)
+                    {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_DSS_AUTH_ERROR object:error];
+                    }
                     return;
                 }
                 [self jsonCall:path params:params completionHandler:handler];
@@ -254,6 +262,8 @@ static MDDSSManager *defaultManager;
 
 - (void)loginApplication:(NSString *)loginToken callBlock:(void (^)(NSDictionary*, NSError*))handler
 {
+    if(!loginToken) return;
+    
     [self jsonCall:@"/json/system/loginApplication" params:[NSDictionary dictionaryWithObject:loginToken forKey:@"loginToken"] completionHandler:^(NSDictionary *json, NSError *error){
         
         if([json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"token"])
@@ -270,19 +280,45 @@ static MDDSSManager *defaultManager;
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kDS_START_LOADING_STRUCTURE object:nil];
     [self jsonCall:@"/json/apartment/getStructure" params:[NSDictionary dictionaryWithObject:self.currentSessionToken forKey:@"token"] completionHandler:^(NSDictionary *json, NSError *error){
+        
+        if(!error)
+        {
+            self.lastLoadesStructure = json;
+            [[self userDefaultsProxy] setObject:self.lastLoadesStructure forKey:kMDDSSMANAGER_LAST_LOADED_STRUCTURE];
+            [[self userDefaultsProxy] synchronize];
+        }
+        
         callback(json, error);
     }];
 }
 
 - (void)getStructureWithCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDS_START_LOADING_STRUCTURE object:nil];
+    
     [self jsonCall:@"/json/apartment/getStructure" params:[NSDictionary dictionaryWithObject:self.currentSessionToken forKey:@"token"] completionHandler:^(NSDictionary *json, NSError *error){
+        
+        if(!error)
+        {
+            self.lastLoadesStructure = json;
+            [[self userDefaultsProxy] setObject:self.lastLoadesStructure forKey:kMDDSSMANAGER_LAST_LOADED_STRUCTURE];
+            [[self userDefaultsProxy] synchronize];
+        }
+        
         NSDictionary *params = @{ @"token": self.currentSessionToken, @"query": @"/apartment/zones/*(ZoneID,scenes)/groups/*(group)/scenes/*(scene,name)"};
         [self jsonCall:@"/json/property/query" params:params completionHandler:^(NSDictionary *jsonSceneNames, NSError *error){
-            self.customSceneNamesJSONCache = jsonSceneNames;
+            self.customSceneNameJSONCache = jsonSceneNames;
+            [[self userDefaultsProxy] setObject:self.customSceneNameJSONCache forKey:kMDDSSMANAGER_LAST_LOADED_CUSTROM_SCENE_NAMES_STRUCTURE];
+            [[self userDefaultsProxy] synchronize];
             callback(json, error);
         }];
     }];
+}
+
+- (void)loadLastLoadesStructure
+{
+    self.customSceneNameJSONCache = [[self userDefaultsProxy] objectForKey:kMDDSSMANAGER_LAST_LOADED_CUSTROM_SCENE_NAMES_STRUCTURE];
+    self.lastLoadesStructure = [[self userDefaultsProxy] objectForKey:kMDDSSMANAGER_LAST_LOADED_STRUCTURE];
 }
 
 - (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value
@@ -461,12 +497,12 @@ static MDDSSManager *defaultManager;
 
 - (BOOL)hasCustomSceneNamesForGroup:(int)searchGroup inZone:(int)forZoneId
 {
-    if(!self.customSceneNamesJSONCache)
+    if(!self.customSceneNameJSONCache)
     {
         return NO;
     }
     
-    for(NSDictionary *zone in [[self.customSceneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
+    for(NSDictionary *zone in [[self.customSceneNameJSONCache objectForKey:@"result"] objectForKey:@"zones"])
     {
         if([[zone objectForKey:@"ZoneID"] intValue] == forZoneId)
         {
@@ -488,12 +524,12 @@ static MDDSSManager *defaultManager;
 - (NSArray *)customSceneNamesForGroup:(int)forGroup inZone:(int)forZoneId
 {
     //TODO, load scene names in case of empty cache
-    if(!self.customSceneNamesJSONCache)
+    if(!self.customSceneNameJSONCache)
     {
         return nil;
     }
     
-    for(NSDictionary *zone in [[self.customSceneNamesJSONCache objectForKey:@"result"] objectForKey:@"zones"])
+    for(NSDictionary *zone in [[self.customSceneNameJSONCache objectForKey:@"result"] objectForKey:@"zones"])
     {
         if([[zone objectForKey:@"ZoneID"] intValue] == forZoneId)
         {

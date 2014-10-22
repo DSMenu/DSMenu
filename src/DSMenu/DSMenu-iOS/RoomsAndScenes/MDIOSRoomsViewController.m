@@ -9,6 +9,7 @@
 #import "MDIOSRoomsViewController.h"
 #import "MDIOSRoomTableViewCell.h"
 #import "MDDSSManager.h"
+#import "MDDSHelper.h"
 
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
@@ -30,14 +31,30 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoading) name:kDS_START_LOADING_STRUCTURE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recheckConnection) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
     
-    self.isLoading = YES;
+    [self showLoading];
     
     [self recheckConnection];
+    [self updateTable:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if(self.isLoading == NO && (!self.zones || self.zones.count <= 0))
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
+    }
 }
 
 - (void)showLoading
 {
     self.isLoading = YES;
+    
+    if(self.zones.count <= 0 && !self.selectWidgetMode)
+    {
+        [self.navigationItem setPrompt:NSLocalizedString(@"loading", @"loading in rooms table")];
+    }
 }
 
 - (void)recheckConnection
@@ -46,6 +63,10 @@
     {
         self.noConnection = YES;
         self.isLoading = NO;
+        if(!self.selectWidgetMode)
+        {
+            self.navigationItem.prompt = nil;
+        }
     }
     else
     {
@@ -83,11 +104,40 @@
     return _noConnection;
 }
 
-- (void)updateTable:(NSNotification *)not
+- (void)updateTable:(NSNotification *)notification
 {
-    self.isLoading = NO;
     
-    NSDictionary *json = not.object;
+    NSDictionary *json = nil;
+    
+    if(!self.selectWidgetMode)
+    {
+        self.navigationItem.prompt = nil;
+    }
+    
+    if(notification)
+    {
+        json = notification.object;
+        self.isLoading = NO;
+        
+        if(self.zones.count > 0 && ![MDDSHelper shouldRefreshStructure:json oldStructure:[MDDSSManager defaultManager].lastLoadesStructure])
+        {
+            return;
+        }
+    }
+    else
+    {
+        json = [MDDSSManager defaultManager].lastLoadesStructure;
+        
+    }
+    
+    if(!json)
+    {
+        // don't build table if there are no data
+        return;
+    }
+    
+    
+    
     
     //sort zones
     NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
@@ -126,7 +176,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(self.noConnection || self.isLoading)
+    if(self.noConnection)
     {
         return 1;
     }
@@ -134,12 +184,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.isLoading)
-    {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        cell.textLabel.text = NSLocalizedString(@"loading", @"");
-        return cell;
-    }
     if(self.noConnection)
     {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
@@ -175,6 +219,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     MDIOSScenesTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Scenes"];
+    if(self.selectWidgetMode)
+    {
+        controller.navigationItem.prompt = self.navigationItem.prompt;
+        controller.delegate = self.delegate;
+        controller.selectWidgetMode = YES;
+    }
     controller.zoneDict = [self.zones objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:controller animated:YES];
 }

@@ -83,4 +83,69 @@
     return groups;
 }
 
++ (BOOL)shouldRefreshStructure:(NSDictionary *)newStructure oldStructure:(NSDictionary *)oldStructure
+{
+    NSMutableString *newStructureHash = [NSMutableString string];
+    NSMutableString *oldStructureHash = [NSMutableString string];
+    
+    NSArray *newZones = [[[newStructure objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+    newZones = [newZones sortedArrayUsingComparator:^(id obj1, id obj2) {
+        if(![obj1 objectForKey:@"name"] || [[obj1 objectForKey:@"name"] length] <= 0)
+        {
+            return NSOrderedDescending;
+        }
+        else if(![obj2 objectForKey:@"name"] || [[obj2 objectForKey:@"name"] length] <= 0)
+        {
+            return NSOrderedAscending;
+        }
+        return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
+    }];
+    
+    // build zone menus
+    for(NSDictionary *zoneDict in newZones)
+    {
+        if([[zoneDict objectForKey:@"id"] intValue] == 0)
+        {
+            // logical ID 0 room
+            continue;
+        }
+        
+        [newStructureHash appendFormat:@"%@", [zoneDict objectForKey:@"id"]];
+        [newStructureHash appendFormat:@"%@", [zoneDict objectForKey:@"name"]];
+    }
+    
+    NSArray *oldZones = [[[oldStructure objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+    oldZones = [oldZones sortedArrayUsingComparator:^(id obj1, id obj2) {
+        if(![obj1 objectForKey:@"name"] || [[obj1 objectForKey:@"name"] length] <= 0)
+        {
+            return NSOrderedDescending;
+        }
+        else if(![obj2 objectForKey:@"name"] || [[obj2 objectForKey:@"name"] length] <= 0)
+        {
+            return NSOrderedAscending;
+        }
+        return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
+    }];
+    
+    // build zone menus
+    for(NSDictionary *zoneDict in oldZones)
+    {
+        if([[zoneDict objectForKey:@"id"] intValue] == 0)
+        {
+            // logical ID 0 room
+            continue;
+        }
+        
+        [oldStructureHash appendFormat:@"%@", [zoneDict objectForKey:@"id"]];
+        [oldStructureHash appendFormat:@"%@", [zoneDict objectForKey:@"name"]];
+    }
+    
+    
+    if([newStructureHash isEqualToString:oldStructureHash])
+    {
+        return NO;
+    }
+    return YES;
+}
+
 @end

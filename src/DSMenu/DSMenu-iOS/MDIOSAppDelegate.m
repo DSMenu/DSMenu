@@ -52,17 +52,33 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startPollingData) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginError) name:kDS_DSS_AUTH_ERROR object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadStructure) name:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
+  
     return YES;
 }
 
-
-- (void)startPollingData
+- (void)loginError
 {
-    [[MDDSSManager defaultManager] getStructure:^(NSDictionary *json, NSError *error){
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"errorConnecting", @"")message:NSLocalizedString(@"applicationTokenRequested", @"") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    
+    // only show login error once
+    [MDDSSManager defaultManager].suppressAuthError = YES;
+}
+
+- (void)loadStructure
+{
+    [[MDDSSManager defaultManager] getStructureWithCustomSceneNames:^(NSDictionary *json, NSError *error){
         self.structure = json;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:self.structure];
     }];
-    
+}
+
+- (void)startPollingData
+{
+    [self loadStructure];
     [MDDSSConsumptionManager defaultManager].callbackLatest = ^(NSArray *json, NSError *error){
         
         NSMutableAttributedString* str =[[NSMutableAttributedString alloc] initWithString:@""];
@@ -116,6 +132,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [MDDSSManager defaultManager].suppressAuthError = NO;
+    [self loadStructure];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

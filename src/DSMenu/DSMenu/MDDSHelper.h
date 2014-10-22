@@ -36,4 +36,6 @@
 + (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group;
 + (BOOL)hasGroup:(int)groupNr inZone:(NSDictionary *)zoneDict;
 + (NSArray *)availableGroupsForZone:(NSDictionary *)zoneDict;
+
++ (BOOL)shouldRefreshStructure:(NSDictionary *)newStructure oldStructure:(NSDictionary *)oldStructure;
 @end

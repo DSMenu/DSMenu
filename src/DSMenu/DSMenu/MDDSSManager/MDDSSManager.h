@@ -38,6 +38,10 @@
 @property BOOL connectionProblems;
 
 @property BOOL useLastCalledSceneCheck;
+@property BOOL suppressAuthError;
+
+@property NSDictionary *customSceneNameJSONCache; /**< persisted JSON from last loaded custom scene names */
+@property NSDictionary *lastLoadesStructure; /**< persisted JSON from last loaded structure (with scene names) */
 
 @property NSUserDefaults *currentUserDefaults;
 - (void)loadDefaults; /**< load the data from the defaults (persisted storage a.k.a. disk) */

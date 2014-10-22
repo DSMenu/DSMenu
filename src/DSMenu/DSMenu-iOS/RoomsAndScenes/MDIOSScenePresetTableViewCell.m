@@ -7,6 +7,7 @@
 //
 
 #import "MDIOSScenePresetTableViewCell.h"
+#import "MDIOSFavoritesManager.h"
 
 @implementation MDIOSScenePresetTableViewCell
 
@@ -59,26 +60,48 @@
     {
         self.accessoryView = nil;
         
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        UIImage *favImage;
-//        if(self.isFavorized)
-//        {
-//            favImage = [UIImage imageNamed:@"PUFavoriteOn.png"];
-//        }
-//        else
-//        {
-//            favImage = [UIImage imageNamed:@"PUFavoriteOff.png"];
-//        }
-//        [button setImage:favImage forState:UIControlStateNormal];
-//        button.frame = CGRectMake(0,0,favImage.size.width,favImage.size.height);
-//        [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-//        self.accessoryView = button;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *favImage;
+        if(self.isFavorized)
+        {
+            favImage = [UIImage imageNamed:@"ReviewSheetStarFull.png"];
+        }
+        else
+        {
+            favImage = [UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"];
+        }
+        [button setImage:favImage forState:UIControlStateNormal];
+        button.frame = CGRectMake(0,0,favImage.size.width,favImage.size.height);
+        [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        self.accessoryView = button;
     }
 }
 
 - (void)buttonTapped:(id)sender
 {
     self.isFavorized = !self.isFavorized;
+    
+    MDIOSFavorite *favorite = [[MDIOSFavorite alloc] init];
+    favorite.zone   = [(NSNumber *)self.zone stringValue];
+    favorite.group  = [(NSNumber *)self.group stringValue];
+    favorite.scene  = [(NSNumber *)self.scene stringValue];
+    favorite.favoriteType = MDIOSFavoriteTypeZonePreset;
+    
+    if(self.isFavorized)
+    {
+        [[MDIOSFavoritesManager defaultManager] addFavorit:favorite];
+    }
+    else
+    {
+        [[MDIOSFavoritesManager defaultManager] removeFavorite:favorite];
+    }
+}
+
+- (void)checkFavoriteState
+{
+    if([[MDIOSFavoritesManager defaultManager] favoriteForZone:self.zone group:self.group scene:self.scene]){
+        self.isFavorized = YES;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

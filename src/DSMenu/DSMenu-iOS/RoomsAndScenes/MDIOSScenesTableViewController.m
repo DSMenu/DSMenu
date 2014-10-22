@@ -10,6 +10,7 @@
 #import "MDDSHelper.h"
 #import "MDDSSManager.h"
 #import "MDIOSScenePresetTableViewCell.h"
+#import "MDIOSFavoritesManager.h"
 
 @interface MDIOSScenesTableViewController ()
 @property NSMutableArray *sections;
@@ -230,6 +231,41 @@
 //        }
 //        [item.submenu addItem:devicesItem];
 //    }
+    
+    
+    if([[MDIOSFavoritesManager defaultManager] favoriteForZone:[(NSNumber *)[self.zoneDict objectForKey:@"id"] stringValue] group:nil scene:nil])
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarFull.png"] style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"] style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
+    }
+}
+
+- (void)favorite
+{
+    self.isFavorite = !self.isFavorite;
+
+    MDIOSFavorite *favorite = [[MDIOSFavorite alloc] init];
+    favorite.zone   = [(NSNumber *)[self.zoneDict objectForKey:@"id"] stringValue];
+    favorite.group  = nil;
+    favorite.scene  = nil;
+    favorite.favoriteType = MDIOSFavoriteTypeZone;
+
+    UIImage *favStar = nil;
+    if(self.isFavorite)
+    {
+        favStar = [UIImage imageNamed:@"ReviewSheetStarFull.png"];
+        [[MDIOSFavoritesManager defaultManager] addFavorit:favorite];
+    }
+    else
+    {
+        favStar = [UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"];
+        [[MDIOSFavoritesManager defaultManager] removeFavorite:favorite];
+    }
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:favStar style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -267,12 +303,34 @@
     cell.textLabel.text = [cellDict objectForKey:@"title"];
     cell.imageView.image = [cellDict objectForKey:@"image"];
     
+    cell.group = [cellDict objectForKey:@"group"];
+    cell.scene = [cellDict objectForKey:@"tag"];
+    cell.zone = [self.zoneDict objectForKey:@"id"];
+    
+    [cell checkFavoriteState];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(self.selectWidgetMode)
+    {
+        
+        MDIOSWidgetAction *action = [[MDIOSWidgetAction alloc] init];
+        NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
+        action.group = [cellDict objectForKey:@"group"];
+        action.scene = [cellDict objectForKey:@"tag"];
+        action.zone = [self.zoneDict objectForKey:@"id"];
+        action.title = [NSString stringWithFormat:@"%@ %@ - %@",
+                                NSLocalizedString(([NSString stringWithFormat:@"group%@", action.group]), @""),
+                              NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", action.group, action.scene]), @""),
+                                [self.zoneDict objectForKey:@"name"] ];
+        [self.delegate roomsOrScenesViewController:self didSelectAction:action];
+        return;
+    }
     
     NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
     NSLog(@"%@", cellDict);
@@ -285,49 +343,5 @@
          cell.isLoading = NO;
      }];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

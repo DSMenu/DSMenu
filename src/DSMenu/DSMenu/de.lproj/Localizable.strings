@@ -90,6 +90,7 @@ group5scene4 = "Bereich 4 Aus";
 unnamedRoom = "Raum";
 
 deeopOffSceneItem = "Deep off";
+group1scene68 = "Deep off";
 
 menuDevices = "Geräte";
 turnOn = "Ein";
@@ -139,3 +140,21 @@ remoteConnectivityTab = "digitalstrom.com Login";
 /*IOS only*/
 roomsTitle = "Räume";
 settingsTitle = "Einstellungen";
+consumptionTitle = "Verbrauch";
+settingsConnection = "Netzwerk Verbindung";
+settingsConsumption = "Verbrauch";
+settingsRooms = "Räume und Szenen";
+settingsExpert = "Experten / Entwickler";
+passwordPlaceholder = "Dein Passwort";
+usernamePlaceholder = "john@dooh.com";
+useLocalConnection = "Lokale Verbindung verwenden";
+searchingBonjour = "Dein Netzwerk wird durchsucht";
+
+widgetCellText = "Widget Slot %d";
+selectActionPrompt = "Select Action for Slot %d";
+reorderTable = "Reihenfolge ändern";
+reorderTableEnd = "Editieren beenden";
+nogroupslabel = "Keine Gerätegruppen vorhanden";
+favEdit = "editieren";
+favEditEnd = "fertig";
+favorites = "Meine Favoriten";

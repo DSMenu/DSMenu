@@ -231,8 +231,13 @@
         
         if(sizePassword.size.width > sizeUsername.size.width)
         {
-            cell2.contraintsHelperLabel.text = passwordLabel;
+            cell2.constraintsHelperLabel.text = passwordLabel;
         }
+        else
+        {
+            cell2.constraintsHelperLabel.text = usernameLabel;
+        }
+        
         
         if(indexPath.row == 0)
         {
@@ -349,6 +354,7 @@
                 cell2.textField.secureTextEntry = NO;
                 cell2.textField.keyboardType = UIKeyboardTypeDefault;
                 cell2.textField.text = self.currentIPAddressOrHostname;
+                cell2.constraintsHelperLabel.text = NSLocalizedString(@"preferenceMainAddressLabel", @"");
                 cell2.accessoryView = nil;
                 
                 cell = (UITableViewCell *)cell2;
@@ -542,18 +548,45 @@
          
          if(status)
          {
-             if([MDDSSManager defaultManager].useRemoteConnectivity)
-             {
-                 [self disconnectTapped];
-             }
-             
-             self.connectionErrorLocal = NO;
              
              [[MDDSSManager defaultManager] setAndPersistHost:self.currentIPAddressOrHostname];
              [MDDSSManager defaultManager].useIPAddress = NO;
              [MDDSSManager defaultManager].useRemoteConnectivity = NO;
              
-             [self searchEnd];
+             if([MDDSSManager defaultManager].applicationToken == nil || [MDDSSManager defaultManager].applicationToken.length <= 0)
+             {
+                 [[MDDSSManager defaultManager] requestApplicationToken:^(NSDictionary *json, NSError *error)
+                  {
+                      [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
+                  }];
+             }
+             else
+             {
+                 [[MDDSSManager defaultManager] loginApplication:[MDDSSManager defaultManager].applicationToken callBlock:^(NSDictionary *json, NSError *error)
+                  {
+                      
+                      if([json objectForKey:@"ok"] && [[json objectForKey:@"ok"] intValue] == 1)
+                      {
+                          if([MDDSSManager defaultManager].useRemoteConnectivity)
+                          {
+                              [self disconnectTapped];
+                          }
+                          
+                          self.connectionErrorLocal = NO;
+                          
+                          [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
+                          
+                          [self searchEnd];
+                      }
+                      else
+                      {
+                          [[MDDSSManager defaultManager] requestApplicationToken:^(NSDictionary *json, NSError *error)
+                           {
+                               [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
+                           }];
+                      }
+                  }];
+             }
          }
          else
          {
