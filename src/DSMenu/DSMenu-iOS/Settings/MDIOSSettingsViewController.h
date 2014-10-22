@@ -11,7 +11,7 @@
 @interface MDIOSSettingsViewController : UITableViewController
 @property (strong) IBOutlet UITableViewCell *connectionCell;
 @property (strong) IBOutlet UITableViewCell *consumptionSettingsCell;
-@property (strong) IBOutlet UITableViewCell *roomsPresetsSettingsCell;
+@property (strong) IBOutlet UITableViewCell *widgetSettingsCell;
 @property (strong) IBOutlet UITableViewCell *expertSettingsCell;
 
 @end

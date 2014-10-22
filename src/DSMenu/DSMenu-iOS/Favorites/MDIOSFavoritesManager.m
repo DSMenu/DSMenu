@@ -7,6 +7,7 @@
 //
 
 #import "MDIOSFavoritesManager.h"
+#import "Constantes.h"
 
 #define kMDIOS_UD_FAVORITES_KEY @"MDIOSFavorites"
 static MDIOSFavoritesManager *defaultManager;
@@ -83,8 +84,24 @@ static MDIOSFavoritesManager *defaultManager;
     return nil;
 }
 
+- (MDIOSFavorite *)favoriteForUUID:(NSString *)uuid
+{
+    for(MDIOSFavorite *favorite in self.favorites)
+    {
+        if([favorite.UUID isEqualToString:uuid])
+        {
+            return favorite;
+        }
+    }
+    return nil;
+}
+
 - (void)addFavorit:(MDIOSFavorite *)favorite
 {
+    if(favorite.UUID == nil)
+    {
+        favorite.UUID = [self generateUUID];
+    }
     // check if favorite already exists
     if([self.favorites indexOfObject:favorite] == NSNotFound)
     {
@@ -128,6 +145,14 @@ static MDIOSFavoritesManager *defaultManager;
         return self.currentUserDefaults;
     }
     return [NSUserDefaults standardUserDefaults];
+}
+
+- (NSString *)generateUUID
+{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return (__bridge NSString *)string;
 }
 
 @end

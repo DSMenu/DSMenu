@@ -21,29 +21,32 @@
     }
     return NO;
 }
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ %@ %@ %d", self.zone, self.group, self.scene, self.favoriteType];
+    return [NSString stringWithFormat:@"%@ %@ %@ %d &@", self.zone, self.group, self.scene, self.favoriteType, self.UUID];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
     if (self) {
-        self.favoriteType     = [coder decodeIntForKey:@"favoriteType"];
-        self.zone           = [coder decodeObjectForKey:@"zone"];
-        self.group          = [coder decodeObjectForKey:@"group"];
-        self.scene          = [coder decodeObjectForKey:@"scene"];
+        self.favoriteType       = [coder decodeIntForKey:@"favoriteType"];
+        self.zone               = [coder decodeObjectForKey:@"zone"];
+        self.group              = [coder decodeObjectForKey:@"group"];
+        self.scene              = [coder decodeObjectForKey:@"scene"];
+        self.UUID               = [coder decodeObjectForKey:@"UUID"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeInt:self.favoriteType        forKey:@"favoriteType"];
+    [coder encodeInt:self.favoriteType      forKey:@"favoriteType"];
     [coder encodeObject:self.zone           forKey:@"zone"];
     [coder encodeObject:self.group          forKey:@"group"];
     [coder encodeObject:self.scene          forKey:@"scene"];
+    [coder encodeObject:self.UUID           forKey:@"UUID"];
 }
 
 

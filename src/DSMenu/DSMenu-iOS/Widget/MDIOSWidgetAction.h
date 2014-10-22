@@ -11,7 +11,8 @@
 typedef enum MDIOSWidgetActionType
 {
     MDIOSWidgetActionTypeCallScene = 1,
-    MDIOSWidgetActionTypeButtonSimulate = 2
+    MDIOSWidgetActionTypeButtonSimulate = 2,
+    MDIOSWidgetActionTypeFavorite = 3
 } MDIOSWidgetActionType;
 
 @interface MDIOSWidgetAction : NSObject <NSCoding>
@@ -20,5 +21,6 @@ typedef enum MDIOSWidgetActionType
 @property (strong) NSString *zone;
 @property (strong) NSString *group;
 @property (strong) NSString *scene;
+@property (strong) NSString *favoriteUUID;
 @property (assign) MDIOSWidgetActionType actionType;
 @end

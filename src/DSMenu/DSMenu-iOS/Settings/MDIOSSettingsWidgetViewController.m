@@ -9,6 +9,7 @@
 #import "MDIOSSettingsWidgetViewController.h"
 #import "MDIOSRoomsViewController.h"
 #import "MDIOSWidgetManager.h"
+#import "MDIOSFavoritesViewController.h"
 
 @interface MDIOSSettingsWidgetViewController ()
 @property (strong) NSIndexPath *lastSelectedIndexPath;
@@ -34,71 +35,12 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 1)
-    {
-        return 6;
-    }
-    return 0;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    
-    cell.textLabel.text = [NSString stringWithFormat:(NSLocalizedString(@"widgetCellText", @"")), indexPath.row];
-    
-    MDIOSWidgetAction *action = [[MDIOSWidgetManager defaultManager] actionForSlot:indexPath.row];
-    if(action)
-    {
-        cell.detailTextLabel.text = cell.textLabel.text;
-        cell.textLabel.text = action.title;
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"group_%@.png", action.group]];
-    }
-    else
-    {
-        cell.detailTextLabel.text = @"<empty>";
-    }
-    
-    return cell;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.lastSelectedIndexPath = indexPath;
-    
-    MDIOSRoomsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Rooms"];
-    controller.selectWidgetMode = YES;
-    controller.delegate = self;
+    MDIOSFavoritesViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Favorites"];
+    controller.widgetMode = YES;
     controller.navigationItem.prompt = [NSString stringWithFormat:(NSLocalizedString(@"selectActionPrompt", @"")), indexPath.row];
     [self.navigationController pushViewController:controller animated:YES];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleNone;
-}
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    
-    int fromRow = sourceIndexPath.row;
-    int toRow = destinationIndexPath.row;
-    
-    [[MDIOSWidgetManager defaultManager] moveSlotsFromSlot:fromRow toSlot:toRow];
-    [self.tableView reloadData];
 }
 
 #pragma mark - Rooms View Controller Delegate Stack
@@ -113,14 +55,6 @@
     [self.tableView reloadData];
     
     [self performSelector:@selector(delayedPromptRemove) withObject:nil afterDelay:0.5];
-}
-
-#pragma mark - IBActions
-
-- (IBAction)editAction:(id)sender
-{
-    self.tableView.editing = !self.tableView.editing;
-    self.editItem.title = self.tableView.editing ? NSLocalizedString(@"reorderTableEnd", @"reorder widgets") : NSLocalizedString(@"reorderTable", @"reorder widgets");
 }
 
 @end

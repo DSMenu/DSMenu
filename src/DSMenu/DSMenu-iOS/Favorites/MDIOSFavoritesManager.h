@@ -14,7 +14,7 @@
 @property NSUserDefaults *currentUserDefaults;
 @property (readonly) NSArray *allFavorites;
 - (MDIOSFavorite *)favoriteForZone:(NSString *)zone group:(NSString *)group scene:(NSString *)scene;
-
+- (MDIOSFavorite *)favoriteForUUID:(NSString *)uuid;
 - (void)addFavorit:(MDIOSFavorite *)favorite;
 - (void)removeFavorite:(MDIOSFavorite *)favorite;
 - (void)removeFavoriteAtIndex:(NSInteger)index;

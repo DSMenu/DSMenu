@@ -7,6 +7,7 @@
 //
 
 #import "MDIOSWidgetManager.h"
+#import "Constantes.h"
 
 #define kMDIOS_UD_WIDGET_ACTIONS_KEY @"MDIOSWidgetActions"
 static MDIOSWidgetManager *defaultManager;
@@ -59,6 +60,59 @@ static MDIOSWidgetManager *defaultManager;
     [self persist];
 }
 
+- (void)addActionForFavoriteUUID:(NSString *)uuid
+{
+    if(![self.widgetActions objectForKey:@"favs"])
+    {
+        [self.widgetActions setObject:[NSMutableArray array] forKey:@"favs"];
+    }
+    else
+    {
+        if(![[self.widgetActions objectForKey:@"favs"] isKindOfClass:[NSMutableArray class]])
+        {
+            [self.widgetActions setObject:[[self.widgetActions objectForKey:@"favs"] mutableCopy] forKey:@"favs"];
+        }
+    }
+    
+    MDIOSWidgetAction *action = [[MDIOSWidgetAction alloc] init];
+    action.actionType = MDIOSWidgetActionTypeFavorite;
+    action.favoriteUUID = uuid;
+    
+    if([[self.widgetActions objectForKey:@"favs"] indexOfObject:action] == NSNotFound){
+        [[self.widgetActions objectForKey:@"favs"] addObject:action];
+    }
+    
+    [self persist];
+}
+
+- (void)removeActionForFavoriteUUID:(NSString *)uuid
+{
+    if(![self.widgetActions objectForKey:@"favs"])
+    {
+        [self.widgetActions setObject:[NSMutableArray array] forKey:@"favs"];
+    }
+    else
+    {
+        if(![[self.widgetActions objectForKey:@"favs"] isKindOfClass:[NSMutableArray class]])
+        {
+            [self.widgetActions setObject:[[self.widgetActions objectForKey:@"favs"] mutableCopy] forKey:@"favs"];
+        }
+    }
+    
+    MDIOSWidgetAction *action = [[MDIOSWidgetAction alloc] init];
+    action.actionType = MDIOSWidgetActionTypeFavorite;
+    action.favoriteUUID = uuid;
+    
+    [[self.widgetActions objectForKey:@"favs"] removeObject:action];
+    
+    [self persist];
+}
+
+- (NSArray *)allFavoritesUUIDs
+{
+    return [self.widgetActions objectForKey:@"favs"];
+}
+
 - (void)moveSlotsFromSlot:(int)fromSlot toSlot:(int)toSlot
 {
     MDIOSWidgetAction *aAction = [self actionForSlot:fromSlot];        
@@ -102,6 +156,21 @@ static MDIOSWidgetManager *defaultManager;
     }
     
     [self persist];
+}
+
+- (MDIOSWidgetAction *)actionForFavoriteUUID:(NSString *)favoriteUUID
+{
+    if(self.widgetActions && [self.widgetActions objectForKey:@"favs"])
+    {
+        for(MDIOSWidgetAction *action in [self.widgetActions objectForKey:@"favs"])
+        {
+            if([action.favoriteUUID isEqualToString:favoriteUUID])
+            {
+                return action;
+            }
+        }
+    }
+    return nil;
 }
 
 - (MDIOSWidgetAction *)actionForSlot:(NSInteger)slot

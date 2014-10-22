@@ -21,6 +21,7 @@ typedef enum MDIOSFavoriteType
 @property (strong) NSString *zone;
 @property (strong) NSString *group;
 @property (strong) NSString *scene;
+@property (strong) NSString *UUID;
 @property (assign) MDIOSFavoriteType favoriteType;
 
 @end

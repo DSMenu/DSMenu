@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Constantes.h"
 #import "Notifications.h"
 #import "ErrorCodes.h"
 

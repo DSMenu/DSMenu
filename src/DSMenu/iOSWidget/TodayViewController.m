@@ -8,6 +8,8 @@
 
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
+#import "MDIOSWidgetManager.h"
+#import "MDIOSFavoritesManager.h"
 
 @interface TodayViewController () <NCWidgetProviding>
 
@@ -32,6 +34,13 @@
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
 
+    NSArray *favs = [MDIOSWidgetManager defaultManager].allFavoritesUUIDs;
+    for(MDIOSWidgetAction *action in favs)
+    {
+        MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager] favoriteForUUID:action.favoriteUUID];
+        NSLog(@"%@", fav);
+    }
+    
     completionHandler(NCUpdateResultNewData);
 }
 

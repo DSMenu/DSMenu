@@ -187,7 +187,7 @@
         <!--Favorites-->
         <scene sceneID="xNi-et-Sdz">
             <objects>
-                <tableViewController title="Favorites" id="DKB-jA-OFe" customClass="MDIOSFavoritesViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Favorites" title="Favorites" id="DKB-jA-OFe" customClass="MDIOSFavoritesViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="83r-Ud-CUg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -386,7 +386,7 @@
                         <outlet property="connectionCell" destination="sk2-qM-pye" id="keG-QS-dmW"/>
                         <outlet property="consumptionSettingsCell" destination="yBf-5r-H9e" id="IIF-u3-h0s"/>
                         <outlet property="expertSettingsCell" destination="67i-fb-Ylb" id="X9m-58-bMA"/>
-                        <outlet property="roomsPresetsSettingsCell" destination="yfZ-Mf-8QW" id="3jx-HP-BGH"/>
+                        <outlet property="widgetSettingsCell" destination="yfZ-Mf-8QW" id="pCz-b7-k5U"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewt-P7-kbJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -689,18 +689,30 @@
         <scene sceneID="fod-5X-iCR">
             <objects>
                 <tableViewController id="xmx-c1-64v" customClass="MDIOSSettingsWidgetViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pBJ-Nu-46w">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pBJ-Nu-46w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jqS-IR-NzQ">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jqS-IR-NzQ" id="tx4-xZ-ElT">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection id="8LM-Y8-fPe">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Myh-QE-3Hi" style="IBUITableViewCellStyleDefault" id="jqS-IR-NzQ">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jqS-IR-NzQ" id="tx4-xZ-ElT">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Select Favorites for Widgets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Myh-QE-3Hi">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="xmx-c1-64v" id="c7z-Y3-0gH"/>
                             <outlet property="delegate" destination="xmx-c1-64v" id="q9J-YB-eIC"/>

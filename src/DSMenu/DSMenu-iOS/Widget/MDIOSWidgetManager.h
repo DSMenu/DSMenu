@@ -12,10 +12,13 @@
 @interface MDIOSWidgetManager : NSObject
 + (MDIOSWidgetManager *)defaultManager;
 @property NSUserDefaults *currentUserDefaults;
+@property (readonly) NSArray *allFavoritesUUIDs;
 
 - (NSDictionary *)allActions;
 - (MDIOSWidgetAction *)actionForSlot:(NSInteger)slot;
+- (MDIOSWidgetAction *)actionForFavoriteUUID:(NSString *)favoriteUUID;
+- (void)addActionForFavoriteUUID:(NSString *)uuid;
 - (void)setAction:(MDIOSWidgetAction *)action forSlot:(NSInteger)slot;
 - (void)moveSlotsFromSlot:(int)fromSlot toSlot:(int)toSlot;
-
+- (void)removeActionForFavoriteUUID:(NSString *)uuid;
 @end

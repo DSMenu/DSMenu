@@ -11,6 +11,7 @@
 #import "MDDSSManager.h"
 #import "MDIOSFavoriteTableViewCell.h"
 #import "MDIOSScenesTableViewController.h"
+#import "MDIOSWidgetManager.h"
 
 @interface MDIOSFavoritesViewController ()
 
@@ -33,6 +34,11 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    
+    if(self.widgetMode)
+    {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (void)switchEdit
@@ -153,16 +159,42 @@
     if(self.widgetMode)
     {
         UISwitch *aSwitch = [[UISwitch alloc] init];
+        MDIOSWidgetAction *action = [[MDIOSWidgetManager defaultManager] actionForFavoriteUUID:fav.UUID];
+        if(action)
+        {
+            aSwitch.on = YES;
+            
+        }
+        aSwitch.tag = indexPath.row;
+        [aSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = aSwitch;
     }
     
     return cell;
 }
 
+- (void)switchChanged:(id)sender
+{
+    UISwitch *aSwitch = (UISwitch *)sender;
+    
+    MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:aSwitch.tag];
+    if(aSwitch.on)
+    {
+        [[MDIOSWidgetManager defaultManager] addActionForFavoriteUUID:fav.UUID];
+    }
+    else
+    {
+        [[MDIOSWidgetManager defaultManager] removeActionForFavoriteUUID:fav.UUID];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if(self.widgetMode)
+    {
+        return;
+    }
     MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row];
     
     if(fav.favoriteType == MDIOSFavoriteTypeZone || (fav.group == nil && fav.scene == nil))

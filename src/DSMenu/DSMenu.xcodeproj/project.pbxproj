@@ -55,6 +55,9 @@
 		E5601D5519F807AC00009989 /* MDIOSFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5601D5419F807AC00009989 /* MDIOSFavoritesViewController.m */; };
 		E5601D5819F82E0E00009989 /* MDIOSFavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5601D5719F82E0E00009989 /* MDIOSFavoriteTableViewCell.m */; };
 		E5601D5A19F839AE00009989 /* rooms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5601D5919F839AE00009989 /* rooms@2x.png */; };
+		E5601D5B19F8479F00009989 /* MDIOSFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = E5601D4B19F7FC7500009989 /* MDIOSFavorite.m */; };
+		E5601D5C19F8479F00009989 /* MDIOSFavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5601D4E19F7FCDD00009989 /* MDIOSFavoritesManager.m */; };
+		E5601D5D19F8479F00009989 /* MDIOSWidgetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CDA34719F7C6E300F9CBB8 /* MDIOSWidgetManager.m */; };
 		E561C7AF19921CFA00496303 /* group_3_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A319921CFA00496303 /* group_3_8.png */; };
 		E561C7B019921CFA00496303 /* group_3_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A419921CFA00496303 /* group_3_8@2x.png */; };
 		E561C7B119921CFA00496303 /* group_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7A519921CFA00496303 /* group_3.png */; };
@@ -976,14 +979,14 @@
 		E5CDA31B19F7C6A100F9CBB8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E5CDA32219F7C6A100F9CBB8 /* MDIOSSettingsViewController.h */,
+				E5CDA32319F7C6A100F9CBB8 /* MDIOSSettingsViewController.m */,
 				E5CDA31C19F7C6A100F9CBB8 /* MDIOSSettingsConnectionsViewController.h */,
 				E5CDA31D19F7C6A100F9CBB8 /* MDIOSSettingsConnectionsViewController.m */,
 				E5CDA31E19F7C6A100F9CBB8 /* MDIOSSettingsConsumptionViewController.h */,
 				E5CDA31F19F7C6A100F9CBB8 /* MDIOSSettingsConsumptionViewController.m */,
 				E5CDA32019F7C6A100F9CBB8 /* MDIOSSettingsExpertViewController.h */,
 				E5CDA32119F7C6A100F9CBB8 /* MDIOSSettingsExpertViewController.m */,
-				E5CDA32219F7C6A100F9CBB8 /* MDIOSSettingsViewController.h */,
-				E5CDA32319F7C6A100F9CBB8 /* MDIOSSettingsViewController.m */,
 				E5CDA32419F7C6A100F9CBB8 /* MDIOSSettingsWidgetViewController.h */,
 				E5CDA32519F7C6A100F9CBB8 /* MDIOSSettingsWidgetViewController.m */,
 				E5CDA32619F7C6A100F9CBB8 /* MDIOSSettingTextFieldTableViewCell.h */,
@@ -1632,12 +1635,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5601D5D19F8479F00009989 /* MDIOSWidgetManager.m in Sources */,
 				E5F1ED3219F57B2200D983E9 /* TodayViewController.m in Sources */,
 				E5F1ED4519F57E0400D983E9 /* MDDSHelper.m in Sources */,
 				E5CDA31A19F7C68D00F9CBB8 /* MDIOSWidgetAction.m in Sources */,
 				E5F1ED4419F57DA000D983E9 /* MDDSSConsumptionManager.m in Sources */,
+				E5601D5C19F8479F00009989 /* MDIOSFavoritesManager.m in Sources */,
 				E5F1ED4219F57D9B00D983E9 /* MDDSSManager.m in Sources */,
 				E5F1ED4319F57D9E00D983E9 /* MDDSSURLConnection.m in Sources */,
+				E5601D5B19F8479F00009989 /* MDIOSFavorite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,12 +21,12 @@
     
     self.connectionCell.textLabel.text = NSLocalizedString(@"settingsConnection", @"ios: settings connection cell text");
     self.consumptionSettingsCell.textLabel.text = NSLocalizedString(@"settingsConsumption", @"ios: settings consumption cell text");
-    self.roomsPresetsSettingsCell.textLabel.text = NSLocalizedString(@"settingsRooms", @"ios: settings rooms cell text");
+    self.widgetSettingsCell.textLabel.text = NSLocalizedString(@"settingsWidget", @"ios: settings Widget cell text");
     self.expertSettingsCell.textLabel.text = NSLocalizedString(@"settingsExpert", @"ios: settings experts cell text");
     
     self.connectionCell.imageView.image = [UIImage imageNamed:@"settingsTab.png"];
     self.consumptionSettingsCell.imageView.image = [UIImage imageNamed:@"chartTabbar.png"];
-    self.roomsPresetsSettingsCell.imageView.image = [UIImage imageNamed:@"listTabbar.png"];
+    self.widgetSettingsCell.imageView.image = [UIImage imageNamed:@"listTabbar.png"];
     self.expertSettingsCell.imageView.image = [UIImage imageNamed:@"settingsTab.png"];
 }
 
