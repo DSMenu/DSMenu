@@ -30,9 +30,22 @@
     self.title = NSLocalizedString(@"favorites", @"favorites navbar title");
 }
 
+- (void)checkIfThereAreEntries
+{
+    if(![MDIOSFavoritesManager defaultManager].allFavorites || [MDIOSFavoritesManager defaultManager].allFavorites.count <=0)
+    {
+        [self showNoEntriesViewWithText:NSLocalizedString(@"noFavoritesAvailable", @"")];
+    }
+    else
+    {
+        [self hideNoEntriesView];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self checkIfThereAreEntries];
     [self.tableView reloadData];
     
     if(self.widgetMode)

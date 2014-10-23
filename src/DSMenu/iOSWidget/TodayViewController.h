@@ -18,5 +18,6 @@
 
 
 @interface TodayViewController : UIViewController
-
+@property (strong) IBOutlet UIView *mainView;
+@property (assign) BOOL hasDSSManagerAvailable;
 @end

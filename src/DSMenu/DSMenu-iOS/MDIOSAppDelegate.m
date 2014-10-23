@@ -45,17 +45,18 @@
              [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
          }];
     }
-    else
-    {
-        [self startPollingData];
-    }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startPollingData) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadStructure) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginError) name:kDS_DSS_AUTH_ERROR object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadStructure) name:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startPollingConsumptionData) name:kDS_SHOULD_START_POLLING_CONSUMPTION_DATA object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopPollingConsumptionData) name:kDS_SHOULD_STOP_POLLING_CONSUMPTION_DATA object:nil];
+    
+    
     return YES;
 }
 
@@ -76,7 +77,7 @@
     }];
 }
 
-- (void)startPollingData
+- (void)startPollingConsumptionData
 {
     [self loadStructure];
     [MDDSSConsumptionManager defaultManager].callbackLatest = ^(NSArray *json, NSError *error){
@@ -116,8 +117,12 @@
     
     [[MDDSSConsumptionManager defaultManager] startPollingHistory:10];
     [[MDDSSConsumptionManager defaultManager] startPollingLatest:2];
-    
-    
+}
+
+- (void)stopPollingConsumptionData
+{
+    [[MDDSSConsumptionManager defaultManager] stopPollingHistory];
+    [[MDDSSConsumptionManager defaultManager] stopPollingLatest];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -51,7 +51,7 @@
 {
     self.isLoading = YES;
     
-    if(self.zones.count <= 0 && !self.selectWidgetMode)
+    if(self.zones.count <= 0 && !self.selectWidgetMode && !self.noConnection)
     {
         [self.navigationItem setPrompt:NSLocalizedString(@"loading", @"loading in rooms table")];
     }
@@ -63,6 +63,7 @@
     {
         self.noConnection = YES;
         self.isLoading = NO;
+        [self showNoEntriesViewWithText:NSLocalizedString(@"noConnectionToYourDSS", @"")];
         if(!self.selectWidgetMode)
         {
             self.navigationItem.prompt = nil;
@@ -70,6 +71,7 @@
     }
     else
     {
+        [self hideNoEntriesView];
         self.noConnection = NO;
     }
     [self.tableView reloadData];
@@ -106,6 +108,7 @@
 
 - (void)updateTable:(NSNotification *)notification
 {
+    [self recheckConnection];
     
     NSDictionary *json = nil;
     

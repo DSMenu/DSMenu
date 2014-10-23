@@ -28,11 +28,17 @@
     for(int i = 0;i<kMDIOS_CONSUMPTION_AMOUNT_OF_CELLS;i++)
     {
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        cell.textLabel.text = NSLocalizedString(([NSString stringWithFormat:@"settingsConsumptionHistory%ld", cell.tag]), @"");
         if(cell.tag == [MDDSSManager defaultManager].consumptionHistoryValueCount.integerValue)
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return NSLocalizedString(@"settingsConsumptionHistoryTime", @"");
 }
 
 #pragma mark - Table view data source

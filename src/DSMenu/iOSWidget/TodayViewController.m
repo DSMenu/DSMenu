@@ -10,6 +10,7 @@
 #import <NotificationCenter/NotificationCenter.h>
 #import "MDIOSWidgetManager.h"
 #import "MDIOSFavoritesManager.h"
+#import "MDIOSWidgetView.h"
 
 @interface TodayViewController () <NCWidgetProviding>
 
@@ -28,23 +29,54 @@
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
-    // Perform any setup necessary in order to update the view.
+    if(self.hasDSSManagerAvailable == NO)
+    {
+        [self initDSSManager];
+    }
     
-    // If an error is encountered, use NCUpdateResultFailed
-    // If there's no update required, use NCUpdateResultNoData
-    // If there's an update, use NCUpdateResultNewData
-
+    CGPoint currentPosition = CGPointMake(0, 5);
+    CGSize widgetViewSize = CGSizeMake(100, 44);
+    CGSize widgetSpace = CGSizeMake(5, 5);
     NSArray *favs = [MDIOSWidgetManager defaultManager].allFavoritesUUIDs;
     for(MDIOSWidgetAction *action in favs)
     {
-        MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager] favoriteForUUID:action.favoriteUUID];
-        NSLog(@"%@", fav);
+        
+        if(currentPosition.x+widgetViewSize.width+widgetSpace.width > self.view.bounds.size.width)
+        {
+            currentPosition.x = 0;
+            currentPosition.y += widgetViewSize.height+widgetSpace.height;
+        }
+        
+        MDIOSFavorite *favorite = [[MDIOSFavoritesManager defaultManager] favoriteForUUID:action.favoriteUUID];
+        MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
+        
+        [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.view addSubview:wview];
+        currentPosition.x += widgetViewSize.width+widgetSpace.width;
     }
     
+    self.preferredContentSize = CGSizeMake(0, currentPosition.y+widgetViewSize.height+widgetSpace.height);
+    
+    //self.view.frame = CGRectMake(0,0,320,currentPosition.y+widgetViewSize.height+widgetSpace.height);
     completionHandler(NCUpdateResultNewData);
 }
 
-- (IBAction)testButtonTapped:(id)sender
+- (void)widgetActionTapped:(id)sender
+{
+    MDIOSWidgetView *wview = (MDIOSWidgetView *)sender;
+    
+    [wview.loadingIndicator startAnimating];
+    if(wview.favorite.favoriteType == MDIOSFavoriteTypeZonePreset)
+    {
+        [[MDDSSManager defaultManager] callScene:wview.favorite.scene zoneId:wview.favorite.zone groupID:wview.favorite.group callback:^(NSDictionary *json, NSError *error)
+         {
+                [wview.loadingIndicator stopAnimating];
+         }];
+    }
+}
+
+- (void)initDSSManager
 {
     NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc]
                                         initWithSuiteName:@"group.com.include7.DSMenu"];
@@ -59,9 +91,8 @@
     [MDDSSManager defaultManager].appUUID = @"e4634770-11a3-412f-9946-91911c2a4d25";
     
     
+    self.hasDSSManagerAvailable = YES;
     
-    
-    NSString *host =[MDDSSManager defaultManager].host;
     
     NSLog(@"%@", [MDDSSManager defaultManager].host);
     [[MDDSSManager defaultManager] getVersion:^(NSDictionary *json, NSError *error)

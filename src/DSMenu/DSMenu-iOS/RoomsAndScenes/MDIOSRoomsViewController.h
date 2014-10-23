@@ -13,12 +13,13 @@
 #import <UIKit/UIKit.h>
 #import "MDIOSScenesTableViewController.h"
 #import "MDIOSRoomsViewControllerDelegate.h"
+#import "MDIOSBaseTableViewController.h"
 
 /**
  *  MDIOSConsumptionTableViewCell
  *  view controller of the iOS rooms screen
  */
-@interface MDIOSRoomsViewController : UITableViewController
+@interface MDIOSRoomsViewController : MDIOSBaseTableViewController
 @property (strong) IBOutlet UITableView *roomsTable;
 @property (strong) IBOutlet MDIOSScenesTableViewController *sceneViewController;
 @property (assign) BOOL isLoading;

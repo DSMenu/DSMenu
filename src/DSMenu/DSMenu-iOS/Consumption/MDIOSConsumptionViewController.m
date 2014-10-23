@@ -26,15 +26,7 @@
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"consumptionTitle", @"");
-
-//    self.consumptionView = [[DMConsumptionView alloc] initWithFrame:CGRectMake(0,0,self.view.bounds.size.width,self.view.bounds.size.height-100)];
-//    [self.view addSubview:self.consumptionView];
     
-    //[MDDSSConsumptionManager defaultManager].paddingRect = CGRectMake(0,0,0,0);
-    //[MDDSSConsumptionManager defaultManager].padding = CGRectMake(0,0,0,0);
-    //[MDDSSConsumptionManager defaultManager].backgroundColor = [UIColor colorWithRed:0.01 green:0.0 blue:0.0 alpha:1.0].CGColor;
-//    [MDDSSConsumptionManager defaultManager].lineColor = [UIColor colorWithRed:0.81 green:0.82 blue:0.83 alpha:1.0].CGColor;
-//    [MDDSSConsumptionManager defaultManager].fillColor = [UIColor colorWithRed:0.33 green:0.32 blue:0.31 alpha:0.5].CGColor;
     [MDDSSConsumptionManager defaultManager].callbackHistory = ^(NSDictionary *values, NSArray *dSM){
         [self.consumptionView setNeedsDisplay];
     };
@@ -49,9 +41,7 @@
     
     
     self.view.backgroundColor = [UIColor whiteColor];
-    //self.consumptionTable.backgroundColor = [UIColor blackColor];
-    
-    
+
     [self recheckConnection];
     
     
@@ -60,12 +50,29 @@
 
 - (void)recheckConnection
 {
-    self.noConnectionView.hidden = YES;
-    
     if([MDDSSManager defaultManager].connectionProblems || [MDDSSManager defaultManager].host == nil || [MDDSSManager defaultManager].host.length <= 1)
     {
-        self.noConnectionView.hidden = NO;
+        [self showNoEntriesViewWithText:NSLocalizedString(@"noConnectionToYourDSS", @"")];
     }
+    else
+    {
+        [self hideNoEntriesView];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self recheckConnection];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_START_POLLING_CONSUMPTION_DATA object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_STOP_POLLING_CONSUMPTION_DATA object:nil];
 }
 
 #pragma mark - UITableViewStack

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDIOSBaseTableViewController.h"
 
-@interface MDIOSFavoritesViewController : UITableViewController
+@interface MDIOSFavoritesViewController : MDIOSBaseTableViewController
 @property (assign) BOOL widgetMode;
 @end

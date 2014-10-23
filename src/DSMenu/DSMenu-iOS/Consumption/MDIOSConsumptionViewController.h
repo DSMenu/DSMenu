@@ -13,13 +13,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MDIOSConsumptionView.h"
+#import "MDIOSBaseViewController.h"
 
 /**
  *  MDIOSConsumptionTableViewCell
  *  view controller of the whole consumption screen
  */
-@interface MDIOSConsumptionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MDIOSConsumptionViewController : MDIOSBaseViewController <UITableViewDataSource, UITableViewDelegate>
 @property (strong) IBOutlet MDIOSConsumptionView *consumptionView;
 @property (strong) IBOutlet UITableView *consumptionTable;
-@property (strong) IBOutlet UIView *noConnectionView;
 @end

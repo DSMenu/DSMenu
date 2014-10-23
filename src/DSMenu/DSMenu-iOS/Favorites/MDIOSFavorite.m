@@ -7,6 +7,7 @@
 //
 
 #import "MDIOSFavorite.h"
+#import "MDDSSManager.h"
 
 @implementation MDIOSFavorite
 
@@ -25,6 +26,34 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@ %@ %@ %d &@", self.zone, self.group, self.scene, self.favoriteType, self.UUID];
+}
+
+- (NSString *)title
+{
+    if(self.favoriteType == MDIOSFavoriteTypeZonePreset)
+    {
+        return NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", self.group, self.scene]), @"");
+    }
+    
+    return [NSString stringWithFormat:@"zone: %@", self.zone];
+}
+
+- (NSString *)subtitle
+{
+    NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
+    if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
+    {
+        NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+        for(NSDictionary *aZoneDict in zones)
+        {
+            if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:self.zone])
+            {
+                return [aZoneDict objectForKey:@"name"];
+            }
+        }
+    }
+    
+    return [NSString stringWithFormat:@"zone: %@", self.zone];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder

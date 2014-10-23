@@ -10,6 +10,8 @@
 #import "MDIOSRoomsViewController.h"
 #import "MDIOSSettingsViewController.h"
 #import "MDIOSConsumptionViewController.h"
+#import "MDDSSManager.h"
+#import "MDIOSFavoritesManager.h"
 
 @interface MDIOSTabBarController ()
 
@@ -34,6 +36,16 @@
         {
             viewController.tabBarItem.title = NSLocalizedString(@"consumptionTitle", @"consumption tabbar title");
         }
+    }
+    
+    if(![MDIOSFavoritesManager defaultManager].allFavorites || [MDIOSFavoritesManager defaultManager].allFavorites.count <= 0)
+    {
+        [self setSelectedIndex:1];
+    }
+    
+    if([MDDSSManager defaultManager].host == nil || [MDDSSManager defaultManager].host.length == 0)
+    {
+        [self setSelectedIndex:3];
     }
     
 }
