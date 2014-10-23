@@ -33,9 +33,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kDS_CONSUMPTION_DID_CHANGE object:nil queue:nil usingBlock:^(NSNotification *notification){
 
+        [self hideNoEntriesView];
+        
         NSArray *consumptionData = notification.object;
         self.tableData = (NSMutableArray *)consumptionData;
-        
         [self.consumptionTable reloadData];
     }];
     

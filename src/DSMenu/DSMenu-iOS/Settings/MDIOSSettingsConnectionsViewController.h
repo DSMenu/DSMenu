@@ -24,4 +24,6 @@
 
 @property (strong) UITextField *passwordTextField;
 
+@property (strong) NSString *errorOnHost;
+
 @end

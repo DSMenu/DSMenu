@@ -29,6 +29,10 @@
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
+    NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc]
+                                        initWithSuiteName:@"group.com.include7.DSMenu"];
+    [mySharedDefaults synchronize];
+    
     if(self.hasDSSManagerAvailable == NO)
     {
         [self initDSSManager];
@@ -56,9 +60,13 @@
         currentPosition.x += widgetViewSize.width+widgetSpace.width;
     }
     
-    self.preferredContentSize = CGSizeMake(0, currentPosition.y+widgetViewSize.height+widgetSpace.height);
+    self.noFavoritesLabel.hidden = YES;
+    if(!favs || favs.count == 0)
+    {
+        self.noFavoritesLabel.hidden = NO;
+    }
     
-    //self.view.frame = CGRectMake(0,0,320,currentPosition.y+widgetViewSize.height+widgetSpace.height);
+    self.preferredContentSize = CGSizeMake(0, currentPosition.y+widgetViewSize.height+widgetSpace.height);
     completionHandler(NCUpdateResultNewData);
 }
 

@@ -91,6 +91,10 @@ unnamedRoom = "Raum";
 
 deeopOffSceneItem = "Deep off";
 group1scene68 = "Deep off";
+group2scene68 = "Deep off";
+group3scene68 = "Deep off";
+group4scene68 = "Deep off";
+group5scene68 = "Deep off";
 
 menuDevices = "Geräte";
 turnOn = "Ein";
@@ -151,11 +155,12 @@ useLocalConnection = "Lokale Verbindung verwenden";
 searchingBonjour = "Dein Netzwerk wird durchsucht";
 
 widgetCellText = "Widget Slot %d";
-selectActionPrompt = "Select Action for Slot %d";
+selectActionPrompt = "Bitte Favoriten für Widget wählen.";
+selectFavoritesForWidgetCell = "Favoriten auswählen";
 reorderTable = "Reihenfolge ändern";
 reorderTableEnd = "Editieren beenden";
 nogroupslabel = "Keine Gerätegruppen vorhanden";
-favEdit = "editieren";
+favEdit = "Editieren";
 favEditEnd = "fertig";
 favorites = "Meine Favoriten";
 noFavoritesAvailable = "Sie haben noch keine Favoriten gesetzt.";

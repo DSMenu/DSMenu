@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.include7.DSMenu</string>
+		<string>group.com.include7.enterprise.DSMenu</string>
 	</array>
 </dict>
 </plist>

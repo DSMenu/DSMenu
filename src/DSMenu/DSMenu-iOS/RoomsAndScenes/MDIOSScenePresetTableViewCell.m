@@ -21,6 +21,13 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.isFavorized = NO;
+        
+        self.favorizeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width-55,0,55,self.contentView.frame.size.height)];
+        self.favorizeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 3, 0);
+        [self.favorizeButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.favorizeButton];
+        [self updateFavoriteState];
+        
     }
     return self;
 }
@@ -28,7 +35,7 @@
 - (void)setIsFavorized:(BOOL)isFavorized
 {
     _isFavorized = isFavorized;
-    [self updateAccessoryView];
+    [self updateFavoriteState];
 }
 
 - (BOOL)isFavorized
@@ -47,6 +54,20 @@
     return _isLoading;
 }
 
+- (void)updateFavoriteState
+{
+    UIImage *favImage = nil;
+    
+    if(self.isFavorized)
+    {
+        favImage = [UIImage imageNamed:@"ReviewSheetStarFull.png"];
+    }
+    else
+    {
+        favImage = [UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"];
+    }
+    [self.favorizeButton setImage:favImage forState:UIControlStateNormal];
+}
 
 - (void)updateAccessoryView
 {
@@ -59,21 +80,6 @@
     else
     {
         self.accessoryView = nil;
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *favImage;
-        if(self.isFavorized)
-        {
-            favImage = [UIImage imageNamed:@"ReviewSheetStarFull.png"];
-        }
-        else
-        {
-            favImage = [UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"];
-        }
-        [button setImage:favImage forState:UIControlStateNormal];
-        button.frame = CGRectMake(0,0,favImage.size.width,favImage.size.height);
-        [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        self.accessoryView = button;
     }
 }
 

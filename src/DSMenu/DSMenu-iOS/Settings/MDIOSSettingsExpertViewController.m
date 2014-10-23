@@ -31,14 +31,23 @@
 
 - (IBAction)switchDidChange:(id)sender
 {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"expertViewController"];
-    vc.tabBarItem.image         = [UIImage imageNamed:@"settingsTab.png"];
-    vc.tabBarItem.selectedImage = [UIImage imageNamed:@"settingsTabSelected.png"];
-    
-    NSMutableArray *viewControllersMutable = [self.tabBarController.viewControllers mutableCopy];
-    [viewControllersMutable addObject:vc];
-    self.tabBarController.viewControllers = viewControllersMutable;
+    UISwitch *aSwitch = (UISwitch *)sender;
+    if(aSwitch.on)
+    {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"expertViewController"];
+        vc.tabBarItem.image         = [UIImage imageNamed:@"settingsTab.png"];
+        vc.tabBarItem.selectedImage = [UIImage imageNamed:@"settingsTabSelected.png"];
+        
+        NSMutableArray *viewControllersMutable = [self.tabBarController.viewControllers mutableCopy];
+        [viewControllersMutable addObject:vc];
+        self.tabBarController.viewControllers = viewControllersMutable;
+    }
+    else
+    {
+        NSArray *viewControllers = [self.tabBarController.viewControllers subarrayWithRange:NSMakeRange(0, self.tabBarController.viewControllers.count-1)];
+        [self.tabBarController setViewControllers:viewControllers animated:YES];
+    }
 }
 
 /*

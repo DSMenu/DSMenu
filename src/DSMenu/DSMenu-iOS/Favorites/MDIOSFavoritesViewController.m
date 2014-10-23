@@ -238,7 +238,7 @@
         
         [[MDDSSManager defaultManager] callScene:fav.scene zoneId:fav.zone groupID:fav.group callback:^(NSDictionary *json, NSError *error)
          {
-             cell.accessoryView = nil;
+             cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarFull.png"]];
          }];
     }
     

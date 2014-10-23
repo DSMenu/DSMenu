@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.editItem.title = NSLocalizedString(@"reorderTable", @"reorder widgets");
+    self.selectFavoritesCell.textLabel.text = NSLocalizedString(@"selectFavoritesForWidgetCell", @"");
 }
 
 - (void)delayedPromptRemove

@@ -182,21 +182,21 @@
         int cnt = 0;
         CGFloat xOffset = 0;
         CGFloat xSpace = 4;
-        CGFloat imageSpaceH = 12;
-//        if(self.availableGroups && self.availableGroups.count == 1 && [[self.availableGroups objectAtIndex:0] isEqualToString:@"nogroups"])
-//        {
-//            imageSpaceH = 0;
-//        }
-        CGFloat labelHeight = 16;
+        CGFloat imageSpaceH = 20;
+        if(self.availableGroups && self.availableGroups.count == 1 && [[self.availableGroups objectAtIndex:0] isEqualToString:@"nogroups"])
+        {
+            imageSpaceH = 0;
+        }
+        CGFloat labelHeight = 25;
         for(UILabel *label in self.labels)
         {
             UIButton *backgroundView = [self.labelBackgroundViews objectAtIndex:cnt];
             CGRect calculatedSize = [label textRectForBounds:CGRectMake(0,0,1000,20) limitedToNumberOfLines:1];
-            label.frame = CGRectMake(xOffset+4+imageSpaceH,0,calculatedSize.size.width,20);
+            label.frame = CGRectMake(xOffset+4+imageSpaceH,5,calculatedSize.size.width,20);
             
-            backgroundView.imageEdgeInsets = UIEdgeInsetsMake(0, -label.frame.size.width-2, 0, 0);
+            backgroundView.imageEdgeInsets = UIEdgeInsetsMake(0, -label.frame.size.width-12, 0, 0);
             
-            backgroundView.frame = CGRectMake(xOffset+0,2,calculatedSize.size.width+8+imageSpaceH,labelHeight+2);
+            backgroundView.frame = CGRectMake(xOffset+0,2,calculatedSize.size.width+16+imageSpaceH,labelHeight+2);
             xOffset+=backgroundView.frame.size.width+xSpace;
             cnt++;
         }

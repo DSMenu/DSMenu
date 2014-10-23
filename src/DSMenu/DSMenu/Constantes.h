@@ -9,6 +9,6 @@
 #ifndef DSMenu_Constantes_h
 #define DSMenu_Constantes_h
 
-#define kDSMENU_APP_GROUP_IDENTIFIER @"group.com.include7.DSMenu"
+#define kDSMENU_APP_GROUP_IDENTIFIER @"group.com.include7.enterprise.DSMenu"
 
 #endif

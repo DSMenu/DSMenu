@@ -10,5 +10,5 @@
 #import "MDIOSRoomsViewControllerDelegate.h"
 
 @interface MDIOSSettingsWidgetViewController : UITableViewController <MDIOSRoomsViewControllerDelegate>
-@property (strong) IBOutlet UIBarButtonItem *editItem;
+@property (strong) IBOutlet UITableViewCell *selectFavoritesCell;
 @end

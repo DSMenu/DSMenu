@@ -27,14 +27,19 @@
         if([viewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)viewController topViewController] isKindOfClass:[MDIOSSettingsViewController class]])
         {
             viewController.tabBarItem.title = NSLocalizedString(@"settingsTitle", @"settings tabbar title");
+            viewController.tabBarItem.image         = [UIImage imageNamed:@"settingsTab.png"];
+            viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"settingsTabSelected.png"];
         }
         else if([viewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)viewController topViewController] isKindOfClass:[MDIOSRoomsViewController class]])
         {
             viewController.tabBarItem.title = NSLocalizedString(@"roomsTitle", @"rooms tabbar title");
+            viewController.tabBarItem.image         = [UIImage imageNamed:@"listTabbar.png"];
+            viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"listTabbarSelected.png"];
         }
         else if([viewController isKindOfClass:[MDIOSConsumptionViewController class]])
         {
             viewController.tabBarItem.title = NSLocalizedString(@"consumptionTitle", @"consumption tabbar title");
+             viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"chartTabbarSelected.png"];
         }
     }
     

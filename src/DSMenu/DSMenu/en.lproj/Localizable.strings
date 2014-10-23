@@ -90,6 +90,11 @@ group5scene4 = "Area 4 off";
 unnamedRoom = "Room";
 
 deeopOffSceneItem = "Deep off";
+group1scene68 = "Deep off";
+group2scene68 = "Deep off";
+group3scene68 = "Deep off";
+group4scene68 = "Deep off";
+group5scene68 = "Deep off";
 
 menuDevices = "Devices";
 turnOn = "On";
@@ -150,7 +155,8 @@ useLocalConnection = "Use Local Connection";
 searchingBonjour = "Observing Your Neighborhood";
 
 widgetCellText = "Widget Slot %d";
-selectActionPrompt = "Select Action For Slot %d";
+selectActionPrompt = "Select Desired Favorites For The Widget";
+selectFavoritesForWidgetCell = "Select Favorites";
 reorderTable = "Change Order";
 reorderTableEnd = "End Editing";
 nogroupslabel = "No Devicegroups Available";

@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.include7.DSMenu-iOS.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.include7.enterprise.DSMenu-iOS.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -28,6 +28,8 @@
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
+		<key>RequestsOpenAccess</key>
+		<string></string>
 	</dict>
 </dict>
 </plist>

@@ -247,6 +247,8 @@
 		E5D0271419F8DE140047407F /* off_menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DE64481961F46000938FE2 /* off_menu_icon@2x.png */; };
 		E5D0271719F8F01C0047407F /* MDIOSBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D0271619F8F01C0047407F /* MDIOSBaseTableViewController.m */; };
 		E5D0271A19F902660047407F /* MDIOSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D0271919F902660047407F /* MDIOSBaseViewController.m */; };
+		E5D0271C19F97AF70047407F /* dss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D0271B19F97AF70047407F /* dss@2x.png */; };
+		E5D0271E19F9833C0047407F /* chartTabbarSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D0271D19F9833C0047407F /* chartTabbarSelected@2x.png */; };
 		E5D3A88119F134CD0025A6C3 /* light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3A87F19F134CD0025A6C3 /* light@2x.png */; };
 		E5D3A88219F134CD0025A6C3 /* roller@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3A88019F134CD0025A6C3 /* roller@2x.png */; };
 		E5D3A88619F135870025A6C3 /* audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D3A88319F135870025A6C3 /* audio@2x.png */; };
@@ -512,6 +514,8 @@
 		E5D0271619F8F01C0047407F /* MDIOSBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSBaseTableViewController.m; sourceTree = "<group>"; };
 		E5D0271819F902660047407F /* MDIOSBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSBaseViewController.h; sourceTree = "<group>"; };
 		E5D0271919F902660047407F /* MDIOSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSBaseViewController.m; sourceTree = "<group>"; };
+		E5D0271B19F97AF70047407F /* dss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dss@2x.png"; sourceTree = "<group>"; };
+		E5D0271D19F9833C0047407F /* chartTabbarSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chartTabbarSelected@2x.png"; sourceTree = "<group>"; };
 		E5D3A87F19F134CD0025A6C3 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
 		E5D3A88019F134CD0025A6C3 /* roller@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roller@2x.png"; sourceTree = "<group>"; };
 		E5D3A88319F135870025A6C3 /* audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio@2x.png"; sourceTree = "<group>"; };
@@ -978,6 +982,7 @@
 		E5B544F519F1082B00B7B7A9 /* GFX */ = {
 			isa = PBXGroup;
 			children = (
+				E5D0271B19F97AF70047407F /* dss@2x.png */,
 				E5601D5919F839AE00009989 /* rooms@2x.png */,
 				E5CDA34A19F7FABB00F9CBB8 /* ReviewSheetStarEmpty@2x.png */,
 				E5601D4719F7FB4C00009989 /* ReviewSheetStarEmptyNew@2x.png */,
@@ -991,6 +996,7 @@
 				E5D3A88019F134CD0025A6C3 /* roller@2x.png */,
 				E5B544F619F1083E00B7B7A9 /* alert@2x.png */,
 				E5B544F719F1083E00B7B7A9 /* chartTabbar@2x.png */,
+				E5D0271D19F9833C0047407F /* chartTabbarSelected@2x.png */,
 				E5B544F819F1083E00B7B7A9 /* checkmark@2x.png */,
 				E5B544F919F1083E00B7B7A9 /* favoritesTabbar@2x.png */,
 				E5B544FA19F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png */,
@@ -1294,7 +1300,7 @@
 					};
 					E5B544C119F1079500B7B7A9 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 5XAKXZTWN4;
+						DevelopmentTeam = M39ASDT9XA;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1303,7 +1309,7 @@
 					};
 					E5F1ED2919F57B2200D983E9 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 5XAKXZTWN4;
+						DevelopmentTeam = M39ASDT9XA;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1497,6 +1503,7 @@
 				E54BC20519F43FB70022A818 /* PUFavoriteOn@2x.png in Resources */,
 				E5B5452C19F1166100B7B7A9 /* group_1@2x.png in Resources */,
 				E5B5450419F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png in Resources */,
+				E5D0271E19F9833C0047407F /* chartTabbarSelected@2x.png in Resources */,
 				E5B5453919F1166100B7B7A9 /* group_4_8.png in Resources */,
 				E5601D4819F7FB4C00009989 /* ReviewSheetStarEmptyNew@2x.png in Resources */,
 				E5B5450919F1083E00B7B7A9 /* settingsTabSelected@2x.png in Resources */,
@@ -1516,6 +1523,7 @@
 				E5B5450519F1083E00B7B7A9 /* listTabbar@2x.png in Resources */,
 				E5B544D819F1079500B7B7A9 /* LaunchScreen.xib in Resources */,
 				E5B5452D19F1166100B7B7A9 /* group_2.png in Resources */,
+				E5D0271C19F97AF70047407F /* dss@2x.png in Resources */,
 				E5B5453F19F1166100B7B7A9 /* group_5.png in Resources */,
 				E5D3A88819F135870025A6C3 /* video@2x.png in Resources */,
 				E5B5452819F10EA300B7B7A9 /* Localizable.strings in Resources */,
@@ -2054,8 +2062,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = IOSAppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "DSMenu-iOS/DSMenu-iOS.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jonas Schnelli (422V58G985)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonas Schnelli (422V58G985)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonas Schnelli (7CGLGDL6VW)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2067,7 +2075,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67e0048f-c8bd-48d1-85a1-8318d7fa024a";
+				PROVISIONING_PROFILE = "5e8ea428-42a8-429d-a9b6-89595c8002a7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2079,8 +2087,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = IOSAppIcon;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = "DSMenu-iOS/DSMenu-iOS.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: include7 AG (5XAKXZTWN4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: include7 AG (5XAKXZTWN4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: include7 AG";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
 				INFOPLIST_FILE = "DSMenu-iOS/Info.plist";
@@ -2088,7 +2096,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "70d05071-74ae-46de-b864-b698ce9ee2a0";
+				PROVISIONING_PROFILE = "1b4d771d-9d1a-4143-8f39-247d317e28cb";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2100,7 +2108,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = iOSWidget/iOSWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jonas Schnelli (422V58G985)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jonas Schnelli (7CGLGDL6VW)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -2111,7 +2119,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9d55e01-3e00-4944-883e-703750a413d5";
+				PROVISIONING_PROFILE = "6f1da464-88da-48db-a61d-75d356cf4682";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2123,14 +2131,14 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = iOSWidget/iOSWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: include7 AG (5XAKXZTWN4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: include7 AG";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = iOSWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "263adfab-de26-4702-abf2-efc22a27989e";
+				PROVISIONING_PROFILE = "8bc01d11-dac0-4afe-a685-d72f332b4675";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

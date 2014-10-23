@@ -19,5 +19,6 @@
 
 @interface TodayViewController : UIViewController
 @property (strong) IBOutlet UIView *mainView;
+@property (strong) IBOutlet UILabel *noFavoritesLabel;
 @property (assign) BOOL hasDSSManagerAvailable;
 @end
