@@ -48,8 +48,17 @@ static MDIOSWidgetManager *defaultManager;
 
 - (void)persist
 {
+    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kDSMENU_APP_GROUP_IDENTIFIER];
+    NSURL *containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_WIDGET_ACTIONS];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.widgetActions];
+    [data writeToURL:containerURLFile atomically:YES];
+    
     [self.userDefaultsProxy setObject:[NSKeyedArchiver archivedDataWithRootObject:self.widgetActions] forKey:kMDIOS_UD_WIDGET_ACTIONS_KEY];
     [self.userDefaultsProxy synchronize];
+    
+    NSDictionary *dict = [self.userDefaultsProxy dictionaryRepresentation];
+    containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
+    [dict writeToURL:containerURLFile atomically:YES];
 }
 
 - (void)setAction:(MDIOSWidgetAction *)action forSlot:(NSInteger)slot

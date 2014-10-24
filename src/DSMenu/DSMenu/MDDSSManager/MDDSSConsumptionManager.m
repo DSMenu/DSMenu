@@ -180,7 +180,6 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                         });
                         ;
                     }
-                    
                 }];
             }
             else

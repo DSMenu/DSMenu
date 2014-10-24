@@ -11,6 +11,7 @@
 #import "MDIOSWidgetManager.h"
 #import "MDIOSFavoritesManager.h"
 #import "MDIOSWidgetView.h"
+#import "Constantes.h"
 
 @interface TodayViewController () <NCWidgetProviding>
 
@@ -31,18 +32,36 @@
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
     NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc]
                                         initWithSuiteName:@"group.com.include7.DSMenu"];
-    [mySharedDefaults synchronize];
     
     if(self.hasDSSManagerAvailable == NO)
     {
         [self initDSSManager];
     }
     
+    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kDSMENU_APP_GROUP_IDENTIFIER];
+    NSURL *containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
+    NSDictionary *userDefaults = [NSDictionary dictionaryWithContentsOfURL:containerURLFile];
+    for(NSString *aKey in userDefaults.allKeys)
+    {
+        [[MDDSSManager defaultManager].currentUserDefaults setObject:[userDefaults objectForKey:aKey] forKey:aKey];
+    }
+    
+    containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kDSMENU_APP_GROUP_IDENTIFIER];
+    containerURLFile = [containerURL URLByAppendingPathComponent:@"widgetactions"];
+    NSData *data = [NSData dataWithContentsOfURL:containerURLFile];
+    NSMutableDictionary *widgetActions = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+    
+    containerURLFile = [containerURL URLByAppendingPathComponent:@"favorites"];
+    data = [NSData dataWithContentsOfURL:containerURLFile];
+    NSArray *favorites = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+    
+    NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
+    
     CGPoint currentPosition = CGPointMake(0, 5);
     CGSize widgetViewSize = CGSizeMake(100, 44);
     CGSize widgetSpace = CGSizeMake(5, 5);
     NSArray *favs = [MDIOSWidgetManager defaultManager].allFavoritesUUIDs;
-    for(MDIOSWidgetAction *action in favs)
+    for(MDIOSWidgetAction *action in [widgetActions objectForKey:@"favs"])
     {
         
         if(currentPosition.x+widgetViewSize.width+widgetSpace.width > self.view.bounds.size.width)
@@ -51,7 +70,16 @@
             currentPosition.y += widgetViewSize.height+widgetSpace.height;
         }
         
-        MDIOSFavorite *favorite = [[MDIOSFavoritesManager defaultManager] favoriteForUUID:action.favoriteUUID];
+        MDIOSFavorite *favorite = nil;
+        
+        for(MDIOSFavorite *aFavorite in favorites)
+        {
+            if([aFavorite.UUID isEqualToString:action.favoriteUUID])
+            {
+                favorite = aFavorite;
+            }
+        }
+        
         MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
         
         [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];

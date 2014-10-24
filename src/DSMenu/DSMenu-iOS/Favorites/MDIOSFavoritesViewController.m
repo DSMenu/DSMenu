@@ -23,7 +23,6 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable:) name:kDS_STRUCTURE_DID_CHANGE object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable:) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"favEdit", @"") style:UIBarButtonItemStylePlain target:self action:@selector(switchEdit)];
     
@@ -154,8 +153,17 @@
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"FavoriteSceneCell"];
         }
         
+        NSArray *customSceneNames = [[MDDSSManager defaultManager] customSceneNamesForGroup:fav.group.intValue inZone:fav.zone.intValue];
+        if(customSceneNames)
+        {
+            cell2.detailTextLabel.text = [MDDSHelper customSceneNameForScene:fav.scene.intValue fromJSON:customSceneNames];
+        }
+        else
+        {
+            cell2.detailTextLabel.text = NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", fav.group, fav.scene]), @"");
+        }
+        
         cell2.textLabel.text = cell.textLabel.text;
-        cell2.detailTextLabel.text = NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", fav.group, fav.scene]), @"");
         
         cell2.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:(NSLocalizedString(@"group_%d.png", @"")), fav.group.intValue]];
         

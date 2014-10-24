@@ -9,6 +9,7 @@
 #import "MDIOSSettingsConnectionsViewController.h"
 #import "MDDSSManager.h"
 #import "MDIOSSettingTextFieldTableViewCell.h"
+#import "UIAlertView+DSMenuiOS.h"
 
 #define kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_SECTION 2
 #define kMDIOS_SETTINGS_CONNECTION_REMOTE_CONNECTIVITY_BUTTON_SECTION 3
@@ -80,7 +81,7 @@
     NSTimer *timer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(searchEnd) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
-    [self.netServiceBrowser searchForServicesOfType:@"_http._tcp." inDomain:@"local"];
+    [self.netServiceBrowser searchForServicesOfType:@"_dssweb._tcp." inDomain:@"local"];
 }
 - (void)searchEnd
 {
@@ -336,6 +337,14 @@
             {
                 cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alert.png"]];
             }
+            
+            if(self.tryToConnectLocal&& [self.currentIPAddressOrHostname isEqualToString:[cell.textLabel.text stringByAppendingString:@".local"]])
+            {
+                UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                
+                [activityIndicator startAnimating];
+                cell.accessoryView = activityIndicator;
+            }
         }
         else
         {
@@ -378,13 +387,6 @@
         cell.tag = 100;
         
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        
-        if(self.tryToConnectLocal) {
-            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            
-            [activityIndicator startAnimating];
-            cell.accessoryView = activityIndicator;
-        }
     }
     return cell;
 }
@@ -529,7 +531,6 @@
 }
 
 #pragma mark - local check
-
 - (void)connectLocal
 {
     self.tryToConnectLocal = YES;
@@ -538,7 +539,7 @@
     [[MDDSSManager defaultManager] checkHost:self.currentIPAddressOrHostname callback:^(BOOL status)
      {
          
-         self.tryToConnectLocal = NO;
+         
          if(status)
          {
              
@@ -550,35 +551,32 @@
              {
                  [[MDDSSManager defaultManager] requestApplicationToken:^(NSDictionary *json, NSError *error)
                   {
-                      [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
+                      [self loginAndEnableToken:^(BOOL success){
+                          if(success) {
+                              [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
+                              
+                              [self searchEnd];
+                          }
+                      }];
+                      
                   }];
              }
              else
              {
-                 [[MDDSSManager defaultManager] loginApplication:[MDDSSManager defaultManager].applicationToken callBlock:^(NSDictionary *json, NSError *error)
-                  {
-                      
-                      if([json objectForKey:@"ok"] && [[json objectForKey:@"ok"] intValue] == 1)
-                      {
-                          if([MDDSSManager defaultManager].useRemoteConnectivity)
-                          {
-                              [self disconnectTapped];
-                          }
-                          
-                          self.connectionErrorLocal = NO;
-                          
-                          [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
-                          
-                          [self searchEnd];
-                      }
-                      else
-                      {
-                          [[MDDSSManager defaultManager] requestApplicationToken:^(NSDictionary *json, NSError *error)
-                           {
-                               [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
-                           }];
-                      }
-                  }];
+                 [self loginAndEnableToken:^(BOOL success){
+                     if(success) {
+                         if([MDDSSManager defaultManager].useRemoteConnectivity)
+                         {
+                             [self disconnectTapped];
+                         }
+                         
+                         self.connectionErrorLocal = NO;
+                         
+                         [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
+                         
+                         [self searchEnd];
+                     }
+                 }];
              }
          }
          else
@@ -589,6 +587,65 @@
          
          [self.tableView reloadData];
      }];
+}
+
+- (void)loginAndEnableToken:(void (^)(BOOL success))completionBlock
+{
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Login" message:@"Use DSS Webadmin Credentials" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    [alert addButtonWithTitle:@"Login"];
+    [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex == 1)
+        {
+            UITextField *username = [alertView textFieldAtIndex:0];
+            UITextField *password = [alertView textFieldAtIndex:1];
+            
+            [[MDDSSManager defaultManager] loginUser:username.text password:password.text callBlock:^(NSDictionary *json, NSError *error){
+                
+                if(error)
+                {
+                    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"loginFailedTitle", @"") message:NSLocalizedString(@"loginFailedText", @"") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [errorAlert show];
+                    
+                    self.tryToConnectLocal = NO;
+                    self.connectionErrorLocal = YES;
+                    
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    
+                    completionBlock(NO);
+                }
+                else
+                {
+                    [[MDDSSManager defaultManager] enableToken:[MDDSSManager defaultManager].applicationToken callBlock:^(NSDictionary *json, NSError *error){
+                        
+                        [[MDDSSManager defaultManager] logoutUser:^(NSDictionary *json, NSError *error){
+                            
+                            [[MDDSSManager defaultManager] loginApplication:[MDDSSManager defaultManager].applicationToken callBlock:^(NSDictionary *json, NSError *error){
+                                
+                                self.tryToConnectLocal = NO;
+                                
+                                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                
+                                completionBlock(YES);
+                            }];
+                        }];
+                        
+                    }];
+                }
+                
+            }];
+        }
+        else
+        {
+            completionBlock(NO);
+            
+            //user pressed cancel on login
+            self.tryToConnectLocal = NO;
+            
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+        }
+    }];
 }
 
 

@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDIOSAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MDIOSAppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong) NSMutableArray *consumptionData;

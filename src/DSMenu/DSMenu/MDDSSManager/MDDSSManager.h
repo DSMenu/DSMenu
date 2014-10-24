@@ -40,6 +40,8 @@
 @property BOOL useLastCalledSceneCheck;
 @property BOOL suppressAuthError;
 
+@property BOOL loginInProgress;
+
 @property NSDictionary *customSceneNameJSONCache; /**< persisted JSON from last loaded custom scene names */
 @property NSDictionary *lastLoadesStructure; /**< persisted JSON from last loaded structure (with scene names) */
 

@@ -42,11 +42,7 @@
     
     
     self.view.backgroundColor = [UIColor whiteColor];
-
     [self recheckConnection];
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recheckConnection) name:kMD_NOTIFICATION_APPTOKEN_DID_CHANGE object:nil];
 }
 
 - (void)recheckConnection

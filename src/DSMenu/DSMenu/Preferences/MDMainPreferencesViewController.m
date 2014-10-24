@@ -26,7 +26,7 @@
         
         self.netServiceBrowser = [[NSNetServiceBrowser alloc] init];
         [self.netServiceBrowser setDelegate:self];
-        [self.netServiceBrowser searchForServicesOfType:@"_http._tcp." inDomain:@"local"];
+        [self.netServiceBrowser searchForServicesOfType:@"_dssweb._tcp." inDomain:@"local"];
         
         self.mDNSServices = [NSMutableArray array];
         self.dontUpdate = NO;

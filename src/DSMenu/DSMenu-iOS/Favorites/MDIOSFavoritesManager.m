@@ -134,8 +134,18 @@ static MDIOSFavoritesManager *defaultManager;
 
 - (void)persist
 {
+    
+    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kDSMENU_APP_GROUP_IDENTIFIER];
+    NSURL *containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_FAVORITES];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.favorites];
+    [data writeToURL:containerURLFile atomically:YES];
+    
     [self.userDefaultsProxy setObject:[NSKeyedArchiver archivedDataWithRootObject:self.favorites] forKey:kMDIOS_UD_FAVORITES_KEY];
     [self.userDefaultsProxy synchronize];
+    
+    NSDictionary *dict = [self.userDefaultsProxy dictionaryRepresentation];
+    containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
+    [dict writeToURL:containerURLFile atomically:YES];
 }
 
 - (NSUserDefaults *)userDefaultsProxy
