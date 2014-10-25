@@ -69,12 +69,12 @@ static MDDSSManager *defaultManager;
     // must be called after user defaults object has been changed
     NSUserDefaults *defaults = self.userDefaultsProxy;
     self.applicationToken = [defaults objectForKey:kMDDSSMANAGER_APPLICATION_TOKEN_UD_KEY];
-    self.consumptionHistoryValueCount = [NSNumber numberWithInt:360];
+    _consumptionHistoryValueCount = [NSNumber numberWithInt:360];
     
     NSNumber *possibleHistoryValueCount = [defaults objectForKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
     if(possibleHistoryValueCount && [possibleHistoryValueCount isKindOfClass:[NSNumber class]])
     {
-        self.consumptionHistoryValueCount = possibleHistoryValueCount;
+        _consumptionHistoryValueCount = possibleHistoryValueCount;
     }
     
     NSString *possibleHost = [self.userDefaultsProxy objectForKey:kMDDSSMANAGER_HOST_UD_KEY];
@@ -648,6 +648,7 @@ static MDDSSManager *defaultManager;
     _consumptionHistoryValueCount = consumptionHistoryValueCount;
     
     [self.userDefaultsProxy setObject:_consumptionHistoryValueCount forKey:kMDDSSMANAGER_HISTORY_VALUE_COUNT];
+    [self persist];
 }
 
 - (NSNumber *)consumptionHistoryValueCount
