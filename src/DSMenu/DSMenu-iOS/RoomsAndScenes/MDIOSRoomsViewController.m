@@ -13,6 +13,7 @@
 
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
+@property NSDictionary *displayedJSON;
 @end
 
 @implementation MDIOSRoomsViewController
@@ -121,7 +122,7 @@
         json = notification.object;
         self.isLoading = NO;
         
-        if(self.zones.count > 0 && ![MDDSHelper shouldRefreshStructure:json oldStructure:[MDDSSManager defaultManager].lastLoadesStructure])
+        if(self.zones.count > 0 && ![MDDSHelper shouldRefreshStructure:json oldStructure:self.displayedJSON])
         {
             return;
         }
@@ -138,8 +139,8 @@
         return;
     }
     
-    
-    
+    self.displayedJSON = json;
+    self.zones = [NSMutableArray array];
     
     //sort zones
     NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
