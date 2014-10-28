@@ -50,7 +50,7 @@
 
 - (void)buildLabels:(NSObject *)groupNumbersParam
 {
-    self.availableGroups = (NSArray *)groupNumbersParam;
+    self.groupNumberParam = groupNumbersParam;
     
     NSArray *groupNumbers = nil;
     NSString *customTitle = nil;
@@ -68,6 +68,8 @@
     {
         groupNumbers = @[@"nogroups"];
     }
+    
+    self.availableGroups = groupNumbers;
     
     
     [self.labelsView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -154,6 +156,11 @@
 
 - (void)labelTaped:(UIButton *)sender
 {
+    if(self.availableGroups && self.availableGroups.count == 1 && [[self.availableGroups objectAtIndex:0] isEqualToString:@"nogroups"])
+    {
+        return;
+    }
+    
     NSString *group = [NSString stringWithFormat:@"%ld", sender.tag];
     if([MDDSSManager defaultManager].useLastCalledSceneCheck)
     {
@@ -186,7 +193,7 @@
                  NSString *sceneString = [NSString stringWithFormat:@"%d", desiredScene];
                  [[MDDSSManager defaultManager] callScene:sceneString zoneId:self.zoneId groupID:group callback:^(NSDictionary *json, NSError *error)
                   {
-                      [self buildLabels:self.availableGroups];
+                      [self buildLabels:self.groupNumberParam];
                       [self calculateSizes];
                   }];
              }

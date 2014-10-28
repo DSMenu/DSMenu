@@ -32,6 +32,7 @@
 @property (strong) NSMutableArray *labelBackgroundViews;
 
 @property (strong) NSArray *availableGroups;
+@property (strong) NSObject *groupNumberParam;
 
 @property (assign) BOOL isFavorite;
 
