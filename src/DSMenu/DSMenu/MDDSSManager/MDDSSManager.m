@@ -397,27 +397,33 @@ static MDDSSManager *defaultManager;
 - (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback
 {
     
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId,@"groupID":groupID, @"sceneNumber":sceneNumber  };
-    [self jsonCall:@"/json/zone/callScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
-        callback(json, error);
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId,@"groupID":groupID, @"sceneNumber":sceneNumber  };
+        [self jsonCall:@"/json/zone/callScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            callback(json, error);
+        }];
     }];
 }
 
 - (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback
 {
     
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":deviceId, @"sceneNumber":sceneNumber  };
-    [self jsonCall:@"/json/device/callScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
-        callback(json, error);
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid":deviceId, @"sceneNumber":sceneNumber  };
+        [self jsonCall:@"/json/device/callScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            callback(json, error);
+        }];
     }];
 }
 
 - (void)lastCalledSceneInZoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback
 {
     
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId, @"groupID":groupID };
-    [self jsonCall:@"/json/zone/getLastCalledScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
-        callback(json, error);
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"id":zoneId, @"groupID":groupID };
+        [self jsonCall:@"/json/zone/getLastCalledScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            callback(json, error);
+        }];
     }];
 }
 

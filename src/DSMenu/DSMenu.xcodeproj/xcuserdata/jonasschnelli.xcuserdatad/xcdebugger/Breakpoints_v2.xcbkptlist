@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
-            timestampString = "435873219.092947"
+            timestampString = "436222816.508125"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "688"
-            endingLineNumber = "688"
-            landmarkName = "-loginUser:password:callBlock:"
+            startingLineNumber = "691"
+            endingLineNumber = "691"
+            landmarkName = "-checkRemoteConnectivityFor:password:callback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,52 +185,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
-            timestampString = "435873219.092947"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "-getStructure:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MDDSSManager getStructure:]"
-                  moduleName = "DSMenu-iOS"
-                  urlString = "file:///Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenu/MDDSSManager/MDDSSManager.m"
-                  timestampString = "435874472.867457"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__29-[MDDSSManager getStructure:]_block_invoke"
-                  moduleName = "DSMenu-iOS"
-                  urlString = "file:///Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenu/MDDSSManager/MDDSSManager.m"
-                  timestampString = "435874472.867568"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DSMenu-iOS/Settings/MDIOSSettingsConnectionsViewController.m"
             timestampString = "435873945.596284"
             startingColumnNumber = "9223372036854775807"
@@ -247,7 +201,7 @@
                   symbolName = "__54-[MDIOSSettingsConnectionsViewController connectLocal]_block_invoke"
                   moduleName = "DSMenu-iOS"
                   urlString = "file:///Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenu-iOS/Settings/MDIOSSettingsConnectionsViewController.m"
-                  timestampString = "435874472.868109"
+                  timestampString = "436224168.966109"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "566"
@@ -261,7 +215,7 @@
                   symbolName = "__54-[MDIOSSettingsConnectionsViewController connectLocal]_block_invoke332"
                   moduleName = "DSMenu-iOS"
                   urlString = "file:///Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenu-iOS/Settings/MDIOSSettingsConnectionsViewController.m"
-                  timestampString = "435874472.868237"
+                  timestampString = "436224168.966215"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "567"
@@ -277,13 +231,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DSMenu-iOS/RoomsAndScenes/MDIOSRoomsViewController.m"
-            timestampString = "435873783.276332"
+            filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
+            timestampString = "436198557.405494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "-getStructure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

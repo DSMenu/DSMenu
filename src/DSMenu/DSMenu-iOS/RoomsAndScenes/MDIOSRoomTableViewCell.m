@@ -8,6 +8,7 @@
 
 #import "MDIOSRoomTableViewCell.h"
 #import "MDDSSManager.h"
+#import "MDIOSFavoritesManager.h"
 
 @implementation MDIOSRoomTableViewCell
 
@@ -17,13 +18,57 @@
     self.colorBadge.backgroundColor = [UIColor clearColor];
 }
 
-- (void)buildLabels:(NSArray *)groupNumbers
+- (IBAction)favorite:(id)sender
 {
+    self.isFavorite = !self.isFavorite;
+ 
+    if([sender isKindOfClass:[NSNumber class]])
+    {
+        self.isFavorite = [sender boolValue];
+    }
+    
+    MDIOSFavorite *favorite = [[MDIOSFavorite alloc] init];
+    favorite.zone   = [(NSNumber *)self.zoneId stringValue];
+    favorite.group  = nil;
+    favorite.scene  = nil;
+    favorite.favoriteType = MDIOSFavoriteTypeZone;
+    
+    UIImage *favStar = nil;
+    if(self.isFavorite)
+    {
+        favStar = [UIImage imageNamed:@"ReviewSheetStarFull.png"];
+        [[MDIOSFavoritesManager defaultManager] addFavorit:favorite];
+    }
+    else
+    {
+        favStar = [UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"];
+        [[MDIOSFavoritesManager defaultManager] removeFavorite:favorite];
+    }
+    
+    self.favoriteButton.selected = self.isFavorite;
+}
+
+- (void)buildLabels:(NSObject *)groupNumbersParam
+{
+    self.availableGroups = (NSArray *)groupNumbersParam;
+    
+    NSArray *groupNumbers = nil;
+    NSString *customTitle = nil;
+    
+    if([groupNumbersParam isKindOfClass:[NSDictionary class]])
+    {
+        groupNumbers = @[ [(NSDictionary *)groupNumbersParam objectForKey:@"group"] ];
+        customTitle = [(NSDictionary *)groupNumbersParam objectForKey:@"title"];
+    }
+    else
+    {
+        groupNumbers = (NSArray *)groupNumbersParam;
+    }
     if(groupNumbers == nil || groupNumbers.count == 0)
     {
         groupNumbers = @[@"nogroups"];
     }
-    self.availableGroups = groupNumbers;
+    
     
     [self.labelsView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.labels = [NSMutableArray array];
@@ -39,7 +84,11 @@
         }
         else
         {
-            NSString *title = NSLocalizedString(([NSString stringWithFormat:@"group%@", groupNumber]), @"");
+            NSString *title = NSLocalizedString(([NSString stringWithFormat:@"group%@OnOff", groupNumber]), @"");
+            if(customTitle)
+            {
+                title = customTitle;
+            }
             [groups addObject:@{@"title": title, @"group": groupNumber, @"textcolor": [UIColor whiteColor], @"bgcolor": [UIColor darkGrayColor]}];
         }
     }
@@ -95,7 +144,7 @@
     labelBackgroundView.layer.cornerRadius = 2.0;
     labelBackgroundView.layer.masksToBounds = YES;
     labelBackgroundView.tag = 1000;
-    [labelBackgroundView addTarget:self action:@selector(loadingLabelTaped:) forControlEvents:UIControlEventTouchUpInside];
+    //[labelBackgroundView addTarget:self action:@selector(loadingLabelTaped:) forControlEvents:UIControlEventTouchUpInside];
     [self.labelBackgroundViews addObject:labelBackgroundView];
     
     [self.labelsView addSubview:labelBackgroundView];

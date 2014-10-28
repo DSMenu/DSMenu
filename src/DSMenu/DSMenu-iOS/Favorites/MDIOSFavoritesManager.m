@@ -125,6 +125,7 @@ static MDIOSFavoritesManager *defaultManager;
 - (void)exchangeFavoriteFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
 {
     [self.favorites exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
+    [self persist];
 }
 
 - (NSArray *)allFavorites

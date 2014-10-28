@@ -10,6 +10,7 @@
 #import "MDIOSRoomTableViewCell.h"
 #import "MDDSSManager.h"
 #import "MDDSHelper.h"
+#import "MDIOSFavoritesManager.h"
 
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
@@ -24,6 +25,11 @@
     [super viewDidLoad];
 
     self.title = NSLocalizedString(@"roomsTitle", @"");
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
     
     self.zones = [NSMutableArray array];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
@@ -45,6 +51,15 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
     }
+}
+
+- (void)refresh
+{
+    [self showLoading];
+    [[MDDSSManager defaultManager] getStructureWithCustomSceneNames:^(NSDictionary *json, NSError *error){
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:json];
+        self.isLoading = NO;
+    }];
 }
 
 - (void)showLoading
@@ -80,15 +95,25 @@
 - (void)setIsLoading:(BOOL)isLoading
 {
     _isLoading = isLoading;
-    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
-    if(isLoading)
+    
+    if(_isLoading)
     {
-        [wheel startAnimating];
+        [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     }
     else
     {
-        [wheel stopAnimating];
+       [self.refreshControl endRefreshing];
     }
+//    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+//    if(isLoading)
+//    {
+//        [wheel startAnimating];
+//    }
+//    else
+//    {
+//        [wheel stopAnimating];
+//    }
 }
 
 - (BOOL)isLoading
@@ -138,6 +163,7 @@
         // don't build table if there are no data
         return;
     }
+    self.isLoading = NO;
     
     self.displayedJSON = json;
     self.zones = [NSMutableArray array];
@@ -214,6 +240,16 @@
     cell.zoneId = [zoneDict objectForKey:@"id"];
     cell.mainLabel.text = roomName;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if([[MDIOSFavoritesManager defaultManager] favoriteForZone:[(NSNumber *)[zoneDict objectForKey:@"id"] stringValue] group:nil scene:nil])
+    {
+        [cell favorite:[NSNumber numberWithBool:YES]];
+    }
+    else
+    {
+        [cell favorite:[NSNumber numberWithBool:NO]];
+    }
+    
     return cell;
 }
 

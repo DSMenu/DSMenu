@@ -99,6 +99,23 @@
 }
 
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row];
+    MDIOSFavorite *lastFav = nil;
+    if(indexPath.row > 0)
+    {
+        lastFav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row-1];
+    }
+    
+    if(lastFav && [lastFav.zone isEqualToString:fav.zone])
+    {
+        return 44;
+    }
+    
+    return tableView.rowHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MDIOSFavoriteTableViewCell *cell = (MDIOSFavoriteTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"FavoriteCell"];
@@ -109,6 +126,16 @@
     
 
     MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row];
+    MDIOSFavorite *lastFav = nil;
+    MDIOSFavorite *nextFav = nil;
+    if(indexPath.row > 0)
+    {
+        lastFav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row-1];
+    }
+    if(indexPath.row < [MDIOSFavoritesManager defaultManager].allFavorites.count-1)
+    {
+        nextFav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row+1];
+    }
 
     NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
     NSDictionary *zoneDict = nil;
@@ -139,7 +166,7 @@
         cell.subtitle.text = nil;
         cell.mainLabel.text = cell.textLabel.text;
         cell.textLabel.text = @"";
-        
+    
         if(zoneDict)
         {
             [cell buildLabels:[MDDSHelper availableGroupsForZone:zoneDict]];
@@ -147,35 +174,28 @@
     }
     else
     {
-        UITableViewCell *cell2 = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"FavoriteSceneCell"];
-        if (cell2 == nil)
-        {
-            cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"FavoriteSceneCell"];
-        }
+        
+        cell.subtitle.text = nil;
+        cell.mainLabel.text = cell.textLabel.text;
+        cell.textLabel.text = @"";
+        
+        NSString *customSceneName = nil;
         
         NSArray *customSceneNames = [[MDDSSManager defaultManager] customSceneNamesForGroup:fav.group.intValue inZone:fav.zone.intValue];
         if(customSceneNames)
         {
-            cell2.detailTextLabel.text = [MDDSHelper customSceneNameForScene:fav.scene.intValue fromJSON:customSceneNames];
+            customSceneName = [MDDSHelper customSceneNameForScene:fav.scene.intValue fromJSON:customSceneNames];
         }
-        else
+        if(!customSceneName || [customSceneName isEqualToString:@""])
         {
-            cell2.detailTextLabel.text = NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", fav.group, fav.scene]), @"");
+            customSceneName = NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", fav.group, fav.scene]), @"");
         }
         
-        cell2.textLabel.text = cell.textLabel.text;
+        [cell buildLabels:@{@"title": customSceneName, @"group": fav.group}];
         
-        cell2.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:(NSLocalizedString(@"group_%d.png", @"")), fav.group.intValue]];
-        
-        if(fav.scene.intValue == 0)
-        {
-            cell2.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:(NSLocalizedString(@"off_menu_icon.png", @"")), fav.group.intValue]];
-        }
-        
-        cell = (MDIOSFavoriteTableViewCell *)cell2;
     }
     
-    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarFull.png"]];
+    
     
     if(self.widgetMode)
     {
@@ -189,6 +209,18 @@
         aSwitch.tag = indexPath.row;
         [aSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = aSwitch;
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if(lastFav && [lastFav.zone isEqualToString:fav.zone])
+    {
+        cell.mainLabel.text = nil;
+        cell.textLabel.text = nil;
+    }
+    if(nextFav && [nextFav.zone isEqualToString:fav.zone])
+    {
+        //cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, self.view.bounds.size.width-cell.separatorInset.left);
     }
     
     return cell;
@@ -218,39 +250,22 @@
     }
     MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row];
     
-    if(fav.favoriteType == MDIOSFavoriteTypeZone || (fav.group == nil && fav.scene == nil))
+    NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
+    if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
     {
-        NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
-        if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
+        NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+        for(NSDictionary *aZoneDict in zones)
         {
-            NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
-            for(NSDictionary *aZoneDict in zones)
+            if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:fav.zone])
             {
-                if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:fav.zone])
-                {
-                    MDIOSScenesTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Scenes"];
-                    controller.zoneDict = aZoneDict;
-                    [self.navigationController pushViewController:controller animated:YES];
-                    
-                    break;
-                }
+                MDIOSScenesTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Scenes"];
+                controller.zoneDict = aZoneDict;
+                [self.navigationController pushViewController:controller animated:YES];
+                
+                break;
             }
         }
     }
-    else
-    {
-        UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [activityIndicator startAnimating];
-        cell.accessoryView = activityIndicator;
-        
-        [[MDDSSManager defaultManager] callScene:fav.scene zoneId:fav.zone groupID:fav.group callback:^(NSDictionary *json, NSError *error)
-         {
-             cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarFull.png"]];
-         }];
-    }
-    
-    
 }
 
 @end

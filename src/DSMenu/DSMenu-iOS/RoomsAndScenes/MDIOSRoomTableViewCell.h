@@ -18,9 +18,10 @@
  */
 @interface MDIOSRoomTableViewCell : UITableViewCell
 @property (strong) NSString *zoneId;
-@property (strong) IBOutlet UIView *colorBadge;
-@property (strong) IBOutlet UILabel *mainLabel;
-@property (strong) IBOutlet UIView *labelsView;
+@property (strong) IBOutlet UIView      *colorBadge;
+@property (strong) IBOutlet UILabel     *mainLabel;
+@property (strong) IBOutlet UIView      *labelsView;
+@property (strong) IBOutlet UIButton    *favoriteButton;
 @property (strong) UILabel *firstLabel;
 @property (strong) UIView *firstLabelView;
 
@@ -32,6 +33,8 @@
 
 @property (strong) NSArray *availableGroups;
 
-- (void)buildLabels:(NSArray *)groupNumbers;
+@property (assign) BOOL isFavorite;
 
+- (void)buildLabels:(NSObject *)groupNumbersParam;
+- (IBAction)favorite:(id)sender;
 @end

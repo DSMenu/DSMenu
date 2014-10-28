@@ -84,7 +84,7 @@
     NSString *jsonResponse = [[NSString alloc] initWithData:self.connectionData encoding:NSUTF8StringEncoding];
     
 #ifdef DDDEBUG
-    //DDLogVerbose(@"Response: %@", jsonResponse);
+    DDLogVerbose(@"Response: %@", jsonResponse);
 #endif
     
     

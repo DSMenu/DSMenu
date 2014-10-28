@@ -18,6 +18,8 @@
 		<string>https://github.com/CocoaLumberjack/CocoaLumberjack</string>
 		<key>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</key>
 		<string>https://github.com/alexzielenski/StartAtLoginController</string>
+		<key>88F3FD8361483E613960A36B8D6E225E41988B43</key>
+		<string>https://github.com/hypercrypt/NSString-Hashes</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>src/DSMenu/DSMenu.xcodeproj</string>
@@ -31,6 +33,8 @@
 		<string>../../../..src/vendor/CocoaLumberjack</string>
 		<key>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</key>
 		<string>../../../../src/vendor/StartAtLoginController</string>
+		<key>88F3FD8361483E613960A36B8D6E225E41988B43</key>
+		<string>../../../../src/vendor/NSString-Hashes</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:jonasschnelli/macDS.git</string>
@@ -55,6 +59,14 @@
 			<string>25A2F9967B583E980560ECE69097B4CA9A2E81D3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DSMenu</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>88F3FD8361483E613960A36B8D6E225E41988B43</string>
+			<key>IDESourceControlWCCName</key>
+			<string>NSString-Hashes</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

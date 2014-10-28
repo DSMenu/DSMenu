@@ -16,7 +16,7 @@
 {
     MDIOSFavorite *fav = (MDIOSFavorite *)object;
     
-    if([self.zone isEqualToString:fav.zone] && [self.group isEqualToString:fav.group] && [self.scene isEqualToString:fav.scene] && self.favoriteType == fav.favoriteType)
+    if([self.zone isEqualToString:fav.zone] && ([self.group isEqualToString:fav.group] || (self.group == nil &&  fav.group == nil)) && ([self.scene isEqualToString:fav.scene] || (self.scene == nil && fav.scene == nil)) && self.favoriteType == fav.favoriteType)
     {
         return YES;
     }
@@ -25,7 +25,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ %@ %@ %d &@", self.zone, self.group, self.scene, self.favoriteType, self.UUID];
+    return [NSString stringWithFormat:@"%@ %@ %@ %d %@", self.zone, self.group, self.scene, self.favoriteType, self.UUID];
 }
 
 - (NSString *)title

@@ -11,16 +11,64 @@ noButton = "Nein";
 okButton = "Okay";
 
 group1 = "Licht";
+group1OnOff = "Licht ein/aus";
 group2 = "Schatten";
+group2OnOff = "Schatten zu/auf";
 group3 = "Klima";
+group3OnOff = "Klima ein/aus";
 group4 = "Audio";
+group4OnOff = "Audio ein/aus";
 group5 = "Video";
+group5OnOff = "Video ein/aus";
 
 group1scene0 = "Aus";
 group1scene5 = "Stimmung 1";
 group1scene17 = "Stimmung 2";
 group1scene18 = "Stimmung 3";
 group1scene19 = "Stimmung 4";
+
+groupXscene33 = "Stimmung 11";
+groupXscene20 = "Stimmung 12";
+groupXscene21 = "Stimmung 13";
+groupXscene22 = "Stimmung 14";
+groupXscene35 = "Stimmung 21";
+groupXscene23 = "Stimmung 22";
+groupXscene24 = "Stimmung 23";
+groupXscene25 = "Stimmung 24";
+groupXscene37 = "Stimmung 31";
+groupXscene26 = "Stimmung 32";
+groupXscene27 = "Stimmung 33";
+groupXscene28 = "Stimmung 34";
+groupXscene39 = "Stimmung 41";
+groupXscene29 = "Stimmung 42";
+groupXscene30 = "Stimmung 43";
+groupXscene31 = "Stimmung 44";
+
+group1scene34 = "Stimmung 20 (Aus)";
+group1scene32 = "Stimmung 10 (Aus)";
+group1scene36 = "Stimmung 30 (Aus)";
+group1scene38 = "Stimmung 40 (Aus)";
+
+group2scene34 = "Stimmung 20 (Zu)";
+group2scene32 = "Stimmung 10 (Zu)";
+group2scene36 = "Stimmung 30 (Zu)";
+group2scene38 = "Stimmung 40 (Zu)";
+
+group3scene34 = "Stimmung 20 (Aus)";
+group3scene32 = "Stimmung 10 (Aus)";
+group3scene36 = "Stimmung 30 (Aus)";
+group3scene38 = "Stimmung 40 (Aus)";
+
+group4scene34 = "Stimmung 20 (Aus)";
+group4scene32 = "Stimmung 10 (Aus)";
+group4scene36 = "Stimmung 30 (Aus)";
+group4scene38 = "Stimmung 40 (Aus)";
+
+group5scene34 = "Stimmung 20 (Aus)";
+group5scene32 = "Stimmung 10 (Aus)";
+group5scene36 = "Stimmung 30 (Aus)";
+group5scene38 = "Stimmung 40 (Aus)";
+
 group1scene6 = "Bereich 1 Ein";
 group1scene7 = "Bereich 2 Ein";
 group1scene8 = "Bereich 3 Ein";
