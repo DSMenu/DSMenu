@@ -32,6 +32,7 @@
  */
 @interface MDDSHelper : NSObject
 + (NSImage_OR_UIImage *)iconForDevice:(NSDictionary *)deviceDictonary;
++ (NSString *)customSceneNameForScene:(int)scene group:(int)group zone:(int)zone;
 + (NSString *)customSceneNameForScene:(int)scene fromJSON:(NSArray *)json;
 + (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group;
 + (BOOL)hasGroup:(int)groupNr inZone:(NSDictionary *)zoneDict;

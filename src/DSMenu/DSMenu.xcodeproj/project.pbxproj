@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E503007519FFDB790068EC6E /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = E503007019FFDB790068EC6E /* NSString+Hashes.m */; };
+		E503007619FFDB790068EC6E /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = E503007019FFDB790068EC6E /* NSString+Hashes.m */; };
+		E503007719FFDB790068EC6E /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = E503007019FFDB790068EC6E /* NSString+Hashes.m */; };
 		E50BDB5919FAE19900391F04 /* UIAlertView+DSMenuiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E50BDB5819FAE19900391F04 /* UIAlertView+DSMenuiOS.m */; };
 		E51AED4E19DD29CC007296FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED4D19DD29CC007296FB /* AppDelegate.m */; };
 		E51AED5019DD29CC007296FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED4F19DD29CC007296FB /* main.m */; };
@@ -351,6 +354,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E503006F19FFDB790068EC6E /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
+		E503007019FFDB790068EC6E /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		E50BDB5719FAE19900391F04 /* UIAlertView+DSMenuiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+DSMenuiOS.h"; sourceTree = "<group>"; };
 		E50BDB5819FAE19900391F04 /* UIAlertView+DSMenuiOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+DSMenuiOS.m"; sourceTree = "<group>"; };
 		E51AED4819DD29CC007296FB /* DSMenuHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMenuHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -637,6 +642,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E503006D19FFDB790068EC6E /* NSString-Hashes */ = {
+			isa = PBXGroup;
+			children = (
+				E503006F19FFDB790068EC6E /* NSString+Hashes.h */,
+				E503007019FFDB790068EC6E /* NSString+Hashes.m */,
+			);
+			name = "NSString-Hashes";
+			path = "../../vendor/NSString-Hashes";
+			sourceTree = "<group>";
+		};
 		E51AED4919DD29CC007296FB /* DSMenuHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,6 +860,7 @@
 		E5524E491962A7030031D1B6 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E503006D19FFDB790068EC6E /* NSString-Hashes */,
 				E557E8B519DC4F5B00A25C4A /* StartAtLoginController */,
 				E5E8CA2F1965361300A2997D /* LaunchAtLoginController */,
 				E5524E6E1962AADA0031D1B6 /* RHPreferences */,
@@ -1622,6 +1638,7 @@
 				E5E8CA38196538E500A2997D /* MDDetailPreferencesViewController.m in Sources */,
 				E5524E821962ABC50031D1B6 /* MDMainPreferencesViewController.m in Sources */,
 				E5280B951959F5BD006A9FB5 /* MDAppDelegate.m in Sources */,
+				E503007519FFDB790068EC6E /* NSString+Hashes.m in Sources */,
 				E5524E481962A5680031D1B6 /* MDSceneMenuItem.m in Sources */,
 				E5548E7719D408D400082430 /* main.m in Sources */,
 				E5524E631962A70B0031D1B6 /* CLIColor.m in Sources */,
@@ -1691,6 +1708,7 @@
 				E5B544CA19F1079500B7B7A9 /* MDIOSAppDelegate.m in Sources */,
 				E53C981C19F4EB8F00362ECB /* MDIOSTabBarController.m in Sources */,
 				E5D0271719F8F01C0047407F /* MDIOSBaseTableViewController.m in Sources */,
+				E503007619FFDB790068EC6E /* NSString+Hashes.m in Sources */,
 				E5B544C719F1079500B7B7A9 /* main.m in Sources */,
 				E5CDA32D19F7C6A100F9CBB8 /* MDIOSSettingTextFieldTableViewCell.m in Sources */,
 				E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */,
@@ -1719,6 +1737,7 @@
 				E5601D5D19F8479F00009989 /* MDIOSWidgetManager.m in Sources */,
 				E5F1ED3219F57B2200D983E9 /* TodayViewController.m in Sources */,
 				E5F1ED4519F57E0400D983E9 /* MDDSHelper.m in Sources */,
+				E503007719FFDB790068EC6E /* NSString+Hashes.m in Sources */,
 				E5CDA31A19F7C68D00F9CBB8 /* MDIOSWidgetAction.m in Sources */,
 				E5F1ED4419F57DA000D983E9 /* MDDSSConsumptionManager.m in Sources */,
 				E5601D5C19F8479F00009989 /* MDIOSFavoritesManager.m in Sources */,
