@@ -38,4 +38,5 @@
 
 - (void)buildLabels:(NSObject *)groupNumbersParam;
 - (IBAction)favorite:(id)sender;
+- (void)labelTaped:(UIButton *)sender;
 @end

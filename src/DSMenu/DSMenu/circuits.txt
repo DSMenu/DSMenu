@@ -1,0 +1,99 @@
+{
+
+"ok": true,
+"result": {
+"circuits": [
+{
+"name": "dSM11 Büro",
+"dsid": "3504175fe0000010000004a3",
+"dSUID": "3504175fe000000000000010000004a300",
+"DisplayID": "000004a3",
+"hwVersion": 285278560,
+"armSwVersion": 1281982180,
+"dspSwVersion": -343198638,
+"apiVersion": 768,
+"hwName": "",
+"isPresent": true,
+"isValid": true,
+"busMemberType": 16,
+"hasDevices": true,
+"hasMetering": true,
+"VdcConfigURL": "",
+"ignoreActionsFromNewDevices": false
+},
+{
+"name": "EnOcean vdc",
+"dsid": "",
+"dSUID": "2308d95a93225403c0c54c934b7c027500",
+"DisplayID": "2308d95a.",
+"hwVersion": 0,
+"armSwVersion": 0,
+"dspSwVersion": 0,
+"apiVersion": 0,
+"hwName": "",
+"isPresent": false,
+"isValid": false,
+"busMemberType": 33,
+"hasDevices": false,
+"hasMetering": false,
+"VdcConfigURL": "",
+"ignoreActionsFromNewDevices": false
+},
+{
+"name": "DALI vdc",
+"dsid": "",
+"dSUID": "5f8f01f4a77554e0c0e8ba0635f575e500",
+"DisplayID": "5f8f01f4.",
+"hwVersion": 0,
+"armSwVersion": 0,
+"dspSwVersion": 0,
+"apiVersion": 0,
+"hwName": "",
+"isPresent": false,
+"isValid": false,
+"busMemberType": 33,
+"hasDevices": false,
+"hasMetering": false,
+"VdcConfigURL": "",
+"ignoreActionsFromNewDevices": false
+},
+{
+"name": "hue vdc",
+"dsid": "",
+"dSUID": "af8765b97ad45e98809d250ace74c25000",
+"DisplayID": "af8765b9.",
+"hwVersion": 0,
+"armSwVersion": 0,
+"dspSwVersion": 0,
+"apiVersion": 0,
+"hwName": "",
+"isPresent": false,
+"isValid": false,
+"busMemberType": 0,
+"hasDevices": false,
+"hasMetering": false,
+"VdcConfigURL": "",
+"ignoreActionsFromNewDevices": false
+},
+{
+"name": "",
+"dsid": "",
+"dSUID": "b5235574fce3597ec022275f032980eb00",
+"DisplayID": "b5235574.",
+"hwVersion": 0,
+"armSwVersion": 0,
+"dspSwVersion": 0,
+"apiVersion": 0,
+"hwName": "",
+"isPresent": false,
+"isValid": false,
+"busMemberType": 32,
+"hasDevices": false,
+"hasMetering": false,
+"VdcConfigURL": "",
+"ignoreActionsFromNewDevices": false
+}
+]
+}
+
+}

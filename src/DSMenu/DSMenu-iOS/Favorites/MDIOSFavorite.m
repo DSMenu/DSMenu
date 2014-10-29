@@ -8,6 +8,7 @@
 
 #import "MDIOSFavorite.h"
 #import "MDDSSManager.h"
+#import "MDDSHelper.h"
 
 @implementation MDIOSFavorite
 
@@ -35,25 +36,32 @@
         return NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", self.group, self.scene]), @"");
     }
     
-    return [NSString stringWithFormat:@"zone: %@", self.zone];
+    return [MDDSHelper nameForZone:self.zone];
 }
 
 - (NSString *)subtitle
 {
-    NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
-    if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
+    if(self.favoriteType == MDIOSFavoriteTypeZone)
     {
-        NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
-        for(NSDictionary *aZoneDict in zones)
+        return NSLocalizedString(([NSString stringWithFormat:@"group%@OnOff", self.group]), @"");
+    }
+    else
+    {
+        NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
+        if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
         {
-            if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:self.zone])
+            NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+            for(NSDictionary *aZoneDict in zones)
             {
-                return [aZoneDict objectForKey:@"name"];
+                if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:self.zone])
+                {
+                    return [aZoneDict objectForKey:@"name"];
+                }
             }
         }
+        
+        return [NSString stringWithFormat:@"zone: %@", self.zone];
     }
-    
-    return [NSString stringWithFormat:@"zone: %@", self.zone];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder

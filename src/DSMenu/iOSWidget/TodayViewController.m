@@ -38,6 +38,7 @@
         [self initDSSManager];
     }
     
+    // hack for running around the UserDefaults sync bug in iOS 8
     NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kDSMENU_APP_GROUP_IDENTIFIER];
     NSURL *containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
     NSDictionary *userDefaults = [NSDictionary dictionaryWithContentsOfURL:containerURLFile];
@@ -47,11 +48,11 @@
     }
     
     containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kDSMENU_APP_GROUP_IDENTIFIER];
-    containerURLFile = [containerURL URLByAppendingPathComponent:@"widgetactions"];
+    containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_WIDGET_ACTIONS];
     NSData *data = [NSData dataWithContentsOfURL:containerURLFile];
     NSMutableDictionary *widgetActions = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
     
-    containerURLFile = [containerURL URLByAppendingPathComponent:@"favorites"];
+    containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_FAVORITES];
     data = [NSData dataWithContentsOfURL:containerURLFile];
     NSArray *favorites = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
     
@@ -80,12 +81,39 @@
             }
         }
         
-        MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
-        
-        [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:wview];
-        currentPosition.x += widgetViewSize.width+widgetSpace.width;
+        if(favorite.favoriteType == MDIOSFavoriteTypeZone)
+        {
+            favorite.group = @"1";
+            
+            MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
+            [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
+            wview.tag = 1;
+            [self.view addSubview:wview];
+            currentPosition.x += widgetViewSize.width+widgetSpace.width;
+            
+            if(currentPosition.x+widgetViewSize.width+widgetSpace.width > self.view.bounds.size.width)
+            {
+                currentPosition.x = 0;
+                currentPosition.y += widgetViewSize.height+widgetSpace.height;
+            }
+            
+            favorite.group = @"2";
+            
+            wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
+            [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
+            wview.tag = 2;
+            [self.view addSubview:wview];
+            currentPosition.x += widgetViewSize.width+widgetSpace.width;
+            
+        }
+        else
+        {
+            MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
+            [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.view addSubview:wview];
+            currentPosition.x += widgetViewSize.width+widgetSpace.width;
+        }
     }
     
     self.noFavoritesLabel.hidden = YES;
@@ -103,11 +131,35 @@
     MDIOSWidgetView *wview = (MDIOSWidgetView *)sender;
     
     [wview.loadingIndicator startAnimating];
-    if(wview.favorite.favoriteType == MDIOSFavoriteTypeZonePreset)
+    
+    NSString *scene = wview.favorite.scene;
+    NSString *group = wview.favorite.group;
+    
+    if(wview.favorite.favoriteType == MDIOSFavoriteTypeZone)
     {
-        [[MDDSSManager defaultManager] callScene:wview.favorite.scene zoneId:wview.favorite.zone groupID:wview.favorite.group callback:^(NSDictionary *json, NSError *error)
+        group = [NSString stringWithFormat:@"%ld",wview.tag];
+        
+        [[MDDSSManager defaultManager] lastCalledSceneInZoneId:wview.favorite.zone groupID:group callback:^(NSDictionary *json, NSError *error)
          {
-                [wview.loadingIndicator stopAnimating];
+             if(!error && [json objectForKey:@"result"])
+             {
+                 NSString *cScene = [[json objectForKey:@"result"] objectForKey:@"scene"];
+                 int desiredScene = [MDDSHelper nextScene:[cScene intValue] group:[group intValue]];
+                 
+                 NSString *sceneString = [NSString stringWithFormat:@"%d", desiredScene];
+                 [[MDDSSManager defaultManager] callScene:sceneString zoneId:wview.favorite.zone groupID:group callback:^(NSDictionary *json, NSError *error)
+                  {
+                      [wview.loadingIndicator stopAnimating];
+                  }];
+             }
+         }];
+    }
+    else
+    {
+    
+        [[MDDSSManager defaultManager] callScene:scene zoneId:wview.favorite.zone groupID:group callback:^(NSDictionary *json, NSError *error)
+         {
+             [wview.loadingIndicator stopAnimating];
          }];
     }
 }

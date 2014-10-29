@@ -188,7 +188,13 @@
         }
         if(!customSceneName || [customSceneName isEqualToString:@""])
         {
-            customSceneName = NSLocalizedString(([NSString stringWithFormat:@"group%@scene%@", fav.group, fav.scene]), @"");
+            NSString *key = [NSString stringWithFormat:@"group%@scene%@", fav.group, fav.scene];
+            customSceneName = NSLocalizedString(key, @"");
+            if([customSceneName isEqualToString:key])
+            {
+                // not found in i18n file, use X insted of group
+                customSceneName = NSLocalizedString(([NSString stringWithFormat:@"groupXscene%@", fav.scene]), @"");
+            }
         }
         
         [cell buildLabels:@{@"title": customSceneName, @"group": fav.group}];
@@ -196,6 +202,7 @@
     }
     
     
+    cell.widgetMode = NO;
     
     if(self.widgetMode)
     {
@@ -209,6 +216,10 @@
         aSwitch.tag = indexPath.row;
         [aSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = aSwitch;
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.widgetMode = YES;
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -243,11 +254,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(self.widgetMode)
     {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MDIOSFavorite *fav = [[MDIOSFavoritesManager defaultManager].allFavorites objectAtIndex:indexPath.row];
     
     NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;

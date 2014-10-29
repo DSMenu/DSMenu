@@ -55,10 +55,6 @@ static MDIOSWidgetManager *defaultManager;
     
     [self.userDefaultsProxy setObject:[NSKeyedArchiver archivedDataWithRootObject:self.widgetActions] forKey:kMDIOS_UD_WIDGET_ACTIONS_KEY];
     [self.userDefaultsProxy synchronize];
-    
-    NSDictionary *dict = [self.userDefaultsProxy dictionaryRepresentation];
-    containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
-    [dict writeToURL:containerURLFile atomically:YES];
 }
 
 - (void)setAction:(MDIOSWidgetAction *)action forSlot:(NSInteger)slot

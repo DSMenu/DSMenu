@@ -103,4 +103,48 @@
     return ![hash isEqualToString:hashOld];
 }
 
++ (NSString *)nameForZone:(NSString *)zone
+{
+    NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
+    if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
+    {
+        NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+        for(NSDictionary *aZoneDict in zones)
+        {
+            if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:zone])
+            {
+                return [aZoneDict objectForKey:@"name"];
+            }
+        }
+    }
+    return nil;
+}
+
++ (BOOL)isOffScene:(NSString *)scene
+{
+    //TODO highscenes
+    if(scene && [scene isEqualToString:@"0"])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (int)nextScene:(int)currentScene group:(int)group
+{
+    //TODO highscenes
+    int desiredScene = 0;
+    if(currentScene == 5)
+    {
+        desiredScene = 0;
+    }
+    else if(currentScene == 0 || currentScene >5)
+    {
+        desiredScene = 5;
+    }
+    
+    return desiredScene;
+}
+
 @end

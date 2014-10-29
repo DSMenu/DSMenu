@@ -620,6 +620,13 @@ static MDDSSManager *defaultManager;
 
 - (void)getCircuits:(void (^)(NSDictionary*, NSError*))callback
 {
+    
+//    NSURL *file = [[NSBundle mainBundle] URLForResource:@"circuits.txt" withExtension:@""];
+//    NSData *testResponse = [NSData dataWithContentsOfURL:file];
+//    NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:testResponse options:NSJSONReadingMutableContainers error:nil];
+//    
+//    callback(jsonArray, nil);
+//    return;
     [self precheckWithContinueBlock:^(NSError *error){
         NSDictionary *params = @{ @"token": self.currentSessionToken};
         [self jsonCall:@"/json/apartment/getCircuits" params:params completionHandler:^(NSDictionary *json, NSError *error){
@@ -631,6 +638,13 @@ static MDDSSManager *defaultManager;
 
 - (void)getConsumptionLevelsLatest:(void (^)(NSDictionary*, NSError*))callback
 {
+//    NSURL *file = [[NSBundle mainBundle] URLForResource:@"latest.txt" withExtension:@""];
+//    NSData *testResponse = [NSData dataWithContentsOfURL:file];
+//    NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:testResponse options:NSJSONReadingMutableContainers error:nil];
+//    
+//    callback(jsonArray, nil);
+//    return;
+//    
     [self precheckWithContinueBlock:^(NSError *error){
         NSDictionary *params = @{ @"token": self.currentSessionToken, @"from":@"all", @"type": @"consumption"};
         [self jsonCall:@"/json/metering/getLatest" params:params completionHandler:^(NSDictionary *json, NSError *error){
@@ -641,6 +655,14 @@ static MDDSSManager *defaultManager;
 
 - (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback
 {
+    
+//    NSURL *file = [[NSBundle mainBundle] URLForResource:@"values.txt" withExtension:@""];
+//    NSData *testResponse = [NSData dataWithContentsOfURL:file];
+//    NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:testResponse options:NSJSONReadingMutableContainers error:nil];
+//    
+//    callback(jsonArray, nil);
+//    return;
+    
     [self precheckWithContinueBlock:^(NSError *error){
         NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"valueCount": self.consumptionHistoryValueCount , @"type": @"consumption", @"resolution" : [NSNumber numberWithInt:60]};
         [self jsonCall:@"/json/metering/getValues" params:params completionHandler:^(NSDictionary *json, NSError *error){

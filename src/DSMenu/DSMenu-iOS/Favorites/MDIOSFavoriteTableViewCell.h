@@ -10,4 +10,5 @@
 
 @interface MDIOSFavoriteTableViewCell : MDIOSRoomTableViewCell
 @property (strong) IBOutlet UILabel *subtitle;
+@property (assign) BOOL widgetMode;
 @end

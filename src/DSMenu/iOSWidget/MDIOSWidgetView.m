@@ -7,6 +7,7 @@
 //
 
 #import "MDIOSWidgetView.h"
+#import "MDDSHelper.h"
 
 @implementation MDIOSWidgetView
 
@@ -37,7 +38,7 @@
         [self addSubview:label];
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:(NSLocalizedString(@"group_%d.png", @"")), self.favorite.group.intValue]]];
-        if(self.favorite.scene.intValue == 0)
+        if(self.favorite.group.intValue == 0 || [MDDSHelper isOffScene:self.favorite.scene])
         {
             imgView.image = [UIImage imageNamed:@"off_menu_icon.png"];
         }

@@ -75,6 +75,16 @@
         for(NSDictionary *dSM in json)
         {
             NSString *name = [[MDDSSConsumptionManager defaultManager] dSMNameFromID:[dSM objectForKey:@"dsid"]];
+            
+            NSString *dsid = [dSM objectForKey:@"dsid"];
+            
+            NSString *dSUID = [dSM objectForKey:@"dSUID"];
+            if(dSUID && dSUID.length > 4)
+            {
+                name = [[MDDSSConsumptionManager defaultManager] dSMNameFromID:dSUID];
+                dsid = [dSM objectForKey:@"dSUID"];
+            }
+            
             NSString *value = [[dSM objectForKey:@"value"] stringValue];
             total += [[dSM objectForKey:@"value"] intValue];
             [str appendAttributedString:[[NSMutableAttributedString alloc] initWithString:value]];
@@ -84,7 +94,15 @@
             }
             cnt++;
             
-            [self.consumptionData addObject:@{@"name": name, @"value": value, @"dsid" : [dSM objectForKey:@"dsid"]}];
+            if(!name)
+            {
+                name = @"undef";
+            }
+            if(!value)
+            {
+                value = @"";
+            }
+            [self.consumptionData addObject:@{@"name": name, @"value": value, @"dsid" : dsid}];
         }
         
         [self.consumptionData sortUsingComparator:^ NSComparisonResult(NSDictionary *d1, NSDictionary *d2){

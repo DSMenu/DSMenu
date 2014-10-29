@@ -11,6 +11,12 @@
 		E503007619FFDB790068EC6E /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = E503007019FFDB790068EC6E /* NSString+Hashes.m */; };
 		E503007719FFDB790068EC6E /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = E503007019FFDB790068EC6E /* NSString+Hashes.m */; };
 		E50BDB5919FAE19900391F04 /* UIAlertView+DSMenuiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E50BDB5819FAE19900391F04 /* UIAlertView+DSMenuiOS.m */; };
+		E50DFA3C1A00D5D9002C3EFB /* circuits.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50DFA3B1A00D5D9002C3EFB /* circuits.txt */; };
+		E50DFA3E1A00D61C002C3EFB /* values.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50DFA3D1A00D61C002C3EFB /* values.txt */; };
+		E50DFA3F1A00D68C002C3EFB /* circuits.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50DFA3B1A00D5D9002C3EFB /* circuits.txt */; };
+		E50DFA401A00D68E002C3EFB /* values.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50DFA3D1A00D61C002C3EFB /* values.txt */; };
+		E50DFA421A00D81E002C3EFB /* latest.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50DFA411A00D81E002C3EFB /* latest.txt */; };
+		E50DFA431A00D831002C3EFB /* latest.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50DFA411A00D81E002C3EFB /* latest.txt */; };
 		E51AED4E19DD29CC007296FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED4D19DD29CC007296FB /* AppDelegate.m */; };
 		E51AED5019DD29CC007296FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED4F19DD29CC007296FB /* main.m */; };
 		E51AED6119DD29CC007296FB /* DSMenuHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E51AED6019DD29CC007296FB /* DSMenuHelperTests.m */; };
@@ -358,6 +364,9 @@
 		E503007019FFDB790068EC6E /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		E50BDB5719FAE19900391F04 /* UIAlertView+DSMenuiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+DSMenuiOS.h"; sourceTree = "<group>"; };
 		E50BDB5819FAE19900391F04 /* UIAlertView+DSMenuiOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+DSMenuiOS.m"; sourceTree = "<group>"; };
+		E50DFA3B1A00D5D9002C3EFB /* circuits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circuits.txt; sourceTree = "<group>"; };
+		E50DFA3D1A00D61C002C3EFB /* values.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = values.txt; sourceTree = "<group>"; };
+		E50DFA411A00D81E002C3EFB /* latest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latest.txt; sourceTree = "<group>"; };
 		E51AED4819DD29CC007296FB /* DSMenuHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMenuHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51AED4B19DD29CC007296FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E51AED4C19DD29CC007296FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -764,6 +773,9 @@
 				E5280B881959F5BD006A9FB5 /* Supporting Files */,
 				E5524E491962A7030031D1B6 /* Vendor */,
 				E5DC092A19D4605E00BC1110 /* Images.xcassets */,
+				E50DFA3B1A00D5D9002C3EFB /* circuits.txt */,
+				E50DFA3D1A00D61C002C3EFB /* values.txt */,
+				E50DFA411A00D81E002C3EFB /* latest.txt */,
 			);
 			path = DSMenu;
 			sourceTree = "<group>";
@@ -1400,14 +1412,17 @@
 				E5E8CA39196538E500A2997D /* MDDetailPreferencesViewController.xib in Resources */,
 				E5E8CA4219653BA200A2997D /* preferences_details@2x.png in Resources */,
 				E5524E831962ABC50031D1B6 /* MDMainPreferencesViewController.xib in Resources */,
+				E50DFA3C1A00D5D9002C3EFB /* circuits.txt in Resources */,
 				E5DE64571961FB8600938FE2 /* group_1_8@2x.png in Resources */,
 				E5524E7C1962AADA0031D1B6 /* RHPreferencesWindow.xib in Resources */,
 				E561C7B319921CFA00496303 /* group_4_8.png in Resources */,
 				E561C7B619921CFA00496303 /* group_4@2x.png in Resources */,
+				E50DFA421A00D81E002C3EFB /* latest.txt in Resources */,
 				E5FDA5C319D455DC00F5040F /* dimDownActive.png in Resources */,
 				E5DE64581961FB8600938FE2 /* group_2_8.png in Resources */,
 				E5DE644A1961F46000938FE2 /* off_menu_icon@2x.png in Resources */,
 				E52C13C91975C09C0010385E /* cchart_highlight@2x.png in Resources */,
+				E50DFA3E1A00D61C002C3EFB /* values.txt in Resources */,
 				E561C7B919921CFA00496303 /* group_5.png in Resources */,
 				E561C7B219921CFA00496303 /* group_3@2x.png in Resources */,
 				E57FA5A6196C997200CAB2BD /* group_8@2x.png in Resources */,
@@ -1507,6 +1522,7 @@
 				E5B5450619F1083E00B7B7A9 /* listTabbarSelected@2x.png in Resources */,
 				E5B5453D19F1166100B7B7A9 /* group_5_8.png in Resources */,
 				E5B5454019F1166100B7B7A9 /* group_5@2x.png in Resources */,
+				E50DFA431A00D831002C3EFB /* latest.txt in Resources */,
 				E5B5453C19F1166100B7B7A9 /* group_4@2x.png in Resources */,
 				E5B5452A19F1165B00B7B7A9 /* off_menu_icon@2x.png in Resources */,
 				E5B5450B19F1085200B7B7A9 /* cchart_highlight@2x.png in Resources */,
@@ -1524,7 +1540,9 @@
 				E54BC20519F43FB70022A818 /* PUFavoriteOn@2x.png in Resources */,
 				E5B5452C19F1166100B7B7A9 /* group_1@2x.png in Resources */,
 				E5B5450419F1083E00B7B7A9 /* favoritesTabbarSelected@2x.png in Resources */,
+				E50DFA3F1A00D68C002C3EFB /* circuits.txt in Resources */,
 				E5D0271E19F9833C0047407F /* chartTabbarSelected@2x.png in Resources */,
+				E50DFA401A00D68E002C3EFB /* values.txt in Resources */,
 				E5B5453919F1166100B7B7A9 /* group_4_8.png in Resources */,
 				E5601D4819F7FB4C00009989 /* ReviewSheetStarEmptyNew@2x.png in Resources */,
 				E5B5450919F1083E00B7B7A9 /* settingsTabSelected@2x.png in Resources */,

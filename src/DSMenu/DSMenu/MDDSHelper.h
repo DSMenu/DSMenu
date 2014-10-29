@@ -39,4 +39,7 @@
 + (NSArray *)availableGroupsForZone:(NSDictionary *)zoneDict;
 
 + (BOOL)shouldRefreshStructure:(NSDictionary *)newStructure oldStructure:(NSDictionary *)oldStructure;
++ (NSString *)nameForZone:(NSString *)zone;
++ (BOOL)isOffScene:(NSString *)scene;
++ (int)nextScene:(int)currentScene group:(int)group;
 @end

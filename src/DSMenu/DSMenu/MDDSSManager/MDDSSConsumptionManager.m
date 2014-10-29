@@ -276,6 +276,10 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
         {
             return [dSM objectForKey:@"name"];
         }
+        else if([[dSM objectForKey:@"dSUID"] isEqualToString:dsid])
+        {
+            return [dSM objectForKey:@"name"];
+        }
     }
     return nil;
 }

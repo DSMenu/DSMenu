@@ -169,17 +169,8 @@
              if(!error && [json objectForKey:@"result"])
              {
                  NSString *scene = [[json objectForKey:@"result"] objectForKey:@"scene"];
-                 int currentScene = [scene intValue];
-                 int desiredScene = 0;
-                 if(currentScene == 5)
-                 {
-                     desiredScene = 0;
-                 }
-                 else if(currentScene == 0 || currentScene >5)
-                 {
-                     desiredScene = 5;
-                 }
-                 
+                 int desiredScene = [MDDSHelper nextScene:[scene intValue] group:[group intValue]];
+
                  NSUInteger aIndex = [self.labelBackgroundViews indexOfObject:sender];
                  UILabel *label = [self.labels objectAtIndex:aIndex];
                  

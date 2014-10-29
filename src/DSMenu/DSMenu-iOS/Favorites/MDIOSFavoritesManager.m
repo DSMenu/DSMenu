@@ -143,10 +143,6 @@ static MDIOSFavoritesManager *defaultManager;
     
     [self.userDefaultsProxy setObject:[NSKeyedArchiver archivedDataWithRootObject:self.favorites] forKey:kMDIOS_UD_FAVORITES_KEY];
     [self.userDefaultsProxy synchronize];
-    
-    NSDictionary *dict = [self.userDefaultsProxy dictionaryRepresentation];
-    containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
-    [dict writeToURL:containerURLFile atomically:YES];
 }
 
 - (NSUserDefaults *)userDefaultsProxy
