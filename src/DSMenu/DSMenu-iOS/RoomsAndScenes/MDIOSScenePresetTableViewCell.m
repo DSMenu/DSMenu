@@ -24,6 +24,8 @@
         
         self.favorizeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width-55,0,55,self.contentView.frame.size.height)];
         self.favorizeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 3, 0);
+        self.favorizeButton.autoresizingMask =UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
+        self.favorizeButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self.favorizeButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.favorizeButton];
         [self updateFavoriteState];

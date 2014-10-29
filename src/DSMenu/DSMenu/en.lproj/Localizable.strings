@@ -9,18 +9,67 @@
 yesButton = "Yes";
 noButton = "No";
 okButton = "Okay";
+cancelButton = "Cancel";
 
 group1 = "Light";
+group1OnOff = "Light on/off";
 group2 = "Shade";
+group2OnOff = "Shade up/down";
 group3 = "Climate";
+group3OnOff = "Climate on/off";
 group4 = "Audio";
+group4OnOff = "Audio on/off";
 group5 = "Video";
+group5OnOff = "Video on/off";
 
 group1scene0 = "Off";
 group1scene5 = "Preset 1";
 group1scene17 = "Preset 2";
 group1scene18 = "Preset 3";
 group1scene19 = "Preset 4";
+
+groupXscene33 = "Preset 11";
+groupXscene20 = "Preset 12";
+groupXscene21 = "Preset 13";
+groupXscene22 = "Preset 14";
+groupXscene35 = "Preset 21";
+groupXscene23 = "Preset 22";
+groupXscene24 = "Preset 23";
+groupXscene25 = "Preset 24";
+groupXscene37 = "Preset 31";
+groupXscene26 = "Preset 32";
+groupXscene27 = "Preset 33";
+groupXscene28 = "Preset 34";
+groupXscene39 = "Preset 41";
+groupXscene29 = "Preset 42";
+groupXscene30 = "Preset 43";
+groupXscene31 = "Preset 44";
+
+group1scene34 = "Preset 20 (Off)";
+group1scene32 = "Preset 10 (Off)";
+group1scene36 = "Preset 30 (Off)";
+group1scene38 = "Preset 40 (Off)";
+
+group2scene34 = "Preset 20 (Down)";
+group2scene32 = "Preset 10 (Down)";
+group2scene36 = "Preset 30 (Down)";
+group2scene38 = "Preset 40 (Down)";
+
+group3scene34 = "Preset 20 (Off)";
+group3scene32 = "Preset 10 (Off)";
+group3scene36 = "Preset 30 (Off)";
+group3scene38 = "Preset 40 (Off)";
+
+group4scene34 = "Preset 20 (Off)";
+group4scene32 = "Preset 10 (Off)";
+group4scene36 = "Preset 30 (Off)";
+group4scene38 = "Preset 40 (Off)";
+
+group5scene34 = "Preset 20 (Off)";
+group5scene32 = "Preset 10 (Off)";
+group5scene36 = "Preset 30 (Off)";
+group5scene38 = "Preset 40 (Off)";
+
 group1scene6 = "Area 1 on";
 group1scene7 = "Area 2 on";
 group1scene8 = "Area 3 on";
@@ -171,3 +220,12 @@ settingsConsumptionHistory60 = "1 Hour";
 settingsConsumptionHistory240 = "4 Hours";
 settingsConsumptionHistory360 = "6 Hours";
 settingsConsumptionHistory720 = "12 Hours";
+loginFailedTitle = "Error";
+loginFailedText = "Login Failed. Please Check Your Username & Password.";
+AreYouSurePrompt = "Are you sure?";
+loginTitle = "Login";
+loginText = "User your dSS Username & Password";
+devicesSection = "Devices";
+changeValueSection = "Change Value";
+switchSection = "Switch";
+setSceneSection = "Save Value in Preset";

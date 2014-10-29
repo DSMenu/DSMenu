@@ -82,6 +82,7 @@
 		E561C7BA19921CFA00496303 /* group_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7AE19921CFA00496303 /* group_5@2x.png */; };
 		E57FA5A5196C997200CAB2BD /* group_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E57FA5A3196C997200CAB2BD /* group_8.png */; };
 		E57FA5A6196C997200CAB2BD /* group_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E57FA5A4196C997200CAB2BD /* group_8@2x.png */; };
+		E584E54D1A00EEEC0065E91B /* MDIOSDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E584E54C1A00EEEC0065E91B /* MDIOSDevicesViewController.m */; };
 		E5A9522819F8D74A0002293B /* MDIOSWidgetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A9522719F8D74A0002293B /* MDIOSWidgetView.m */; };
 		E5A9522919F8DBA50002293B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5548E7919D408EB00082430 /* Localizable.strings */; };
 		E5B437A819D6CB0300A0703F /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E5524E581962A70B0031D1B6 /* DDLog.m */; };
@@ -465,6 +466,8 @@
 		E561C7BB199235D800496303 /* DSMenu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DSMenu.entitlements; sourceTree = "<group>"; };
 		E57FA5A3196C997200CAB2BD /* group_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_8.png; sourceTree = "<group>"; };
 		E57FA5A4196C997200CAB2BD /* group_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_8@2x.png"; sourceTree = "<group>"; };
+		E584E54B1A00EEEC0065E91B /* MDIOSDevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSDevicesViewController.h; sourceTree = "<group>"; };
+		E584E54C1A00EEEC0065E91B /* MDIOSDevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSDevicesViewController.m; sourceTree = "<group>"; };
 		E5A9522619F8D74A0002293B /* MDIOSWidgetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSWidgetView.h; sourceTree = "<group>"; };
 		E5A9522719F8D74A0002293B /* MDIOSWidgetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSWidgetView.m; sourceTree = "<group>"; };
 		E5B437F719D6CB0300A0703F /* DSMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1097,6 +1100,8 @@
 				E5CDA34119F7C6CB00F9CBB8 /* MDIOSScenesTableViewController.m */,
 				E5CDA33E19F7C6CB00F9CBB8 /* MDIOSScenePresetTableViewCell.h */,
 				E5CDA33F19F7C6CB00F9CBB8 /* MDIOSScenePresetTableViewCell.m */,
+				E584E54B1A00EEEC0065E91B /* MDIOSDevicesViewController.h */,
+				E584E54C1A00EEEC0065E91B /* MDIOSDevicesViewController.m */,
 			);
 			path = RoomsAndScenes;
 			sourceTree = "<group>";
@@ -1732,6 +1737,7 @@
 				E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */,
 				E5B5451A19F10AC200B7B7A9 /* MDConsumptionTextView.m in Sources */,
 				E50BDB5919FAE19900391F04 /* UIAlertView+DSMenuiOS.m in Sources */,
+				E584E54D1A00EEEC0065E91B /* MDIOSDevicesViewController.m in Sources */,
 				E5B544ED19F107FE00B7B7A9 /* DDASLLogger.m in Sources */,
 				E5CDA33519F7C6C500F9CBB8 /* MDIOSConsumptionTableViewCell.m in Sources */,
 				E5CDA32819F7C6A100F9CBB8 /* MDIOSSettingsConnectionsViewController.m in Sources */,

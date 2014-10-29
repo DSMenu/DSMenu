@@ -381,16 +381,54 @@ static MDDSSManager *defaultManager;
     self.lastLoadesStructure = [[self userDefaultsProxy] objectForKey:kMDDSSMANAGER_LAST_LOADED_STRUCTURE];
 }
 
-- (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value
+- (void)getValueOfDSID:(NSString *)dsid callback:(void (^)(int, NSError*))callback
 {
-    
-    NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"value": value };
-    [self jsonCall:@"/json/device/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
-        
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"class" : @"64", @"index": @"0" };
+        [self jsonCall:@"/json/device/getConfig" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            
 #ifdef DDDEBUG
-        DDLogDebug(@"%@", json);
+            DDLogDebug(@"%@", json);
 #endif
-        
+            
+            if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"value"])
+            {
+                callback([(NSNumber *)[[json objectForKey:@"result"] objectForKey:@"value"] intValue], nil);
+            }
+            else
+            {
+                callback(0, error);
+            }
+            
+        }];
+    }];
+}
+
+- (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value callback:(void (^)(NSDictionary *, NSError*))callback
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"value": value };
+        [self jsonCall:@"/json/device/setValue" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            
+    #ifdef DDDEBUG
+            DDLogDebug(@"%@", json);
+    #endif
+            callback(json, error);
+        }];
+    }];
+}
+
+- (void)saveSceneForDevice:(NSString *)dsid scene:(NSString *)scene callback:(void (^)(NSDictionary *, NSError*))callback
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"sceneNumber": scene };
+        [self jsonCall:@"/json/device/saveScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            
+#ifdef DDDEBUG
+            DDLogDebug(@"%@", json);
+#endif
+            callback(json, error);
+        }];
     }];
 }
 

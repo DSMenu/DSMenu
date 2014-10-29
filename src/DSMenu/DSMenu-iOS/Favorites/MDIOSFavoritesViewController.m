@@ -160,6 +160,7 @@
     }
     
     cell.zoneId = fav.zone;
+    cell.favorite = fav;
     
     if(fav.favoriteType == MDIOSFavoriteTypeZone || (fav.group == nil && fav.scene == nil))
     {

@@ -119,6 +119,10 @@
 - (void)getConsumptionLevelsDSID:(NSString *)dsid callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)getCircuits:(void (^)(NSDictionary*, NSError*))callback;
 
+- (void)getValueOfDSID:(NSString *)dsid callback:(void (^)(int, NSError*))callback;
+- (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value callback:(void (^)(NSDictionary *, NSError*))callback;
+- (void)saveSceneForDevice:(NSString *)dsid scene:(NSString *)scene callback:(void (^)(NSDictionary *, NSError*))callback;
+
 #pragma mark - RemoteConnectivityStack
 - (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(void (^)(NSDictionary*, NSError*))callback;
 - (void)enableToken:(NSString *)applicationToken callBlock:(void (^)(NSDictionary*, NSError*))handler;

@@ -7,8 +7,10 @@
 //
 
 #import "MDIOSRoomTableViewCell.h"
+#import "MDIOSFavorite.h"
 
 @interface MDIOSFavoriteTableViewCell : MDIOSRoomTableViewCell
 @property (strong) IBOutlet UILabel *subtitle;
+@property (strong) MDIOSFavorite *favorite;
 @property (assign) BOOL widgetMode;
 @end

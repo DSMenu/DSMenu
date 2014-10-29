@@ -109,6 +109,10 @@
         labelBackgroundView.backgroundColor = [labelDict objectForKey:@"bgcolor"];
         [labelBackgroundView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"group_%@.png", [labelDict objectForKey:@"group"]]] forState:UIControlStateNormal];
         
+        // check if off item
+        if([self isOffItem]){
+            [labelBackgroundView setImage:[UIImage imageNamed:@"off_menu_icon.png"] forState:UIControlStateNormal];
+        }
         
         labelBackgroundView.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         
@@ -123,6 +127,12 @@
     }
     
     [self calculateSizes];
+}
+
+- (BOOL)isOffItem
+{
+    //overwrite when subclassing
+    return NO;
 }
 
 - (void)showLoading
@@ -216,10 +226,6 @@
              [self calculateSizes];
          }];
     }
-    
-    
-    
-    
 }
 
 - (void)calculateSizes
@@ -253,6 +259,18 @@
     else
     {
         self.labelsView.hidden = YES;
+    }
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    [super setHighlighted:highlighted animated:animated];
+    
+    int cnt = 0;
+    for(cnt = 0;cnt < self.labels.count; cnt++)
+    {
+        UIButton *backgroundView = [self.labelBackgroundViews objectAtIndex:cnt];
+        backgroundView.backgroundColor = (highlighted) ? [UIColor lightGrayColor]: [UIColor darkGrayColor];
     }
 }
 

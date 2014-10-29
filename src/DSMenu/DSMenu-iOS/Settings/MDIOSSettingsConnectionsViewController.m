@@ -591,9 +591,9 @@
 
 - (void)loginAndEnableToken:(void (^)(BOOL success))completionBlock
 {
-    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Login" message:@"Use DSS Webadmin Credentials" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:NSLocalizedString(@"loginTitle", @"") message:NSLocalizedString(@"loginText", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"cancelButton", @"") otherButtonTitles: nil];
     alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [alert addButtonWithTitle:@"Login"];
+    [alert addButtonWithTitle:NSLocalizedString(@"okButton", @"")];
     [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1)
         {

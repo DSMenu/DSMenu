@@ -11,6 +11,7 @@
 #import "MDDSSManager.h"
 #import "MDIOSScenePresetTableViewCell.h"
 #import "MDIOSFavoritesManager.h"
+#import "MDIOSDevicesViewController.h"
 
 @interface MDIOSScenesTableViewController ()
 @property NSMutableArray *sections;
@@ -85,7 +86,7 @@
                 DDLogVerbose(@"found custom scene name: %@ for %d", customSceneNames, groupInt);
             }
             
-            int scenes[] = {0,5,6,7,8,9,17,18,19,32,33,20,21,22,34,35,23,24,25,36,37,26,27,28,38,39,29,30,31};
+            int scenes[] = {0,5,6,7,8,9,15,17,18,19,32,33,20,21,22,34,35,23,24,25,36,37,26,27,28,38,39,29,30,31};
             
             for(int arrayIndex=0;arrayIndex<sizeof(scenes) / sizeof(int);arrayIndex++)
             {
@@ -189,69 +190,51 @@
     [section setObject:[NSArray arrayWithObject:deepOffDict] forKey:@"cells"];
     [self.sections addObject:section];
     
-//    // Devices Menu
-//    NSArray *devices = [zoneDict objectForKey:@"devices"];
-//    BOOL shouldShowDeviceMenu = NO;
-//    for(NSDictionary *device in devices)
-//    {
-//        if([[device objectForKey:@"groups"] count] == 1 && [[device objectForKey:@"groups"] indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)8]] != NSNotFound)
-//        {
-//            shouldShowDeviceMenu = YES;
-//        }
-//    }
-//    
-//    if(shouldShowDeviceMenu) {
-//        
-//        [item.submenu addItem:[NSMenuItem separatorItem]];
-//        
-//        NSMenuItem *devicesItem = [[NSMenuItem alloc] init];
-//        devicesItem.title = NSLocalizedString(@"menuDevices", @"Devices in Menu");
-//        devicesItem.submenu = [[NSMenu alloc] init];
-//        
-//        // sort the devices A-Z
-//        devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
-//            return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
-//        }];
-//        
-//        for(NSDictionary *device in devices)
-//        {
-//            //TODO: more flexibility with possible groups for devices
-//            if(! ([[device objectForKey:@"groups"] count] == 1 && [[device objectForKey:@"groups"] indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)8]] != NSNotFound))
-//            {
-//                continue;
-//            }
-//            
-//            MDDeviceMenuItem *oneDeviceItem = [[MDDeviceMenuItem alloc] init];
-//            oneDeviceItem.title = [device objectForKey:@"name"];
-//            oneDeviceItem.target = item;
-//            oneDeviceItem.tag = 5;
-//            oneDeviceItem.dsid = [device objectForKey:@"id"];
-//            oneDeviceItem.action = @selector(deviceMenuItemClicked:);
-//            oneDeviceItem.image = [MDDSHelper iconForDevice:device];
-//            [devicesItem.submenu addItem:oneDeviceItem];
-//            
-//            oneDeviceItem.submenu = [[NSMenu alloc] init];
-//            
-//            MDDeviceMenuItem *onItem = [[MDDeviceMenuItem alloc] init];
-//            onItem.title = NSLocalizedString(@"turnOn", @"Devices in Menu");
-//            onItem.target = item;
-//            onItem.tag = 1;
-//            onItem.turnOnOffMode = YES;
-//            onItem.dsid = [device objectForKey:@"id"];
-//            onItem.action = @selector(deviceMenuItemClicked:);
-//            [oneDeviceItem.submenu addItem:onItem];
-//            
-//            MDDeviceMenuItem *offItem = [[MDDeviceMenuItem alloc] init];
-//            offItem.title = NSLocalizedString(@"turnOff", @"Devices in Menu");
-//            offItem.target = item;
-//            offItem.tag = 0;
-//            offItem.turnOnOffMode = YES;
-//            offItem.dsid = [device objectForKey:@"id"];
-//            offItem.action = @selector(deviceMenuItemClicked:);
-//            [oneDeviceItem.submenu addItem:offItem];
-//        }
-//        [item.submenu addItem:devicesItem];
-//    }
+    // Devices Menu
+    
+    section = [NSMutableDictionary dictionary];
+    [section setObject:[NSMutableArray array] forKey:@"cells"];
+    [section setObject:NSLocalizedString( @"devicesSection" , @"") forKey:@"title"];
+    
+    NSArray *devices = [self.zoneDict objectForKey:@"devices"];
+    BOOL shouldShowDeviceMenu = NO;
+    for(NSDictionary *device in devices)
+    {
+        if([[device objectForKey:@"groups"] count] == 1 && [[device objectForKey:@"groups"] indexOfObjectIdenticalTo:[NSNumber numberWithLong:(long)8]] != NSNotFound)
+        {
+            shouldShowDeviceMenu = YES;
+        }
+    }
+    
+
+        
+    // sort the devices A-Z
+    devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
+        return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
+    }];
+        
+    for(NSDictionary *device in devices)
+    {
+        if([[device objectForKey:@"outputMode"] intValue] == 0)
+        {
+            continue;
+        }
+        
+        NSString *group = @"0";
+        if([device objectForKey:@"groups"])
+        {
+            for(NSNumber *groupNum in [device objectForKey:@"groups"])
+            {
+                group = [groupNum stringValue];
+                break;
+            }
+        }
+        NSDictionary *cellDict = @{ @"device": device, @"title": [device objectForKey:@"name"], @"tag" : @"5", @"dsid" : [device objectForKey:@"id"], @"group": group, @"image" : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", [group intValue]]]};
+        
+        [(NSMutableArray *)[section objectForKey:@"cells"] addObject:cellDict];
+    }
+
+    [self.sections addObject:section];
     
     
     if([[MDIOSFavoritesManager defaultManager] favoriteForZone:[(NSNumber *)[self.zoneDict objectForKey:@"id"] stringValue] group:nil scene:nil])
@@ -342,8 +325,20 @@
         cell.zone = [self.zoneDict objectForKey:@"id"];
         
         [cell checkFavoriteState];
+        
+        if([cellDict objectForKey:@"device"])
+        {
+            cell.favorizeButton.hidden = YES;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else
+        {
+            cell.favorizeButton.hidden = NO;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     
+  
     return cell;
 }
 
@@ -381,13 +376,22 @@
     NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
     NSLog(@"%@", cellDict);
     
-    MDIOSScenePresetTableViewCell *cell = (MDIOSScenePresetTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.isLoading = YES;
-    
-    [[MDDSSManager defaultManager] callScene:[cellDict objectForKey:@"tag"] zoneId:[self.zoneDict objectForKey:@"id"] groupID:[cellDict objectForKey:@"group"] callback:^(NSDictionary *json, NSError *error)
-     {
-         cell.isLoading = NO;
-     }];
+    if([cellDict objectForKey:@"device"])
+    {
+        MDIOSDevicesViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Device"];
+        controller.device = [cellDict objectForKey:@"device"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        MDIOSScenePresetTableViewCell *cell = (MDIOSScenePresetTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.isLoading = YES;
+        
+        [[MDDSSManager defaultManager] callScene:[cellDict objectForKey:@"tag"] zoneId:[self.zoneDict objectForKey:@"id"] groupID:[cellDict objectForKey:@"group"] callback:^(NSDictionary *json, NSError *error)
+         {
+             cell.isLoading = NO;
+         }];
+    }
 }
 
 @end

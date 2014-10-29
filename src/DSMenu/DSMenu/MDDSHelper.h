@@ -36,6 +36,7 @@
 + (NSString *)customSceneNameForScene:(int)scene fromJSON:(NSArray *)json;
 + (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group;
 + (BOOL)hasGroup:(int)groupNr inZone:(NSDictionary *)zoneDict;
++ (NSString *)mainGroupForDevice:(NSDictionary *)device;
 + (NSArray *)availableGroupsForZone:(NSDictionary *)zoneDict;
 
 + (BOOL)shouldRefreshStructure:(NSDictionary *)newStructure oldStructure:(NSDictionary *)oldStructure;

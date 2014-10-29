@@ -33,6 +33,12 @@
     return [NSImage_OR_UIImage imageNamed:iconName];
 }
 
++ (NSString *)mainGroupForDevice:(NSDictionary *)device
+{
+    
+    return [[[device objectForKey:@"groups"] firstObject] stringValue];
+}
+
 + (BOOL)device:(NSDictionary *)deviceDictonary hasGroup:(NSInteger)group
 {
     NSArray *groups = [deviceDictonary objectForKey:@"groups"];

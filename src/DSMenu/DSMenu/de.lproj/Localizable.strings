@@ -9,6 +9,7 @@
 yesButton = "Ja";
 noButton = "Nein";
 okButton = "Okay";
+cancelButton = "Abbruch";
 
 group1 = "Licht";
 group1OnOff = "Licht ein/aus";
@@ -219,3 +220,12 @@ settingsConsumptionHistory60 = "Eine Stunde";
 settingsConsumptionHistory240 = "Vier Stunden";
 settingsConsumptionHistory360 = "Sechs Stunden";
 settingsConsumptionHistory720 = "12 Stunden";
+loginFailedTitle = "Fehler";
+loginFailedText = "Anmeldung fehlgeschlagen. Bitte prüfe Benutzername und Passwort";
+AreYouSurePrompt = "Bist Du sicher?";
+loginTitle = "Anmelden";
+loginText = "Verwende deinen dSS Benutzername und Passwort";
+devicesSection = "Geräte";
+changeValueSection = "Wert Ändern";
+switchSection = "Schalten";
+setSceneSection = "Wert in Szene speichern";

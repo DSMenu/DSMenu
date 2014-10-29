@@ -61,7 +61,6 @@
     [super setSelected:selected animated:animated];
 
     self.backgroundSquare.backgroundColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.2 alpha:1.0];
-    // Configure the view for the selected state
 }
 
 @end
