@@ -99,10 +99,6 @@
 
 + (BOOL)shouldRefreshStructure:(NSDictionary *)newStructure oldStructure:(NSDictionary *)oldStructure
 {
-    
-    NSLog(@"%@", [newStructure description]);
-    NSLog(@"%@", [oldStructure description]);
-    
     NSString *hash = [[newStructure description] sha1];
     NSString *hashOld = [[oldStructure description] sha1];
     
