@@ -91,6 +91,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[MDIOSFavoritesManager defaultManager] removeFavoriteAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self checkIfThereAreEntries];
     }
 }
 
