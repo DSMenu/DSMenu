@@ -11,6 +11,13 @@ noButton = "No";
 okButton = "Okay";
 cancelButton = "Cancel";
 
+Absent = "Absent";
+DoorBell = "Door Bell";
+Present = "Present";
+Sleeping = "Sleeping";
+Wakeup = "Wakeup";
+Panic = "Panic";
+
 group1 = "Light";
 group1OnOff = "Light on/off";
 group2 = "Shade";

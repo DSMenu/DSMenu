@@ -38,6 +38,7 @@
 		E52C13C51975B6270010385E /* MDConsumptionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C13C41975B6270010385E /* MDConsumptionTextView.m */; };
 		E52C13C81975C09C0010385E /* cchart_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C61975C09C0010385E /* cchart_highlight.png */; };
 		E52C13C91975C09C0010385E /* cchart_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E52C13C71975C09C0010385E /* cchart_highlight@2x.png */; };
+		E5365CD51A027FE900E909FC /* MDIOSPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5365CD41A027FE900E909FC /* MDIOSPopoverViewController.m */; };
 		E53C981C19F4EB8F00362ECB /* MDIOSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53C981B19F4EB8F00362ECB /* MDIOSTabBarController.m */; };
 		E54BC20419F43FB70022A818 /* PUFavoriteOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */; };
 		E54BC20519F43FB70022A818 /* PUFavoriteOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54BC20319F43FB70022A818 /* PUFavoriteOn@2x.png */; };
@@ -409,6 +410,8 @@
 		E52C13C41975B6270010385E /* MDConsumptionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDConsumptionTextView.m; sourceTree = "<group>"; };
 		E52C13C61975C09C0010385E /* cchart_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cchart_highlight.png; sourceTree = "<group>"; };
 		E52C13C71975C09C0010385E /* cchart_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cchart_highlight@2x.png"; sourceTree = "<group>"; };
+		E5365CD31A027FE900E909FC /* MDIOSPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSPopoverViewController.h; sourceTree = "<group>"; };
+		E5365CD41A027FE900E909FC /* MDIOSPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSPopoverViewController.m; sourceTree = "<group>"; };
 		E53C981A19F4EB8F00362ECB /* MDIOSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSTabBarController.h; sourceTree = "<group>"; };
 		E53C981B19F4EB8F00362ECB /* MDIOSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSTabBarController.m; sourceTree = "<group>"; };
 		E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PUFavoriteOff@2x.png"; sourceTree = "<group>"; };
@@ -1131,6 +1134,8 @@
 				E5CDA33F19F7C6CB00F9CBB8 /* MDIOSScenePresetTableViewCell.m */,
 				E584E54B1A00EEEC0065E91B /* MDIOSDevicesViewController.h */,
 				E584E54C1A00EEEC0065E91B /* MDIOSDevicesViewController.m */,
+				E5365CD31A027FE900E909FC /* MDIOSPopoverViewController.h */,
+				E5365CD41A027FE900E909FC /* MDIOSPopoverViewController.m */,
 			);
 			path = RoomsAndScenes;
 			sourceTree = "<group>";
@@ -1763,6 +1768,7 @@
 				E503007619FFDB790068EC6E /* NSString+Hashes.m in Sources */,
 				E5B544C719F1079500B7B7A9 /* main.m in Sources */,
 				E5CDA32D19F7C6A100F9CBB8 /* MDIOSSettingTextFieldTableViewCell.m in Sources */,
+				E5365CD51A027FE900E909FC /* MDIOSPopoverViewController.m in Sources */,
 				E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */,
 				E5B5451A19F10AC200B7B7A9 /* MDConsumptionTextView.m in Sources */,
 				E50BDB5919FAE19900391F04 /* UIAlertView+DSMenuiOS.m in Sources */,

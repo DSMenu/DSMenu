@@ -88,6 +88,11 @@
 - (void)callScene:(NSString *)sceneNumber zoneId:(NSString *)zoneId groupID:(NSString *)groupID callback:(void (^)(NSDictionary*, NSError*))callback;
 
 /**
+ * call a scene in apartment
+ */
+- (void)callScene:(NSString *)sceneNumber callback:(void (^)(NSDictionary*, NSError*))callback;
+
+/**
  * call a scene on a device
  */
 - (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback;

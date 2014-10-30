@@ -462,6 +462,17 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+- (void)callScene:(NSString *)sceneNumber callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"sceneNumber":sceneNumber  };
+        [self jsonCall:@"/json/apartment/callScene" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            callback(json, error);
+        }];
+    }];
+}
+
 - (void)callScene:(NSString *)sceneNumber deviceId:(NSString *)deviceId callback:(void (^)(NSDictionary*, NSError*))callback
 {
     

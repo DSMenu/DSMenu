@@ -6,15 +6,28 @@
 //  Copyright (c) 2014 include7. All rights reserved.
 //
 
+//UIPopover+Iphone.h
+@interface UIPopoverController (overrides)
++ (BOOL)_popoversDisabled;
+@end
+
+//UIPopover+Iphone.m
+@implementation UIPopoverController (overrides)
++ (BOOL)_popoversDisabled { return NO;
+}
+@end
+
 #import "MDIOSRoomsViewController.h"
 #import "MDIOSRoomTableViewCell.h"
 #import "MDDSSManager.h"
 #import "MDDSHelper.h"
 #import "MDIOSFavoritesManager.h"
+#import "MDIOSPopoverViewController.h"
 
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
 @property NSDictionary *displayedJSON;
+@property (nonatomic, retain) UIPopoverController *generalActionsPopover;
 @end
 
 @implementation MDIOSRoomsViewController
@@ -39,6 +52,20 @@
     
     [self recheckConnection];
     [self updateTable:nil];
+}
+
+- (IBAction)showGeneralActions:(id)sender
+{
+    MDIOSScenesTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Popover"];
+    controller.modalPresentationStyle  = UIModalPresentationPopover;
+    controller.popoverPresentationController.delegate = self;
+    
+    UIPopoverController *pC = [[UIPopoverController alloc] initWithContentViewController:controller];
+    [pC presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    return UIModalPresentationNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated

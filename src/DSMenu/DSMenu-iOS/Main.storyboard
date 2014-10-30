@@ -137,7 +137,13 @@
                             <outlet property="delegate" destination="GIV-Gg-1Bs" id="GqA-Vw-kOa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Uxw-2u-dzL"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Uxw-2u-dzL">
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="CTI-Uc-e4r">
+                            <connections>
+                                <action selector="showGeneralActions:" destination="GIV-Gg-1Bs" id="G9U-fU-BRZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="roomsTable" destination="Kv3-sM-PdF" id="cNP-mf-100"/>
                     </connections>
@@ -145,6 +151,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLP-mA-Eub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-619" y="739"/>
+        </scene>
+        <!--Popover View Controller-->
+        <scene sceneID="wab-2H-J1E">
+            <objects>
+                <tableViewController storyboardIdentifier="Popover" id="QNI-7d-xz4" customClass="MDIOSPopoverViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Evo-eG-tWw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="GlobalActionCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="GlobalActionCell" textLabel="JmS-F6-BkT" style="IBUITableViewCellStyleDefault" id="Jg3-Vj-3wc">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jg3-Vj-3wc" id="Yqe-8g-N83">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="Gehen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JmS-F6-BkT">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chb-F7-qIL">
+                                            <rect key="frame" x="269" y="0.0" width="51" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="51" id="6e9-Sf-Dus"/>
+                                            </constraints>
+                                            <state key="normal" image="ReviewSheetStarEmpty.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="chb-F7-qIL" secondAttribute="trailing" id="9C5-kL-Qxo"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="QNI-7d-xz4" id="iYv-tM-TgB"/>
+                            <outlet property="delegate" destination="QNI-7d-xz4" id="7ZD-fi-Ym0"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvJ-3k-Mh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-668" y="1486"/>
         </scene>
         <!--Devices-->
         <scene sceneID="DOC-vW-hPq">
