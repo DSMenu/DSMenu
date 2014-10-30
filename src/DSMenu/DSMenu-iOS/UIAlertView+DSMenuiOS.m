@@ -35,6 +35,15 @@
         self.completionBlock(alertView, alertView.cancelButtonIndex);
 }
 
+-(void)didPresentAlertView:(UIAlertView *)alertView
+{
+    UITextField *passwordField = [alertView textFieldAtIndex:1];
+    if(passwordField && passwordField.secureTextEntry == YES)
+    {
+        [passwordField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
+    }
+}
+
 @end
 
 

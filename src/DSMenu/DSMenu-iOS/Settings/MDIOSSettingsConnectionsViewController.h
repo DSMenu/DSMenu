@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDIOSSettingsConnectionsViewController : UITableViewController <NSNetServiceBrowserDelegate, UITextFieldDelegate>
+@interface MDIOSSettingsConnectionsViewController : UITableViewController <NSNetServiceBrowserDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 @property (assign) BOOL showLocalConnection;
 @property (assign) BOOL searchingMDNS;
 @property (assign) BOOL tryToConnect;

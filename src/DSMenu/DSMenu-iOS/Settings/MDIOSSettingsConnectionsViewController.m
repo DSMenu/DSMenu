@@ -615,6 +615,8 @@
     UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:NSLocalizedString(@"loginTitle", @"") message:NSLocalizedString(@"loginText", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"cancelButton", @"") otherButtonTitles: nil];
     alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     [alert addButtonWithTitle:NSLocalizedString(@"okButton", @"")];
+    [alert textFieldAtIndex:0].text = @"dssadmin";
+    [[alert textFieldAtIndex:1] becomeFirstResponder];
     [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1)
         {
