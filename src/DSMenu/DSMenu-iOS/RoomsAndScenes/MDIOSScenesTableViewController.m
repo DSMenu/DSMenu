@@ -115,7 +115,16 @@
                 }
                 
                 
-                NSDictionary *cellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i], @"group": [NSNumber numberWithInt:groupInt], @"image" : (( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]])};
+                UIImage *img = (( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]]);
+                if(img == nil)
+                {
+                    img = [UIImage imageNamed:@"off_menu_icon"];
+                }
+                if(!sceneTitle) {
+                    // double secure nil into dictionaries
+                    sceneTitle = @"unknown";
+                }
+                NSDictionary *cellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i], @"group": [NSNumber numberWithInt:groupInt], @"image" : img};
                 
                
                 // Area Scenes
@@ -136,8 +145,12 @@
                         }
                         
                         
-                        
-                        NSDictionary *areaCellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i-5], @"group": [NSNumber numberWithInt:groupInt], @"image" : (( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]])};
+                        UIImage *img = (( i == 0) ? [UIImage imageNamed:@"off_menu_icon"] : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", groupInt]]);
+                        if(img == nil)
+                        {
+                            img = [UIImage imageNamed:@"off_menu_icon"];
+                        }
+                        NSDictionary *areaCellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i-5], @"group": [NSNumber numberWithInt:groupInt], @"image" : img};
                         
                         [areaItems addObject:areaCellDict];
                     }
@@ -229,7 +242,12 @@
                 break;
             }
         }
-        NSDictionary *cellDict = @{ @"device": device, @"title": [device objectForKey:@"name"], @"tag" : @"5", @"dsid" : [device objectForKey:@"id"], @"group": group, @"image" : [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", [group intValue]]]};
+        UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"group_%d", [group intValue]]];
+        if(img == nil)
+        {
+            img = [UIImage imageNamed:@"off_menu_icon"];
+        }
+        NSDictionary *cellDict = @{ @"device": device, @"title": [device objectForKey:@"name"], @"tag" : @"5", @"dsid" : [device objectForKey:@"id"], @"group": group, @"image" : img};
         
         [(NSMutableArray *)[section objectForKey:@"cells"] addObject:cellDict];
     }
