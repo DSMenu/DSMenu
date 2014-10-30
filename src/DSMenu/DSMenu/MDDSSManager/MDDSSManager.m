@@ -103,6 +103,17 @@ static MDDSSManager *defaultManager;
     NSDictionary *dict = [self.userDefaultsProxy dictionaryRepresentation];
     NSURL *containerURLFile = [containerURL URLByAppendingPathComponent:kDSMENU_SECURITY_NAME_FOR_USERDEFAULTS];
     [dict writeToURL:containerURLFile atomically:YES];
+    
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    NSDictionary *attribs = @{NSFileProtectionKey : NSFileProtectionNone};
+    NSError *unprotectError = nil;
+    
+    BOOL unprotectSuccess = [fm setAttributes:attribs
+                                 ofItemAtPath:[containerURL path]
+                                        error:&unprotectError];
+    if (!unprotectSuccess) {
+        NSLog(@"Unable to remove protection from file! %@", unprotectError);
+    }
 }
 
 - (void)setUseIPAddress:(BOOL)useIPAddress
@@ -343,11 +354,7 @@ static MDDSSManager *defaultManager;
             if(error)
             {
                 self.connectionProblems = YES;
-                
-                if(!self.suppressAuthError)
-                {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kDS_DSS_AUTH_ERROR object:error];
-                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDS_DSS_AUTH_ERROR object:error];
                 return;
             }
             callback(nil);

@@ -63,9 +63,6 @@
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"errorConnecting", @"")message:NSLocalizedString(@"applicationTokenRequested", @"") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
-    
-    // only show login error once
-    [MDDSSManager defaultManager].suppressAuthError = YES;
 }
 
 - (void)loadStructure
@@ -161,8 +158,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
-    [MDDSSManager defaultManager].suppressAuthError = NO;
     [self loadStructure];
     
     NSString *name = [[[UIDevice currentDevice] name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

@@ -39,7 +39,6 @@
 @property (readonly) BOOL canConnect;
 
 @property BOOL useLastCalledSceneCheck;
-@property BOOL suppressAuthError;
 
 @property BOOL loginInProgress;
 
