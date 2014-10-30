@@ -17,9 +17,7 @@
 #import "MDDSSManager.h"
 
 
-@interface TodayViewController : UIViewController
-@property (strong) IBOutlet UIView *mainView;
+@interface MDIOSWidgetTodayViewController : UIViewController
 @property (strong) IBOutlet UILabel *noFavoritesLabel;
-@property (strong) IBOutlet UITextView *textView;
 @property (assign) BOOL hasDSSManagerAvailable;
 @end
