@@ -815,5 +815,53 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+#pragma mark - developer stack
+- (void)getProperty:(NSString *)path callback:(void (^)(NSDictionary*, NSError*))handler
+{
+    
+    [self precheckWithContinueBlock:^(NSError *error){
+        
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"path" : path};
+        [self jsonCall:@"/json/property/getChildren" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+- (void)getString:(NSString *)path callback:(void (^)(NSDictionary*, NSError*))handler
+{
+    
+    [self precheckWithContinueBlock:^(NSError *error){
+        
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"path" : path};
+        [self jsonCall:@"/json/property/getString" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+- (void)getInteger:(NSString *)path callback:(void (^)(NSDictionary*, NSError*))handler
+{
+    
+    [self precheckWithContinueBlock:^(NSError *error){
+        
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"path" : path};
+        [self jsonCall:@"/json/property/getInteger" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+- (void)getAllDevices:(void (^)(NSDictionary*json, NSError*error))handler
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken};
+        [self jsonCall:@"/json/apartment/getDevices" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+
 
 @end

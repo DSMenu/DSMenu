@@ -54,6 +54,27 @@
     [self updateTable:nil];
 }
 
+- (void)setIsLoading:(BOOL)isLoading
+{
+    _isLoading = isLoading;
+    
+    if(_isLoading)
+    {
+        [self.refreshControl beginRefreshing];
+    }
+    else
+    {
+        [self.refreshControl endRefreshing];
+        UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+        [activityIndicator stopAnimating];
+    }
+}
+
+- (BOOL)isLoading
+{
+    return _isLoading;
+}
+
 - (IBAction)showGeneralActions:(id)sender
 {
     MDIOSScenesTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Popover"];
@@ -127,27 +148,6 @@
         self.noConnection = NO;
     }
     [self.tableView reloadData];
-}
-
-- (void)setIsLoading:(BOOL)isLoading
-{
-    _isLoading = isLoading;
-    
-    if(_isLoading)
-    {
-        [self.refreshControl beginRefreshing];
-    }
-    else
-    {
-       [self.refreshControl endRefreshing];
-        UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
-        [activityIndicator stopAnimating];
-    }
-}
-
-- (BOOL)isLoading
-{
-    return _isLoading;
 }
 
 - (void)setNoConnection:(BOOL)noConnection

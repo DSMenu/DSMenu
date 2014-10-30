@@ -134,4 +134,10 @@
 - (void)loginUser:(NSString *)username password:(NSString *)password callBlock:(void (^)(NSDictionary*, NSError*))handler;
 - (void)logoutUser:(void (^)(NSDictionary*, NSError*))handler;
 - (void)loginApplication:(NSString *)loginToken callBlock:(void (^)(NSDictionary*, NSError*))handler;
+
+#pragma mark - developer stack
+- (void)getProperty:(NSString *)path callback:(void (^)(NSDictionary*, NSError*))handler;
+- (void)getString:(NSString *)path callback:(void (^)(NSDictionary*, NSError*))handler;
+- (void)getInteger:(NSString *)path callback:(void (^)(NSDictionary*, NSError*))handler;
+- (void)getAllDevices:(void (^)(NSDictionary*json, NSError*error))handler;
 @end
