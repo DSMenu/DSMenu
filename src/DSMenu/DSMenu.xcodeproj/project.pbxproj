@@ -292,8 +292,7 @@
 		E5E8CA4119653BA200A2997D /* preferences_details.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA3F19653BA200A2997D /* preferences_details.png */; };
 		E5E8CA4219653BA200A2997D /* preferences_details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5E8CA4019653BA200A2997D /* preferences_details@2x.png */; };
 		E5F1ED2C19F57B2200D983E9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F1ED2B19F57B2200D983E9 /* NotificationCenter.framework */; };
-		E5F1ED3219F57B2200D983E9 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F1ED3119F57B2200D983E9 /* TodayViewController.m */; };
-		E5F1ED3419F57B2200D983E9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F1ED3319F57B2200D983E9 /* MainInterface.storyboard */; };
+		E5F1ED3219F57B2200D983E9 /* MDIOSWidgetTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F1ED3119F57B2200D983E9 /* MDIOSWidgetTodayViewController.m */; };
 		E5F1ED4119F57CA400D983E9 /* iOSWidget.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5F1ED2A19F57B2200D983E9 /* iOSWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E5F1ED4219F57D9B00D983E9 /* MDDSSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BBD1959F733006A9FB5 /* MDDSSManager.m */; };
 		E5F1ED4319F57D9E00D983E9 /* MDDSSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E5280BC01959FD6A006A9FB5 /* MDDSSURLConnection.m */; };
@@ -587,9 +586,8 @@
 		E5F1ED2A19F57B2200D983E9 /* iOSWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iOSWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F1ED2B19F57B2200D983E9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E5F1ED2F19F57B2200D983E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5F1ED3019F57B2200D983E9 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
-		E5F1ED3119F57B2200D983E9 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
-		E5F1ED3319F57B2200D983E9 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		E5F1ED3019F57B2200D983E9 /* MDIOSWidgetTodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDIOSWidgetTodayViewController.h; sourceTree = "<group>"; };
+		E5F1ED3119F57B2200D983E9 /* MDIOSWidgetTodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDIOSWidgetTodayViewController.m; sourceTree = "<group>"; };
 		E5F1ED4D19F5810C00D983E9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		E5FDA5B119D42A9800F5040F /* CocoaLumberjack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaLumberjack.h; sourceTree = "<group>"; };
 		E5FDA5B219D42A9D00F5040F /* DDLogMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDLogMacros.h; sourceTree = "<group>"; };
@@ -1179,11 +1177,10 @@
 			isa = PBXGroup;
 			children = (
 				E5E472F519F645D10089AAC2 /* iOSWidget.entitlements */,
-				E5F1ED3019F57B2200D983E9 /* TodayViewController.h */,
-				E5F1ED3119F57B2200D983E9 /* TodayViewController.m */,
+				E5F1ED3019F57B2200D983E9 /* MDIOSWidgetTodayViewController.h */,
+				E5F1ED3119F57B2200D983E9 /* MDIOSWidgetTodayViewController.m */,
 				E5A9522619F8D74A0002293B /* MDIOSWidgetView.h */,
 				E5A9522719F8D74A0002293B /* MDIOSWidgetView.m */,
-				E5F1ED3319F57B2200D983E9 /* MainInterface.storyboard */,
 				E5F1ED2E19F57B2200D983E9 /* Supporting Files */,
 			);
 			path = iOSWidget;
@@ -1627,7 +1624,6 @@
 				E5D0270719F8DE110047407F /* group_3_8.png in Resources */,
 				E5D0270119F8DE110047407F /* group_1_8.png in Resources */,
 				E5D0271019F8DE110047407F /* group_5_8@2x.png in Resources */,
-				E5F1ED3419F57B2200D983E9 /* MainInterface.storyboard in Resources */,
 				E5D0270B19F8DE110047407F /* group_4_8.png in Resources */,
 				E5D026FD19F8DE110047407F /* group_1.png in Resources */,
 				E5D0270919F8DE110047407F /* group_3.png in Resources */,
@@ -1793,7 +1789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5601D5D19F8479F00009989 /* MDIOSWidgetManager.m in Sources */,
-				E5F1ED3219F57B2200D983E9 /* TodayViewController.m in Sources */,
+				E5F1ED3219F57B2200D983E9 /* MDIOSWidgetTodayViewController.m in Sources */,
 				E5F1ED4519F57E0400D983E9 /* MDDSHelper.m in Sources */,
 				E503007719FFDB790068EC6E /* NSString+Hashes.m in Sources */,
 				E5CDA31A19F7C68D00F9CBB8 /* MDIOSWidgetAction.m in Sources */,
