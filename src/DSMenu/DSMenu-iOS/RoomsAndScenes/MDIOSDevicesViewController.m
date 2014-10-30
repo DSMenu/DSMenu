@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.deviceValueSlider.maximumValue = 255.0;
     self.deviceValueSlider.minimumValue = 0.0;
     self.deviceValueSlider.continuous = NO;

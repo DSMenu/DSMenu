@@ -9,6 +9,7 @@
 #import "MDIOSAppDelegate.h"
 #import "MDDSSManager.h"
 #import "MDDSSConsumptionManager.h"
+#import "BWQuincyManager.h"
 
 @interface MDIOSAppDelegate ()
 
@@ -19,6 +20,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"https://dsmenu.include7.ch/quincy/crash_v300.php"];
+    [[BWQuincyManager sharedQuincyManager] startManager];
+    
+    
+    NSString *name = [[[UIDevice currentDevice] name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [NSString stringWithFormat:@"https://dsmenu.include7.ch/quincy/ping.php?ping=1&n=%@&v=3&t=s", name ];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+    }];
+    
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     NSUserDefaults *mySharedDefaults = [[NSUserDefaults alloc]
@@ -142,6 +157,16 @@
     
     [MDDSSManager defaultManager].suppressAuthError = NO;
     [self loadStructure];
+    
+    NSString *name = [[[UIDevice currentDevice] name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [NSString stringWithFormat:@"https://dsmenu.include7.ch/quincy/ping.php?ping=1&n=%@&v=3&t=o", name ];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+    }];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

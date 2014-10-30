@@ -212,6 +212,11 @@
 		E5B5453E19F1166100B7B7A9 /* group_5_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7AC19921CFA00496303 /* group_5_8@2x.png */; };
 		E5B5453F19F1166100B7B7A9 /* group_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7AD19921CFA00496303 /* group_5.png */; };
 		E5B5454019F1166100B7B7A9 /* group_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E561C7AE19921CFA00496303 /* group_5@2x.png */; };
+		E5B5A0ED1A0220E600496BF4 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B5A0EB1A0220E600496BF4 /* CrashReporter.framework */; };
+		E5B5A0EE1A0220E600496BF4 /* Quincy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E5B5A0EC1A0220E600496BF4 /* Quincy.bundle */; };
+		E5B5A0F41A0220F900496BF4 /* BWCrashReportTextFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5A0F01A0220F900496BF4 /* BWCrashReportTextFormatter.m */; };
+		E5B5A0F51A0220F900496BF4 /* BWQuincyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B5A0F21A0220F900496BF4 /* BWQuincyManager.m */; };
+		E5B5A0F71A02211C00496BF4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B5A0F61A02211C00496BF4 /* SystemConfiguration.framework */; };
 		E5C1BA86196D8C51009B2985 /* MDDSSConsumptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */; };
 		E5C1BA89196DD4A6009B2985 /* MDConsumptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1BA88196DD4A6009B2985 /* MDConsumptionView.m */; };
 		E5CDA31919F7C68900F9CBB8 /* MDIOSWidgetAction.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CDA31819F7C68900F9CBB8 /* MDIOSWidgetAction.m */; };
@@ -492,6 +497,14 @@
 		E5B5451219F1090400B7B7A9 /* DSMenu-iOS.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DSMenu-iOS.pch"; sourceTree = "<group>"; };
 		E5B5451319F1098800B7B7A9 /* Notifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		E5B5451C19F10AF600B7B7A9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E5B5A0EB1A0220E600496BF4 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = ../../vendor/QuincyKit/client/iOS/CrashReporter.framework; sourceTree = "<group>"; };
+		E5B5A0EC1A0220E600496BF4 /* Quincy.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Quincy.bundle; path = ../../vendor/QuincyKit/client/iOS/Quincy.bundle; sourceTree = "<group>"; };
+		E5B5A0EF1A0220F900496BF4 /* BWCrashReportTextFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWCrashReportTextFormatter.h; path = ../../vendor/QuincyKit/client/iOS/BWCrashReportTextFormatter.h; sourceTree = "<group>"; };
+		E5B5A0F01A0220F900496BF4 /* BWCrashReportTextFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWCrashReportTextFormatter.m; path = ../../vendor/QuincyKit/client/iOS/BWCrashReportTextFormatter.m; sourceTree = "<group>"; };
+		E5B5A0F11A0220F900496BF4 /* BWQuincyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWQuincyManager.h; path = ../../vendor/QuincyKit/client/iOS/BWQuincyManager.h; sourceTree = "<group>"; };
+		E5B5A0F21A0220F900496BF4 /* BWQuincyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWQuincyManager.m; path = ../../vendor/QuincyKit/client/iOS/BWQuincyManager.m; sourceTree = "<group>"; };
+		E5B5A0F31A0220F900496BF4 /* BWQuincyManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWQuincyManagerDelegate.h; path = ../../vendor/QuincyKit/client/iOS/BWQuincyManagerDelegate.h; sourceTree = "<group>"; };
+		E5B5A0F61A02211C00496BF4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		E5C1BA84196D8C51009B2985 /* MDDSSConsumptionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDSSConsumptionManager.h; sourceTree = "<group>"; };
 		E5C1BA85196D8C51009B2985 /* MDDSSConsumptionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDSSConsumptionManager.m; sourceTree = "<group>"; };
 		E5C1BA87196DD4A6009B2985 /* MDConsumptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDConsumptionView.h; sourceTree = "<group>"; };
@@ -640,6 +653,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5B5A0F71A02211C00496BF4 /* SystemConfiguration.framework in Frameworks */,
+				E5B5A0ED1A0220E600496BF4 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +749,7 @@
 		E5280B801959F5BD006A9FB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5B5A0F61A02211C00496BF4 /* SystemConfiguration.framework */,
 				E5F1ED4D19F5810C00D983E9 /* CoreGraphics.framework */,
 				E51AED6D19DD2B1A007296FB /* ServiceManagement.framework */,
 				E5280B811959F5BD006A9FB5 /* Cocoa.framework */,
@@ -875,6 +891,7 @@
 		E5524E491962A7030031D1B6 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E5B5A0EA1A0220D000496BF4 /* Quincy */,
 				E503006D19FFDB790068EC6E /* NSString-Hashes */,
 				E557E8B519DC4F5B00A25C4A /* StartAtLoginController */,
 				E5E8CA2F1965361300A2997D /* LaunchAtLoginController */,
@@ -1043,6 +1060,20 @@
 				E5B544FF19F1083E00B7B7A9 /* settingsTabSelected@2x.png */,
 			);
 			path = GFX;
+			sourceTree = "<group>";
+		};
+		E5B5A0EA1A0220D000496BF4 /* Quincy */ = {
+			isa = PBXGroup;
+			children = (
+				E5B5A0EF1A0220F900496BF4 /* BWCrashReportTextFormatter.h */,
+				E5B5A0F01A0220F900496BF4 /* BWCrashReportTextFormatter.m */,
+				E5B5A0F11A0220F900496BF4 /* BWQuincyManager.h */,
+				E5B5A0F21A0220F900496BF4 /* BWQuincyManager.m */,
+				E5B5A0F31A0220F900496BF4 /* BWQuincyManagerDelegate.h */,
+				E5B5A0EB1A0220E600496BF4 /* CrashReporter.framework */,
+				E5B5A0EC1A0220E600496BF4 /* Quincy.bundle */,
+			);
+			name = Quincy;
 			sourceTree = "<group>";
 		};
 		E5CDA31619F7C68900F9CBB8 /* Widget */ = {
@@ -1559,6 +1590,7 @@
 				E5B5452B19F1166100B7B7A9 /* group_1.png in Resources */,
 				E5B5450319F1083E00B7B7A9 /* favoritesTabbar@2x.png in Resources */,
 				E5B5450819F1083E00B7B7A9 /* settingsTab@2x.png in Resources */,
+				E5B5A0EE1A0220E600496BF4 /* Quincy.bundle in Resources */,
 				E5B5453419F1166100B7B7A9 /* group_8@2x.png in Resources */,
 				E5B5453319F1166100B7B7A9 /* group_8.png in Resources */,
 				E5B5453E19F1166100B7B7A9 /* group_5_8@2x.png in Resources */,
@@ -1726,6 +1758,7 @@
 				E5CDA32B19F7C6A100F9CBB8 /* MDIOSSettingsViewController.m in Sources */,
 				E5CDA33619F7C6C500F9CBB8 /* MDIOSConsumptionView.m in Sources */,
 				E5B544F219F1080D00B7B7A9 /* MDDSSURLConnection.m in Sources */,
+				E5B5A0F41A0220F900496BF4 /* BWCrashReportTextFormatter.m in Sources */,
 				E5B5451B19F10AC500B7B7A9 /* MDConsumptionLineView.m in Sources */,
 				E5CDA33719F7C6C500F9CBB8 /* MDIOSConsumptionViewController.m in Sources */,
 				E5B544CA19F1079500B7B7A9 /* MDIOSAppDelegate.m in Sources */,
@@ -1742,6 +1775,7 @@
 				E5CDA33519F7C6C500F9CBB8 /* MDIOSConsumptionTableViewCell.m in Sources */,
 				E5CDA32819F7C6A100F9CBB8 /* MDIOSSettingsConnectionsViewController.m in Sources */,
 				E5D0271A19F902660047407F /* MDIOSBaseViewController.m in Sources */,
+				E5B5A0F51A0220F900496BF4 /* BWQuincyManager.m in Sources */,
 				E5B544EB19F107F400B7B7A9 /* DDAbstractDatabaseLogger.m in Sources */,
 				E5B5452719F10B7000B7B7A9 /* MDDSHelper.m in Sources */,
 				E5601D5519F807AC00009989 /* MDIOSFavoritesViewController.m in Sources */,
@@ -2114,6 +2148,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonas Schnelli (7CGLGDL6VW)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jonasschnelli/Documents/dev_mac/DSMenu/src/vendor/QuincyKit/client/iOS,
+				);
 				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -2139,6 +2177,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: include7 AG";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jonasschnelli/Documents/dev_mac/DSMenu/src/vendor/QuincyKit/client/iOS,
+				);
 				GCC_PREFIX_HEADER = "DSMenu-iOS/DSMenu-iOS.pch";
 				INFOPLIST_FILE = "DSMenu-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

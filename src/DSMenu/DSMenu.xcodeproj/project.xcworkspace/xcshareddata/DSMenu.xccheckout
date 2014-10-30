@@ -16,6 +16,8 @@
 		<string>github.com:jonasschnelli/macDS.git</string>
 		<key>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</key>
 		<string>https://github.com/CocoaLumberjack/CocoaLumberjack</string>
+		<key>4BB832DA680CB98C5F669F92FD5426B92B4B6469</key>
+		<string>https://github.com/TheRealKerni/QuincyKit</string>
 		<key>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</key>
 		<string>https://github.com/alexzielenski/StartAtLoginController</string>
 		<key>88F3FD8361483E613960A36B8D6E225E41988B43</key>
@@ -31,6 +33,8 @@
 		<string>../../../..</string>
 		<key>35B5C9A93714EC9BEB56BAE809C5551E5C66E52D</key>
 		<string>../../../..src/vendor/CocoaLumberjack</string>
+		<key>4BB832DA680CB98C5F669F92FD5426B92B4B6469</key>
+		<string>../../../../src/vendor/QuincyKit/</string>
 		<key>4E6708CCC0E92EF4B58960325FCAF65F2DF67EF3</key>
 		<string>../../../../src/vendor/StartAtLoginController</string>
 		<key>88F3FD8361483E613960A36B8D6E225E41988B43</key>
@@ -67,6 +71,14 @@
 			<string>88F3FD8361483E613960A36B8D6E225E41988B43</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NSString-Hashes</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4BB832DA680CB98C5F669F92FD5426B92B4B6469</string>
+			<key>IDESourceControlWCCName</key>
+			<string>QuincyKit</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
