@@ -212,12 +212,8 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                  @try {
                      if(jsonV && [jsonV isKindOfClass:[NSDictionary class]])
                      {
-                         if(errorV)
-                         {
-                             self.pollInProgressHistory = NO;
-                         }
-                         [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
                          self.pollInProgressHistory = NO;
+                         [self.historyValues setObject:[[jsonV objectForKey:@"result"] objectForKey:@"values"] forKey:@"all"];
                          if(self.callbackHistory)
                          {
                              self.callbackHistory(self.historyValues, self.dSMs);
@@ -225,7 +221,7 @@ void MDContextAddRoundedRect(CGContextRef context, CGRect rrect, CGFloat radius)
                      }
                  }
                  @catch (NSException *exception) {
-                     
+                     self.pollInProgressHistory = NO;
                  }
                  @finally {
                      
