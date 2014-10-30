@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong) NSMutableArray *consumptionData;
-@property (strong) NSDictionary *structure;
 
 
 @end

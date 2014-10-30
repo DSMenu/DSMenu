@@ -72,8 +72,7 @@
         return;
     }
     [[MDDSSManager defaultManager] getStructureWithCustomSceneNames:^(NSDictionary *json, NSError *error){
-        self.structure = json;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:self.structure];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:json];
     }];
 }
 

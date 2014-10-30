@@ -37,6 +37,8 @@
 
 -(void)didPresentAlertView:(UIAlertView *)alertView
 {
+    // make password become first responder
+    // kind of a hack
     UITextField *passwordField = [alertView textFieldAtIndex:1];
     if(passwordField && passwordField.secureTextEntry == YES)
     {
