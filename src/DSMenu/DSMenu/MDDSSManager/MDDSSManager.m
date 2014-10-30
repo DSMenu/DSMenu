@@ -152,6 +152,15 @@ static MDDSSManager *defaultManager;
     [[NSNotificationCenter defaultCenter] postNotificationName:kMD_NOTIFICATION_HOST_DID_CHANGE object:self.host];
 }
 
+- (BOOL)canConnect
+{
+    if(self.host == nil || self.host.length <= 1 )
+    {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)checkHost:(NSString *)host callback:(void (^)(BOOL))handler
 {
     NSString *hostWithPort = [host stringByAppendingFormat:@":8080"];

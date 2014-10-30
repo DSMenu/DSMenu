@@ -77,6 +77,9 @@
 
 - (void)startBonjourSearch
 {
+    self.mDNSServices = [NSMutableArray array];
+    [self.tableView reloadData];
+    
     self.searchingMDNS = YES;
     NSTimer *timer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(searchEnd) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
@@ -99,16 +102,19 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing
 {
-    [self.mDNSServices addObject:aNetService];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    DDLogVerbose(@"%@ %@", [aNetService.name stringByAppendingString:@".local"], [MDDSSManager defaultManager].host);
+    // only add a service if it's not already in the array
+    if(self.mDNSServices && [self.mDNSServices indexOfObject:aNetService] == NSNotFound) {
+        [self.mDNSServices addObject:aNetService];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        DDLogVerbose(@"%@ %@", [aNetService.name stringByAppendingString:@".local"], [MDDSSManager defaultManager].host);
 
-    
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    DDLogDebug(@"%@ %@", aNetService.name, [NSNumber numberWithLong:[aNetService port]]);
-    DDLogDebug(@"%@", [[NSString alloc] initWithData:aNetService.TXTRecordData encoding:NSUTF8StringEncoding]);
+        
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kMDIOS_SETTINGS_CONNECTION_LOCAL_CONNECTION_SECTION] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        DDLogDebug(@"%@ %@", aNetService.name, [NSNumber numberWithLong:[aNetService port]]);
+        DDLogDebug(@"%@", [[NSString alloc] initWithData:aNetService.TXTRecordData encoding:NSUTF8StringEncoding]);
+    }
 }
 
 -(void)netServiceDidResolveAddress:(NSNetService *)sender
@@ -542,6 +548,9 @@
          
          if(status)
          {
+             NSString *oldHost              = [MDDSSManager defaultManager].host;
+             BOOL oldUseIP                  = [MDDSSManager defaultManager].useIPAddress;
+             BOOL oldUseRemoteConnectivity  = [MDDSSManager defaultManager].useRemoteConnectivity;
              
              [[MDDSSManager defaultManager] setAndPersistHost:self.currentIPAddressOrHostname];
              [MDDSSManager defaultManager].useIPAddress = NO;
@@ -556,6 +565,12 @@
                               [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
                               
                               [self searchEnd];
+                          }
+                          else
+                          {
+                              [[MDDSSManager defaultManager] setAndPersistHost:oldHost];
+                              [MDDSSManager defaultManager].useIPAddress = oldUseIP;
+                              [MDDSSManager defaultManager].useRemoteConnectivity = oldUseRemoteConnectivity;
                           }
                       }];
                       
@@ -575,6 +590,12 @@
                          [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
                          
                          [self searchEnd];
+                     }
+                     else
+                     {
+                         [[MDDSSManager defaultManager] setAndPersistHost:oldHost];
+                         [MDDSSManager defaultManager].useIPAddress = oldUseIP;
+                         [MDDSSManager defaultManager].useRemoteConnectivity = oldUseRemoteConnectivity;
                      }
                  }];
              }

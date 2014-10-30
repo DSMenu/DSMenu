@@ -70,6 +70,10 @@
 
 - (void)loadStructure
 {
+    if(![MDDSSManager defaultManager].canConnect)
+    {
+        return;
+    }
     [[MDDSSManager defaultManager] getStructureWithCustomSceneNames:^(NSDictionary *json, NSError *error){
         self.structure = json;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDS_STRUCTURE_DID_CHANGE object:self.structure];
@@ -78,6 +82,10 @@
 
 - (void)startPollingConsumptionData
 {
+    if(![MDDSSManager defaultManager].canConnect)
+    {
+        return;
+    }
     [self loadStructure];
     [MDDSSConsumptionManager defaultManager].callbackLatest = ^(NSArray *json, NSError *error){
         

@@ -37,8 +37,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTable:) name:kDS_STRUCTURE_DID_CHANGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoading) name:kDS_START_LOADING_STRUCTURE object:nil];
     
-    [self showLoading];
-    
     [self recheckConnection];
     [self updateTable:nil];
 }
@@ -99,21 +97,11 @@
     if(_isLoading)
     {
         [self.refreshControl beginRefreshing];
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     }
     else
     {
        [self.refreshControl endRefreshing];
     }
-//    UIActivityIndicatorView *wheel = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
-//    if(isLoading)
-//    {
-//        [wheel startAnimating];
-//    }
-//    else
-//    {
-//        [wheel stopAnimating];
-//    }
 }
 
 - (BOOL)isLoading

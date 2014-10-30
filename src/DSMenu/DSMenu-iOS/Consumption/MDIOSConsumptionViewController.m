@@ -61,7 +61,6 @@
 {
     [super viewWillAppear:animated];
     [self recheckConnection];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_START_POLLING_CONSUMPTION_DATA object:nil];
 }
 

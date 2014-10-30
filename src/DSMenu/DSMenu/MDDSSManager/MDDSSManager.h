@@ -36,6 +36,7 @@
 @property NSString *remoteConnectivityUsername;
 
 @property BOOL connectionProblems;
+@property (readonly) BOOL canConnect;
 
 @property BOOL useLastCalledSceneCheck;
 @property BOOL suppressAuthError;
