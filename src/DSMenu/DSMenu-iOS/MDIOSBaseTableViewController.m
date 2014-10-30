@@ -31,6 +31,7 @@
 
 - (void)showNoEntriesViewWithText:(NSString *)text
 {
+    [self hideNoEntriesView];
     self.noEntriesView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.bounds.size.height)];
     self.noEntriesView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.noEntriesView];
