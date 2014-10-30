@@ -25,7 +25,7 @@
     self.deviceValueSlider.value = 0.0;
     
     self.currentValue.text = @"";
-    self.currentScene.text = @"";
+    self.currentScene.text = NSLocalizedString(@"loadingScene", @"");
     
     self.title = [self.device objectForKey:@"name"];
     
