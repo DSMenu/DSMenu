@@ -227,6 +227,9 @@ static MDDSSManager *defaultManager;
         if([[json objectForKey:@"ok"] intValue] == 0)
         {
             
+#ifdef DDDEBUG
+            DDLogDebug(@"json error: %@", json);
+#endif
             
             if([[json objectForKey:@"message"] isEqualToString:@"Application-Authentication failed"])
             {
