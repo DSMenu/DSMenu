@@ -46,7 +46,6 @@
     self.consumptionLabel.frame = CGRectMake(10,round((self.bounds.size.height-20)/2.0), 70, labelHeight);
     
     CGRect aSize = [self.consumptionLabel textRectForBounds:CGRectMake(0,0,1000,40) limitedToNumberOfLines:1];
-    NSLog(@"%f", aSize.size.width);
     self.consumptionLabel.frame = CGRectMake(20,round((self.bounds.size.height-20)/2.0), aSize.size.width+5, labelHeight);
     
     self.backgroundSquare.frame = CGRectMake(15,round((self.bounds.size.height-25)/2.0), aSize.size.width+10, labelHeight+5);

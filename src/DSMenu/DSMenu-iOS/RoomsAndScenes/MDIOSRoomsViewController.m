@@ -49,6 +49,18 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDS_SHOULD_TRY_TO_RELOAD_STRUCTURE object:nil];
     }
+    
+    if(self.isLoading)
+    {
+        UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+        [activityIndicator startAnimating];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)refresh
@@ -101,6 +113,8 @@
     else
     {
        [self.refreshControl endRefreshing];
+        UIActivityIndicatorView *activityIndicator = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
+        [activityIndicator stopAnimating];
     }
 }
 
