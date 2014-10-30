@@ -86,7 +86,6 @@
     {
         return;
     }
-    [self loadStructure];
     [MDDSSConsumptionManager defaultManager].callbackLatest = ^(NSArray *json, NSError *error){
         
         NSMutableAttributedString* str =[[NSMutableAttributedString alloc] initWithString:@""];
