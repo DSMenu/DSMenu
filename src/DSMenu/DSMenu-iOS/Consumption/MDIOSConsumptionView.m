@@ -92,6 +92,10 @@
     double wValue = 0;
     double timeVal = 0;
     CGFloat y = self.frame.size.height-[[MDDSSConsumptionManager defaultManager] heightForXValue:mouseLoc.x size:self.frame.size wValue:&wValue time:&timeVal];
+    if(timeVal == 0)
+    {
+        return;
+    }
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:timeVal];
     NSString *startTimeString = [self.formatter stringFromDate:date];
@@ -105,6 +109,9 @@
     {
         xDeltaLabel = -30;
     }
+    
+    NSLog(@"%f", mouseLoc.x);
+    
     
     self.circleImage.frame = CGRectMake(mouseLoc.x-(self.circleImage.frame.size.width/2.0), y-(self.circleImage.frame.size.height/2.0), self.circleImage.frame.size.width, self.circleImage.frame.size.height);
     self.lineView.frame = CGRectMake(mouseLoc.x, self.lineView.frame.origin.y, self.lineView.frame.size.width, self.lineView.frame.size.height);
