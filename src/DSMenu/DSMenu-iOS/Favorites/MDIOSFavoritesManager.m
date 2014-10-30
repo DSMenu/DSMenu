@@ -141,6 +141,17 @@ static MDIOSFavoritesManager *defaultManager;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.favorites];
     [data writeToURL:containerURLFile atomically:YES];
     
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    NSDictionary *attribs = @{NSFileProtectionKey : NSFileProtectionNone};
+    NSError *unprotectError = nil;
+    
+    BOOL unprotectSuccess = [fm setAttributes:attribs
+                                 ofItemAtPath:[containerURL path]
+                                        error:&unprotectError];
+    if (!unprotectSuccess) {
+        NSLog(@"Unable to remove protection from file! %@", unprotectError);
+    }
+    
     [self.userDefaultsProxy setObject:[NSKeyedArchiver archivedDataWithRootObject:self.favorites] forKey:kMDIOS_UD_FAVORITES_KEY];
     [self.userDefaultsProxy synchronize];
 }
