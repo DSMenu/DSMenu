@@ -231,6 +231,7 @@ static MDDSSManager *defaultManager;
             DDLogDebug(@"json error: %@", json);
 #endif
             
+            
             if([[json objectForKey:@"message"] isEqualToString:@"Application-Authentication failed"])
             {
                 //ERROR TODO
@@ -242,6 +243,25 @@ static MDDSSManager *defaultManager;
                 handler(nil, error);
                 return;
             }
+            else if([[json objectForKey:@"message"] isEqualToString:@"not logged in"])
+            {
+                //error, try to login
+                [self loginApplication:self.applicationToken callBlock:^(NSDictionary *json, NSError *error){
+
+                    if(error)
+                    {
+                        self.connectionProblems = YES;
+                        handler(nil, error);
+
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kDS_DSS_AUTH_ERROR object:error];
+                        return;
+                    }
+                    
+                    [self jsonCall:path params:params completionHandler:handler];
+                }];
+            }
+
+            
             else
             {
                 NSDictionary *userInfo = nil;

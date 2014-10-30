@@ -14,6 +14,7 @@
 @property NSArray *devices;
 @property NSMutableArray *resultData;
 @property BOOL isLoading;
+@property (nonatomic, strong) UISearchController *searchController;
 @end
 
 @implementation MDIOSDevelopersDeviceListViewController
@@ -23,15 +24,22 @@
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-
     
-    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    UITableViewController *searchResultsController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    searchResultsController.tableView.dataSource = self;
+    searchResultsController.tableView.delegate = self;
     
-    searchDisplayController.delegate = self;
-    searchDisplayController.searchResultsDataSource = self;
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
     
-    self.tableView.tableHeaderView = searchBar;
+    
+    self.searchController.searchResultsUpdater = self;
+    
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
+    
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    self.definesPresentationContext = YES;
+    
     
     self.isLoading = YES;
     [[MDDSSManager defaultManager] getAllDevices:^(NSDictionary *json, NSError *error) {
@@ -42,18 +50,27 @@
     }];
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+#pragma mark - UISearchResultsUpdating
+
+
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
+    
+    NSString *searchString = [searchController.searchBar text];
+    
     [self.resultData removeAllObjects];
-    for(NSDictionary *dict in self.resultData)
+    for(NSDictionary *dict in self.devices)
     {
-        if([[dict objectForKey:@"name"] containsString:searchString])
+        if([[dict objectForKey:@"name"] localizedCaseInsensitiveContainsString:searchString] || [[dict objectForKey:@"meterName"] localizedCaseInsensitiveContainsString:searchString] || [[dict objectForKey:@"hwInfo"] localizedCaseInsensitiveContainsString:searchString])
         {
             [self.resultData addObject:dict];
         }
     }
-    return YES;
+    
+    [((UITableViewController *)searchController.searchResultsController).tableView reloadData];
 }
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +105,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.resultData.count;
+    if (tableView == ((UITableViewController *)self.searchController.searchResultsController).tableView) {
+        return [self.resultData count];
+    } else {
+        return [self.devices count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +120,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"propertyCell"];
     }
     
-    NSDictionary *data = [self.resultData objectAtIndex:indexPath.row];
+    NSDictionary *data;
+    if (tableView == ((UITableViewController *)self.searchController.searchResultsController).tableView) {
+        data = [self.resultData objectAtIndex:indexPath.row];
+    } else {
+        data = [self.devices objectAtIndex:indexPath.row];
+    }
+    
     cell.textLabel.text = [data objectForKey:@"name"];
     cell.detailTextLabel.text = [data objectForKey:@"meterName"];
     return cell;
@@ -109,7 +136,15 @@
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MDIOSDevicesViewController *controller = [sb instantiateViewControllerWithIdentifier:@"Device"];
-    controller.device = [self.resultData objectAtIndex:indexPath.row];
+    
+    NSDictionary *data;
+    if (tableView == ((UITableViewController *)self.searchController.searchResultsController).tableView) {
+        data = [self.resultData objectAtIndex:indexPath.row];
+    } else {
+        data = [self.devices objectAtIndex:indexPath.row];
+    }
+    
+    controller.device = data;
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end

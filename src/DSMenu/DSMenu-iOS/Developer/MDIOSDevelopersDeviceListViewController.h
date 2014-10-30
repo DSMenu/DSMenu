@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDIOSDevelopersDeviceListViewController : UITableViewController
+@interface MDIOSDevelopersDeviceListViewController : UITableViewController <UISearchResultsUpdating>
 
 @end
