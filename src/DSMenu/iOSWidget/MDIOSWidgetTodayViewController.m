@@ -112,28 +112,36 @@
 
         if(favorite.favoriteType == MDIOSFavoriteTypeZone)
         {
-            favorite.group = @"1";
-
-            MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
-            [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
-            wview.tag = 1;
-            [self.view addSubview:wview];
-            currentPosition.x += widgetViewSize.width+widgetSpace.width;
-
-            if(currentPosition.x+widgetViewSize.width+widgetSpace.width > self.view.frame.size.width)
+            NSMutableArray *possibleGroups = [NSMutableArray array];
+            NSDictionary *json = [MDDSSManager defaultManager].lastLoadesStructure;
+            if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"apartment"])
             {
-                currentPosition.x = 0;
-                currentPosition.y += widgetViewSize.height+widgetSpace.height;
+                NSArray *zones = [[[json objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"];
+                for(NSDictionary *aZoneDict in zones)
+                {
+                    if([[(NSNumber *) [aZoneDict objectForKey:@"id"] stringValue] isEqualToString:favorite.zone])
+                    {
+                        possibleGroups = [MDDSHelper availableGroupsForZone:aZoneDict];
+                        break;
+                    }
+                }
             }
-
-            favorite.group = @"2";
-
-            wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
-            [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
-            wview.tag = 2;
-            [self.view addSubview:wview];
-            currentPosition.x += widgetViewSize.width+widgetSpace.width;
-
+            
+            for(NSString *group in possibleGroups){
+                favorite.group = group;
+                
+                MDIOSWidgetView *wview = [[MDIOSWidgetView alloc] initWithFrame:CGRectMake(currentPosition.x,currentPosition.y,widgetViewSize.width,widgetViewSize.height) andFavorite:favorite];
+                [wview addTarget:self action:@selector(widgetActionTapped:) forControlEvents:UIControlEventTouchUpInside];
+                wview.tag = 1;
+                [self.view addSubview:wview];
+                currentPosition.x += widgetViewSize.width+widgetSpace.width;
+                
+                if(currentPosition.x+widgetViewSize.width+widgetSpace.width > self.view.frame.size.width)
+                {
+                    currentPosition.x = 0;
+                    currentPosition.y += widgetViewSize.height+widgetSpace.height;
+                }
+            }
         }
         else
         {
@@ -156,6 +164,11 @@
     
     NSString *num = [NSString stringWithFormat:@"rnd: %f", self.view.frame.size.width];
     self.noFavoritesLabel.text = nil;
+    
+    if(currentPosition.x == 0)
+    {
+        currentPosition.y -= widgetViewSize.height+widgetSpace.height;
+    }
     
     self.preferredContentSize = CGSizeMake(0, currentPosition.y+widgetViewSize.height+widgetSpace.height);
 }
@@ -213,7 +226,6 @@
                                         initWithSuiteName:@"group.com.include7.DSMenu"];
     
     
-    NSLog(@"NSUserDefaults dump: %@", [mySharedDefaults dictionaryRepresentation]);
     
     [MDDSSManager defaultManager].currentUserDefaults = mySharedDefaults;
     [[MDDSSManager defaultManager] loadDefaults];
