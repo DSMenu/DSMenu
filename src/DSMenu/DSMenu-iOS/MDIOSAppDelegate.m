@@ -160,7 +160,7 @@
     [self loadStructure];
     
     NSString *name = [[[UIDevice currentDevice] name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlString = [NSString stringWithFormat:@"https://dsmenu.include7.ch/quincy/ping.php?ping=1&n=%@&v=3&t=o", name ];
+    NSString *urlString = [NSString stringWithFormat:@"https://dsmenu.include7.ch/quincy/ping.php?ping=1&n=%@&v=4&t=o", name ];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];

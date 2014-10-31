@@ -403,7 +403,7 @@ static MDDSSManager *defaultManager;
                 [self persist];
             }
             
-            [self getCustomSceneNames:^(NSDictionary *json, NSError *error){
+            [self getCustomSceneNames:^(NSDictionary *jsonSceneNames, NSError *error){
                 callback(json,error);
             }];
         }];

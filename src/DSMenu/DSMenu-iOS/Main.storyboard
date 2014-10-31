@@ -527,7 +527,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="DSMenu Alpha V0.35" id="iev-oY-8fp">
+                            <tableViewSection footerTitle="DSMenu Alpha V0.36" id="iev-oY-8fp">
                                 <cells/>
                             </tableViewSection>
                         </sections>
@@ -920,7 +920,7 @@
         <image name="ReviewSheetStarEmpty.png" width="20" height="20"/>
         <image name="ReviewSheetStarFull.png" width="20" height="20"/>
         <image name="chartTabbar.png" width="27" height="26"/>
-        <image name="globalaction.png" width="25" height="24"/>
+        <image name="globalaction.png" width="25" height="25"/>
         <image name="listTabbar.png" width="23" height="23"/>
         <image name="settingsTab.png" width="27" height="26"/>
     </resources>
