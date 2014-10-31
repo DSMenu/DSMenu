@@ -138,7 +138,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="Uxw-2u-dzL">
-                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="CTI-Uc-e4r">
+                        <barButtonItem key="leftBarButtonItem" image="globalaction.png" id="CTI-Uc-e4r">
                             <connections>
                                 <action selector="showGeneralActions:" destination="GIV-Gg-1Bs" id="G9U-fU-BRZ"/>
                             </connections>
@@ -920,6 +920,7 @@
         <image name="ReviewSheetStarEmpty.png" width="20" height="20"/>
         <image name="ReviewSheetStarFull.png" width="20" height="20"/>
         <image name="chartTabbar.png" width="27" height="26"/>
+        <image name="globalaction.png" width="25" height="24"/>
         <image name="listTabbar.png" width="23" height="23"/>
         <image name="settingsTab.png" width="27" height="26"/>
     </resources>

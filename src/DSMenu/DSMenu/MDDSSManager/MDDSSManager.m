@@ -403,14 +403,23 @@ static MDDSSManager *defaultManager;
                 [self persist];
             }
             
+            [self getCustomSceneNames:^(NSDictionary *json, NSError *error){
+                callback(json,error);
+            }];
+        }];
+    }];
+}
+
+- (void)getCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback
+{
+    [self precheckWithContinueBlock:^(NSError *error){
             NSDictionary *params = @{ @"token": self.currentSessionToken, @"query": @"/apartment/zones/*(ZoneID,scenes)/groups/*(group)/scenes/*(scene,name)"};
             [self jsonCall:@"/json/property/query" params:params completionHandler:^(NSDictionary *jsonSceneNames, NSError *error){
                 self.customSceneNameJSONCache = jsonSceneNames;
                 [[self userDefaultsProxy] setObject:self.customSceneNameJSONCache forKey:kMDDSSMANAGER_LAST_LOADED_CUSTROM_SCENE_NAMES_STRUCTURE];
                 [self persist];
-                callback(json, error);
+                callback(jsonSceneNames, error);
             }];
-        }];
     }];
 }
 
@@ -702,6 +711,48 @@ static MDDSSManager *defaultManager;
     }
     
     return nil;
+}
+
+- (void)saveSceneName:(NSString *)newName zone:(NSString *)aZone scene:(NSString *)scene group:(NSString *)group callback:(void (^)(NSDictionary*json, NSError*error))handler
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"id": aZone, @"newName":newName, @"sceneNumber":scene, @"groupID":group };
+        [self jsonCall:@"/json/zone/sceneSetName" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+- (void)saveDeviceName:(NSString *)newName dsid:(NSString *)dsid callback:(void (^)(NSDictionary*json, NSError*error))handler
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"dsid": dsid, @"id": dsid, @"newName":newName};
+        [self jsonCall:@"/json/device/setName" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+#pragma mark - Events / UserDefinedActions
+- (void)allUserdefinedActions:(void (^)(NSDictionary*json, NSError*error))handler
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"query": @"/usr/events/*(*)/*(*)/*(*)"};
+        [self jsonCall:@"/json/property/query" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
+- (void)raiseEvent:(NSString *)eventName callback:(void (^)(NSDictionary*, NSError*))callback
+{
+    NSString *eventString = [NSString stringWithFormat:@"id=%@", eventName];
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"name":@"highlevelevent", @"parameter":eventString  };
+        [self jsonCall:@"/json/event/raise" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            callback(json, error);
+        }];
+    }];
 }
 
 #pragma mark - metering

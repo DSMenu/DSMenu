@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MDIOSPopoverViewController : UITableViewController
-
+@property BOOL userDefinedActions;
 @end

@@ -237,3 +237,5 @@ changeValueSection = "Change Value";
 switchSection = "Switch";
 setSceneSection = "Save Value in Preset";
 loadingScene = "laden...";
+globalActionsTitle = "Actions";
+userDefinedActionsTitle = "Userdefined Actions";

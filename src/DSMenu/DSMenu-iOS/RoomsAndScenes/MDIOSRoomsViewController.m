@@ -23,6 +23,7 @@
 #import "MDDSHelper.h"
 #import "MDIOSFavoritesManager.h"
 #import "MDIOSPopoverViewController.h"
+#import "MDIOSPopoverNavigationController.h"
 
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
@@ -73,20 +74,6 @@
 - (BOOL)isLoading
 {
     return _isLoading;
-}
-
-- (IBAction)showGeneralActions:(id)sender
-{
-    MDIOSScenesTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Popover"];
-    controller.modalPresentationStyle  = UIModalPresentationPopover;
-    controller.popoverPresentationController.delegate = self;
-    
-    UIPopoverController *pC = [[UIPopoverController alloc] initWithContentViewController:controller];
-    [pC presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
-- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
-    return UIModalPresentationNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -295,5 +282,26 @@
     }
     controller.zoneDict = [self.zones objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - popover stack
+
+- (IBAction)showGeneralActions:(id)sender
+{
+    MDIOSPopoverViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Popover"];
+    controller.modalPresentationStyle  = UIModalPresentationPopover;
+    controller.popoverPresentationController.delegate = self;
+    
+    MDIOSPopoverNavigationController *navCtrl = [[MDIOSPopoverNavigationController alloc] initWithRootViewController:controller];
+    
+    navCtrl.modalPresentationStyle  = UIModalPresentationPopover;
+    navCtrl.popoverPresentationController.delegate = self;
+    
+    UIPopoverController *pC = [[UIPopoverController alloc] initWithContentViewController:navCtrl];
+    [pC presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    return UIModalPresentationNone;
 }
 @end

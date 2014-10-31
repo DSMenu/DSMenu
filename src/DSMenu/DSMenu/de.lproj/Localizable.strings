@@ -237,3 +237,5 @@ changeValueSection = "Wert Ändern";
 switchSection = "Schalten";
 setSceneSection = "Wert in Szene speichern";
 loadingScene = "laden...";
+globalActionsTitle = "Aktionen";
+userDefinedActionsTitle = "Benutzerdefinierte Aktionen";

@@ -10,7 +10,8 @@
 #import "MDDSSManager.h"
 
 @interface MDIOSPopoverViewController ()
-@property (strong) NSArray *actions;
+@property (strong) NSMutableArray *actions;
+@property UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation MDIOSPopoverViewController
@@ -18,15 +19,55 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.actions = @[ @{@"scene": @"72", @"title": NSLocalizedString(@"Absent", @"")},
-                      @{@"scene": @"73", @"title": NSLocalizedString(@"DoorBell", @"")},
-                      @{@"scene": @"71", @"title": NSLocalizedString(@"Present", @"")},
-                      @{@"scene": @"69", @"title": NSLocalizedString(@"Sleeping", @"")},
-                      @{@"scene": @"70", @"title": NSLocalizedString(@"Wakeup", @"")},
-                      @{@"scene": @"65", @"title": NSLocalizedString(@"Panic", @"")},
-                      ];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityIndicator.hidesWhenStopped = YES;
+    [self.activityIndicator stopAnimating];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+    
+    
+    if(!self.userDefinedActions)
+    {
+        self.actions = (NSMutableArray *)@[
+                          @{@"scene": @"uda", @"title": NSLocalizedString(@"userDefinedActionsTitle", @"")},
+                          @{@"scene": @"72", @"title": NSLocalizedString(@"Absent", @"")},
+                          @{@"scene": @"73", @"title": NSLocalizedString(@"DoorBell", @"")},
+                          @{@"scene": @"71", @"title": NSLocalizedString(@"Present", @"")},
+                          @{@"scene": @"69", @"title": NSLocalizedString(@"Sleeping", @"")},
+                          @{@"scene": @"70", @"title": NSLocalizedString(@"Wakeup", @"")},
+                          @{@"scene": @"65", @"title": NSLocalizedString(@"Panic", @"")},
+                          ];
+        
+        self.title = NSLocalizedString(@"globalActionsTitle", @"");
+    }
+    else
+    {
+        self.title = NSLocalizedString(@"userDefinedActionsTitle", @"");
+        [self showLoading:YES];
+        [[MDDSSManager defaultManager] allUserdefinedActions:^(NSDictionary *json, NSError *error) {
+            if(json && [json objectForKey:@"result"] && [[json objectForKey:@"result"] objectForKey:@"events"])
+            {
+                self.actions = [NSMutableArray array];
+                
+                for(NSDictionary *dict in [[json objectForKey:@"result"] objectForKey:@"events"])
+                {
+                    [self.actions addObject:@{@"scene": @"event", @"title": [dict objectForKey:@"name"], @"id": [dict objectForKey:@"id"]}];
+                }
+                
+                [self showLoading:NO];
+                [self.tableView reloadData];
+            }
+        }];
+    }
     
     self.preferredContentSize = CGSizeMake(250, 180);
+    //self.view.backgroundColor = [UIColor clearColor];
+    //self.tableView.backgroundColor = [UIColor clearColor];
+}
+
+- (void)showLoading:(BOOL)state
+{
+    state ? [self.activityIndicator startAnimating] : [self.activityIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,9 +91,16 @@
     UILabel *mainLabel          = (UILabel *)[cell viewWithTag:1];
     UIButton *favoriteButton    = (UIButton *)[cell viewWithTag:2];
     favoriteButton.hidden = YES;
+
     
     NSDictionary *data = [self.actions objectAtIndex:indexPath.row];
     mainLabel.text = [data objectForKey:@"title"];
+    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    if([[data objectForKey:@"scene"] isEqualToString:@"uda"])
+    {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 
@@ -61,9 +109,25 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary *data = [self.actions objectAtIndex:indexPath.row];
-    [[MDDSSManager defaultManager] callScene:[data objectForKey:@"scene"] callback:^(NSDictionary *json, NSError *error) {
-        
-    }];
+    if([[data objectForKey:@"scene"] isEqualToString:@"uda"])
+    {
+        MDIOSPopoverViewController *nextController = [self.storyboard instantiateViewControllerWithIdentifier:@"Popover"];
+        nextController.userDefinedActions = YES;
+        [self.navigationController pushViewController:nextController animated:YES];
+        return;
+    }
+    else if([[data objectForKey:@"scene"] isEqualToString:@"event"])
+    {
+        [[MDDSSManager defaultManager] raiseEvent:[data objectForKey:@"id"] callback:^(NSDictionary *json, NSError *error) {
+   
+        }];
+    }
+    else
+    {
+        [[MDDSSManager defaultManager] callScene:[data objectForKey:@"scene"] callback:^(NSDictionary *json, NSError *error) {
+            
+        }];
+    }
 }
 
 @end

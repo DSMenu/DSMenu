@@ -17,7 +17,7 @@
  *  MDIOSConsumptionTableViewCell
  *  scenes table view controller
  */
-@interface MDIOSScenesTableViewController : UITableViewController
+@interface MDIOSScenesTableViewController : UITableViewController <UIGestureRecognizerDelegate, UIAlertViewDelegate>
 @property (strong) NSDictionary *zoneDict;
 @property (strong) id <MDIOSRoomsViewControllerDelegate> delegate;
 @property (assign) BOOL selectWidgetMode;

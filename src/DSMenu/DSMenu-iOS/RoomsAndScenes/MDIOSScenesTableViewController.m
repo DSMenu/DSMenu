@@ -15,6 +15,7 @@
 
 @interface MDIOSScenesTableViewController ()
 @property NSMutableArray *sections;
+@property NSDictionary *cellDictInEdit;
 @end
 
 @implementation MDIOSScenesTableViewController
@@ -22,22 +23,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.sections = [NSMutableArray array];
     
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.5; //seconds
+    lpgr.delegate = self;
+    [self.tableView addGestureRecognizer:lpgr];
+    
+    // set title
     self.title = [self.zoneDict objectForKey:@"name"];
-    
-   
-    
-    //item.clickType = MDZoneMenuItemClickTypeNotOfInterest;
-    
-    //[section setObject:[self.zoneDict objectForKey:@"name"] forKey:@"title"];
-    //[section setObject:[self.zoneDict objectForKey:@"id"] forKey:@"id"];
     if(self.title.length <= 0)
     {
         // define unnamed room
         self.title = [NSLocalizedString(@"unnamedRoom", @"Menu String for unnamed room") stringByAppendingFormat:@" %@", [self.zoneDict objectForKey:@"id"]];
     }
-  
+
+    [self buildCells];
+    
+    if([[MDIOSFavoritesManager defaultManager] favoriteForZone:[(NSNumber *)[self.zoneDict objectForKey:@"id"] stringValue] group:nil scene:nil])
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarFull.png"] style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"] style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
+    }
+}
+
+- (void)buildCells
+{
+    self.sections = [NSMutableArray array];
     NSArray *buildGroups = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],[NSNumber numberWithInt:4],[NSNumber numberWithInt:5], nil];
     for(NSNumber *group in buildGroups)
     {
@@ -51,7 +66,7 @@
             [section setObject:NSLocalizedString( ([NSString stringWithFormat:@"group%d",[group intValue]]) , @"") forKey:@"title"];
             
             
-        
+            
             
             // check is there are possible areas
             NSMutableArray *areas       = [[NSMutableArray alloc] init];
@@ -124,9 +139,14 @@
                     // double secure nil into dictionaries
                     sceneTitle = @"unknown";
                 }
-                NSDictionary *cellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i], @"group": [NSNumber numberWithInt:groupInt], @"image" : img};
                 
-               
+                if(!customName)
+                {
+                    customName = @"";
+                }
+                NSDictionary *cellDict = @{ @"title": sceneTitle, @"tag" : [NSNumber numberWithInt:i], @"group": [NSNumber numberWithInt:groupInt], @"image" : img, @"customName": customName};
+                
+                
                 // Area Scenes
                 if( (i==6 || i==7 || i==8 || i==9 ) )
                 {
@@ -161,16 +181,16 @@
                 }
             }
             
-//            if(groupInt == 1)
-//            {
-//                // show dimming
-//                MDStepMenuItem *stepMenuItem = [[MDStepMenuItem alloc] init];
-//                stepMenuItem.stepTarget = aTarget;
-//                stepMenuItem.groupId = groupInt;
-//                stepMenuItem.zoneId = item.zoneId;
-//                [item.submenu addItem:stepMenuItem];
-//            }
-//            
+            //            if(groupInt == 1)
+            //            {
+            //                // show dimming
+            //                MDStepMenuItem *stepMenuItem = [[MDStepMenuItem alloc] init];
+            //                stepMenuItem.stepTarget = aTarget;
+            //                stepMenuItem.groupId = groupInt;
+            //                stepMenuItem.zoneId = item.zoneId;
+            //                [item.submenu addItem:stepMenuItem];
+            //            }
+            //
             // add area items at bottom
             for(NSDictionary *areaItem in areaItems)
             {
@@ -184,15 +204,15 @@
         
         
     }
-//    
-//    // Deep Off
-//    MDSceneMenuItem *deepOffScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(@"deeopOffSceneItem", @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
-//    deepOffScene.target = item;
-//    deepOffScene.tag = 68;
-//    deepOffScene.group = 1;
-//    deepOffScene.image = [NSImage imageNamed:@"group_2"];
-//    [item.submenu addItem:deepOffScene];
-//
+    //
+    //    // Deep Off
+    //    MDSceneMenuItem *deepOffScene = [[MDSceneMenuItem alloc] initWithTitle:NSLocalizedString(@"deeopOffSceneItem", @"Zone Submenu Scene X Item") action:@selector(sceneMenuItemClicked:) keyEquivalent:@""];
+    //    deepOffScene.target = item;
+    //    deepOffScene.tag = 68;
+    //    deepOffScene.group = 1;
+    //    deepOffScene.image = [NSImage imageNamed:@"group_2"];
+    //    [item.submenu addItem:deepOffScene];
+    //
     
     NSMutableDictionary *section = [NSMutableDictionary dictionary];
     [section setObject:[NSMutableArray array] forKey:@"cells"];
@@ -219,13 +239,13 @@
         }
     }
     
-
-        
+    
+    
     // sort the devices A-Z
     devices = [devices sortedArrayUsingComparator:^(id obj1, id obj2) {
         return [[obj1 objectForKey:@"name"] compare:[obj2 objectForKey:@"name"]];
     }];
-        
+    
     for(NSDictionary *device in devices)
     {
         if([[device objectForKey:@"outputMode"] intValue] == 0)
@@ -251,18 +271,8 @@
         
         [(NSMutableArray *)[section objectForKey:@"cells"] addObject:cellDict];
     }
-
+    
     [self.sections addObject:section];
-    
-    
-    if([[MDIOSFavoritesManager defaultManager] favoriteForZone:[(NSNumber *)[self.zoneDict objectForKey:@"id"] stringValue] group:nil scene:nil])
-    {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarFull.png"] style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
-    }
-    else
-    {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ReviewSheetStarEmptyNew.png"] style:UIBarButtonItemStylePlain target:self action:@selector(favorite)];
-    }
 }
 
 - (void)favorite
@@ -410,6 +420,121 @@
              cell.isLoading = NO;
          }];
     }
+}
+
+#pragma mark UIGesture stack
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        NSLog(@"long press on table view but not on a row");
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"long press on table view at row %ld", indexPath.row);
+        
+        // show alert with input
+        NSDictionary *cellDict = [[[self.sections objectAtIndex:indexPath.section] objectForKey:@"cells"] objectAtIndex:indexPath.row];
+        
+        NSString *text = [NSString stringWithFormat:(NSLocalizedString(@"changeSceneNameTextFormat", @"")), [cellDict objectForKey:@"title"]];
+        NSString *currentText = [cellDict objectForKey:@"customName"];
+        if([cellDict objectForKey:@"device"])
+        {
+            text = [NSString stringWithFormat:(NSLocalizedString(@"changeDeviceNameTextFormat", @"")), [cellDict objectForKey:@"title"]];
+            
+            currentText = [[cellDict objectForKey:@"device"] objectForKey:@"name"];
+        }
+        else
+        {
+            if([[cellDict objectForKey:@"tag"] intValue] >= 64)
+            {
+                return;
+            }
+        }
+        
+        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:NSLocalizedString(@"changeNameTitle", @"") message:text delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Ok", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField *sceneText = [alert textFieldAtIndex:0];
+        sceneText.text = currentText;
+        [alert show];
+        self.cellDictInEdit = cellDict;
+        
+    } else {
+        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {  //Login
+        UITextField *newSceneName = [alertView textFieldAtIndex:0];
+        
+        // only store name if name is different
+        if(![newSceneName.text isEqualToString:[self.cellDictInEdit objectForKey:@"customName"]])
+         {
+             
+             
+             UIBarButtonItem *oldRightItem = self.navigationItem.rightBarButtonItem;
+             UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+             [activityIndicator startAnimating];
+             
+             if([self.cellDictInEdit objectForKey:@"device"])
+             {
+                 // device type
+                 if([[self.cellDictInEdit objectForKey:@"device"] objectForKey:@"id"])
+                 {
+                     [[MDDSSManager defaultManager] saveDeviceName:newSceneName.text dsid:[[self.cellDictInEdit objectForKey:@"device"] objectForKey:@"id"] callback:^(NSDictionary *json, NSError *error) {
+                         
+                         
+                         //could be faster if we would load only the zone (property/get) and not the whole structure
+                         [[MDDSSManager defaultManager] getStructure:^(NSDictionary *jsonSceneNames, NSError *error) {
+                             @try {
+                                 for(NSDictionary *aZoneDict in [[[[MDDSSManager defaultManager].lastLoadesStructure objectForKey:@"result"] objectForKey:@"apartment"] objectForKey:@"zones"])
+                                 {
+                                     if([[aZoneDict objectForKey:@"id"] isEqual:[self.zoneDict objectForKey:@"id"]])
+                                     {
+                                         self.zoneDict = aZoneDict;
+                                         break;
+                                     }
+                                 }
+                                 [self buildCells];
+                             }
+                             @catch (NSException *exception) {
+                                 
+                             }
+                             @finally {
+                                 
+                             }
+                             [activityIndicator stopAnimating];
+                             self.navigationItem.rightBarButtonItem = oldRightItem;
+                             [self.tableView reloadData];
+                         }];
+                     }];
+                 }
+                 else
+                 {
+                     [activityIndicator stopAnimating];
+                 }
+             }
+             else
+             {
+                 // scene type
+                 [[MDDSSManager defaultManager] saveSceneName:newSceneName.text zone:[self.zoneDict objectForKey:@"id"] scene:[self.cellDictInEdit objectForKey:@"tag"] group:[self.cellDictInEdit objectForKey:@"group"] callback:^(NSDictionary *json, NSError *error) {
+                     
+                     [[MDDSSManager defaultManager] getCustomSceneNames:^(NSDictionary *jsonSceneNames, NSError *error) {
+                         [self buildCells];
+                         [activityIndicator stopAnimating];
+                         self.navigationItem.rightBarButtonItem = oldRightItem;
+                         [self.tableView reloadData];
+                     }];
+                 }];
+            }
+         }
+    }
+    
+    self.cellDictInEdit = nil;
 }
 
 @end

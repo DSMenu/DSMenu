@@ -78,6 +78,12 @@
 - (void)getStructureWithCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback;
 
 /**
+ * get all user defined scene names
+ * (used for only reloading the scene names
+ */
+- (void)getCustomSceneNames:(void (^)(NSDictionary*, NSError*))callback;
+
+/**
  * request a application token
  */
 - (void)requestApplicationToken:(void (^)(NSDictionary*, NSError*))callback;
@@ -127,6 +133,12 @@
 - (void)getValueOfDSID:(NSString *)dsid callback:(void (^)(int, NSError*))callback;
 - (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value callback:(void (^)(NSDictionary *, NSError*))callback;
 - (void)saveSceneForDevice:(NSString *)dsid scene:(NSString *)scene callback:(void (^)(NSDictionary *, NSError*))callback;
+- (void)saveSceneName:(NSString *)newName zone:(NSString *)aZone scene:(NSString *)scene group:(NSString *)group callback:(void (^)(NSDictionary*json, NSError*error))handler;
+- (void)saveDeviceName:(NSString *)newName dsid:(NSString *)dsid callback:(void (^)(NSDictionary*json, NSError*error))handler;
+
+#pragma mark - Events / UserDefinedActions
+- (void)allUserdefinedActions:(void (^)(NSDictionary*json, NSError*error))handler;
+- (void)raiseEvent:(NSString *)eventName callback:(void (^)(NSDictionary*, NSError*))callback;
 
 #pragma mark - RemoteConnectivityStack
 - (void)checkRemoteConnectivityFor:(NSString *)username password:(NSString *)password callback:(void (^)(NSDictionary*, NSError*))callback;

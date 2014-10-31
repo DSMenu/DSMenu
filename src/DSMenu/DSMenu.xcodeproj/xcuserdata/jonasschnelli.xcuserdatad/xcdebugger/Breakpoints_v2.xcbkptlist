@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DSMenu-iOS/RoomsAndScenes/MDIOSRoomsViewController.m"
-            timestampString = "436377562.492197"
+            timestampString = "436437111.860376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -105,12 +105,12 @@
                   symbolName = "-[MDIOSDevicesViewController changeValue:]"
                   moduleName = "DSMenu-iOS"
                   urlString = "file:///Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenu-iOS/RoomsAndScenes/MDIOSDevicesViewController.m"
-                  timestampString = "436381811.624909"
+                  timestampString = "436455708.780497"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "120"
                   endingLineNumber = "120"
-                  offsetFromSymbolStart = "1714">
+                  offsetFromSymbolStart = "1656">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -119,14 +119,46 @@
                   symbolName = "__42-[MDIOSDevicesViewController changeValue:]_block_invoke118"
                   moduleName = "DSMenu-iOS"
                   urlString = "file:///Users/jonasschnelli/Documents/dev_mac/DSMenu/src/DSMenu/DSMenu-iOS/RoomsAndScenes/MDIOSDevicesViewController.m"
-                  timestampString = "436381811.625028"
+                  timestampString = "436455708.780596"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "120"
                   endingLineNumber = "120"
-                  offsetFromSymbolStart = "86">
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSMenu-iOS/Developer/MDIOSDevelopersDeviceListViewController.m"
+            timestampString = "436432580.430364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSMenu/MDDSSManager/MDDSSManager.m"
+            timestampString = "436454648.074946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-jsonCall:params:completionHandler:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

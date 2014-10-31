@@ -41,7 +41,12 @@
     
     for(NSString *key in params.allKeys)
     {
-        [pathString appendFormat:@"%@=%@&", key, [params objectForKey:key]];
+        NSString *value = [params objectForKey:key];
+        if([value isKindOfClass:[NSString class]])
+        {
+            value = [[params objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        [pathString appendFormat:@"%@=%@&", key, value];
     }
     
     NSString *baseURL = [NSString stringWithFormat:@"https://%@/", hostAndPort];

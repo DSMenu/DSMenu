@@ -44,6 +44,8 @@
 		E5365CDD1A02916300E909FC /* property@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5365CDC1A02916300E909FC /* property@2x.png */; };
 		E5365CE01A0295E300E909FC /* MDIOSExpertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5365CDF1A0295E300E909FC /* MDIOSExpertsViewController.m */; };
 		E5365CE31A02989000E909FC /* MDIOSDevelopersDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5365CE21A02989000E909FC /* MDIOSDevelopersDeviceListViewController.m */; };
+		E5365CE51A036EA500E909FC /* globalaction@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5365CE41A036EA500E909FC /* globalaction@2x.png */; };
+		E5365CE81A03803900E909FC /* MDIOSPopoverNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5365CE71A03803900E909FC /* MDIOSPopoverNavigationController.m */; };
 		E53C981C19F4EB8F00362ECB /* MDIOSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53C981B19F4EB8F00362ECB /* MDIOSTabBarController.m */; };
 		E54BC20419F43FB70022A818 /* PUFavoriteOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */; };
 		E54BC20519F43FB70022A818 /* PUFavoriteOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54BC20319F43FB70022A818 /* PUFavoriteOn@2x.png */; };
@@ -425,6 +427,9 @@
 		E5365CDF1A0295E300E909FC /* MDIOSExpertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSExpertsViewController.m; sourceTree = "<group>"; };
 		E5365CE11A02989000E909FC /* MDIOSDevelopersDeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSDevelopersDeviceListViewController.h; sourceTree = "<group>"; };
 		E5365CE21A02989000E909FC /* MDIOSDevelopersDeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSDevelopersDeviceListViewController.m; sourceTree = "<group>"; };
+		E5365CE41A036EA500E909FC /* globalaction@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "globalaction@2x.png"; sourceTree = "<group>"; };
+		E5365CE61A03803900E909FC /* MDIOSPopoverNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSPopoverNavigationController.h; sourceTree = "<group>"; };
+		E5365CE71A03803900E909FC /* MDIOSPopoverNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSPopoverNavigationController.m; sourceTree = "<group>"; };
 		E53C981A19F4EB8F00362ECB /* MDIOSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDIOSTabBarController.h; sourceTree = "<group>"; };
 		E53C981B19F4EB8F00362ECB /* MDIOSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDIOSTabBarController.m; sourceTree = "<group>"; };
 		E54BC20219F43FB70022A818 /* PUFavoriteOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PUFavoriteOff@2x.png"; sourceTree = "<group>"; };
@@ -1088,6 +1093,7 @@
 				E5B544FF19F1083E00B7B7A9 /* settingsTabSelected@2x.png */,
 				E5365CDA1A02910C00E909FC /* folder@2x.png */,
 				E5365CDC1A02916300E909FC /* property@2x.png */,
+				E5365CE41A036EA500E909FC /* globalaction@2x.png */,
 			);
 			path = GFX;
 			sourceTree = "<group>";
@@ -1165,6 +1171,8 @@
 				E584E54C1A00EEEC0065E91B /* MDIOSDevicesViewController.m */,
 				E5365CD31A027FE900E909FC /* MDIOSPopoverViewController.h */,
 				E5365CD41A027FE900E909FC /* MDIOSPopoverViewController.m */,
+				E5365CE61A03803900E909FC /* MDIOSPopoverNavigationController.h */,
+				E5365CE71A03803900E909FC /* MDIOSPopoverNavigationController.m */,
 			);
 			path = RoomsAndScenes;
 			sourceTree = "<group>";
@@ -1635,6 +1643,7 @@
 				E5B5453F19F1166100B7B7A9 /* group_5.png in Resources */,
 				E5D3A88819F135870025A6C3 /* video@2x.png in Resources */,
 				E5B5452819F10EA300B7B7A9 /* Localizable.strings in Resources */,
+				E5365CE51A036EA500E909FC /* globalaction@2x.png in Resources */,
 				E5365CDB1A02910C00E909FC /* folder@2x.png in Resources */,
 				E5B5450219F1083E00B7B7A9 /* checkmark@2x.png in Resources */,
 				E5CDA34D19F7FABB00F9CBB8 /* ReviewSheetStarFull@2x.png in Resources */,
@@ -1802,6 +1811,7 @@
 				E5CDA32D19F7C6A100F9CBB8 /* MDIOSSettingTextFieldTableViewCell.m in Sources */,
 				E5365CD51A027FE900E909FC /* MDIOSPopoverViewController.m in Sources */,
 				E5B544EF19F107FE00B7B7A9 /* DDLog.m in Sources */,
+				E5365CE81A03803900E909FC /* MDIOSPopoverNavigationController.m in Sources */,
 				E5B5451A19F10AC200B7B7A9 /* MDConsumptionTextView.m in Sources */,
 				E50BDB5919FAE19900391F04 /* UIAlertView+DSMenuiOS.m in Sources */,
 				E584E54D1A00EEEC0065E91B /* MDIOSDevicesViewController.m in Sources */,
