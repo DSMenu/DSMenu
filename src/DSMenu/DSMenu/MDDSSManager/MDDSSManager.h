@@ -134,6 +134,7 @@
 - (void)setValueOfDSID:(NSString *)dsid value:(NSString *)value callback:(void (^)(NSDictionary *, NSError*))callback;
 - (void)saveSceneForDevice:(NSString *)dsid scene:(NSString *)scene callback:(void (^)(NSDictionary *, NSError*))callback;
 - (void)saveSceneName:(NSString *)newName zone:(NSString *)aZone scene:(NSString *)scene group:(NSString *)group callback:(void (^)(NSDictionary*json, NSError*error))handler;
+- (void)saveZoneName:(NSString *)newName zoneId:(NSString *)zoneId callback:(void (^)(NSDictionary*json, NSError*error))handler;
 - (void)saveDeviceName:(NSString *)newName dsid:(NSString *)dsid callback:(void (^)(NSDictionary*json, NSError*error))handler;
 
 #pragma mark - Events / UserDefinedActions

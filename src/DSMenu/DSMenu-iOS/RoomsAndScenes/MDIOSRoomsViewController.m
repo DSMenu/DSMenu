@@ -28,6 +28,7 @@
 @interface MDIOSRoomsViewController ()
 @property NSMutableArray *zones;
 @property NSDictionary *displayedJSON;
+@property NSDictionary *zoneDictInEdit;
 @property (nonatomic, retain) UIPopoverController *generalActionsPopover;
 @end
 
@@ -38,6 +39,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.5; //seconds
+    lpgr.delegate = self;
+    [self.tableView addGestureRecognizer:lpgr];
+    
     self.title = NSLocalizedString(@"roomsTitle", @"");
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -304,4 +311,59 @@
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
     return UIModalPresentationNone;
 }
+
+#pragma mark UIGesture stack
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        NSLog(@"long press on table view but not on a row");
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"long press on table view at row %ld", indexPath.row);
+        
+        NSDictionary *zoneDict = [self.zones objectAtIndex:indexPath.row];
+        
+        NSString *text = [NSString stringWithFormat:(NSLocalizedString(@"changeZoneNameTextFormat", @"")), [zoneDict objectForKey:@"name"]];
+        UIAlertView *alert =[[UIAlertView alloc ] initWithTitle:NSLocalizedString(@"changeNameTitle", @"") message:text delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Ok", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField *sceneText = [alert textFieldAtIndex:0];
+        sceneText.text = [zoneDict objectForKey:@"name"];
+        [alert show];
+        self.zoneDictInEdit = zoneDict;
+        
+    } else {
+        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {  //Login
+        UITextField *newZoneName = [alertView textFieldAtIndex:0];
+        
+        // only store name if name is different
+        if(![newZoneName.text isEqualToString:[self.zoneDictInEdit objectForKey:@"name"]])
+        {
+            UIBarButtonItem *oldRightItem = self.navigationItem.rightBarButtonItem;
+            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+            [activityIndicator startAnimating];
+            
+            // scene type
+            [[MDDSSManager defaultManager] saveZoneName:newZoneName.text zoneId:[self.zoneDictInEdit objectForKey:@"id"] callback:^(NSDictionary *json, NSError *error) {
+                
+                self.zoneDictInEdit = nil;
+                [[MDDSSManager defaultManager] getStructure:^(NSDictionary *jsonSceneNames, NSError *error) {
+                    [activityIndicator stopAnimating];
+                    self.navigationItem.rightBarButtonItem = oldRightItem;
+                    [self updateTable:nil];
+                }];
+            }];
+        }
+    }
+}
+
 @end

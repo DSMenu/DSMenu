@@ -19,7 +19,7 @@
  *  MDIOSConsumptionTableViewCell
  *  view controller of the iOS rooms screen
  */
-@interface MDIOSRoomsViewController : MDIOSBaseTableViewController <UIPopoverPresentationControllerDelegate>
+@interface MDIOSRoomsViewController : MDIOSBaseTableViewController <UIPopoverPresentationControllerDelegate, UIGestureRecognizerDelegate>
 @property (strong) IBOutlet UITableView *roomsTable;
 @property (strong) IBOutlet MDIOSScenesTableViewController *sceneViewController;
 @property (assign) BOOL isLoading;

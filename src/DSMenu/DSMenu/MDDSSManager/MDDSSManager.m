@@ -723,6 +723,16 @@ static MDDSSManager *defaultManager;
     }];
 }
 
+- (void)saveZoneName:(NSString *)newName zoneId:(NSString *)zoneId callback:(void (^)(NSDictionary*json, NSError*error))handler
+{
+    [self precheckWithContinueBlock:^(NSError *error){
+        NSDictionary *params = @{ @"token": self.currentSessionToken, @"id": zoneId, @"newName":newName};
+        [self jsonCall:@"/json/zone/setName" params:params completionHandler:^(NSDictionary *json, NSError *error){
+            handler(json, error);
+        }];
+    }];
+}
+
 - (void)saveDeviceName:(NSString *)newName dsid:(NSString *)dsid callback:(void (^)(NSDictionary*json, NSError*error))handler
 {
     [self precheckWithContinueBlock:^(NSError *error){
